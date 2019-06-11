@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+    <!--Page Info-->
+    <title>Fourier Series Power Spectrum</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="https://rawgit.com/Imperial-visualizations/Physics-Visualizations/master/css/skeleton.css">
+    <link rel="stylesheet"
+          href="https://rawgit.com/Imperial-visualizations/Physics-Visualizations/master/css/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../scripts/numeric/src/numeric.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.15.0/math.min.js"></script>
+
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+
+<!--instruction guidance-->
+<!--<div class="guide">-->
+<!--Instructions for use-->
+<!--</div>-->
+
+<!--<div class="guideModal">-->
+<!--<div class="guideTest"></div>-->
+<!--<button class="backBtn">◀ Back</button> <button class="nextBtn">Next ▶</button>-->
+<!--<div class="modalContent">-->
+<!--<p id="modal_0">-->
+<!--Welcome to Imperial Fourier Visualisation: Generalised Fourier Series Part. This part allows you to visualize any user-input function with set period.-->
+<!--</p>-->
+<!--<p id="modal_1" hidden>-->
+<!--Just the name.-->
+<!--</p>-->
+<!--<p id="modal_2" hidden>-->
+<!--You can input the function you want to visualize from here.-->
+<!--</p>-->
+<!--<p id="modal_3" hidden>-->
+<!--If you are not sure how the input box works, check the guidance here.-->
+<!--</p>-->
+<!--<p id="modal_4" hidden>-->
+<!--Here, the Fourier Series plot of your input function will be displayed.-->
+<!--</p>-->
+<!--<p id="modal_5" hidden>-->
+<!--This is the Number Slider that allows you to change the Number of Terms. When N=0, it displays a_0; when N=1, it displays a_1 and b_1-->
+<!--</p>-->
+<!--<p id="modal_6" hidden>-->
+<!--This is the Period Slider that allows you to change the Period.-->
+<!--</p>-->
+<!--<p id="modal_7" hidden>-->
+<!--Try play with it.-->
+<!--</p>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--Main Body Content-->
+<div class="container">
+    <div class="row">
+
+        <!-- Title & Graph -->
+        <div class="six columns">
+            <!--Graph-->
+            <div id='graph' style="height: 43vh"></div>
+            <!--<div id='graph2' style="width:450px; height:450px;"></div>-->
+        </div>
+
+        <!--Input Box & Sliders-->
+        <div class="six columns">
+            <div class="tab-content">
+
+                <div class="allSliders">
+                    <!--These Sliders are shared among all tabs-->
+                    <!--NB: Be careful with classes and types-->
+
+                    <!--BEGIN Input function box -->
+                    <div id="input">
+                        <label>Input Function: f(x)=
+                            <input id="aInput" type="text" value="x**2">
+                            <p id="aInputError" style="color:#ff0000" hidden></p>
+                        </label>
+                    </div>
+                    <!--END Input function box  -->
+
+                    <!--BEGIN Slider N-->
+                    <!--Slider Display N-->
+                    <label class="sliderTitle" style="padding-bottom:20px;">Number of Terms:
+                        <span id="NControllerDisplay" data-unit="">1</span>
+                    </label>
+                    <!--Slider N-->
+                    <label class="slider">
+                        <span class="sliderMin">0</span>
+                        <input id="NController" class="inputs" type="range" value="1" min="0" max="50" step="1">
+                        <span class="sliderMax">50</span>
+                    </label>
+                </div>
+                <!--END Slider N-->
+
+                <!--BEGIN Slider L-->
+                <div id="L">
+                    <!--Slider Display L-->
+                    <label class="sliderTitle" style="padding-bottom:20px;">Period:
+                        <span id="LControllerDisplay" data-unit="">1</span>
+                    </label>
+                    <!--Slider L-->
+                    <label class="slider">
+                        <span class="sliderMin">-20</span>
+                        <input id="LController" class="inputs" type="range" value="1" min="-20" max="20"
+                               step="0.5"/>
+                        <span class="sliderMax">20</span>
+                    </label>
+                </div>
+                <!--END Slider L-->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="six columns">
+
+            <div id='graph2' style="height: 43vh"></div>
+        </div>
+
+        <div class="six columns">
+            <div id='graph3' style="height: 43vh"></div>
+
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+<!--THE BRAINS-->
+<script src="scripts/Generalised_Fourier_Decomposition.js"></script>
+</body>
+
+</html>
