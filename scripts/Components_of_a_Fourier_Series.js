@@ -31,11 +31,11 @@ function setLayout(){
 
     const new_layout = {
     autosize: true,
-    margin: {l:30, r:30, t:30, b:30},
+    margin: {l:45, r:0, t:20, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [], zeroline: true, title: "x"},
-    yaxis: {range: [], zeroline: true, title: "y"},
+    xaxis: {range: [], zeroline: true, title: "$x$"},
+    yaxis: {range: [], zeroline: true, title: "$f_{n}(x)$"},
     aspectratio: {x:1, y:1}
 };
     return new_layout;

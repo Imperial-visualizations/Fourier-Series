@@ -1,16 +1,9 @@
-var layout = {
-    autosize: true,
-    margin: {l: 30, r: 30, t: 30, b: 30},
-    hovermode: "closest",
-    xaxis: {autorange: true, zeroline: true, title: "x"},
-    yaxis: {range: [-2, 2], zeroline: true, title: "y"},
-};
 
-function setLayout(sometitlex,sometitley) {
+function setLayout(sometitlex, sometitley) {
 
     const new_layout = {
         autosize: true,
-        margin: {l: 30, r: 30, t: 30, b: 30},
+        margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
         xaxis: {range: [], zeroline: true, title: sometitlex},
@@ -163,12 +156,12 @@ function integration(x, y) {
 
 function initFourier() {
     Plotly.purge("graph");
-    //Plotly.purge("graph2");
-    datalist = computePlot1(xOriginal, yOriginal)
-    Plotly.newPlot("graph", datalist[0], setLayout('x','y'));
-    Plotly.newPlot("graph2", datalist[1], setLayout('x','y'));
-    Plotly.newPlot("graph3", datalist[2], setLayout('n','$a_{n}$'));
-    //Plotly.newPlot("graph2", computePlot2(xOriginal,yOriginal), layout);
+    Plotly.purge("graph2");
+    Plotly.purge("graph3");
+    [datalist,titley] = computePlot1(xOriginal, yOriginal)
+    Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$'));
+    Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
+    Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley));
 
     return;
 }
@@ -258,7 +251,7 @@ function plotSines(an, bn, n, x) {
 
     for (var i = 0; i < x.length; ++i) {
         x_n.push(x[i]);
-        y_n.push(((bn[n - 1]) * Math.sin((n - 1) * Math.PI * x[i] / L) + (an[n - 1]) * Math.cos((n - 1) * Math.PI * x[i] / L)) + 2 * spacing * (n - 1));
+        y_n.push(((bn[n - 1]) * Math.sin((n - 1) * Math.PI * x[i] / L) + (an[n - 1]) * Math.cos((n - 1) * Math.PI * x[i] / L)));
     }
     //y value gets shifted up so that the plots are distinctly different
     var data =
@@ -297,21 +290,41 @@ function computePlot1(x, y) {
     for (var i = 1; i < n.length; ++i) {
         data2.push(plotSines(an, bn, n[i], x));
     }
+    var y3;
+    var title;
 
+    coefficient = document.getElementById('Coefficient').value
+    if (coefficient == "a") {
+        y3 = an
+        title = "$a_{n}$"
+    }
+    if (coefficient == "b") {
+        y3 = bn;
+        title = "$b_{n}$";
+    }
+    if (coefficient == "α") {
+        y3 = alphan;
+        title = "$α_{n}$";
+    }
+    if (coefficient == "θ") {
+        y3 = thetan;
+        title = "$θ_{n}$"
+
+    }
     var data3 = [
         {
             type: "bar",
             mode: "lines",
             x: n,
-            y: an,
-             marker: {
-                color:'#0091D4',
+            y: y3,
+            marker: {
+                color: '#0091D4',
                 opacity: 0.7
             },
         },
     ];
     datalist = [data1, data2, data3]
-    return datalist;
+    return [datalist, title];
 }
 
 
@@ -339,13 +352,13 @@ function updatePlot() {
 
     equation = document.getElementById("aInput").value;
 
-    datalist = computePlot1(xOriginal, yOriginal);
+    [datalist, titley] = computePlot1(xOriginal, yOriginal);
 
     yOriginal = y_values(xOriginal);
 
-    Plotly.react("graph", datalist[0], setLayout('x','y'));
-    Plotly.react("graph2", datalist[1], setLayout('x','y'));
-    Plotly.react("graph3", datalist[2], setLayout('n','$a_{n}$'));
+    Plotly.react("graph", datalist[0], setLayout('$x$', '$f(x)$'));
+    Plotly.react("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
+    Plotly.react("graph3", datalist[2], setLayout('$n$', titley));
 
 }
 
@@ -362,23 +375,9 @@ function main() {
 
     });
 
-    /*Tabs*/
-    /*
-    $(function() {
-        $('ul.tab-nav li a.button').click(function() {
-            var href = $(this).attr('href');
-            $('li a.active.button', $(this).parent().parent()).removeClass('active');
-            $(this).addClass('active');
-            $('.tab-pane.active', $(href).parent()).removeClass('active');
-            $(href).addClass('active');
-
-            initCarte(href); //re-initialise when tab is changed
-            return false;
-        });
-    });*/
-
-
-    //The First Initialisation - I use 's' rather than 'z' :p
+    $('#Coefficient').change(function () {
+        updatePlot();
+    })
     initFourier();
 }
 

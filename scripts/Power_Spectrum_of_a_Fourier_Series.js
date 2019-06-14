@@ -1,13 +1,4 @@
 //Global Initial Parameters:
-const layout = {
-    margin: {l:30, r:30, t:30, b:30},
-    hovermode: "closest",
-    showlegend: false,
-    xaxis: {range: [-5,5], zeroline: true, title: "x"},
-    yaxis: {range: [-5,5], zeroline: true, title: "y"},
-    aspectratio: {x:1, y:1}
-};
-
 var defaultHref = window.location.href;
 var initX = 0, initY = 0;
 var resolution = 2000;
@@ -32,10 +23,10 @@ so the setLayout allows the layout to fit the graph, instead of fixing the layou
 function setLayoutSmall(someTitles){
     const new_layout = {
     autosize: true,
-    margin: {l:30, r:30, t:30, b:30},
+    margin: {l:45,r:0, t:20, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [], zeroline: true, title: "x"},
+    xaxis: {range: [], zeroline: true, title: "$x$"},
     yaxis: {range: [], zeroline: true, title: someTitles},
     aspectratio: {x:1, y:1},
     }
@@ -46,8 +37,8 @@ function setLayoutSmall(someTitles){
 function initFourier() {
     Plotly.purge("graph3");
     Plotly.purge("graph4");
-    Plotly.newPlot("graph3", plot_decision1(label),setLayoutSmall(title1));
-    Plotly.newPlot("graph4",plot_decision2(label),setLayoutSmall(title2));
+    Plotly.react("graph3", plot_decision1(label),setLayoutSmall(title1));
+    Plotly.react("graph4",plot_decision2(label),setLayoutSmall(title2));
 
     return;
 
@@ -331,10 +322,8 @@ function main() {
             label = "a&b";
             title1='$a_{n}$';
             title2='$b_{n}$';
-            console.log("selected an and bn");
         } else if (selectedValue==="powerSpectrum"){
             label = "alpha&theta";
-            console.log("selected alpha and theta");
             title1="$α_{n}$";
             title2="$θ_{n}$"
         }

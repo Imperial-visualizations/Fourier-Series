@@ -25,9 +25,7 @@ var shape = 0;
 function initFourier() {
     Plotly.purge("graph");
     Plotly.newPlot("graph", computePlot(z), layout);
-
     return;
-
 }
 
 
@@ -60,8 +58,6 @@ function selection(n,A,L,x,type){
         } else {
             formula=A*((4*L**2)/(n*Math.PI)**2)*(-1)**n*Math.cos(n*Math.PI*x/L);
         }
-    } else if (type===5){
-        formula = 2*A*(-1)**(n+1) /(n*Math.PI) * Math.sin(n *Math.PI* x/L);
     } else if (type===6){
         if (n===0){
             formula=A*L;
@@ -107,8 +103,6 @@ function a_zero(shape,A,L){
         a = 1.0/L;
     }else if (shape ===4){
         a = (2.0/3)*A*L**2;
-    }else if (shape ===5){
-        a = 0;//(2.0/3)*A*L**2;
     }else if (shape ===6){
         a = A*L;
     }
@@ -233,41 +227,14 @@ function main() {
             shape = 3;
         } else if (selectedValue==="parabola"){
             shape = 4;
-        } else if (selectedValue==="linear"){
-            shape = 5;
-        } else if (selectedValue==="mode"){
+        }  else if (selectedValue==="mode"){
             shape = 6;
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
         initFourier();
     })
-/*
-    $(".rightnav").on('click',function(){
-        window.location.href =
-            defaultHref.slice(0,-6)
-            +(parseInt(defaultHref.slice(-6,-5))+1) + ".html";
-    });
 
-    $(".rightnav").on("mouseenter", function() {
-        $(".rightnav").css({"color":"#1a0433","font-size":"55px"});
-    }).on('mouseleave', function(){
-        $(".rightnav").css({"color":"#330766","font-size":"50px"});
-    });
-
-    $(".leftnav").on('click',function(){
-        window.location.href =
-            defaultHref.slice(0,-6)
-            +(parseInt(defaultHref.slice(-6,-5))-1) + ".html";
-    });
-
-    $(".leftnav").on("mouseenter", function() {
-        $(".leftnav").css({"color":"#1a0433","font-size":"55px"})
-    }).on('mouseleave', function(){
-        $(".leftnav").css({"color":"#330766","font-size":"50px"})
-    });
-*/
-    //The First Initialisation - I use 's' rather than 'z' :p
     initFourier();
 }
 $(document).ready(main); //Load main when document is ready.

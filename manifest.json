@@ -1,0 +1,29 @@
+{
+  "author": [
+    "Mark Thomas"
+  ],
+  "title": "Fourier Series",
+  "description": "A suite of Imperial Visualisations demonstrating how any arbitrary periodic function can be decomposed into a trigonometric series.",
+  "tags": [
+    "maths",
+    "fourier",
+    "functions"
+  ],
+  "department": "physics",
+  "date_created": "13.06.2019",
+  "pages": [
+    {
+      "title": "Derivation of a Fourier Series",
+      "file": "1Derivation_of_a_Fourier_Series.html",
+      "guidance": {
+        "introduction": "Welcome to Imperial Visualisation Fourier Suite! Here you will learn how to decompose periodic functions into a trigonometric series. Click the instructions to get started!",
+        "instructions": [
+          "The introduction tab here shows us how and why we can decompose a function into its fourier series in the first place.",
+          "The other tabs derive the fourier coefficients for simple periodic functions, such as a sawtooth function."
+        ]
+      },
+      "learn": true,
+      "teach": false
+    }
+  ]
+}
