@@ -14,6 +14,12 @@ var initX = 0, initY = 0;
 var resolution = 2000;
 // set the step of the x axis from -2pi to 2pi
 var z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
+// Define our interacting Jquery elements
+
+var Nslider = $("#NController");
+var Lslider = $("#LController");
+var Aslider = $("#AController");
+
 //----------------------------------------------------------------------------------------------------------------------
 //VERY IMPORTANT!!!
 // 0 is triangular, 1 is square, 2 is sawtooth, 3 is delta's, 4 is parabola, 5 is x, 6 is |x|,
@@ -121,9 +127,8 @@ function even_selection2(n,A,L,type){
 // return the data that stores one component of the Fourier Series
 function plotSines(n,x,shape){
     //Plots individual components that are being built up to the total function
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = parseFloat(document.getElementById('AController').value);
+    var L = Lslider.val();
+    var A = Aslider.val();
 
     var x_n = [];
     var y_n = [];
@@ -152,13 +157,8 @@ function plotSines(n,x,shape){
 
 // get each single component by recalling plotSines, and plot out all the components of the Fourier Series
 function computeComponents(x){
-
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = parseFloat(document.getElementById('AController').value);
-
+    var N = parseFloat(Nslider.val());
     var data_value=[];
-
     for (var n=1; n<N+1; ++n){
         data_value.push(plotSines(n,z,shape));
     }
@@ -178,20 +178,6 @@ function updatePlot() {
     // NB: updates according to the active tab
     var selectedValue = document.getElementById("Select").value; // finds out which function is active
     initFourier();
-    //data = computeComponents(z);
-
-    /*
-    //This is animation bit.
-    Plotly.animate(
-        'graph',
-        {data: data},
-        {
-            fromcurrent: true,
-            transition: {duration: 0,},
-            frame: {duration: 0, redraw: false,},
-            mode: "afterall"
-        }
-    );*/
 }
 
 function main() {
@@ -234,7 +220,6 @@ function main() {
         $("#"+selectedValue+"Title").show();
         initFourier();
     })
-
     //The First Initialisation - I use 's' rather than 'z' :p
     initFourier();
 }

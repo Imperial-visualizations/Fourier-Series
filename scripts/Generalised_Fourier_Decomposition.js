@@ -334,11 +334,6 @@ function updateFunction() {
     return equation;
 }
 
-function converting(string) {
-    //Turns the equation written by the user from a string into a command
-    f = eval(string);
-    return f;
-}
 
 /* updates the plot according to the slider controls. */
 
@@ -364,7 +359,7 @@ function updatePlot() {
 
 function main() {
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
-    $("input[type=range]").each(function () {
+    $("input").each(function () {
         /*Allows for live update for display values*/
         $(this).on('input', function () {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
