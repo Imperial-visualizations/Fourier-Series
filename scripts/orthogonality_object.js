@@ -144,10 +144,10 @@ function Line(points) {
         var lastElm = this.x.length - 1;
         var [r, theta, phi] = c2sp(this.x[lastElm]-this.x[0], this.y[lastElm]-this.y[0], this.z[lastElm]-this.z[0]);
         var offset = [this.x[0], this.y[0], this.z[0]];
-        var frac = wingLen;
+        var frac = wingLen*r;
         var sin45 = Math.sin(Math.PI/4);
         var d = r - frac * sin45;
-        var wingLength = Math.sqrt(Math.pow(frac*sin45,2));
+        var wingLength = Math.sqrt(Math.pow(frac*sin45,2) + d*d);
         var wingAngle = Math.acos(d/wingLength);
 
 

@@ -1,3 +1,32 @@
+//A: Global Initial Parameters:
+
+/* Start by putting in all initial parameters you want and any constants you want to use (e.g. G = 6.67*10**(-11),
+any layout properties (which you probably want to keep constant for an individual part of a visualisation
+should go here */
+
+const initialPoint = [1, 1];
+const layout = {
+    width: 450, "height": 500,
+    margin: {l:30, r:30, t:30, b:30},
+    hovermode: "closest",
+    showlegend: false,
+    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
+    yaxis: {range: [-5, 5], zeroline: true, title: "y"},
+    aspectratio: {x:1, y:1}
+};
+var currentPoint = initialPoint;
+var initX1 = 0, initY1 = 0;
+var initX2 = 0, initY2 = 0;
+var isBlackText = false;
+
+
+//B: Maths
+
+/*Next comes all the mathematical functions that are used, if you think a library will do a particular job
+that's fine, no need to recreate stuff, but any functions you need to construct yourself should go in this
+next block*/
+
+
 function inner_product(first_vector , second_vector){
     // Returns the inner product of two vectors
     var sum = 0;
@@ -7,7 +36,7 @@ function inner_product(first_vector , second_vector){
     return sum;
 }
 
-function orthogonal(vector_a , vector_b){
+function orthogonal(vector_a , vector_b, tolerance = 0){
     //Returns whether vectors a and b are orthogonal
     dot = inner_product(vector_a , vector_b);
     if (dot === 0){
@@ -17,6 +46,7 @@ function orthogonal(vector_a , vector_b){
         return false;
         }
     }
+
 
 function normalised(vector){
     // Returns whether a vector has a normalised basis
@@ -68,90 +98,6 @@ function scale_vector(original_vector, scale){
     new_2 = scale * original_vector[1]
     new_vector = [new_1, new_2]
     return new_vector
-}
-
-
-
-//Global Initial Parameters:
-const initialPoint = [1, 1];
-const layout = {
-    width: 450, "height": 500,
-    margin: {l:30, r:30, t:30, b:30},
-    hovermode: "closest",
-    showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
-    yaxis: {range: [-5, 5], zeroline: true, title: "y"},
-    aspectratio: {x:1, y:1}
-};
-var currentPoint = initialPoint;
-var initX1 = 0, initY1 = 0;
-var initX2 = 0, initY2 = 0;
-var isBlackText = false;
-// x̂x ŷ ẑ  x
-//Plot
-/**
- * Resets and plots initial area element or basis vectors of 2D Cartesian.
- * @param {string} type - basis vectors or area element
- */
-
-
-
-
-function initCarte(type) {
-    Plotly.purge("graph");
-    initX1 = currentPoint[0];
-    initY1 = currentPoint[1];
-    initX2 = currentPoint[0];
-    initY2 = currentPoint[1];
-    initX3 = currentPoint[0];
-    initY3 = currentPoint[1];
-    /* ~Jquery
-    1.  Assign initial/default x, y values to the sliders and slider displays.
-    */
-
-    $("#x1Controller").val(initX1);
-    $("#x1ControllerDisplay").text(initX1);
-    $("#y1Controller").val(initY1);
-    $("#y1ControllerDisplay").text(initY1);
-
-
-    $("#x2Controller").val(initX2);
-    $("#x2ControllerDisplay").text(initX2);
-    $("#y2Controller").val(initY2);
-    $("#y2ControllerDisplay").text(initY2);
-
-    $("#x3Controller").val(initX3);
-    $("#x3ControllerDisplay").text(initX3);
-    $("#y3Controller").val(initY3);
-    $("#y3ControllerDisplay").text(initY3);
-
-    /* ~Jquery
-    2.  Declare and store the floating values from x/y- sliders.
-        Hint:
-            - use document.getElementById('idName').value
-            - use parseFloat() to make sure you are getting floating points.
-    */
-
-    var x1 = parseFloat($('x1Controller').val());
-    var y1 = parseFloat(document.getElementById('y1Controller').value);
-
-    var x2 = parseFloat(document.getElementById('x2Controller').value);
-    var y2 = parseFloat(document.getElementById('y2Controller').value);
-
-    var x3 = parseFloat(document.getElementById('x3Controller').value);
-    var y3 = parseFloat(document.getElementById('y3Controller').value);
-
-    var project_1 = scale_vector([x1,y1] ,Math.abs( projection([x3,y3] , [x1,y1])))
-    var project_2 = scale_vector([x2,y2] ,Math.abs( projection([x3,y3] , [x2,y2])))
-
-
-
-
-    Plotly.newPlot("graph", computeBasis(x1, y1), layout);
-    Plotly.newPlot("graph", computeBasis(x2, y2), layout);
-    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
-
-    return;
 }
 
 function computeBasis(x1, y1,x2,y2 , x3,y3) {
@@ -215,21 +161,24 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     y3Vector = new Line2d([[x3, y3], [x3, y3+dy3]]);
     vertex3  = new Line2d([[0, 0], [x3, y3]]);
 
-    var project_1 = scale_vector([x1,y1] ,Math.abs(projection([x3,y3] , [x1,y1])))
-    var project_2 = scale_vector([x2,y2] , Math.abs(projection([x3,y3] , [x2,y2])))
-
-    vertex4  = new Line2d([[0, 0], [project_1[0], project_1[1]]]);
-    vertex5 = new Line2d([[0,0] , [project_2[0],project_2[1]]]);
-
-    /*
-    3.  I have created new Rectangle Object for you in the objects.js, so do check it out.
-        NB: Conventions: the name of the functions start with lower case/ Objects start with UPPER case.
-        Create a 'new' rectangle using 'Rectangle' in the objects.js and name it 'dominic'.
-
-        Only then uncomment the line in the graphic object named 'data' below.
-    */
+    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]))
+    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
 
 
+    var m1 = (y1/x1);
+    var m2 = (y2/x2);
+
+    var x_prime = (y3 - m1*x3)/(m2 - m1)
+    var y_prime = m2*x_prime
+
+    var x_dprime = (y3 - m2*x3)/(m1-m2)
+    var y_dprime = m1*x_dprime
+
+    vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
+    vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+
+    vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
+    vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
 
     var data = [
 
@@ -256,7 +205,6 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         },
 
 
-
         vertex1.gObject(cherry, 3),
         vertex1.arrowHead(cherry, 3),
         vertex2.gObject(blue, 3),
@@ -265,24 +213,85 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         vertex3.arrowHead(green, 3),
 
         vertex4.gObject(cyan, 3),
-        vertex5.gObject(lilac, 3),
+        vertex5.gObject(cyan, 3),
+
+        vertex6.gObject(lilac, 3),
+        vertex7.gObject(lilac, 3),
     ]
     ;
     return data;
 }
 
 
+//C: Interactivity
+
+/* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
+Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
+
+function initCarte(type) {
+    Plotly.purge("graph");
+    initX1 = currentPoint[0];
+    initY1 = currentPoint[1];
+    initX2 = currentPoint[0];
+    initY2 = currentPoint[1];
+    initX3 = currentPoint[0];
+    initY3 = currentPoint[1];
+
+    /* ~Jquery
+    1.  Assign initial/default x, y values to the sliders and slider displays.
+    */
+    $("#x1Controller").val(initX1);
+    $("#x1ControllerDisplay").text(initX1);
+    $("#y1Controller").val(initY1);
+    $("#y1ControllerDisplay").text(initY1);
+
+    $("#x2Controller").val(initX2);
+    $("#x2ControllerDisplay").text(initX2);
+    $("#y2Controller").val(initY2);
+    $("#y2ControllerDisplay").text(initY2);
+
+    $("#x3Controller").val(initX3);
+    $("#x3ControllerDisplay").text(initX3);
+    $("#y3Controller").val(initY3);
+    $("#y3ControllerDisplay").text(initY3);
+
+    /* ~Jquery
+    2.  Declare and store the floating values from x/y- sliders.
+        Hint:
+            - use document.getElementById('idName').value
+            - use parseFloat() to make sure you are getting floating points.
+    */
+
+    var x1 = parseFloat($('x1Controller').val());
+    var y1 = parseFloat(document.getElementById('y1Controller').value);
+
+    var x2 = parseFloat(document.getElementById('x2Controller').value);
+    var y2 = parseFloat(document.getElementById('y2Controller').value);
+
+    var x3 = parseFloat(document.getElementById('x3Controller').value);
+    var y3 = parseFloat(document.getElementById('y3Controller').value);
+
+    var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]))
+    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
 
 
-/** updates the plot according to the slider controls. */
+    Plotly.newPlot("graph", computeBasis(x1, y1), layout);
+    Plotly.newPlot("graph", computeBasis(x2, y2), layout);
+    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
+
+    return;
+}
+
+
+//D: Calling
+
+/* Now we have to ask the plots to update every time the user interacts with the visualisation. Here we must both
+define what we want it to do when it updates, and then actually ask it to do that. These are the two functions below.
+*/
+
 function updatePlot() {
     var data = [];
 
-
-    /* ~Jquery
-    5.  Declare and store the floating values from x/y- sliders.
-        Hint: Same is task 2.
-    */
     var x1 = parseFloat(document.getElementById('x1Controller').value);
     var y1 = parseFloat(document.getElementById('y1Controller').value);
 
@@ -295,7 +304,6 @@ function updatePlot() {
 
     data = computeBasis(x1, y1 , x2, y2 ,x3,y3);
 
-    //This is animation bit.
     Plotly.animate(
         'graph',
         {data: data},
