@@ -3,12 +3,12 @@ function setLayout(sometitlex, sometitley) {
 
     const new_layout = {
         autosize: true,
-        margin: {l: 45, r: 30, t: 30, b: 30},
+        margin: { l: 45, r: 30, t: 30, b: 30 },
         hovermode: "closest",
         showlegend: false,
-        xaxis: {range: [], zeroline: true, title: sometitlex},
-        yaxis: {range: [], zeroline: true, title: sometitley},
-        aspectratio: {x: 1, y: 1}
+        xaxis: { range: [], zeroline: true, title: sometitlex },
+        yaxis: { range: [], zeroline: true, title: sometitley },
+        aspectratio: { x: 1, y: 1 }
     };
     return new_layout;
 }
@@ -73,7 +73,7 @@ function y_values(x_range) {
 }
 
 function y_values_cosine(x_range, n, L) {
-//Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
+    //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
         x = x_range[i];
@@ -84,7 +84,7 @@ function y_values_cosine(x_range, n, L) {
 
 
 function y_values_sine(x_range, n, L) {
-//Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
+    //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
         x = x_range[i];
@@ -158,7 +158,7 @@ function initFourier() {
     Plotly.purge("graph");
     Plotly.purge("graph2");
     Plotly.purge("graph3");
-    [datalist,titley] = computePlot1(xOriginal, yOriginal)
+    [datalist, titley] = computePlot1(xOriginal, yOriginal)
     Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$'));
     Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
     Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley));
@@ -255,14 +255,14 @@ function plotSines(an, bn, n, x) {
     }
     //y value gets shifted up so that the plots are distinctly different
     var data =
-        {
-            type: "scatter",
-            mode: "lines",
-            x: x_n,
-            y: y_n,
-            line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
-        }
-    ;
+    {
+        type: "scatter",
+        mode: "lines",
+        x: x_n,
+        y: y_n,
+        line: { color: "rgb(0,N*10,0)", width: 3, dash: "dashed" },
+    }
+        ;
     return data;
 
 }
@@ -281,7 +281,7 @@ function computePlot1(x, y) {
             mode: "lines",
             x: x,
             y: y2,
-            line: {color: "#960078", width: 3, dash: "dashed"},
+            line: { color: "#960078", width: 3, dash: "dashed" },
         },
     ];
 
@@ -328,10 +328,13 @@ function computePlot1(x, y) {
 }
 
 
-function updateFunction() {
-    //Looks at equation the user typed in and retrieves this
-    equation = document.getElementById("aInput").value;
-    return equation;
+//Turn user's input function into JS readable form
+function JSequation(eq) {
+    //Remove equal symbol
+    eq = eq.replace("=", "")
+    //Change the syntax for symbol
+    eq = eq.replace("^", "**");
+    return eq
 }
 
 
@@ -345,8 +348,10 @@ function updatePlot() {
     var xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
 
-    equation = document.getElementById("aInput").value;
+    eq = document.getElementById("aInput").value;
+    equation = JSequation(eq);
 
+    //equation = document.getElementById("aInput").value;
     [datalist, titley] = computePlot1(xOriginal, yOriginal);
 
     yOriginal = y_values(xOriginal);
