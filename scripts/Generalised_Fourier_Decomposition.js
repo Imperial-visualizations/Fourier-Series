@@ -3,12 +3,12 @@ function setLayout(sometitlex, sometitley) {
 
     const new_layout = {
         autosize: true,
-        margin: { l: 45, r: 30, t: 30, b: 30 },
+        margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
-        xaxis: { range: [], zeroline: true, title: sometitlex },
-        yaxis: { range: [], zeroline: true, title: sometitley },
-        aspectratio: { x: 1, y: 1 }
+        xaxis: {range: [], zeroline: true, title: sometitlex},
+        yaxis: {range: [], zeroline: true, title: sometitley},
+        aspectratio: {x: 1, y: 1}
     };
     return new_layout;
 }
@@ -21,8 +21,11 @@ var L = parseFloat(document.getElementById('LController').value);
 var xOriginal = numeric.linspace(-L, L, resolution);
 
 // kMax is an integer, the larger it is the better the numerical integration
-var kMax = 1000;
+//var kMax = 1000;
+//750 is a good compromise between speed and accuracy
+var kMax = 750;
 var h = 5.0 / kMax;
+
 //Common functions:
 sin = Math.sin;
 cos = Math.cos;
@@ -51,15 +54,6 @@ var log = Math.log;
 x = 2;
 var equation = "x**2";
 
-// sum up all the number in the array
-function adding(array) {
-    var result = 0
-    for (var i = 0; i < array.length; ++i) {
-        result += array[i];
-    }
-    return result;
-}
-
 // convert the string to a numerical function
 function y_values(x_range) {
     //Takes the specified function and computes the y values for given x values
@@ -73,7 +67,7 @@ function y_values(x_range) {
 }
 
 function y_values_cosine(x_range, n, L) {
-    //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
+//Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
         x = x_range[i];
@@ -82,9 +76,8 @@ function y_values_cosine(x_range, n, L) {
     return y;
 }
 
-
 function y_values_sine(x_range, n, L) {
-    //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
+//Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
         x = x_range[i];
@@ -145,6 +138,7 @@ function integration_ultra(kMax, L, n, integral) {
     return A * L;
 }
 
+
 function integration(x, y) {
     //Integration by Riemann sum
     var A = 0;
@@ -158,7 +152,7 @@ function initFourier() {
     Plotly.purge("graph");
     Plotly.purge("graph2");
     Plotly.purge("graph3");
-    [datalist, titley] = computePlot1(xOriginal, yOriginal)
+    [datalist,titley] = computePlot1(xOriginal, yOriginal)
     Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$'));
     Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
     Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley));
@@ -166,11 +160,68 @@ function initFourier() {
     return;
 }
 
+//BUGGY
+function oddEvenCheck(equation, L){
+    let x_ar = numeric.linspace(0, L, 100);
+    let y_plus = x_ar.map(x => {
+        return eval(equation);
+    });
+
+    //console.log(`y_plus ${y_plus}`);
+    x_ar = numeric.linspace(0, -L, 100);
+    let y_minus = x_ar.map(x => {
+        return eval(equation);
+    });
+    //console.log(`y_minus ${y_minus}`)
+
+    let y2 = [];
+    for (let i = 0; i < x_ar.length; i++){
+        y2.push(y_plus[i] + y_minus[i]);
+    };
+    //console.log(`y2 ${y2}`);
+
+    //weird doesn't work
+    /*
+    let allZero = y2.every(elem => {
+        return -1e-7 <= elem <= 1e-7;
+    });
+    */
+
+    let sum = y2.reduce((accum, currVal) => {
+        return accum + currVal;
+    });
+    if (Math.abs(sum) <= 1e-7) {
+        return 'odd';
+    } else{
+        y2=[]
+        for (let i = 0; i<x_ar.length; i++){
+            y2.push(y_plus[i] - y_minus[i]);
+        };
+        //console.log(y2);
+        sum = y2.reduce((accum, currVal) => {
+            return accum + currVal;
+        });
+        //console.log(`sum ${sum}`);
+        if (Math.abs(sum) <= 1e-7){
+            return 'even';
+        } else {
+            return 'neither';
+        };
+    };
+};
+
 function a_n(n, x) {
     var L = parseFloat(document.getElementById('LController').value);
     //Updates L so that we can calculate a_n for all necessary n
 
-    an = integration_ultra(kMax, L, n, "for_an") / L;
+    let equation = document.getElementById("aInput").value;
+    let parity = oddEvenCheck(equation, L);
+    console.log(`parity = ${parity}`);
+    if (parity === 'odd'){
+        an = 0;
+    } else {
+        an = integration_ultra(kMax, L, n, "for_an") / L;
+    };
     return an;
 }
 
@@ -178,7 +229,14 @@ function b_n(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
     var L = parseFloat(document.getElementById('LController').value);
 
-    bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    let equation = document.getElementById("aInput").value;
+    let parity = oddEvenCheck(equation, L);
+    console.log(`parity = ${parity}`);
+    if (parity === 'even'){
+        bn = 0;
+    } else {
+        bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    };
     return bn;
 }
 
@@ -224,7 +282,10 @@ function Trig_summation_x(an, bn, x_value) {
     for (var n = 1; n < N; n++) {
         single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));//
     }
-    return adding(single_y);
+    //return adding(single_y);
+    return single_y.reduce((accum,currVal) =>{
+        return accum + currVal;
+    });
 }
 
 function Trig_summation_n(an, bn, x) {
@@ -255,14 +316,14 @@ function plotSines(an, bn, n, x) {
     }
     //y value gets shifted up so that the plots are distinctly different
     var data =
-    {
-        type: "scatter",
-        mode: "lines",
-        x: x_n,
-        y: y_n,
-        line: { color: "rgb(0,N*10,0)", width: 3, dash: "dashed" },
-    }
-        ;
+        {
+            type: "scatter",
+            mode: "lines",
+            x: x_n,
+            y: y_n,
+            line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
+        }
+    ;
     return data;
 
 }
@@ -281,7 +342,7 @@ function computePlot1(x, y) {
             mode: "lines",
             x: x,
             y: y2,
-            line: { color: "#960078", width: 3, dash: "dashed" },
+            line: {color: "#960078", width: 3, dash: "dashed"},
         },
     ];
 
@@ -327,17 +388,6 @@ function computePlot1(x, y) {
     return [datalist, title];
 }
 
-
-//Turn user's input function into JS readable form
-function JSequation(eq) {
-    //Remove equal symbol
-    eq = eq.replace("=", "")
-    //Change the syntax for symbol
-    eq = eq.replace("^", "**");
-    return eq
-}
-
-
 /* updates the plot according to the slider controls. */
 
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
@@ -348,10 +398,8 @@ function updatePlot() {
     var xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
 
-    eq = document.getElementById("aInput").value;
-    equation = JSequation(eq);
+    equation = document.getElementById("aInput").value;
 
-    //equation = document.getElementById("aInput").value;
     [datalist, titley] = computePlot1(xOriginal, yOriginal);
 
     yOriginal = y_values(xOriginal);
