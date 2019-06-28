@@ -5,10 +5,8 @@
     <!--Page Info-->
     <title>Derivation of a Fourier Series</title>
     <!--css link-->
-    <link rel="stylesheet"
-          href="styles/skeleton.css">
-    <link rel="stylesheet"
-          href="styles/style.css">
+    <link rel="stylesheet" href="styles/skeleton.css">
+    <link rel="stylesheet" href="styles/style.css">
     <!--Required JS resources-->
     <!--NB: better to have resources before the main body but still works even if they are not-->
     <script src="scripts/plotly-1.47.4.min.js"></script>
@@ -16,110 +14,138 @@
     <script src="scripts/numeric/src/numeric.js"></script>
     <script src="scripts/math.min.js"></script>
     <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { fonts: ["TeX"] }
-  });
-
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        },
+        "HTML-CSS": { fonts: ["TeX"] }
+      });
     </script>
     <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
     </script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
+
 <body>
-<!--Main Body Content-->
-<div class="container" id="visualisation">
-    <div class="row">
-        <!-- Graph -->
-        <div class="six columns">
-            <!--Graph-->
-            <div id='graph' style="height: 43vh"></div>
-            <!--<div id='graph2' style="width:450px; height:450px;"></div>-->
-        </div>
+    <!--Main Body Content-->
+    <script>
+        //
+        //  Use a closure to hide the local variables from the
+        //  global namespace
+        //
+        (function () {
+            var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+            var math = null;                // the element jax for the math output.
 
-        <!--Input Box & Sliders-->
-        <div class="six columns">
-            <div class="tab-content">
+            //
+            //  Get the element jax when MathJax has produced it.
+            //
+            QUEUE.Push(function () {
+                math = MathJax.Hub.getAllJax("MathOutput")[0];
+            });
 
-                <div class="allSliders">
-                    <!--These Sliders are shared among all tabs-->
-                    <!--NB: Be careful with classes and types-->
+            //
+            //  The onchange event handler that typesets the
+            //  math entered by the user
+            //
+            window.UpdateMath = function (TeX) {
+                QUEUE.Push(["Text", math, "\\displaystyle{" + TeX + "}"]);
+            }
+        })();
+    </script>
+    <div class="container" id="visualisation">
+        <div class="row">
+            <!-- Graph -->
+            <div class="six columns">
+                <!--Graph-->
+                <div id='graph' style="height: 43vh"></div>
+                <!--<div id='graph2' style="width:450px; height:450px;"></div>-->
+            </div>
 
-                    <!--BEGIN Input function box -->
-                    <div id="input">
-                        <label>Input Function: f(x)=
-                            <input id="aInput" type="text" value="x**2">
-                            <p id="aInputError" style="color:#ff0000" hidden></p>
+            <!--Input Box & Sliders-->
+            <div class="six columns">
+                <div class="tab-content">
+
+                    <div class="allSliders">
+                        <!--These Sliders are shared among all tabs-->
+                        <!--NB: Be careful with classes and types-->
+
+                        <!--BEGIN Input function box -->
+                        <div id="input">
+                            <label>Input Function: $f(x) = $
+                                <input id="aInput" type="text" value="x^2" onkeyup="UpdateMath(this.value)">
+                                <p id="aInputError" style="color:#ff0000" hidden></p>
+                                <div>You typed: $f(x) = $
+                                    <span id="MathOutput">${}$</span>
+                                </div>
+                            </label>
+                        </div>
+                        <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                        <!--Scroll-down to select coefficient-->
+                        <strong>Select Coefficient: </strong>
+                        <select id="Coefficient">
+                            <option value="a">a</option>
+                            <option value="b">b</option>
+                            <option value="α">α</option>
+                            <option value="θ">θ</option>
+                        </select>
+                        <!--END Input function box  -->
+
+                        <!--BEGIN Slider N-->
+                        <!--Slider Display N-->
+                        <label class="sliderTitle" style="padding-bottom:20px;">Number of Terms:
+                            <span id="NControllerDisplay" data-unit="">1</span>
+                        </label>
+                        <!--Slider N-->
+                        <label class="slider">
+                            <span class="sliderMin">0</span>
+                            <input id="NController" class="inputs" type="range" value="1" min="0" max="50" step="1">
+                            <span class="sliderMax">50</span>
                         </label>
                     </div>
-                    <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
-                    <!--Scroll-down to select coefficient-->
-                    <strong>Select Coefficient: </strong>
-                    <select id="Coefficient">
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                        <option value="α">α</option>
-                        <option value="θ">θ</option>
-                    </select>
-                    <!--END Input function box  -->
+                    <!--END Slider N-->
 
-                    <!--BEGIN Slider N-->
-                    <!--Slider Display N-->
-                    <label class="sliderTitle" style="padding-bottom:20px;">Number of Terms:
-                        <span id="NControllerDisplay" data-unit="">1</span>
-                    </label>
-                    <!--Slider N-->
-                    <label class="slider">
-                        <span class="sliderMin">0</span>
-                        <input id="NController" class="inputs" type="range" value="3" min="0" max="50" step="1">
-                        <span class="sliderMax">50</span>
-                    </label>
+                    <!--BEGIN Slider L-->
+                    <div id="L">
+                        <!--Slider Display L-->
+                        <label class="sliderTitle" style="padding-bottom:20px;">Period:
+                            <span id="LControllerDisplay" data-unit="">1</span>
+                        </label>
+                        <!--Slider L-->
+                        <label class="slider">
+                            <span class="sliderMin">-20</span>
+                            <input id="LController" class="inputs" type="range" value="1" min="-20" max="20"
+                                step="0.5" />
+                            <span class="sliderMax">20</span>
+                        </label>
+                    </div>
+                    <!--END Slider L-->
                 </div>
-                <!--END Slider N-->
 
-                <!--BEGIN Slider L-->
-                <div id="L">
-                    <!--Slider Display L-->
-                    <label class="sliderTitle" style="padding-bottom:20px;">Period:
-                        <span id="LControllerDisplay" data-unit="">1</span>
-                    </label>
-                    <!--Slider L-->
-                    <label class="slider">
-                        <span class="sliderMin">-20</span>
-                        <input id="LController" class="inputs" type="range" value="1" min="-20" max="20"
-                               step="0.5"/>
-                        <span class="sliderMax">20</span>
-                    </label>
-                </div>
-                <!--END Slider L-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six columns">
+
+                <div id='graph2' style="height: 43vh"></div>
+            </div>
+
+            <div class="six columns">
+                <div id='graph3' style="height: 43vh"></div>
+
             </div>
 
         </div>
     </div>
-
-    <div class="row">
-        <div class="six columns">
-
-            <div id='graph2' style="height: 43vh"></div>
-        </div>
-
-        <div class="six columns">
-            <div id='graph3' style="height: 43vh"></div>
-
-        </div>
-
     </div>
-</div>
-</div>
 
-<!--THE BRAINS-->
-<script src="scripts/Generalised_Fourier_Decomposition.js"></script>
+    <!--THE BRAINS-->
+    <script src="scripts/Generalised_Fourier_Decomposition.js"></script>
 </body>
 
 </html>
