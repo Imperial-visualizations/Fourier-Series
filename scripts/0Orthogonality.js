@@ -4,15 +4,18 @@
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
 should go here */
 
-const initialPoint = [1, 1];
+const initialPoint = [0, 1];
+const initialPoint1 = [1, 0];
+const initialPoint2 = [0,1];
+const initialPoint3 = [1,1];
 const layout = {
     width: 450, "height": 500,
     margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
-    yaxis: {range: [-5, 5], zeroline: true, title: "y"},
-    aspectratio: {x:1, y:1}
+    xaxis: {range: [-5, 5], zeroline: true},
+    yaxis: {range: [-5, 5], zeroline: true},
+    aspectratio: {x:1, y:1},
 };
 var currentPoint = initialPoint;
 var initX1 = 0, initY1 = 0;
@@ -161,9 +164,11 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     y3Vector = new Line2d([[x3, y3], [x3, y3+dy3]]);
     vertex3  = new Line2d([[0, 0], [x3, y3]]);
 
-    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]))
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
+    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]));
+    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
 
+    let scale1 = projection([x3,y3] , [x1,y1]);
+    let scale2 = projection([x3,y3] , [x2,y2]);
 
     var m1 = (y1/x1);
     var m2 = (y2/x2);
@@ -174,11 +179,31 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     var x_dprime = (y3 - m2*x3)/(m1-m2)
     var y_dprime = m1*x_dprime
 
-    vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
-    vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+    if (Math.abs(m1-m2) > 0.01){
+       vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
+       vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
 
-    vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
-    vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+       vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
+       vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+
+       $(document).ready(() => {
+	        $('.popup').hide();
+       });
+
+
+    } else {
+        //replace projections with tiny lines if line1 and 2
+        vertex4 = new Line2d([[0, 0], [0,0.005]]);
+        vertex5 = new Line2d([[0, 0], [0.005,0]]);
+        vertex6 = new Line2d([[0, 0], [0,0.005]]);
+        vertex7 = new Line2d([[0, 0], [0.005,0]]);
+
+        $(document).ready(() => {
+            $('.popup').show();
+        });
+
+
+    }
 
     var data = [
 
@@ -187,7 +212,9 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         mode: "lines",
         x: [0,x1],
         y: [0,y1],
-        line: {color: black, width: 3, dash: "solid"}
+        line: {color: black, width: 3, dash: "solid"},
+        text: ['Text','Text2', 'Text3'],
+        textposition: 'bottom'
         },
 
         {type:"scatter",
@@ -222,7 +249,6 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     return data;
 }
 
-
 //C: Interactivity
 
 /* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
@@ -230,18 +256,25 @@ Now we just have to actually obtain the user input from the HTML file by using J
 
 function initCarte(type) {
     Plotly.purge("graph");
-    initX1 = currentPoint[0];
-    initY1 = currentPoint[1];
-    initX2 = currentPoint[0];
-    initY2 = currentPoint[1];
-    initX3 = currentPoint[0];
-    initY3 = currentPoint[1];
+    initX1 = initialPoint1[0];
+    initY1 = initialPoint1[1];
+    initX2 = initialPoint2[0];
+    initY2 = initialPoint2[1];
+    initX3 = initialPoint3[0];
+    initY3 = initialPoint3[1];
 
     /* ~Jquery
     1.  Assign initial/default x, y values to the sliders and slider displays.
     */
     $("#x1Controller").val(initX1);
-    $("#x1ControllerDisplay").text(initX1);
+    $("#x1ControllerDisplay").val(initX1);
+
+    /*$("#x1ControllerDisplay").change(function () {
+      var value = this.value.substring(1);
+      console.log(value);
+      $("#x1ControllerDisplay").slider("value", parseInt(value));
+    });*/
+
     $("#y1Controller").val(initY1);
     $("#y1ControllerDisplay").text(initY1);
 
@@ -273,7 +306,6 @@ function initCarte(type) {
 
     var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]))
     var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
-
 
     Plotly.newPlot("graph", computeBasis(x1, y1), layout);
     Plotly.newPlot("graph", computeBasis(x2, y2), layout);
@@ -327,6 +359,8 @@ function main() {
         $(this).on('input', function(){
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#"+$(this).attr("id") + "Display").text( $(this).val() + $("#"+$(this).attr("id") + "Display").attr("data-unit"));
+
+            $("#"+$(this).attr("id") + "Display").val( $(this).val() + $("#"+$(this).attr("id") + "Display").attr("data-unit"));
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
             updatePlot(); //Updating the plot is linked with display (Just My preference)
         });
@@ -349,6 +383,7 @@ function main() {
 
     //The First Initialisation - I use 's' rather than 'z' :p
     initCarte("#basis");
+    updatePlot(); //Shows initial positions of vectors
     }
 
 $(document).ready(main); //Load main when document is ready.
