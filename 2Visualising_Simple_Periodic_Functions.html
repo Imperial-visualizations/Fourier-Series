@@ -68,6 +68,11 @@
                 <div class="allSliders">
                     <!--NB: Be careful with classes and types-->
                     <!--BEGIN Slider A-->
+                    <p>The 0<sup>th</sup> term of the series is the constant term before the sum;
+                        $$\frac{a_0}{2}.$$ This is labelled as the 0<sup>th</sup> term
+                    so that the series may start indexing its terms from <i>n=1</i>.
+                    $$ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n \cos\left(\frac{n\pi x}{L}\right)+b_n \sin\left(\frac{n \pi x}{L}\right) $$
+                    </p>
                     <div id="A">
                         <!--Slider Display A-->
                         <label class="sliderTitle" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
@@ -106,7 +111,7 @@
                         <!--Slider L-->
                         <label class="slider">
                             <span class="sliderMin">-5</span>
-                            <input id="LController" class="inputs" type="range" value="1" min="-5" max="5" step="0.1"/>
+                            <input id="LController" class="inputs" type="range" value="1" min="-5" max="5" step="0.5"/>
                             <span class="sliderMax">5</span>
                         </label>
                     </div>

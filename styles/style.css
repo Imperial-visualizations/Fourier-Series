@@ -47,14 +47,22 @@ body.no-nav::after{
 UI Styles
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-*/
 
-/*
+/*Pop up for parallel lines*/
+/* Popup container */
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  background-color: red;
+  text-align: center;
+  margin-left: 10em;
+  padding: 1em;
+}
+
+
 Slider Styles
 */
-.container{
-    padding-top: 65px;
-}
 .sliderContainer{
     margin:0;
     width:100%;
@@ -524,7 +532,7 @@ button:hover{
     overflow: hidden;
     transition-delay: 0.1s;
             transition-duration: 0.1s;
-    background-color: rgba(244, 75, 66, 0);
+    background-color: rgba(244, 75, 66, 0);}
 
 .green{
     border-color: #66A40A;
