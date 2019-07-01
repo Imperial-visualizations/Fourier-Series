@@ -1,7 +1,18 @@
 <!doctype html>
 <html>
 
+
 <head>
+    <style>
+    #myDIV {
+        width: 100%;
+        text-align: center;
+        background: rgb(244, 244, 244, 0.7);
+        padding: 5px 5px;
+        border-radius: 25px;
+
+    }
+    </style>
     <!--Page Info-->
     <title>Derivation of a Fourier Series</title>
     <!--css link-->
@@ -51,10 +62,21 @@
                 </select>
             </div>
             <!--BEGIN introduction-->
+            <script> // used for the button to hide parts of the derivation. look in the parabolic derivation part.
+                function myFunction() {
+                    var x = document.getElementById("myDIV");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
             <div class="tab-pane active" id="maths">
                 <div class="derivation" id="main">
                     <p style="font-style: bold; font-size:large">
                         <!--Basics of Fourier Transform-->
+                    <h6> Put text here to explain theory behind forier series and the meaning of the terms in the Eqn. below: Line 79</h6>
                     <h5>Exponential Form:</h5>
                     \[ c_n=\frac{1}{2L}\int_{-L}^{+L}f(x)e^{-in\pi x/L}dx \]
                     $$ f(x)=\sum_{n=-\infty}^{n=\infty} c_ne^{in\pi x/L} $$
@@ -225,11 +247,16 @@
                         <div class="four columns">
                             $$ \text{ for } n\neq 0 \text{ :} $$
                             $$ a_n = \frac{2A}{L}\int_0^L x^2\cdot \cos \left(\frac{n\pi x}{L} \right)dx $$
-                            $$ u=x^2 \qquad dv= \cos \left(\frac{n \pi x}{L} \right)dx $$
-                            $$ du = 2x\cdot dx \qquad v=\frac{L}{n\pi} \cdot \sin \left(\frac{n\pi x}{L} \right) $$
-                            $$ a_n = \frac{2A}{L} \cdot \Big[ \frac{Lx^2}{n\pi}\cdot \sin \left(\frac{n\pi x}{L} \right)\biggr |_0^L $$
-                            $$ -\int_0^L\frac{2xL}{n\pi}\cdot \sin \left(\frac{n \pi x}{L} \right)dx \Big]  $$
-                            $$ a_n = \frac{2A}{L} \cdot \left[0-\int_0^L\frac{2xL}{n\pi}\cdot \sin\left(\frac{n \pi x}{L}\right)dx \right] $$
+                            <button onclick="myFunction()">By Parts</button>//this is a button example. Button is used to hide parts of the derivation which the students should be able to do, eg. integrate by parts. Makes the page neater.
+                            <div id="myDIV">
+                                $$ du = 2x\cdot dx \qquad v=\frac{L}{n\pi} \cdot \sin \left(\frac{n\pi x}{L} \right) $$
+                                $$ u=x^2 \qquad dv= \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                $$ a_n = \frac{2A}{L} \cdot \Big[ \frac{Lx^2}{n\pi}\cdot \sin \left(\frac{n\pi x}{L} \right)\biggr |_0^L $$
+                                $$ -\int_0^L\frac{2xL}{n\pi}\cdot \sin \left(\frac{n \pi x}{L} \right)dx \Big]  $$
+                                $$ a_n = \frac{2A}{L} \cdot \left[0-\int_0^L\frac{2xL}{n\pi}\cdot \sin\left(\frac{n \pi x}{L}\right)dx \right] $$
+                            </div>
+
+
 
                         </div>
 
