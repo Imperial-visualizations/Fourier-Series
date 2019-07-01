@@ -160,7 +160,7 @@ function initFourier() {
     return;
 }
 
-//BUGGY
+
 function oddEvenCheck(equation, L){
     let x_ar = numeric.linspace(0, L, 100);
     let y_plus = x_ar.map(x => {
@@ -388,6 +388,15 @@ function computePlot1(x, y) {
     return [datalist, title];
 }
 
+//Turn user's input function into JS readable form
+function JSequation(eq) {
+    //Remove equal symbol
+    eq = eq.replace("=", "")
+    //Change the syntax for symbol
+    eq = eq.replace("^", "**");
+    return eq
+}
+
 /* updates the plot according to the slider controls. */
 
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
@@ -398,7 +407,8 @@ function updatePlot() {
     var xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
 
-    equation = document.getElementById("aInput").value;
+    eq = document.getElementById("aInput").value;
+    equation = JSequation(eq);
 
     [datalist, titley] = computePlot1(xOriginal, yOriginal);
 
