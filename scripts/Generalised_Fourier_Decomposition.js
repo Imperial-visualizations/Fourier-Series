@@ -54,6 +54,15 @@ var log = Math.log;
 x = 2;
 var equation = "x**2";
 
+//Turn user's input function into JS readable form
+function JSequation(eq) {
+    //Remove equal symbol
+    eq = eq.replace("=", "")
+    //Change the syntax for symbol
+    eq = eq.replace("^", "**");
+    return eq
+}
+
 // convert the string to a numerical function
 function y_values(x_range) {
     //Takes the specified function and computes the y values for given x values
@@ -215,7 +224,7 @@ function a_n(n, x) {
     //Updates L so that we can calculate a_n for all necessary n
 
     let equation = document.getElementById("aInput").value;
-    let parity = oddEvenCheck(equation, L);
+    let parity = oddEvenCheck(JSequation(equation), L);
     console.log(`parity = ${parity}`);
     if (parity === 'odd'){
         an = 0;
@@ -230,7 +239,7 @@ function b_n(n, x) {
     var L = parseFloat(document.getElementById('LController').value);
 
     let equation = document.getElementById("aInput").value;
-    let parity = oddEvenCheck(equation, L);
+    let parity = oddEvenCheck(JSequation(equation), L);
     console.log(`parity = ${parity}`);
     if (parity === 'even'){
         bn = 0;
@@ -386,15 +395,6 @@ function computePlot1(x, y) {
     ];
     datalist = [data1, data2, data3]
     return [datalist, title];
-}
-
-//Turn user's input function into JS readable form
-function JSequation(eq) {
-    //Remove equal symbol
-    eq = eq.replace("=", "")
-    //Change the syntax for symbol
-    eq = eq.replace("^", "**");
-    return eq
 }
 
 /* updates the plot according to the slider controls. */
