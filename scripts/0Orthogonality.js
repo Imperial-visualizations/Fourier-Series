@@ -180,6 +180,9 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
     vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
 
+    //vertex8  = new Line2d([[x1, y1], [x2, y2]]);
+    vertex9 = new Line2d([[-10,m1*-10], [10,m1*10]]);
+
     var data = [
 
 
@@ -217,7 +220,10 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
 
         vertex6.gObject(lilac, 3),
         vertex7.gObject(lilac, 3),
-    ]
+
+      //  vertex8.gObject(black, 3),
+        vertex9.gObject(black, 3),
+     ]
     ;
     return data;
 }
