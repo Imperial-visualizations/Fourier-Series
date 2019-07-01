@@ -135,12 +135,12 @@ function Line(points) {
             x: this.x,
             y: this.y,
             z: this.z,
-            line: {color: color, width: width, dash:dash}
+            line: {color: color, width: width, dash:dash},
         }
         return lineObject;
     }
 
-    this.arrowHead = function(color, width=7, wingLen=0.1, dash="solid") {
+    this.arrowHead = function(color, width=7, wingLen=0.1, dash="solid",) {
         var lastElm = this.x.length - 1;
         var [r, theta, phi] = c2sp(this.x[lastElm]-this.x[0], this.y[lastElm]-this.y[0], this.z[lastElm]-this.z[0]);
         var offset = [this.x[0], this.y[0], this.z[0]];
@@ -163,6 +163,7 @@ function Line(points) {
             y: [wings_xyz[0][1], this.y[lastElm], wings_xyz[1][1]],
             z: [wings_xyz[0][2], this.z[lastElm], wings_xyz[1][2]],
             line: {color: color, width: width}
+
         }
 
         return wings;
