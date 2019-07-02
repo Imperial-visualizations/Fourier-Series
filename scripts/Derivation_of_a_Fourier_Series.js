@@ -184,26 +184,8 @@ function updatePlot() {
         // because there's no sliders for other functions
         data = plot_triangle_sine();
         data2 = plot_combination();
-        Plotly.animate(
-            'graph3',
-            {data: data},
-            {
-                fromcurrent: true,
-                transition: {duration: 0,},
-                frame: {duration: 0, redraw: false},
-                mode: "afterall"
-            }
-        );
-        Plotly.animate(
-            'graph4',
-            {data: data2},
-            {
-                fromcurrent: true,
-                transition: {duration: 0,},
-                frame: {duration: 0, redraw: false,},
-                mode: "afterall"
-            }
-        );
+        Plotly.newPlot("graph3", plot_triangle_sine(), setLayoutSmall("Sines Function and Triangle Function"));
+        Plotly.newPlot("graph4", plot_combination(), setLayoutSmall("Multiplication of the two Functions"));
     }
 }
 

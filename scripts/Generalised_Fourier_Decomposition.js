@@ -21,8 +21,11 @@ var L = parseFloat(document.getElementById('LController').value);
 var xOriginal = numeric.linspace(-L, L, resolution);
 
 // kMax is an integer, the larger it is the better the numerical integration
-var kMax = 1000;
+//var kMax = 1000;
+//750 is a good compromise between speed and accuracy
+var kMax = 750;
 var h = 5.0 / kMax;
+
 //Common functions:
 sin = Math.sin;
 cos = Math.cos;
@@ -51,13 +54,13 @@ var log = Math.log;
 x = 2;
 var equation = "x**2";
 
-// sum up all the number in the array
-function adding(array) {
-    var result = 0
-    for (var i = 0; i < array.length; ++i) {
-        result += array[i];
-    }
-    return result;
+//Turn user's input function into JS readable form
+function JSequation(eq) {
+    //Remove equal symbol
+    eq = eq.replace("=", "")
+    //Change the syntax for symbol
+    eq = eq.replace("^", "**");
+    return eq
 }
 
 // convert the string to a numerical function
@@ -81,7 +84,6 @@ function y_values_cosine(x_range, n, L) {
     }
     return y;
 }
-
 
 function y_values_sine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
@@ -145,6 +147,7 @@ function integration_ultra(kMax, L, n, integral) {
     return A * L;
 }
 
+
 function integration(x, y) {
     //Integration by Riemann sum
     var A = 0;
@@ -166,11 +169,68 @@ function initFourier() {
     return;
 }
 
+
+function oddEvenCheck(equation, L){
+    let x_ar = numeric.linspace(0, L, 100);
+    let y_plus = x_ar.map(x => {
+        return eval(equation);
+    });
+
+    //console.log(`y_plus ${y_plus}`);
+    x_ar = numeric.linspace(0, -L, 100);
+    let y_minus = x_ar.map(x => {
+        return eval(equation);
+    });
+    //console.log(`y_minus ${y_minus}`)
+
+    let y2 = [];
+    for (let i = 0; i < x_ar.length; i++){
+        y2.push(y_plus[i] + y_minus[i]);
+    };
+    //console.log(`y2 ${y2}`);
+
+    //weird doesn't work
+    /*
+    let allZero = y2.every(elem => {
+        return -1e-7 <= elem <= 1e-7;
+    });
+    */
+
+    let sum = y2.reduce((accum, currVal) => {
+        return accum + currVal;
+    });
+    if (Math.abs(sum) <= 1e-7) {
+        return 'odd';
+    } else{
+        y2=[]
+        for (let i = 0; i<x_ar.length; i++){
+            y2.push(y_plus[i] - y_minus[i]);
+        };
+        //console.log(y2);
+        sum = y2.reduce((accum, currVal) => {
+            return accum + currVal;
+        });
+        //console.log(`sum ${sum}`);
+        if (Math.abs(sum) <= 1e-7){
+            return 'even';
+        } else {
+            return 'neither';
+        };
+    };
+};
+
 function a_n(n, x) {
     var L = parseFloat(document.getElementById('LController').value);
     //Updates L so that we can calculate a_n for all necessary n
 
-    an = integration_ultra(kMax, L, n, "for_an") / L;
+    let equation = document.getElementById("aInput").value;
+    let parity = oddEvenCheck(JSequation(equation), L);
+    console.log(`parity = ${parity}`);
+    if (parity === 'odd'){
+        an = 0;
+    } else {
+        an = integration_ultra(kMax, L, n, "for_an") / L;
+    };
     return an;
 }
 
@@ -178,7 +238,14 @@ function b_n(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
     var L = parseFloat(document.getElementById('LController').value);
 
-    bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    let equation = document.getElementById("aInput").value;
+    let parity = oddEvenCheck(JSequation(equation), L);
+    console.log(`parity = ${parity}`);
+    if (parity === 'even'){
+        bn = 0;
+    } else {
+        bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    };
     return bn;
 }
 
@@ -224,7 +291,10 @@ function Trig_summation_x(an, bn, x_value) {
     for (var n = 1; n < N; n++) {
         single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));//
     }
-    return adding(single_y);
+    //return adding(single_y);
+    return single_y.reduce((accum,currVal) =>{
+        return accum + currVal;
+    });
 }
 
 function Trig_summation_n(an, bn, x) {
@@ -327,14 +397,6 @@ function computePlot1(x, y) {
     return [datalist, title];
 }
 
-
-function updateFunction() {
-    //Looks at equation the user typed in and retrieves this
-    equation = document.getElementById("aInput").value;
-    return equation;
-}
-
-
 /* updates the plot according to the slider controls. */
 
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
@@ -345,7 +407,8 @@ function updatePlot() {
     var xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
 
-    equation = document.getElementById("aInput").value;
+    eq = document.getElementById("aInput").value;
+    equation = JSequation(eq);
 
     [datalist, titley] = computePlot1(xOriginal, yOriginal);
 

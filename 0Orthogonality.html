@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Page Info-->
+    <title>Orthogonality</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+
+
+<div class="container_journey">
+     <h4>Explaination Column:</h4>
+         <p>This is an explaination of what is going on. <br>
+             On the right is a visualisation of SOMETHING and the sliders to control it.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Graph -->
+        <div class="one-third column" style="padding-left: 50px;">
+            <h1>Orthogonality:</h1>
+            <div id='graph' style="width:450px; height:450px;">
+                <div class="popup" onclick="myFunction()">
+                Vectors 1 and 2 are parallel <br> so R2 is not spanned.
+                </div>
+                <!-- Legend -->
+                <ul>
+                    <li style="color: red;">Basis Vector 1</li>
+                    <li style="color: blue;">Basis Vector 2</li>
+                    <li style="color: green;">Target Vector</li>
+                 </ul>
+            </div>
+        </div>
+
+
+        <!--Buttons/Sliders-->
+        <div class="one-third column" style="padding-left: 50px;">
+
+            <!--Main body contents-->
+            <div class="tab-content">
+                <!--BEGIN Slider-->
+                <!--These Sliders are shared among all tabs-->
+
+                <!--Slider Display--> <!--Linked with the slider below-->
+                <!--Linked with a slider and shows the live values of its corresponding slider-->
+
+                    <div><br><br></div>
+                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 1 x coordinate:</h5>
+                    <label class="sliderTitle">x1:&nbsp;<!--rho-->
+                        <input id="x1ControllerDisplay" />
+                        <!--<span id="x1ControllerDisplay" data-unit="">0</span> <!--default: 0-->
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="x1Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+                    <!--END Slider-->
+
+                    <!--BEGIN Slider-->
+                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 1 y coordinate:</h5>
+                    <label class="sliderTitle">y1:&nbsp;<!--2 displays for one slider-->
+                            <span id="y1ControllerDisplay" data-unit="">0 </span>&nbsp;
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="y1Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+                    <!--END Slider-->
+
+                    <!--Begin slider-->
+                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 2 x coordinate:</h5>
+                    <label class="sliderTitle">x2:&nbsp;<!--2 displays for one slider-->
+                        <span id="x2ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="x2Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+                    <!--END Slider-->
+
+                    <!--BEGIN Slider-->
+
+                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 2 y coordinate:</h5>
+                    <label class="sliderTitle">y2:&nbsp;<!--2 displays for one slider-->
+                        <span id="y2ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="y2Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+
+
+                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 10px;">Target x coordinate:</h5>
+                    <label class="sliderTitle">x3:&nbsp;<!--2 displays for one slider-->
+                        <span id="x3ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="x3Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+
+
+                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 15px; ">Target y coordinate:</h5>
+                    <label class="sliderTitle">y3:&nbsp;<!--2 displays for one slider-->
+                        <span id="y3ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                    </label>
+                    <label class="slider">
+                        <span class="sliderMin">-2.5</span>
+                        <input id="y3Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
+                        <span class="sliderMax">2.5</span>
+                    </label>
+
+                    <!--END Slider-->
+
+                    <!--Unique Areas-->
+                    <!--BEGIN Basis Vector Area-->
+                    <div class="tab-pane active" id="basis"></div> <!--NB: Also need 'active' here-->
+                    <!--END Basis-->
+                    <!--END Area-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--THE BRAINS-->
+<script src=scripts/0Orthogonality.js></script>
+<script src=scripts/orthogonality_object.js></script>
+</body>
+</html>

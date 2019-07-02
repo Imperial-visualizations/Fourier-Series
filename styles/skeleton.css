@@ -28,11 +28,33 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 .container {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding-top: 65px; }
+
+.container_journey {
+  float: left;
+  height: 100vh;
+  width: 30%;
+  background-color: #D4EFFC;
+  box-sizing: border-box;
+  padding: 0px;
+  padding-left: 10px;
+  overflow-y: scroll; }
+
+.container_vis {
+  float: left;
+  height: 100vh;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 0px; }  
 .column,
 .columns {
   width: 100%;
