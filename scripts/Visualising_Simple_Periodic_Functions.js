@@ -1,23 +1,23 @@
 //Global Initial Parameters:
 const layout = {
     autosize: true,
-    margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
+    margin: {l:30, r:30, t:30, b:30},
     showlegend: false,
     xaxis: {range: [-5,5], zeroline: true, title: "x"},
     yaxis: {range: [-5,5], zeroline: true, title: "y"},
     aspectratio: {x:1, y:1}
 };
 
-var defaultHref = window.location.href;
-var initX = 0, initY = 0;
-var resolution = 2000;
+let defaultHref = window.location.href;
+let initX = 0, initY = 0;
+let resolution = 2000;
 // set the step of the x axis from -2pi to 2pi
-var z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
+let z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
 //----------------------------------------------------------------------------------------------------------------------
 //VERY IMPORTANT!!!
 // 0 is triangular, 1 is square, 2 is sawtooth, 3 is delta's, 4 is parabola, 5 is x, 6 is |x|,
-var shape = 0;
+let shape = 0;
 //----------------------------------------------------------------------------------------------------------------------
 
 
@@ -31,8 +31,8 @@ function initFourier() {
 
 // sum up all the number in the array
 function adding(array){
-    var result = 0
-    for(var i =0; i<array.length; ++i){
+    let result = 0
+    for(let i =0; i<array.length; ++i){
         result+=array[i];
     }
     return result;
@@ -72,21 +72,21 @@ function selection(n,A,L,x,type){
 // so at x, we have terms n=0, n=1, n=2..., we sum up all the amplitudes y=y0+y1+y2+... y0 at n=0, y1 at n=1, y2 at n=2...
 function summation(x) {
     //Goes through and sums up each component of the summand up to N
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = parseFloat(document.getElementById('AController').value);
+    let N = parseFloat(document.getElementById('NController').value);
+    let L = parseFloat(document.getElementById('LController').value);
+    let A = parseFloat(document.getElementById('AController').value);
 
     n = numeric.linspace(1,N,N);
 
 
-    var y = [];
+    let y = [];
 
 
-    for (var i = 0; i < N; ++i){
+    for (let i = 0; i < N; ++i){
         y.push(selection(n[i],A,L,x,shape));
         //y.push((8*A/((2*n[i]-1)*Math.PI)**2)*((-1)**n[i])*Math.sin((2*n[i]-1)*Math.PI*x/L));
     }
-    var sum = adding(y);
+    let sum = adding(y);
     return sum;
 }
 
@@ -110,8 +110,8 @@ function a_zero(shape,A,L){
 }
 
 function c_intercept(shape, N,A,L) {
-    var number = a_zero(shape,A,L)/2;
-    for (var n = 1; n < N; ++n){
+    let number = a_zero(shape,A,L)/2;
+    for (let n = 1; n < N; ++n){
         number += selection(n, A,L, 0, shape);
         }
 
@@ -125,19 +125,19 @@ function c_intercept(shape, N,A,L) {
 // so all the y_value_cheat starts at the midpoint of the y_value (equivalently, it's the average value)
 function computePlot(x){
     //Just plots the sum approximation of the function
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = parseFloat(document.getElementById('AController').value);
+    let N = parseFloat(document.getElementById('NController').value);
+    let L = parseFloat(document.getElementById('LController').value);
+    let A = parseFloat(document.getElementById('AController').value);
 
-    var x_values = [];
-    var y_values = [];
-    var y_values_cheat = [];
+    let x_values = [];
+    let y_values = [];
+    let y_values_cheat = [];
 
-    for (var i = 0; i < x.length ; ++i){
+    for (let i = 0; i < x.length ; ++i){
         y_values.push(summation(x[i]));
         x_values.push(x[i]);
     }
-    for (var i = 0; i< y_values.length; ++i){
+    for (let i = 0; i< y_values.length; ++i){
         y_values_cheat.push(-y_values[y_values.length/2]+y_values[i] + c_intercept(shape, N,A,L));
 
         //The part "-y_values[y_values.length/2] +y_values[i]" centres
@@ -146,8 +146,9 @@ function computePlot(x){
         //This was a bit of a long convoluted way to do this but I can't find the mistake,
         //so this fixes it. It's not too time consuming which is good.
     }
+    let data;
     if (shape === 3){
-        var data=[
+        data=[
          {
             type:"scatter",
             mode:"lines",
@@ -157,7 +158,7 @@ function computePlot(x){
          },
         ];
     } else {
-        var data=[
+        data=[
          {
             type:"scatter",
             mode:"lines",
@@ -178,11 +179,15 @@ function computePlot(x){
 /** updates the plot according to the slider controls. */
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 function updatePlot() {
-    var data;
+    let data;
     // NB: updates according to the active tab
-    var selectedValue = document.getElementById("Select").value; // finds out which function is active
+    let selectedValue = document.getElementById("Select").value; // finds out which function is active
+        if (selectedValue===3) {
+            $('#A').hide(); console.log('blah')
+        } else {
+           $('#A').show(); console.log('blahblah')
+        }
     data = computePlot(z);
-
     //This is animation bit.
     Plotly.animate(
         'graph',
@@ -214,7 +219,7 @@ function main() {
     // change the shape and the plots
     // change the titles and the math derivations
     $('#Select').change(function(){
-        var selectedValue = document.getElementById("Select").value;
+        let selectedValue = document.getElementById("Select").value;
         if (selectedValue==="main"){
             shape = 0;
         } else if (selectedValue==="triangular"){
