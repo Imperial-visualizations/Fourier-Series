@@ -5,7 +5,7 @@ const layout = {
     hovermode: "closest",
     showlegend: false,
     xaxis: {range: [-5,5], zeroline: true, title: "x"},
-    yaxis: {range: [-5,5], zeroline: true, title: "y"},
+    yaxis: {range: [-5,5], zeroline: true, title: "nth term"},
     aspectratio: {x:1, y:1}
 };
 
@@ -41,7 +41,7 @@ function setLayout(){
     hovermode: "closest",
     showlegend: false,
     xaxis: {range: [], zeroline: true, title: "$x$"},
-    yaxis: {range: [], zeroline: true, title: "$f_{n}(x)$"},
+    yaxis: {range: [], zeroline: true, title: "$y$"},
     aspectratio: {x:1, y:1}
 };
     return new_layout;
@@ -52,14 +52,14 @@ function initFourier() {
     Plotly.purge("graph");
     Plotly.newPlot("graph", computeComponents(z), setLayout());
 
-    return;
+
 
 }
 
 
 // sum up all the number in the array
 function adding(array){
-    var result = 0
+    var result = 0;
     for(var i =0; i<array.length; ++i){
         result+=array[i];
     }
@@ -177,6 +177,14 @@ function updatePlot() {
     var data;
     // NB: updates according to the active tab
     var selectedValue = document.getElementById("Select").value; // finds out which function is active
+    $(document).ready(() => {
+        if (shape === 3) {
+            $('#A').hide();
+            console.log('hidden')
+        } else {
+            $('#A').show();
+            console.log('shown')
+        }});
     initFourier();
 }
 
@@ -201,25 +209,33 @@ function main() {
         var selectedValue = document.getElementById("Select").value;
         if (selectedValue==="main"){
             shape = 0;
+            updatePlot();
         } else if (selectedValue==="triangular"){
             shape = 0;
+            updatePlot();
         } else if (selectedValue==="square"){
             shape = 1;
+            updatePlot();
         } else if (selectedValue==="sawtooth"){
             shape = 2;
+            updatePlot();
         } else if (selectedValue==="dirac"){
             shape = 3;
+            updatePlot();
         } else if (selectedValue==="parabola"){
             shape = 4;
+            updatePlot();
         } else if (selectedValue==="linear"){
             shape = 5;
+            updatePlot();
         } else if (selectedValue==="mode"){
             shape = 6;
+            updatePlot();
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
         initFourier();
-    })
+    });
     //The First Initialisation - I use 's' rather than 'z' :p
     initFourier();
 }
