@@ -32,60 +32,15 @@
     </script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
+
 <body>
-<!--Main Body Content-->
-<div class="container_journey">
-    <p style="font-style: bold; font-size:large">
-            <!--Derivation of Dirac-Delta-->
-        <center><h5>Derivation of Trigonometric Fourier Series</h5></center>
-        <div class="row">
-            <div class="six columns">
-                $$ f(x)=\sum_{n=-\infty}^{+\infty} c_ne^{in\pi x/L} $$
-                $$ \text{Multiply by } e^{-im\pi x/L}$$
-                $$ e^{-im\pi x/L} \cdot f(x)=\sum_{n=-\infty}^{+\infty} c_n \cdot e^{in\pi x/L} \cdot
-                e^{-im\pi x/L} $$
-                $$ f(x) \cdot e^{-im\pi x/L} = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{(i\pi x/L)(n-m)} $$
-                $$ \text{Integrate from -L to L} $$
-                $$ \int_{-L}^L f(x) \cdot e^{-im\pi x/L}dx = \sum_{n=-\infty}^{+\infty} c_n \int_{-L}^L
-                e^{(i\pi x/L)(n-m)} dx $$
-            </div>
-            <div class="six columns">
-                $$ \text{But due to orthonormality of complex exponentials:} $$
-                $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{
-                \begin{array}{ll}
-                2L \qquad \text{(if n=m)} \\
-                0 \qquad \quad \text{(if n≠m)}
-                \end{array}
-                \right \} = 2L \cdot \delta_{nm}$$
-                $$ \text{hence } \int_{-L}^L e^{(i\pi x/L)(n-m)} dx =2L\cdot\delta_{nm} $$
-                $$\text{And so:}$$
-                $$ \int_{-L}^L f(x)\cdot e^{-im\pi x/L}dx = 2L\cdot \sum_{n=-\infty}^{+\infty}c_n\cdot
-                \delta_{mn}=2L\cdot c_m $$
-                $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x)\cdot e^{-im\pi x/L}dx $$
-            </div>
-        </div>
-    <p style="font-style: bold; font-size:large">
-        <!--Derivation of Triangular-->
-    <h5>Triangular Fourier Series Derivation</h5>
-    $$ f(x)=\left\{
-    \begin{array}{ll}
-    \frac{-2A}{L}\cdot (x+L) \quad (-L < x < -L/2) \\
-    \frac{2A}{L}\cdot x \qquad \qquad (-L/2< x < L/2) \\
-    \frac{-2A}{L}\cdot (x-L) \quad (L/2< x < L)
-    \end{array}
-    \right. $$
-    $$ \text{First notice that f(x) is odd,}$$
-    $$ \text{hence } a_n=0 \text{ for all n,}$$
-    $$ \text{also, since the } b_{n} \text{ integrand is even about 0, } $$
-    $$ b_n=\frac{2}{L}\int_0^L f(x)\cdot sin(\frac{n \pi x}{L})dx $$
-    </p>
-</div>
+<div class="container_journey" style="background-color: white;"></div>
 <div class="container_vis" id="visualisation">
     <div class="row">
         <!-- Graph -->
         <div class="six columns">
             <!--Graph-->
-            <div id='graph' style="height: 43vh"></div>
+            <div id='graph' style="height: 43vh; padding-left: 1vw;"></div>
             <!--<div id='graph2' style="width:450px; height:450px;"></div>-->
         </div>
 
@@ -97,13 +52,31 @@
                     <!--These Sliders are shared among all tabs-->
                     <!--NB: Be careful with classes and types-->
 
+                    <div id="scroll">
+                    <div class="scroll_down">
+                        <strong>Select Function: </strong>
+                        <select id="Select">
+                            <option value="custom">Custom Input</option>
+                            <option value="triangular">Triangular Function</option>
+                            <option value="square">Square Function</option>
+                            <option value="sawtooth">Sawtooth Function</option>
+                            <option value="dirac">Dirac-Delta Function</option>
+                            <option value="parabola">Parabola Function</option>
+                            <option value="mode">|x| Function</option>
+
+                        </select>
+                    </div>
+                    </div>
                     <!--BEGIN Input function box -->
                     <div id="input">
                         <label>Input Function: f(x)=
-                            <input id="aInput" type="text" value="x**2">
+                            <input id="aInput" type="text" value="x^2">
                             <p id="aInputError" style="color:#ff0000" hidden></p>
                         </label>
                     </div>
+
+
+
                     <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
                     <!--Scroll-down to select coefficient-->
                     <strong>Select Coefficient: </strong>
@@ -123,8 +96,8 @@
                     <!--Slider N-->
                     <label class="slider">
                         <span class="sliderMin">0</span>
-                        <input id="NController" class="inputs" type="range" value="1" min="0" max="50" step="1">
-                        <span class="sliderMax">50</span>
+                        <input id="NController" class="inputs" type="range" value="1" min="0" max="20" step="1">
+                        <span class="sliderMax">20</span>
                     </label>
                 </div>
                 <!--END Slider N-->
@@ -152,20 +125,21 @@
     <div class="row">
         <div class="six columns">
 
-            <div id='graph2' style="height: 43vh"></div>
+            <div id='graph2' style="height: 43vh; padding-top: 2vh; padding-left: 1vw;"></div>
         </div>
 
         <div class="six columns">
-            <div id='graph3' style="height: 43vh"></div>
+            <div id='graph3' style="height: 43vh; padding-top: 2vh;"></div>
 
         </div>
 
     </div>
 </div>
-</div>
+
 
 <!--THE BRAINS-->
 <script src="scripts/Generalised_Fourier_Decomposition.js"></script>
+
 </body>
 
 </html>
