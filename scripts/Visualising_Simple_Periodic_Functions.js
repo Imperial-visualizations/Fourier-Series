@@ -182,11 +182,11 @@ function updatePlot() {
     let data;
     // NB: updates according to the active tab
     let selectedValue = document.getElementById("Select").value; // finds out which function is active
-        if (selectedValue===3) {
-            $('#A').hide(); console.log('blah')
+        $(document).ready(() => { if (shape===3) {
+            $('#A').hide(); console.log('hidden')
         } else {
-           $('#A').show(); console.log('blahblah')
-        }
+           $('#A').show(); console.log('shown')
+        }})
     data = computePlot(z);
     //This is animation bit.
     Plotly.animate(
@@ -224,16 +224,22 @@ function main() {
             shape = 0;
         } else if (selectedValue==="triangular"){
             shape = 0;
+            updatePlot();
         } else if (selectedValue==="square"){
             shape = 1;
+            updatePlot();
         } else if (selectedValue==="sawtooth"){
             shape = 2;
+            updatePlot();
         } else if (selectedValue==="dirac"){
             shape = 3;
+            updatePlot();
         } else if (selectedValue==="parabola"){
             shape = 4;
+            updatePlot();
         }  else if (selectedValue==="mode"){
             shape = 6;
+            updatePlot();
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
