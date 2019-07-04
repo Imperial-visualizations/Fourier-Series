@@ -1,17 +1,19 @@
 //Global Initial Parameters:
 const layout = {
     autosize: true,
-    margin: {l:30, r:30, t:30, b:30},
+    margin: {l:30, r:40, t:30, b:30},
     hovermode: "closest",
-    showlegend: false,
     xaxis: {range: [-5,5], zeroline: true, title: "x"},
-    yaxis: {range: [-5,5], zeroline: true, title: "nth term"},
+    yaxis: {range: [0,305], zeroline: true, title: "$N$", showticklabels: true, tickmode: 'array',
+    tickvals: [30,60,90,120,150,180,210,240,270,300],
+    ticktext:['n=1','n=2','n=3','n=4','n=5','n=6','n=7','n=8','n=9','n=10'],
+    side: 'right'},
     aspectratio: {x:1, y:1}
 };
 
 var defaultHref = window.location.href;
 var initX = 0, initY = 0;
-var resolution = 2000;
+var resolution = 4000;
 // set the step of the x axis from -2pi to 2pi
 var z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
 // Define our interacting Jquery elements
@@ -34,25 +36,35 @@ it changes the range of the y-axis according to the amplitude and number of term
 so the setLayout allows the layout to fit the graph, instead of fixing the layout to some values
 */
 function setLayout(){
-
+    var n_lab=[];
+    var y_lab=[];
+    for (var i=0;i<10;i++){
+        n_lab.push("n="+(i+1));
+        y_lab.push(29.5*(i+1))
+    }
     const new_layout = {
     autosize: true,
-    margin: {l:45, r:0, t:20, b:30},
+        showlegend: false,
+    margin: {l:45, r:60, t:0, b:30},
     hovermode: "closest",
-    showlegend: false,
     xaxis: {range: [], zeroline: true, title: "$x$"},
-    yaxis: {range: [], zeroline: true, title: "$y$"},
+    yaxis: {range: [0,305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
+    tickvals: y_lab,
+    ticktext: n_lab,
+    tickfont: {size:18},
+    side: 'right'},
     aspectratio: {x:1, y:1}
 };
+
+
     return new_layout;
 }
 
 // initialize the Cartesian coordinates for the plots and the functions
 function initFourier() {
     Plotly.purge("graph");
+    console.log(computeComponents())
     Plotly.newPlot("graph", computeComponents(z), setLayout());
-
-
 
 }
 
@@ -84,7 +96,7 @@ function odd_selection2(n,A,L,type){
     } else if (type===3){
         amplitude = 0;
     } else if (type===4){
-        amplitude = 0 // (((4*L**2)/(n*Math.PI)**2)*(-1)**n)
+        amplitude = 0// (((4*L**2)/(n*Math.PI)**2)*(-1)**n)
     } else if (type===5){
         amplitude = 0.5*A*(2*(-1)**(n+1)*decay**n); //A*(2*L/(n*Math.PI)*(-1)**(n+1)
     } else if (type===6){
@@ -132,16 +144,28 @@ function plotSines(n,x,shape){
 
     var x_n = [];
     var y_n = [];
-    var spacing=3*A;
+    if (shape===4) {
+        var spacing=580;
+        var scale = 0.05;
+    }
+    else if (shape===3) {
+        var scale = 5;
+        var spacing = 5.8;
+    }
+    else {
+        var spacing = 30;
+        var scale = 1;
+    }
     var spacing2 = Math.sqrt((odd_selection2(n,A,L,shape))**2+(even_selection2(n,A,L,shape)))+1;
 
 
     for (var i = 0; i < x.length ; ++i){
         x_n.push(x[i]);
-        y_n.push(((odd_selection2(n,A,L,shape))*Math.sin(n*Math.PI*x[i]/L)+(even_selection2(n,A,L,shape))*Math.cos(n*Math.PI*x[i]/L))+2*spacing*(n));
+        y_n.push(scale*(((odd_selection2(n,A,L,shape))*Math.sin(n*Math.PI*x[i]/L)+(even_selection2(n,A,L,shape))*Math.cos(n*Math.PI*x[i]/L))+spacing*(n)));
     }
     //y value gets shifted up so that the plots are distinctly different
-
+    var n_lab2 = ['1','2','3','4','5','6','7','8','9','10'];
+    var y_lab2 = [30,60,90,120,150,180,210,240,270,300];
     var data=
         {
             type:"scatter",
@@ -149,6 +173,7 @@ function plotSines(n,x,shape){
             x: x_n,
             y: y_n,
             line:{color:"rgb(0,N*10,0)",width:3, dash:"dashed"},
+
         }
     ;
     return data;
@@ -180,10 +205,8 @@ function updatePlot() {
     $(document).ready(() => {
         if (shape === 3) {
             $('#A').hide();
-            console.log('hidden')
         } else {
             $('#A').show();
-            console.log('shown')
         }});
     initFourier();
 }
