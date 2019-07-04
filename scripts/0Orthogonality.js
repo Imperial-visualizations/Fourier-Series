@@ -208,8 +208,9 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     var scale1 = -Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100
     };
 
-
-    if (Math.abs(m1-m2) > 0.1){
+    //remove projections if parallel
+    //if (Math.abs(m1-m2) > 0.1){
+    if (Math.abs(phi1-phi2) > 0.05){
        vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
        vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
 

@@ -33,50 +33,13 @@
 </head>
 <body>
 
-
-<div class="container_journey">
-     <h4>Explanation Column:</h4>
-    <p>
-        Given the vectors $ \vec{V}_{n}$ and $\vec{V}_{m},$ we define their inner product as $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
-        where $V_{n}^{(i)}$ is the $i^{\text{th}}$ component of the vector $\vec{V}_{n}$.
-
-        If $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n,$$ then we say the vectors are <strong>orthogonal</strong>.
-        If you move in the direction of any vector $\vec{a}$, you do not change the position component in the direction of any vector
-        orthogonal to $\vec{a}$. In other words, orthogonal vectors are perpendicular. <!--(... talk about definition of orthogonality)-->
-        <br><br>
-        If $ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm}$ then the vectors are said to be <strong>orthonormal</strong>.
-        $$\delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
-        \\ 1 \quad \text{if } m = n
-        \end{matrix}\right. $$
-        This mean the vectors are orthogonal and conveniently normalised.
-        <br><br>
-        Use the visualisation to see that when the basis vectors are not parallel they span $\mathbb{R}^{2}$, using
-        these as basis vectors, we can construct any other vector in $\mathbb{R}^{2}$.
-        <br><br>
-        If you can represent any vector in $\mathbb{R}^{n}$  using $n$ vectors, then the basis vectors form a <strong>complete set</strong>.
-        If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal set</strong>.
-        <br><br>
-        In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to be complete.
-        We define the functions $f_{n},f_{m}$ to exist on the domain $\left[a,b \right]$. <br><br>
-
-        We define their inner
-        product to be $$\langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx$$
-        and say the functions are <strong>orthogonal</strong> if $\langle  f_{n} , f_{m} \rangle = 0 $ for $m \neq n$.
-
-        We then say the functions are <strong>orthonormal</strong> if $\langle  f_{n} , f_{m} \rangle = \delta_{nm} $.
-        <br><br>
-        We now claim that you can construct any square integrable function from a <strong>complete set</strong> of basis
-        functions in the same way vectors could be constructed from a complete set of basis vectors. A square integrable function $f$ is
-        a function whose inner product with itself, $ \langle f,f \rangle $ is finite.
-    </p>
-</div>
-
+<div class="container_journey" style="background-color: white;"></div>
 <div class="container">
     <div class="row">
         <!-- Graph -->
         <div class="one-third column" style="padding-left: 2em;">
             <h1>Orthogonality:</h1>
-            <div id='graph' style="width:450px; height:450px;">
+            <div id='graph' style="width:30vw; height:70vh;">
                 <div class="popup" onclick="myFunction()">
                 Vectors 1 and 2 are parallel <br> so R2 is not spanned.
                 </div>
@@ -101,10 +64,10 @@
                 <!--Slider Display--> <!--Linked with the slider below-->
                 <!--Linked with a slider and shows the live values of its corresponding slider-->
 
-                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 1 x coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 1 x coordinate:</h6>
                     <label class="sliderTitle">x1:&nbsp;<!--rho-->
                         <input id="x1ControllerDisplay" />
-                        <!--<span id="x1ControllerDisplay" data-unit="">0</span> <!--default: 0-->
+                        <!--<span id="x1ControllerDisplay" data-unit="">0</span> <!-default: 0-->
                     </label>
                     <label class="slider">
                         <span class="sliderMin">-2.5</span>
@@ -114,7 +77,7 @@
                     <!--END Slider-->
 
                     <!--BEGIN Slider-->
-                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 1 y coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 1 y coordinate:</h6>
                     <label class="sliderTitle">y1:&nbsp;<!--2 displays for one slider-->
                             <input id="y1ControllerDisplay" />&nbsp;
                     </label>
@@ -126,7 +89,7 @@
                     <!--END Slider-->
 
                     <!--Begin slider-->
-                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 2 x coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 2 x coordinate:</h6>
                     <label class="sliderTitle">x2:&nbsp;<!--2 displays for one slider-->
                         <input id="x2ControllerDisplay" />&nbsp;
                     </label>
@@ -139,7 +102,7 @@
 
                     <!--BEGIN Slider-->
 
-                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 10px;">Basis 2 y coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 2 y coordinate:</h6>
                     <label class="sliderTitle">y2:&nbsp;<!--2 displays for one slider-->
                         <input id="y2ControllerDisplay" />&nbsp;
                     </label>
@@ -150,7 +113,7 @@
                     </label>
 
 
-                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 10px;">Target x coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 1vh;">Target x coordinate:</h6>
                     <label class="sliderTitle">x3:&nbsp;<!--2 displays for one slider-->
                         <input id="x3ControllerDisplay" />&nbsp;
                     </label>
@@ -161,7 +124,7 @@
                     </label>
 
 
-                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 15px; ">Target y coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 1vh; ">Target y coordinate:</h6>
                     <label class="sliderTitle">y3:&nbsp;<!--2 displays for one slider-->
                         <input id="y3ControllerDisplay" />&nbsp;&nbsp;
                     </label>
