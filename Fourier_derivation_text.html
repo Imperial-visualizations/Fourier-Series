@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .divclass {
+            width: 33vw;
+            text-align: left;
+
+        }
+
+        .solidline {
+            /* Indicates a drop down box to hide stuff */
+            border-style: outset;
+            border-color: coral;
+            border-width: 3px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .verticalline {
+            width: 2px;
+            background-color: #000;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 34vw;
+            opacity: 0.3;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Fourier Series</title>
+
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+
+
+
+
+
+
+
+
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<!-- Body of the text -->
+<body>
+<div class="verticalline">&nbsp;</div>
+
+<div id="intro" class="divclass">
+    <h1> Introduction to Fourier series </h1>
+    <p> Consider a function $f(x)$ which is periodic over the domain $-L < x < L $ where $L$ is positive.
+        $f(x)$ can be represented as a sum of $\sin$ and $\cos$ with varying "frequencies".
+        These trigonometric functions form orthogonal basis. </p>
+    <p> The Fourier series of $f(x)$ is </p>
+    $ f(x) = \displaystyle\frac{a_0}{2}$ $+ \displaystyle\sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big)$
+    $+ \displaystyle b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big]$ $ \qquad \left[ 1 \right]$
+    <p> where </p>
+    $$ a_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, $$
+    $$ b_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, $$
+    $$ a_0 = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) dx, $$
+    <p> and</p> $$ n=0,1,2...$$
+    <p><strong> Note:</strong> $a_0$$/2$ represents the average value of $f(x)$.</p>
+    <p> The Fourier series representation of the function $f(x)$ in exponential (complex) form is </p>
+    $$ f(x) = \displaystyle\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad \left[ 2 \right]$$
+    <p> where </p>
+    $$ c_n = \displaystyle\frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
+    <p><strong> Note:</strong> The constants in front of the integral(s) of the coefficient for the trigonometric and
+        exponential fourier series are different. Also note the limit of the summations.</p>
+    <hr>
+</div>
+
+<div id="FSderivation" class="divclass">
+    <h1> Derivation of the Fourier Series </h1>
+    <p> We begin by assuming that $f(x)$ can be represented as a sum of exponential terms.</p>
+    $$ f(x) = \displaystyle\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L}$$
+    <p> Multiplying by $e^{{im \pi x}/L}$, where $m=0,1,2...$, and integrating both sides gives the following:</p>
+    $\displaystyle\int_{-L}^{L} f(x) e^{{im \pi x}/L} dx$ $=\displaystyle\sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L}
+    e^{{i(n-m) \pi x}/L} dx $
+    <p> Performing the integral on the R.H.S gives </p>
+    $ \displaystyle\int_{-L}^L e^{(i\pi x/L)(n-m)}dx$ $\displaystyle =\left\{
+    \begin{array}{ll}
+    2L \qquad \text{(if n=m)} \\
+    0 \qquad \quad \text{(if n≠m)}
+    \end{array}
+    \right \} $ $\displaystyle= 2L \cdot \delta_{nm}$
+    <p> This is due to orthonormality of complex exponentials.</p>
+    <p> As the only non-zero value of the sum is when $n=m$</p>
+    $\displaystyle\int_{-L}^L f(x) e^{-im\pi x/L}dx$ $\displaystyle= 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn}$
+    $\displaystyle=2L\cdot c_m $
+    <p> Hence</p>
+    $\displaystyle c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx $
+    <p><strong> Note:</strong> As $m$ is an arbitrary number, it can be assigned as $n$ for simplicity.</p>
+
+    <p> Given the previously derived Eqn., we can derive the trigonometric form of the Fourier series. By reorganising
+        the sum, we get </p>
+    $\displaystyle f(x)= \underbrace{c_0}_\text{n=0}$ $\displaystyle + \sum_{n=1}^{\infty} \big( \underbrace{c_n
+    e^{in\pi x/L}}_\text{Positive n term}$ $\displaystyle + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms}
+    \big)$
+    <p> We can regroup the terms in the summation in the following way:</p>
+
+    <div id="regroupexplain" class="solidline">
+        $ \displaystyle = \frac{1}{2} \Big[ 2c_n e^{in\pi x/L}+ 2c_{-n} e^{-in\pi x/L}$ $ \displaystyle +
+        \underbrace{c_{-n} e^{in\pi x/L} - c_{-n} e^{in\pi x/L}}_\text{ =0}$ $\displaystyle + \underbrace{c_{n}
+        e^{-in\pi x/L} -c_{n} e^{-in\pi x/L}}_\text{ =0} \Big] $
+        $ \displaystyle = \frac{1}{2} \Big[ c_n e^{in\pi x/L} +c_{-n} e^{in\pi x/L}$ $ \displaystyle + c_n e^{-in\pi
+        x/L} + c_{-n} e^{-in\pi x/L}$ $ \displaystyle + c_n e^{in\pi x/L} - c_{-n} e^{in\pi x/L}$ $ \displaystyle - c_n
+        e^{-in\pi x/L} +c_{-n} e^{-in\pi x/L} $
+
+
+    </div>
+
+    $\displaystyle f(x)= c_0 + \sum_{n=1}^{\infty}$ $\displaystyle \Big( \frac{c_n + c_{-n}}{2} \big(e^{in\pi
+    x/L}+e^{-in\pi x/L} \big)$ $ \displaystyle \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L}-e^{-in\pi x/L} \big) \Big) $
+    <p> Now take $ a_n = c_n + c_{-n}$ and $ b_n = i(c_n - c_{-n})$ and notice the exponentials can we written as $\sin$
+        and $\cos$.</p>
+    <p><strong>Note:</strong> $a_0 = 2c_0$ and $b_0=0$.</p>
+    <p> Hence</p>
+    $ f(x) = \displaystyle\frac{a_0}{2}$ $+ \displaystyle\sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big)$
+    $+ \displaystyle b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big]$
+
+    <p> $a_n$ can be derived by using the expression from $c_n$</p>
+    $\displaystyle a_n = c_n + c_{-n}$
+    $\displaystyle =\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx$ $\displaystyle +\frac{1}{2L}\int_{-L}^{+L}f(x)
+    e^{in\pi x/L}dx$
+    <p> Factorise and spot the exponential form of $\cos$.</p>
+    $\displaystyle =\frac{1}{L}\int_{-L}^{+L}f(x)$ $\displaystyle \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx$
+    $\displaystyle= \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx$
+    <p> Similar method can be used to derived Eqn. for $b_n$.</p>
+    $ b_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx $
+    <hr>
+</div>
+
+<div id="triangular" class="divclass">
+    <h1> Triangular Fourier Series Derivation </h1>
+    <p>The triangular function is defined by the following:</p>
+    $\displaystyle f(x)=\left\{
+    \begin{array}{ll}
+    \frac{-2A}{L} (x+L) \quad (-L < x < -L/2) \\
+    \frac{2A}{L} x \qquad \qquad (-L/2< x < L/2) \\
+    \frac{-2A}{L} (x-L) \quad (L/2< x < L)
+    \end{array}
+    \right. $
+    <p> First notice that $f(x)$ is odd about $x=0$, hence $a_n=0$ for all $n$. Also, </p>
+    $\displaystyle b_n=\frac{2}{L}\int_0^L f(x)\cdot \sin \left(\frac{n \pi x}{L}\right)dx $
+    <p> since the $b_n$ integrand is even about $x=0$.</p>
+    <p> Notice that for even $n$, $b_n$ is odd about $x=L/2$. Hence </p>
+    $ \displaystyle b_n=\frac{2}{L}\int_0^{L} f(x) \sin \left(\frac{n\pi x}{L} \right) dx = 0 \quad \text{for even n} $
+    <p> The integral from $0$ to $L/2$ is equal in magnitude but opposite in sign to the integral from $L/2$ to $L$, for
+        even $n$. </p>
+    <p> For odd $n$, the function is even around $L/2$, so we only have to integrate from $0$ to $L/2$ then multiply by
+        $2$.This has made our job much easier.</p>
+    $\displaystyle b_n=2\frac{2}{L}\int_0^{L/2} f(x) \sin \left(\frac{n\pi x}{L} \right) dx \quad \text{for odd n} $
+    <p> Play around with the visualisation to the right to convince yourself this is true. </p>
+    $ \displaystyle \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $
+    <p> Remembering that for even $n$, $b_n=0$, therefore only consider odd $n$.</p>
+    $\displaystyle b_n = \frac{4}{L} \frac{2A}{L}\int_0^{L/2} x \sin \left(\frac{n\pi x}{L} \right) dx $
+    <div id="BypartsTriangular" class="solidline">
+        $\displaystyle u=x \qquad dv= \sin \left(\frac{n\pi x}{L} \right)dx $
+        <p></p>
+        $\displaystyle du=dx \qquad v=\frac{-L}{n\pi} \cos \left(\frac{n\pi x}{L} \right) $
+        $\displaystyle b_n=\frac{8A}{L^2}\cdot \left[\frac{-xL}{n\pi}\cdot \cos \left(\frac{n\pi
+        x}{L}\right)|_0^{L/2}-\int_0^{L/2}\frac{-L}{n\pi}\cdot \cos \left(\frac{n\pi x}{L} \right)dx \right] $
+        <p> For odd n,</p>
+        $\displaystyle \cos \left(\frac{n\pi}{2} \right)=0 $
+        <p> Therefore,</p>
+        $\displaystyle b_n=\frac{8A}{L^2}\cdot \left[0+\int_0^{L/2}\frac{L}{n\pi}\cdot \cos \left(\frac{n\pi x}{L}
+        \right)dx \right]$
+    </div>
+    $\displaystyle b_n=\frac{8A}{L^2} \frac{L^2}{(n\pi)^2} \cdot \sin \left(\frac{n\pi x}{L} \right) \biggr |_0^{L/2} $
+
+    <p> Note for odd $n$ :</p>
+    $ \displaystyle \sin \left(\frac{n\pi}{2} \right)=(-1)^{\frac{n-1}{2}} $
+    <p> Therefore,</p>
+    $ \displaystyle b_n=\frac{8A}{n^2\pi^2}(-1)^{\frac{n-1}{2}} $
+
+    <p> Finally,</p>
+    $\displaystyle  f(x)=\sum_{n=1,3,5...}^\infty \frac{8A}{n^2\pi^2}(-1)^{\frac{n-1}{2}} \cdot \sin \left(\frac{n\pi
+    x}{L} \right) $
+    <p> And the using that an odd number is given by $2n +1$ for any $n$,  </p>
+    $ \displaystyle  f(x)=\sum_{n=1,2,3...}^\infty\frac{8A}{(2n-1)^2\pi^2}(-1)^n \cdot \sin \left(\frac{(2n-1)\pi x}{L} \right) $
+
+</div>
+
+</body>
+</html>
