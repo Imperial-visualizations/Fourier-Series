@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <!--Page Info-->
+    <title>Derivation of a Fourier Series</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+<!--Main Body Content-->
+<div class="container_journey">
+    <p style="font-style: bold; font-size:large">
+            <!--Derivation of Dirac-Delta-->
+        <center><h5>How To Use Custom Function</h5></center>
+        <p>
+            Common trig functions, including hyperbolics and inverses can be used.
+            Exponentials should be written as "exp", and logs as "log".
+            <br><br>Entering 5x does not work. Instead you should write 5*x.
+            Write exponents as a^(exponent), so $x^2$ is writen as x^2.<br><br>
+            Functions should be real and fully defined over the domain, for example log(x) is imaginary
+            for values less than zero, so does not work.
+            log(x+1) does not work either (with a period of 1), since log is undefined at zero, however
+            log(1+x^2) does work for all periods, since it is defined over the whole domain and is real.
+            <br><br>
+            Sometimes due to the integration methods, the power spectrum shows very small values ($10^-17$).
+            These are simply due to the inexact integration and should be treated as zero.
+
+        </p>
+
+</div>
+</body>
+</html>

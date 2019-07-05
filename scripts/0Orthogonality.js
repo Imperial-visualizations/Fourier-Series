@@ -4,15 +4,19 @@
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
 should go here */
 
-const initialPoint = [1, 1];
+const initialPoint = [0, 1];
+const initialPoint1 = [1.1, 0.1];
+const initialPoint2 = [0.1,1.1];
+const initialPoint3 = [1,1];
 const layout = {
-    width: 450, "height": 500,
+    autosize: true,
+    //width: 450, "height": 500,
     margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
-    yaxis: {range: [-5, 5], zeroline: true, title: "y"},
-    aspectratio: {x:1, y:1}
+    xaxis: {range: [-5, 5], zeroline: true},
+    yaxis: {range: [-5, 5], zeroline: true},
+    aspectratio: {x:1, y:1},
 };
 var currentPoint = initialPoint;
 var initX1 = 0, initY1 = 0;
@@ -161,12 +165,14 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     y3Vector = new Line2d([[x3, y3], [x3, y3+dy3]]);
     vertex3  = new Line2d([[0, 0], [x3, y3]]);
 
-    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]))
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
-
+    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]));
+    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
 
     var m1 = (y1/x1);
     var m2 = (y2/x2);
+    //fixes case when gradients are infinite
+    if(m1 > 100000){m1 = 1000000;};
+    if(m2 > 100000){m2 = 1000000;};
 
     var x_prime = (y3 - m1*x3)/(m2 - m1)
     var y_prime = m2*x_prime
@@ -174,14 +180,62 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     var x_dprime = (y3 - m2*x3)/(m1-m2)
     var y_dprime = m1*x_dprime
 
-    vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
-    vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+    function isPositive(x){
+        if (Math.abs(x) === x) {
+        return true
+        } else {
+        return false
+        }
+    };
 
-    vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
-    vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+    function quadrant(x,y){
+        if (isPositive(x) && isPositive(y)) {return 1}
+        else if(!isPositive(x) && isPositive(y)) {return 2}
+        else if (!isPositive(x) && !isPositive(y)) {return 3}
+        else {return 4}
+    };
 
-    //vertex8  = new Line2d([[x1, y1], [x2, y2]]);
-    vertex9 = new Line2d([[-10,m1*-10], [10,m1*10]]);
+    //define scale factors
+    if (quadrant(x_prime, y_prime) === quadrant(x2,y2)) { //correct for negative sign
+    var scale2 = Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100
+    } else {
+    var scale2 = -Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100
+    };
+
+    if (quadrant(x_dprime,y_dprime)=== quadrant(x1,y1)) {
+    var scale1 = Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100
+    } else {
+    var scale1 = -Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100
+    };
+
+    //remove projections if parallel
+    //if (Math.abs(m1-m2) > 0.1){
+    if (Math.abs(phi1-phi2) > 0.05){
+       vertex4  = new Line2d([[0, 0], [x_prime, y_prime]]);
+       vertex5 = new Line2d([[x_prime, y_prime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+
+       vertex6  = new Line2d([[0, 0], [x_dprime, y_dprime]]);
+       vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
+
+       $(document).ready(() => {
+	        $('.popup').hide();
+       });
+
+
+    } else {
+        //replace projections with tiny lines if line1 and 2
+        vertex4 = new Line2d([[0, 0], [0,0.005]]);
+        vertex5 = new Line2d([[0, 0], [0.005,0]]);
+        vertex6 = new Line2d([[0, 0], [0,0.005]]);
+        vertex7 = new Line2d([[0, 0], [0.005,0]]);
+
+        $(document).ready(() => {
+            $('.popup').show();
+        });
+
+
+    }
+
 
     var data = [
 
@@ -190,7 +244,7 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         mode: "lines",
         x: [0,x1],
         y: [0,y1],
-        line: {color: black, width: 3, dash: "solid"}
+        line: {color: black, width: 3, dash: "solid"},
         },
 
         {type:"scatter",
@@ -202,6 +256,7 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
 
         {type:"scatter",
         mode: "lines",
+        name: "test2",
         x: [0,x3],
         y: [0,y3],
         line: {color: green, width: 3, dash: "solid"}
@@ -215,19 +270,15 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         vertex3.gObject(green, 3),
         vertex3.arrowHead(green, 3),
 
-        vertex4.gObject(cyan, 3),
+        vertex4.gObject(cyan, 3, dash="solid", modetype="lines+text", `${scale2} x vector2 & ${scale1} x vector1`),
         vertex5.gObject(cyan, 3),
 
-        vertex6.gObject(lilac, 3),
+        vertex6.gObject(lilac, 3,  dash="solid", modetype="lines+text", `${scale1} x vector1 & ${scale2} x vector2`),
         vertex7.gObject(lilac, 3),
-
-      //  vertex8.gObject(black, 3),
-        vertex9.gObject(black, 3),
      ]
     ;
     return data;
 }
-
 
 //C: Interactivity
 
@@ -236,30 +287,31 @@ Now we just have to actually obtain the user input from the HTML file by using J
 
 function initCarte(type) {
     Plotly.purge("graph");
-    initX1 = currentPoint[0];
-    initY1 = currentPoint[1];
-    initX2 = currentPoint[0];
-    initY2 = currentPoint[1];
-    initX3 = currentPoint[0];
-    initY3 = currentPoint[1];
+    initX1 = initialPoint1[0];
+    initY1 = initialPoint1[1];
+    initX2 = initialPoint2[0];
+    initY2 = initialPoint2[1];
+    initX3 = initialPoint3[0];
+    initY3 = initialPoint3[1];
 
     /* ~Jquery
     1.  Assign initial/default x, y values to the sliders and slider displays.
     */
     $("#x1Controller").val(initX1);
-    $("#x1ControllerDisplay").text(initX1);
+    $("#x1ControllerDisplay").val(initX1);
+
     $("#y1Controller").val(initY1);
-    $("#y1ControllerDisplay").text(initY1);
+    $("#y1ControllerDisplay").val(initY1);
 
     $("#x2Controller").val(initX2);
-    $("#x2ControllerDisplay").text(initX2);
+    $("#x2ControllerDisplay").val(initX2);
     $("#y2Controller").val(initY2);
-    $("#y2ControllerDisplay").text(initY2);
+    $("#y2ControllerDisplay").val(initY2);
 
     $("#x3Controller").val(initX3);
-    $("#x3ControllerDisplay").text(initX3);
+    $("#x3ControllerDisplay").val(initX3);
     $("#y3Controller").val(initY3);
-    $("#y3ControllerDisplay").text(initY3);
+    $("#y3ControllerDisplay").val(initY3);
 
     /* ~Jquery
     2.  Declare and store the floating values from x/y- sliders.
@@ -279,7 +331,6 @@ function initCarte(type) {
 
     var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]))
     var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
-
 
     Plotly.newPlot("graph", computeBasis(x1, y1), layout);
     Plotly.newPlot("graph", computeBasis(x2, y2), layout);
@@ -327,15 +378,55 @@ function updatePlot() {
 
 
 function main() {
+    computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
+
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
         $(this).on('input', function(){
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
-            $("#"+$(this).attr("id") + "Display").text( $(this).val() + $("#"+$(this).attr("id") + "Display").attr("data-unit"));
+            $("#"+$(this).attr("id") + "Display").val( $(this).val());
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
             updatePlot(); //Updating the plot is linked with display (Just My preference)
         });
+
+    //Update sliders if value in box is changed
+
+    $("#x1ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#x1Controller").val(value);
+     updatePlot();
+    });
+
+    $("#y1ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#y1Controller").val(value);
+     updatePlot();
+    });
+
+    $("#x2ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#x2Controller").val(value);
+     updatePlot();
+    });
+
+    $("#y2ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#y2Controller").val(value);
+     updatePlot();
+    });
+
+    $("#x3ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#x3Controller").val(value);
+     updatePlot();
+    });
+
+    $("#y3ControllerDisplay").change(function () {
+     var value = this.value;
+     $("#y3Controller").val(value);
+     updatePlot();
+    });
 
     });
 
@@ -355,6 +446,7 @@ function main() {
 
     //The First Initialisation - I use 's' rather than 'z' :p
     initCarte("#basis");
+    updatePlot(); //Shows initial positions of vectors
     }
 
 $(document).ready(main); //Load main when document is ready.

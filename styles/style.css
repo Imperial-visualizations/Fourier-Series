@@ -47,9 +47,20 @@ body.no-nav::after{
 UI Styles
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-*/
 
-/*
+/*Pop up for parallel lines*/
+/* Popup container */
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  background-color: red;
+  text-align: center;
+  margin-left: 10em;
+  padding: 1em;
+}
+
+
 Slider Styles
 */
 .sliderContainer{

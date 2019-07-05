@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <!--Page Info-->
+    <title>Derivation of a Fourier Series</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src=scripts/numeric/src/numeric.js></script>
+    <script src="scripts/math.min.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+</script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<!--Main content-->
+<div class="container">
+    <p> The 0<sup>th</sup> term of the series is the constant term before the sum;
+    $$\frac{a_0}{2}.$$ This is labelled as the 0<sup>th</sup> term
+    so that the series may start indexing its terms from $n=1$.
+    $$ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n \cos\left(\frac{n\pi x}{L}\right)+b_n \sin\left(\frac{n \pi x}{L}\right) $$
+    <p/>
+</div>
+<div>
+    <p> If the function is not periodic, then we may cut the function, forcing it to be periodic
+        over some $$ -L < x < L. $$ This means that we can prescribe a Fourier series
+        that is now valid for the function over the selected range. If we take the limit as $L \rightarrow \infty$,
+        then a Fourier transform need be used. This is a different problem entirely!
+     </p>
+</div>
+</body>
+
+</html>

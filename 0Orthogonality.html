@@ -33,21 +33,28 @@
 </head>
 <body>
 
-
+<div class="container_journey" style="background-color: white;"></div>
 <div class="container">
     <div class="row">
         <!-- Graph -->
-        <div class="six columns">
+        <div class="one-third column" style="padding-left: 2em;">
             <h1>Orthogonality:</h1>
-            <div id='graph' style="width:450px; height:450px;"></div>
+            <div id='graph' style="width:30vw; height:70vh;">
+                <div class="popup" onclick="myFunction()">
+                Vectors 1 and 2 are parallel <br> so R2 is not spanned.
+                </div>
+                <!-- Legend -->
+                <ul>
+                    <li style="color: red;">Basis Vector 1</li>
+                    <li style="color: blue;">Basis Vector 2</li>
+                    <li style="color: green;">Target Vector</li>
+                 </ul>
+            </div>
         </div>
 
+
         <!--Buttons/Sliders-->
-        <div class="six columns">
-            <!--Main Options/Tabs-->
-            <ul class="tab-nav">
-                <li><a class="button active" href="#basis">Basis Vectors</a></li>
-            </ul>
+        <div class="one-third column" style="padding-left: 50px;">
 
             <!--Main body contents-->
             <div class="tab-content">
@@ -57,11 +64,10 @@
                 <!--Slider Display--> <!--Linked with the slider below-->
                 <!--Linked with a slider and shows the live values of its corresponding slider-->
 
-                    <!--Slider-->
-                    <!--NB: Be careful with classes and types-->
-                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px;">x1-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 1 x coordinate:</h6>
                     <label class="sliderTitle">x1:&nbsp;<!--rho-->
-                        <span id="x1ControllerDisplay" data-unit="">0</span> <!--default: 0-->
+                        <input id="x1ControllerDisplay" />
+                        <!--<span id="x1ControllerDisplay" data-unit="">0</span> <!-default: 0-->
                     </label>
                     <label class="slider">
                         <span class="sliderMin">-2.5</span>
@@ -71,9 +77,9 @@
                     <!--END Slider-->
 
                     <!--BEGIN Slider-->
-                    <h5 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px;">y1-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(213,0,50); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 1 y coordinate:</h6>
                     <label class="sliderTitle">y1:&nbsp;<!--2 displays for one slider-->
-                            <span id="y1ControllerDisplay" data-unit="">0 </span>&nbsp;
+                            <input id="y1ControllerDisplay" />&nbsp;
                     </label>
                     <label class="slider">
                         <span class="sliderMin">-2.5</span>
@@ -83,9 +89,9 @@
                     <!--END Slider-->
 
                     <!--Begin slider-->
-                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px;">x2-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 2 x coordinate:</h6>
                     <label class="sliderTitle">x2:&nbsp;<!--2 displays for one slider-->
-                        <span id="x2ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                        <input id="x2ControllerDisplay" />&nbsp;
                     </label>
                     <label class="slider">
                         <span class="sliderMin">-2.5</span>
@@ -96,9 +102,9 @@
 
                     <!--BEGIN Slider-->
 
-                    <h5 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px;">y2-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,0,255); padding-left: 8px; margin: -5px; padding-top: 1vh;">Basis 2 y coordinate:</h6>
                     <label class="sliderTitle">y2:&nbsp;<!--2 displays for one slider-->
-                        <span id="y2ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                        <input id="y2ControllerDisplay" />&nbsp;
                     </label>
                     <label class="slider">
                         <span class="sliderMin">-2.5</span>
@@ -107,25 +113,25 @@
                     </label>
 
 
-                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px;">x3-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 1vh;">Target x coordinate:</h6>
                     <label class="sliderTitle">x3:&nbsp;<!--2 displays for one slider-->
-                        <span id="x3ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                        <input id="x3ControllerDisplay" />&nbsp;
                     </label>
                     <label class="slider">
-                        <span class="sliderMin">-4</span>
+                        <span class="sliderMin">-2.5</span>
                         <input id="x3Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
-                        <span class="sliderMax">4</span>
+                        <span class="sliderMax">2.5</span>
                     </label>
 
 
-                    <h5 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px;">y3-coordinate:</h5>
+                    <h6 style="border-left: solid 5px rgb(0,255,0); padding-left: 8px; margin: -5px; padding-top: 1vh; ">Target y coordinate:</h6>
                     <label class="sliderTitle">y3:&nbsp;<!--2 displays for one slider-->
-                        <span id="y3ControllerDisplay" data-unit=" ">0 </span>&nbsp;
+                        <input id="y3ControllerDisplay" />&nbsp;&nbsp;
                     </label>
                     <label class="slider">
-                        <span class="sliderMin">-4</span>
+                        <span class="sliderMin">-2.5</span>
                         <input id="y3Controller" class="inputs" type="range" value="0" min="-2.5" max="2.5" step="0.01"/>
-                        <span class="sliderMax">4</span>
+                        <span class="sliderMax">2.5</span>
                     </label>
 
                     <!--END Slider-->
