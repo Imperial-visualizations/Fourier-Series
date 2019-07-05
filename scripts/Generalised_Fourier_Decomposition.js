@@ -1,8 +1,9 @@
 
-function setLayout(sometitlex, sometitley) {
+function setLayout(sometitlex, sometitley, plotTitle) {
 
     const new_layout = {
         autosize: true,
+        title: {text: plotTitle},
         margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
@@ -35,9 +36,9 @@ exp = Math.exp;
 arcsin = Math.arcsin;
 arccos = Math.arccos;
 arctan = Math.arctan;
-arcsinh = Math.asinh;
-arccosh = Math.acosh;
-arctanh = Math.atanh;
+arsinh = Math.asinh;
+arcosh = Math.acosh;
+artanh = Math.atanh;
 sqrt = Math.sqrt
 
 
@@ -47,14 +48,100 @@ var tan = Math.tan;
 var arctan = Math.atan;
 var log = Math.log;
 
+var shape = 6;
 
 x = 2;
-var equation = "x**2";
+var equation = "x^2";
+
+//return the a_n amplitudes of the fourier series
+function aCoeff (shape, n){
+    var L = parseFloat(document.getElementById('LController').value);
+    var A = 1;//parseFloat(document.getElementById('AController').value);
+
+    var amplitude;
+    if (shape === 0) {
+        amplitude = 0;
+    } else if (shape === 1){
+        amplitude = 0;
+    } else if (shape === 2){
+        amplitude = 0;
+    } else if (shape === 3){
+        amplitude = 1/L;
+    } else if (shape === 4){
+        if (n===0){
+            amplitude = 2*L**2/3;
+        } else {
+            amplitude = A*(4*L**2/(n*Math.PI)**2)*(-1)**n;
+        }
+    } else if (shape === 5){
+        if (n===0){
+            amplitude = A*L;
+        } else {
+            amplitude = (2*A*L/(n*Math.PI)**2)*((-1)**n - 1);
+        }
+    }
+    return amplitude;
+}
+
+//Return the b_n amplitudes of the fourier series
+function bCoeff(shape,n){
+    var L = parseFloat(document.getElementById('LController').value);
+    var A = 1; //parseFloat(document.getElementById('AController').value);
+
+    var amplitude;
+    if (n===0){
+        amplitude = 0;
+    } else {
+        if (shape === 0){
+            amplitude=(8*A*1/((2*(n)-1) *Math.PI)**2)*((-1)**(n));
+        } else if (shape === 1){
+            amplitude=A/(n*Math.PI) *(1-(-1)**n);
+        } else if (shape === 2){
+            amplitude = 2*A*(-1)**(n+1) /(n*Math.PI)
+        } else if (shape === 3){
+            amplitude = 0;
+        } else if (shape === 4){
+            amplitude = 0;
+        } else if (shape === 5){
+            amplitude = 0;
+        }
+    }
+    return amplitude;
+}
+
+function coefficientPre (N){
+    var n = [];
+    var an = [];
+    var bn = [];
+    var alpha_n = [];
+    var theta_n = [];
+
+    for (var i = 0; i < N; ++i){
+        n.push(i);
+        an.push(aCoeff(shape,i));
+        bn.push(bCoeff(shape,i));
+        alpha_n.push(Math.sqrt(aCoeff(shape,i)**2+bCoeff(shape,i)**2));
+        //Theta is defined strangely because javascript can't handle arctan( plus/minus infinity)
+        if (aCoeff(shape,i)===0){
+            if (bCoeff(shape,i)>0) {
+                theta_n.push(Math.PI/2);
+            } else if (bCoeff(shape,i)<0) {
+                theta_n.push(-Math.PI/2);
+            } else if (bCoeff(shape,i)===0){
+                theta_n.push(0);
+            }
+        } else {
+            theta_n.push(Math.atan2(bCoeff(shape,i),aCoeff(shape,i)));
+        }
+    }
+
+    return [n, an, bn, alphan, thetan];
+}
 
 // sum up all the number in the array
 function adding(array) {
     var result = 0
-    for (var i = 0; i < array.length; ++i) {
+    for (let i = 0; i < array.length; ++i) {
         result += array[i];
     }
     return result;
@@ -64,7 +151,7 @@ function adding(array) {
 function y_values(x_range) {
     //Takes the specified function and computes the y values for given x values
     var y = [];
-    for (var i in x_range) {
+    for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation));
         //eval turns the string specified by the user into a command
@@ -75,7 +162,7 @@ function y_values(x_range) {
 function y_values_cosine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
     var y = [];
-    for (var i in x_range) {
+    for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.cos(n * Math.PI * x / L))
     }
@@ -86,7 +173,7 @@ function y_values_cosine(x_range, n, L) {
 function y_values_sine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
     var y = [];
-    for (var i in x_range) {
+    for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.sin(n * Math.PI * x / L))
     }
@@ -105,7 +192,7 @@ function integration_simps(x, y) {
     var N = x.length;
     var h = (b - a) / N;
     var A = 0;
-    for (var i = 1; i < x.length; ++i) {
+    for (let i = 1; i < x.length; ++i) {
         if (i % 2 === 0) {
             A += 2 * y[i];
         } else {
@@ -123,7 +210,7 @@ function integration_ultra(kMax, L, n, integral) {
     var h = 5.0 / kMax
     var omega_k = [];
     var x_k = [];
-    for (var i = -kMax; i < kMax; ++i) {
+    for (let i = -kMax; i < kMax; ++i) {
         x_k.push((Math.tanh(0.5 * Math.PI * Math.sinh(i * h))) * L);
         omega_k.push(0.5 * h * Math.PI * Math.cosh(i * h) / (Math.cosh(0.5 * Math.PI * Math.sinh(i * h))) ** 2);
     }
@@ -138,33 +225,35 @@ function integration_ultra(kMax, L, n, integral) {
         var f_of_xk = y_values(x_k);
     }
 
-    var A = 0;
-    for (var i = 0; i < x_k.length; ++i) {
-        A += (omega_k[i] * f_of_xk[i]);
+    var Area = 0;
+    for (let i = 0; i < x_k.length; ++i) {
+        Area += (omega_k[i] * f_of_xk[i]);
     }
-    return A * L;
+    return Area * L;
 }
 
 function integration(x, y) {
     //Integration by Riemann sum
     var A = 0;
-    for (var i = 0; i < x.length - 1; i++) {
+    for (let i = 0; i < x.length - 1; i++) {
         A += (x[i + 1] - x[i]) * (y[i + 1] + y[i]) / 2;
     }
     return A;
 }
 
+//For custom functions
 function initFourier() {
     Plotly.purge("graph");
     Plotly.purge("graph2");
     Plotly.purge("graph3");
     [datalist,titley] = computePlot1(xOriginal, yOriginal)
-    Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$'));
-    Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
-    Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley));
+    Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$', 'Fourier Series'));
+    Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$', 'Components of Series'));
+    Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley, 'Power Spectrum'));
 
     return;
 }
+
 
 function a_n(n, x) {
     var L = parseFloat(document.getElementById('LController').value);
@@ -184,14 +273,14 @@ function b_n(n, x) {
 
 function Fourier_coefficient(x) {
     //For all n from 0 to N, calculates a_n and b_n
-    var N = parseFloat(document.getElementById('NController').value) + 1;
+    var N = parseFloat(document.getElementById('NController').value)+1;
 
     var n = [];//List of all terms that will be generated
     var an = [];
     var bn = [];
     var alphan = [];
     var thetan = [];
-    for (var i = 0; i < N; i++) {
+    for (let i = 0; i < N; i++) {
         var a = a_n(i, x);
         var b = b_n(i, x);
         n.push(i);
@@ -217,13 +306,22 @@ function Fourier_coefficient(x) {
 function Trig_summation_x(an, bn, x_value) {
     //For a certain x_value in the function domain, uses the values of a_n and b_n
     //up to a given N, to reconstruct the function at that particular x point
-    var N = parseFloat(document.getElementById('NController').value) + 1;
+    var N = parseFloat(document.getElementById('NController').value);
     var L = parseFloat(document.getElementById('LController').value);
 
     var single_y = [an[0] / 2];//Average function value term
-    for (var n = 1; n < N; n++) {
-        single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));//
+
+    //exception for triangle function
+    if(shape === 0) {
+        for (var n = 1; n < N; n++) {
+        single_y.push(bn[n] * Math.sin(x_value*(2*n -1) *Math.PI /L));
+        }
+    } else {
+        for (var n = 1; n < N; n++) {
+        single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));
+        }
     }
+
     return adding(single_y);
 }
 
@@ -231,9 +329,10 @@ function Trig_summation_n(an, bn, x) {
     //Calls up trig_summation_x for every x value, so we reconstruct the function
     //at every point in the domain, returns the y values in order
     var set_y = [];
-    for (var i = 0; i < x.length; ++i) {
+    for (let i = 0; i < x.length; ++i) {
         set_y.push(Trig_summation_x(an, bn, x[i]));
     }
+    //console.log(set_y);
     return set_y;
 }
 
@@ -244,12 +343,14 @@ function plotSines(an, bn, n, x) {
     var N = parseFloat(document.getElementById('NController').value);
     var L = parseFloat(document.getElementById('LController').value);
 
+    //n = numeric.linspace(1,N,N);
+
     var x_n = [];
     var y_n = [];
     var spacing = Math.sqrt((bn[0]) ** 2 + (an[1]) ** 2) * L / (Math.sqrt(L ** 2));
 
 
-    for (var i = 0; i < x.length; ++i) {
+    for (let i = 0; i < x.length; ++i) {
         x_n.push(x[i]);
         y_n.push(((bn[n - 1]) * Math.sin((n - 1) * Math.PI * x[i] / L) + (an[n - 1]) * Math.cos((n - 1) * Math.PI * x[i] / L)));
     }
@@ -267,12 +368,19 @@ function plotSines(an, bn, n, x) {
 
 }
 
-//The above was to reconstruct the function, below is to actually plot
 
+//The above was to reconstruct the function, below is to actually plot
 function computePlot1(x, y) {
     //Retrieves an,bn, then uses those to find the reconstructed function y values
     //then plots this
-    [n, an, bn, alphan, thetan] = Fourier_coefficient(x);
+    //Calculate coefficients if custom function
+    if (shape === 6) {[n, an, bn, alphan, thetan] = Fourier_coefficient(x);}
+
+    //Otherwise use predetermined coefficients
+    else {
+    var N = parseFloat(document.getElementById('NController').value)+1;
+    [n, an, bn, alphan, thetan] = coefficientPre(N);}
+    //console.log(bn);
     y2 = Trig_summation_n(an, bn, x);
 
     var data1 = [
@@ -327,11 +435,34 @@ function computePlot1(x, y) {
     return [datalist, title];
 }
 
+function insert(index, item) {
+    this.splice( index, 0, item );
+};
 
 function updateFunction() {
     //Looks at equation the user typed in and retrieves this
-    equation = document.getElementById("aInput").value;
-    return equation;
+    var equation = document.getElementById("aInput").value;
+    var error = false;
+    var change = false;
+    var equationB =[];
+    //Input Equation filtering
+    for(let i=0; i<equation.length; i++){
+        //Don't allow equations containing i
+        if(equation[i] === 'i'){
+            //Allow sin and arcsin
+            if(equation[i-1] === 's'){error = false}
+            else {error = true;}
+            };
+
+        equationB.push(equation[i]);
+
+        //Replace ^ with ** for exponents
+        if(equationB[i] === '^'){equationB[i] = '**'; change = true;};
+    }
+    if(change) {equation = equationB.join("");}
+
+    if(error===true) {return '';}
+    else {return equation;}
 }
 
 
@@ -339,21 +470,23 @@ function updateFunction() {
 
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 
+//For custom function
 function updatePlot() {
     var data;
     var L = parseFloat(document.getElementById('LController').value);
     var xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
-
-    equation = document.getElementById("aInput").value;
+    if (shape===6){
+            equation = updateFunction();
+    }
 
     [datalist, titley] = computePlot1(xOriginal, yOriginal);
 
     yOriginal = y_values(xOriginal);
 
-    Plotly.react("graph", datalist[0], setLayout('$x$', '$f(x)$'));
-    Plotly.react("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$'));
-    Plotly.react("graph3", datalist[2], setLayout('$n$', titley));
+    Plotly.react("graph", datalist[0], setLayout('$x$', '$f(x)$', 'Fourier Series'));
+    Plotly.react("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$', 'Components of Series'));
+    Plotly.react("graph3", datalist[2], setLayout('$n$', titley, 'Power Spectrum'));
 
 }
 
@@ -373,6 +506,40 @@ function main() {
     $('#Coefficient').change(function () {
         updatePlot();
     })
+
+    $('#Select').change(function(){
+        let selectedValue = document.getElementById("Select").value;
+        if (selectedValue==="main"){
+            shape = 6;
+            $('#input').show();
+        } else if (selectedValue==="triangular"){
+            shape = 0;
+            $('#input').hide();
+        } else if (selectedValue==="square"){
+            shape = 1;
+            $('#input').hide();
+        } else if (selectedValue==="sawtooth"){
+            shape = 2;
+            $('#input').hide();
+        } else if (selectedValue==="dirac"){
+            shape = 3;
+            $('#input').hide();
+        } else if (selectedValue==="parabola"){
+            shape = 4;
+            $('#input').hide();
+        }  else if (selectedValue==="mode"){
+            shape = 5;
+            $('#input').hide();
+        } else if (selectedValue==="custom"){
+            shape = 6;
+            $('#input').show();
+        }
+        $(".title").hide();
+        $("#"+selectedValue+"Title").show();
+        initFourier();
+        updatePlot();
+    })
+
     initFourier();
 }
 
