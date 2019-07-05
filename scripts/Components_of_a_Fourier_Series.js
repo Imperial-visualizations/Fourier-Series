@@ -1,21 +1,23 @@
 //Global Initial Parameters:
 const layout = {
     autosize: true,
-    margin: {l:30, r:40, t:30, b:30},
+    margin: {l: 30, r: 40, t: 30, b: 30},
     hovermode: "closest",
-    xaxis: {range: [-5,5], zeroline: true, title: "x"},
-    yaxis: {range: [0,305], zeroline: true, title: "$N$", showticklabels: true, tickmode: 'array',
-    tickvals: [30,60,90,120,150,180,210,240,270,300],
-    ticktext:['n=1','n=2','n=3','n=4','n=5','n=6','n=7','n=8','n=9','n=10'],
-    side: 'right'},
-    aspectratio: {x:1, y:1}
+    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
+    yaxis: {
+        range: [0, 305], zeroline: true, title: "$N$", showticklabels: true, tickmode: 'array',
+        tickvals: [30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
+        ticktext: ['n=1', 'n=2', 'n=3', 'n=4', 'n=5', 'n=6', 'n=7', 'n=8', 'n=9', 'n=10'],
+        side: 'right'
+    },
+    aspectratio: {x: 1, y: 1}
 };
 
 var defaultHref = window.location.href;
 var initX = 0, initY = 0;
 var resolution = 4000;
 // set the step of the x axis from -2pi to 2pi
-var z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
+var z = numeric.linspace(-2 * Math.PI, 2 * Math.PI, resolution);
 // Define our interacting Jquery elements
 
 var Nslider = $("#NController");
@@ -35,26 +37,28 @@ var decay2 = 0.6;
 it changes the range of the y-axis according to the amplitude and number of terms
 so the setLayout allows the layout to fit the graph, instead of fixing the layout to some values
 */
-function setLayout(){
-    var n_lab=[];
-    var y_lab=[];
-    for (var i=0;i<10;i++){
-        n_lab.push("n="+(i+1));
-        y_lab.push(29.5*(i+1))
+function setLayout() {
+    var n_lab = [];
+    var y_lab = [];
+    for (var i = 0; i < 10; i++) {
+        n_lab.push("n=" + (i + 1));
+        y_lab.push(29.5 * (i + 1))
     }
     const new_layout = {
-    autosize: true,
+        autosize: true,
         showlegend: false,
-    margin: {l:45, r:60, t:0, b:30},
-    hovermode: "closest",
-    xaxis: {range: [], zeroline: true, title: "$x$"},
-    yaxis: {range: [0,305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
-    tickvals: y_lab,
-    ticktext: n_lab,
-    tickfont: {size:18},
-    side: 'right'},
-    aspectratio: {x:1, y:1}
-};
+        margin: {l: 45, r: 60, t: 0, b: 30},
+        hovermode: "closest",
+        xaxis: {range: [], zeroline: true, title: "$x$"},
+        yaxis: {
+            range: [0, 305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
+            tickvals: y_lab,
+            ticktext: n_lab,
+            tickfont: {size: 18},
+            side: 'right'
+        },
+        aspectratio: {x: 1, y: 1}
+    };
 
 
     return new_layout;
@@ -70,10 +74,10 @@ function initFourier() {
 
 
 // sum up all the number in the array
-function adding(array){
+function adding(array) {
     var result = 0;
-    for(var i =0; i<array.length; ++i){
-        result+=array[i];
+    for (var i = 0; i < array.length; ++i) {
+        result += array[i];
     }
     return result;
 }
@@ -85,94 +89,94 @@ function adding(array){
 // a_n part is to multiply the function f(x) by sin, and sin is an odd function
 // after the if statement, each function has been optimized for better visualization
 // comment behind each if statement is the original a_n of each function without optimization
-function odd_selection2(n,A,L,type){
+function odd_selection2(n, A, L, type) {
     //Represents the bn part of the function summand
-    if (type===0){
-        amplitude = (A*(-1)**n)*(decay)**n; // (8*A*1/((2*(n)-1) *np.pi)**2)*((-1)**(n))
-    } else if (type===1){
-        amplitude = (A*(1-(-1)**n))*(decay)**n; // A/(n*np.pi) *(1-(-1)**n)
-    } else if (type===2){
-        amplitude = (A*(-1)**(n+1))*(decay)**n;  //  2*A*(-1)**(n+1) /(n*np.pi)
-    } else if (type===3){
+    if (type === 0) {
+        amplitude = (A * (-1) ** n) * (decay) ** n; // (8*A*1/((2*(n)-1) *np.pi)**2)*((-1)**(n))
+    } else if (type === 1) {
+        amplitude = (A * (1 - (-1) ** n)) * (decay) ** n; // A/(n*np.pi) *(1-(-1)**n)
+    } else if (type === 2) {
+        amplitude = (A * (-1) ** (n + 1)) * (decay) ** n;  //  2*A*(-1)**(n+1) /(n*np.pi)
+    } else if (type === 3) {
         amplitude = 0;
-    } else if (type===4){
+    } else if (type === 4) {
         amplitude = 0// (((4*L**2)/(n*Math.PI)**2)*(-1)**n)
-    } else if (type===5){
-        amplitude = 0.5*A*(2*(-1)**(n+1)*decay**n); //A*(2*L/(n*Math.PI)*(-1)**(n+1)
-    } else if (type===6){
+    } else if (type === 5) {
+        amplitude = 0.5 * A * (2 * (-1) ** (n + 1) * decay ** n); //A*(2*L/(n*Math.PI)*(-1)**(n+1)
+    } else if (type === 6) {
         amplitude = 0;
     }
     return amplitude;
 }
+
 //Note with both the an and bn part, the amplitude isn't necessarily mathematially correct, if that was done the components just
 //get too small, so we use a decay power law, so that the components dont get too small too quickly
 // b_n
 // b_n part is to multiply the function f(x) by cos, and cos is and even function
-function even_selection2(n,A,L,type){
+function even_selection2(n, A, L, type) {
     //Gives the an part of the function sum
-    if (type === 6){
-        if (n===0){
-            amplitude2= A*L;
+    if (type === 6) {
+        if (n === 0) {
+            amplitude2 = A * L;
         } else {
-            amplitude2 = 2*A*((-1)**(n)-1);
-               }
-               }
-    else if (type ===3){
-        if (n === 0 ){
-            amplitude2 = 1/(2*L);
-        }else{
-             amplitude2 = 1/L;
-             }
-             }
-    else if (type ===4){
-        if (n === 0 ){
-            amplitude2 = A*(L**2)/3;
-        } else{
-         amplitude2 =(4/Math.PI)*A*(L**2)*((-1)**n)*decay**n;
-            }
-            }
-    else if (type === 0 || type === 1 || type === 2 || type === 5){
-        amplitude2= 0;}
+            amplitude2 = 2 * A * ((-1) ** (n) - 1);
+        }
+    } else if (type === 3) {
+        if (n === 0) {
+            amplitude2 = 1 / (2 * L);
+        } else {
+            amplitude2 = 1 / L;
+        }
+    } else if (type === 4) {
+        if (n === 0) {
+            amplitude2 = A * (L ** 2) / 3;
+        } else {
+            amplitude2 = (4 / Math.PI) * A * (L ** 2) * ((-1) ** n) * decay ** n;
+        }
+    } else if (type === 0 || type === 1 || type === 2 || type === 5) {
+        amplitude2 = 0;
+    }
     return amplitude2;
 }
 
 // return the data that stores one component of the Fourier Series
-function plotSines(n,x,shape){
+function plotSines(n, x, shape) {
     //Plots individual components that are being built up to the total function
     var L = Lslider.val();
     var A = Aslider.val();
 
     var x_n = [];
     var y_n = [];
-    if (shape===4) {
-        var spacing=580;
+    if (shape === 4) {
+        var spacing = 580;
         var scale = 0.05;
-    }
-    else if (shape===3) {
+    } else if (shape === 3) {
         var scale = 5;
         var spacing = 5.8;
-    }
-    else {
+    } else if (shape === 6) {
+        var scale = 0.5;
+        var spacing = 60;
+    } else {
         var spacing = 30;
         var scale = 1;
     }
-    var spacing2 = Math.sqrt((odd_selection2(n,A,L,shape))**2+(even_selection2(n,A,L,shape)))+1;
+    var spacing2 = Math.sqrt((odd_selection2(n, A, L, shape)) ** 2 + (even_selection2(n, A, L, shape))) + 1;
 
 
-    for (var i = 0; i < x.length ; ++i){
+    for (var i = 0; i < x.length; ++i) {
         x_n.push(x[i]);
-        y_n.push(scale*(((odd_selection2(n,A,L,shape))*Math.sin(n*Math.PI*x[i]/L)+(even_selection2(n,A,L,shape))*Math.cos(n*Math.PI*x[i]/L))+spacing*(n)));
+        y_n.push(scale * (((odd_selection2(n, A, L, shape)) * Math.sin(n * Math.PI * x[i] / L) + (even_selection2(n, A, L, shape)) * Math.cos(n * Math.PI * x[i] / L)) + spacing * (n)));
     }
     //y value gets shifted up so that the plots are distinctly different
-    var n_lab2 = ['1','2','3','4','5','6','7','8','9','10'];
-    var y_lab2 = [30,60,90,120,150,180,210,240,270,300];
-    var data=
+    var n_lab2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    var y_lab2 = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300];
+    var data =
         {
-            type:"scatter",
-            mode:"lines",
+            type: "scatter",
+            mode: "lines",
             x: x_n,
             y: y_n,
-            line:{color:"rgb(0,N*10,0)",width:3, dash:"dashed"},
+            line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
 
         }
     ;
@@ -181,11 +185,11 @@ function plotSines(n,x,shape){
 }
 
 // get each single component by recalling plotSines, and plot out all the components of the Fourier Series
-function computeComponents(x){
+function computeComponents(x) {
     var N = parseFloat(Nslider.val());
-    var data_value=[];
-    for (var n=1; n<N+1; ++n){
-        data_value.push(plotSines(n,z,shape));
+    var data_value = [];
+    for (var n = 1; n < N + 1; ++n) {
+        data_value.push(plotSines(n, z, shape));
     }
 
     return data_value;
@@ -207,7 +211,8 @@ function updatePlot() {
             $('#A').hide();
         } else {
             $('#A').show();
-        }});
+        }
+    });
     initFourier();
 }
 
@@ -216,9 +221,9 @@ function main() {
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
-        $(this).on('input', function(){
+        $(this).on('input', function () {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
-            $("#"+$(this).attr("id") + "Display").text( $(this).val() + $("#"+$(this).attr("id") + "Display").attr("data-unit"));
+            $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
             updatePlot(); //Updating the plot is linked with display (Just My preference)
         });
@@ -228,38 +233,39 @@ function main() {
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
-    $('#Select').change(function(){
+    $('#Select').change(function () {
         var selectedValue = document.getElementById("Select").value;
-        if (selectedValue==="main"){
+        if (selectedValue === "main") {
             shape = 0;
             updatePlot();
-        } else if (selectedValue==="triangular"){
+        } else if (selectedValue === "triangular") {
             shape = 0;
             updatePlot();
-        } else if (selectedValue==="square"){
+        } else if (selectedValue === "square") {
             shape = 1;
             updatePlot();
-        } else if (selectedValue==="sawtooth"){
+        } else if (selectedValue === "sawtooth") {
             shape = 2;
             updatePlot();
-        } else if (selectedValue==="dirac"){
+        } else if (selectedValue === "dirac") {
             shape = 3;
             updatePlot();
-        } else if (selectedValue==="parabola"){
+        } else if (selectedValue === "parabola") {
             shape = 4;
             updatePlot();
-        } else if (selectedValue==="linear"){
+        } else if (selectedValue === "linear") {
             shape = 5;
             updatePlot();
-        } else if (selectedValue==="mode"){
+        } else if (selectedValue === "mode") {
             shape = 6;
             updatePlot();
         }
         $(".title").hide();
-        $("#"+selectedValue+"Title").show();
+        $("#" + selectedValue + "Title").show();
         initFourier();
     });
     //The First Initialisation - I use 's' rather than 'z' :p
     initFourier();
 }
+
 $(document).ready(main); //Load main when document is ready.

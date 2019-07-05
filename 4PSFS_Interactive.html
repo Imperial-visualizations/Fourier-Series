@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+        <style>
+        .divclass
+        { width: 33vw;}
+        </style>
+            <style>
+        .divclass2
+        { width: 65vw;}
+        </style>
+    <!--Page Info-->
+    <title>Derivation of a Fourier Series</title>
+    <!--css link-->
+    <link rel="stylesheet"
+          href="styles/skeleton.css">
+    <link rel="stylesheet"
+          href="styles/style.css">
+    <!--Required JS resources-->
+    <!--NB: better to have resources before the main body but still works even if they are not-->
+    <script src="scripts/plotly-1.47.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="scripts/MathJax-master/MathJax.js">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <script src="scripts/Components_of_a_Fourier_Series.js"></script>
+</head>
+
+<body>
+    <div style = "width:65%; float:right;">
+        <!--Main Body Content-->
+    
+        <!--<div class="Popup">
+            <h5 align="center"> For even functions, when the period transitions from 0 to negative, the value of $\theta_n$ change from $0$ to $\pi$ and vice versa. Why do you think
+                this happens? (This happens because the value of $a_n$ changes sign ($b_n$ is 0) causing the value of $\theta_n$ to change. For $b_n = 0$, $\tan^{-1}(\frac{b_n}{a_n})$ can be both
+                0 or $\pi$ depending on whether $a_n$ is positive or negative.</h5>   
+        </div>-->
+        <div class="container">
+        <div class="row">
+            <!--Scroll-down to select function-->
+            <div id="scroll1">
+                <strong>Select Function: </strong>
+                <select id="Select">
+                    <option value="triangular">Triangular Function</option>
+                    <option value="square">Square Function</option>
+                    <option value="sawtooth">Sawtooth Function</option>
+                    <option value="dirac">Dirac-Delta Function</option>
+                    <option value="parabola">Parabola Function</option>
+                    <!--<option value="linear">Linear Function</option>--> <!--Commented out linear function because it's identical to sawtooth-->
+                    <option value="mode">|x| Function</option>
+                </select>
+    
+                <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                <!--Scroll-down to select coefficient-->
+                <strong>Select Coefficient: </strong>
+                <select id="Coefficient">
+                    <option value="an&bn">a and b</option>
+                    <option value="powerSpectrum">α and θ</option>
+                </select>
+                <!--BEGIN Slider A-->
+            </div>
+            <div class="row">
+    
+                <div class="four columns" id="A">
+                    <!--Slider Display A-->
+                    <label class="sliderTitle" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
+                        <span id="AControllerDisplay" data-unit="">1</span> <!--default: 1-->
+                    </label>
+                    <!--Slider A-->
+                    <label class="slider">
+                        <span class="sliderMin">-5</span>
+                        <input id="AController" class="inputs" type="range" value="1" min="-5" max="5" step="0.1"/>
+                        <span class="sliderMax">5</span></label>
+                </div>
+                <!--END Slider A-->
+    
+    
+                <div class="four columns" id="N">
+    
+                    <!--BEGIN Slider N-->
+    
+                    <!--Slider Display N-->
+                    <label class="sliderTitle" style="padding-bottom:20px;">Number of Terms:
+                        <span id="NControllerDisplay" data-unit="">1</span>
+                    </label>
+                    <!--Slider N-->
+                    <label class="slider">
+                        <span class="sliderMin">0</span>
+                        <input id="NController" class="inputs" type="range" value="1" min="0" max="50" step="1"/>
+                        <span class="sliderMax">50</span>
+                    </label>
+                    <!--END Slider N-->
+    
+    
+                </div>
+                <div class="four columns" id="L">
+                    <!--BEGIN Slider L-->
+                    <!--Slider Display L-->
+                    <label class="sliderTitle" style="padding-bottom:20px;">Period:
+                        <span id="LControllerDisplay" data-unit="">1</span>
+                    </label>
+                    <!--Slider L-->
+                    <label class="slider">
+                        <span class="sliderMin">-5</span>
+                        <input id="LController" class="inputs" type="range" value="1" min="-5" max="5" step="0.1"/>
+                        <span class="sliderMax">5</span>
+                    </label>
+                    <!--END Slider L-->
+    
+                </div>
+    
+                <!--Sliders-->
+    
+            </div>
+            <div class="row">
+                <!-- Title & Graph -->
+                <div class="six columns">
+    
+                    <!--Graph-->
+                    <div id='graph3' style="height: 60vh"></div>
+                </div>
+    
+                <!--Scroll-down and Sliders-->
+                <div class="six columns">
+                    <div id='graph4' style="height: 60vh"></div>
+    
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--THE BRAINS-->
+    <script src="scripts/Power_Spectrum_of_a_Fourier_Series.js"></script>
+    <script></script>
+    
+    </body>
+    
+    </html>
+    </div>
+</body>
