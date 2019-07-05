@@ -26,7 +26,7 @@ function setLayoutSmall(someTitles){
     margin: {l:45,r:0, t:20, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [], zeroline: true, title: "$x$"},
+    xaxis: {range: [], zeroline: true, title: "$n$"},
     yaxis: {range: [], zeroline: true, title: someTitles},
     aspectratio: {x:1, y:1},
     }
@@ -258,6 +258,17 @@ function updatePlot() {
     // NB: updates according to the active tab
     var selectedValue = document.getElementById("Select").value; // finds out which function is active
     initFourier();
+    var L = parseFloat(document.getElementById('LController').value);
+    
+    if ((L<=0 && shape==3)||(L<=0 && shape==6)){ 
+        $(document).ready(() => {
+            $('#Popup').show();
+        })
+    } else {
+        $(document).ready(() => {
+            $('#Popup').hide();
+        })
+    }
     //data = computeComponents(z);
 
     /*
@@ -275,7 +286,10 @@ function updatePlot() {
 }
 
 function main() {
-
+    
+    $(document).ready(() => {
+        $('#Popup').hide();
+    })      ;
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
@@ -288,6 +302,9 @@ function main() {
 
     });
 
+  
+
+    
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
@@ -309,10 +326,12 @@ function main() {
             shape = 5;
         } else if (selectedValue==="mode"){
             shape = 6;
+
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
         initFourier();
+        updatePlot();
     })
 
     // to select either a_n and b_n or alpha_n and theta_n in the power spectrum tab
@@ -328,6 +347,8 @@ function main() {
             title2="$θ_{n}$"
         }
         initFourier();
+        updatePlot();
+        console.log(shape)
     })
 
     //The First Initialisation - I use 's' rather than 'z' :p
