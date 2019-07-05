@@ -7,7 +7,7 @@ function setLayout(sometitlex, sometitley, plotTitle) {
         margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
-        xaxis: {range: [], zeroline: true, title: sometitlex},
+        xaxis: {range: [-1.5,1.5], zeroline: true, title: sometitlex},
         yaxis: {range: [], zeroline: true, title: sometitley},
         aspectratio: {x: 1, y: 1}
     };
