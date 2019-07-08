@@ -90,8 +90,8 @@
                     <!--Slider N-->
                     <label class="slider">
                         <span class="sliderMin">0</span>
-                        <input id="NController" class="inputs" type="range" value="1" min="0" max="10" step="1"/>
-                        <span class="sliderMax">10</span>
+                        <input id="NController" class="inputs" type="range" value="1" min="0" max="9" step="1"/>
+                        <span class="sliderMax">9</span>
                     </label>
                 </div>
                 <!--END Slider N-->
@@ -109,6 +109,67 @@
                 </label>
             </div>
             <!--END Slider L-->
+             <div id="Triangle_eqn">
+                 <br><br>
+                $$\displaystyle f(x)=\left\{
+                 \begin{array}{ll}
+                 \frac{-2A}{L} (x+L) \quad (-L \leq x < -L/2) \\
+                 \frac{2A}{L} x \qquad \qquad (-L/2 \leq x < L/2) \\
+                 \frac{-2A}{L} (x-L) \quad (L/2 \leq x < L)
+                 \end{array}
+                 \right. $$
+                  $ \displaystyle f(x)=\sum_{n=1,2,3...}^\infty $ $\displaystyle \frac{8A}{(2n-1)^2\pi^2}(-1)^n $ $$\displaystyle \sin \left(\frac{(2n-1)\pi x}{L}
+                 \right) $$
+            </div>
+            <div id="Square_eqn">
+                 <br><br>
+                 $$\displaystyle
+                 f(x)=\left\{
+                 \begin{array}{ll}
+                 -A \quad (-L < x < 0) \\
+                 A \quad (0< x < L)
+                 \end{array}
+                 \right.
+                 $$
+                 <br><br>
+                $\displaystyle f(x)=\sum_{n=1}^{\infty} \frac{2A}{n\pi}$ $\displaystyle (1-(-1)^n)$ $\displaystyle\sin \left(\frac{n\pi x}{L}\right)$
+
+            </div>
+            <div id="Sawtooth_eqn">
+                <br><br>
+                $\displaystyle f(x)=\frac{Ax}{L} $ $\displaystyle \quad (-L < x \leq L)$
+                <br><br>
+                $\displaystyle f(x)=\sum_{n=1}^\infty \frac{2A}{n\pi}(-1)^{n+1}$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right)$
+            </div>
+            <div id="Dirac_eqn">
+                <br><br>
+                $\displaystyle
+                 f(x) = \delta(x)=\left\{
+                \begin{array}{ll}
+                +\infty \quad (x=0) \\
+                0 \qquad (x \neq 0)
+                \end{array}
+                \right.
+                $ <br><br>
+                $\displaystyle f(x)=\frac{1}{2L}+\sum_{n=1}^\infty \frac{1}{L}$ $\displaystyle \cos \left(\frac{n\pi x}{L} \right) $
+            </div>
+            <div id="Parabola_eqn">
+                <br><br>
+                $ \displaystyle f(x)=Ax^2 $
+                <br><br>
+                $\displaystyle f(x) = \frac{AL^2}{3}$ $\displaystyle + \sum_{n=1}^\infty \frac{4AL^2}{n^2\pi^2}$ $\displaystyle (-1)^n
+                \cos \left(\frac{n\pi x}{L} \right) $
+            </div>
+            <div id="Modx_eqn">
+                <br><br>
+                $$\displaystyle f(x)=A|x|$$
+                <br><br>
+                $\displaystyle f(x)=\frac{AL}{2}+$ $\displaystyle \sum_{n=1}^\infty \frac{2AL}{(n\pi)^2}$ $\displaystyle \left[(-1)^n-1 \right]$ $$\displaystyle  \cos \left(\frac{n\pi
+    x}{L} \right) $$
+            </div>
+
+
+
         </div>
     </div>
 </div>

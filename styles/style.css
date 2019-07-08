@@ -60,6 +60,13 @@ UI Styles
   padding: 1em;
   margin-top: -5em;
 }
+.eq_popup {
+    position: absolute;
+    display: inline-block;
+    cursor: none;
+    text-align: center;
+    text-align: center;
+}
 
 #vectorComponents {
     margin-left: 10.5em;

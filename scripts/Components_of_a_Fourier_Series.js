@@ -6,8 +6,8 @@ const layout = {
     xaxis: {range: [-5, 5], zeroline: true, title: "x"},
     yaxis: {
         range: [0, 305], zeroline: true, title: "$N$", showticklabels: true, tickmode: 'array',
-        tickvals: [30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
-        ticktext: ['n=1', 'n=2', 'n=3', 'n=4', 'n=5', 'n=6', 'n=7', 'n=8', 'n=9', 'n=10'],
+        tickvals: [30, 60, 90, 120, 150, 180, 210, 240, 270,300],
+        ticktext: ['n=0','n=1', 'n=2', 'n=3', 'n=4', 'n=5', 'n=6', 'n=7', 'n=8', 'n=9', 'n=10'],
         side: 'right'
     },
     aspectratio: {x: 1, y: 1}
@@ -41,7 +41,7 @@ function setLayout() {
     var n_lab = [];
     var y_lab = [];
     for (var i = 0; i < 10; i++) {
-        n_lab.push("n=" + (i + 1));
+        n_lab.push("n=" + (i ));
         y_lab.push(29.5 * (i + 1))
     }
     const new_layout = {
@@ -69,7 +69,12 @@ function initFourier() {
     Plotly.purge("graph");
     console.log(computeComponents())
     Plotly.newPlot("graph", computeComponents(z), setLayout());
-
+    $("#Triangle_eqn").show();
+    $("#Square_eqn").hide();
+    $("#Sawtooth_eqn").hide();
+    $("#Dirac_eqn").hide();
+    $("#Parabola_eqn").hide();
+    $("#Modx_eqn").hide();
 }
 
 
@@ -163,13 +168,13 @@ function plotSines(n, x, shape) {
     var spacing2 = Math.sqrt((odd_selection2(n, A, L, shape)) ** 2 + (even_selection2(n, A, L, shape))) + 1;
 
 
-    for (var i = 0; i < x.length; ++i) {
+    for (var i = 0; i < x.length-1; ++i) {
         x_n.push(x[i]);
-        y_n.push(scale * (((odd_selection2(n, A, L, shape)) * Math.sin(n * Math.PI * x[i] / L) + (even_selection2(n, A, L, shape)) * Math.cos(n * Math.PI * x[i] / L)) + spacing * (n)));
+        y_n.push(scale * 0.98*(((odd_selection2(n, A, L, shape)) * Math.sin(n * Math.PI * x[i] / L) + (even_selection2(n, A, L, shape)) * Math.cos(n * Math.PI * x[i] / L)) + spacing * (n+1)));
     }
     //y value gets shifted up so that the plots are distinctly different
-    var n_lab2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-    var y_lab2 = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300];
+    var n_lab2 = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9','10'];
+    var y_lab2 = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300,330];
     var data =
         {
             type: "scatter",
@@ -188,7 +193,7 @@ function plotSines(n, x, shape) {
 function computeComponents(x) {
     var N = parseFloat(Nslider.val());
     var data_value = [];
-    for (var n = 1; n < N + 1; ++n) {
+    for (var n = 0; n < N+1; ++n) {
         data_value.push(plotSines(n, z, shape));
     }
 
@@ -209,8 +214,57 @@ function updatePlot() {
     $(document).ready(() => {
         if (shape === 3) {
             $('#A').hide();
+
+            $("#Triangle_eqn").hide();
+            $("#Square_eqn").hide();
+            $("#Sawtooth_eqn").hide();
+            $("#Dirac_eqn").show();
+            $("#Parabola_eqn").hide();
+            $("#Modx_eqn").hide();
+
         } else {
             $('#A').show();
+            if (shape === 0)  $(document).ready(() => {
+                $("#Triangle_eqn").show();
+                $("#Square_eqn").hide();
+                $("#Sawtooth_eqn").hide();
+                $("#Dirac_eqn").hide();
+                $("#Parabola_eqn").hide();
+                $("#Modx_eqn").hide();
+            });
+            else if (shape === 1)  $(document).ready(() => {
+                $("#Triangle_eqn").hide();
+                $("#Square_eqn").show();
+                $("#Sawtooth_eqn").hide();
+                $("#Dirac_eqn").hide();
+                $("#Parabola_eqn").hide();
+                $("#Modx_eqn").hide();
+            });
+            else if (shape === 2)  $(document).ready(() => {
+                $("#Triangle_eqn").hide();
+                $("#Square_eqn").hide();
+                $("#Sawtooth_eqn").show();
+                $("#Dirac_eqn").hide()
+                $("#Parabola_eqn").hide();
+                $("#Modx_eqn").hide();
+            });
+            else if (shape === 4)  $(document).ready(() => {
+                $("#Triangle_eqn").hide();
+                $("#Square_eqn").hide();
+                $("#Sawtooth_eqn").hide();
+                $("#Dirac_eqn").hide();
+                $("#Parabola_eqn").show();
+                $("#Modx_eqn").hide();
+            });
+            else if (shape === 6)  $(document).ready(() => {
+                $("#Triangle_eqn").hide();
+                $("#Square_eqn").hide();
+                $("#Sawtooth_eqn").hide();
+                $("#Dirac_eqn").hide();
+                $("#Parabola_eqn").hide();
+                $("#Modx_eqn").show();
+            });
+
         }
     });
     initFourier();
