@@ -270,13 +270,15 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         vertex3.gObject(green, 3),
         vertex3.arrowHead(green, 3),
 
-        vertex4.gObject(cyan, 3, dash="solid", modetype="lines+text", `${scale2} x vector2 & ${scale1} x vector1`),
+        vertex4.gObject(cyan, 3),//, dash="solid", modetype="lines+text", `${scale2} x vector2 & ${scale1} x vector1`),
         vertex5.gObject(cyan, 3),
 
-        vertex6.gObject(lilac, 3,  dash="solid", modetype="lines+text", `${scale1} x vector1 & ${scale2} x vector2`),
+        vertex6.gObject(lilac, 3),//,  dash="solid", modetype="lines+text", `${scale1} x vector1 & ${scale2} x vector2`),
         vertex7.gObject(lilac, 3),
      ]
     ;
+
+    $("#vectorComponents").text(`${scale1} x vector1 & ${scale2} x vector2`);
     return data;
 }
 
