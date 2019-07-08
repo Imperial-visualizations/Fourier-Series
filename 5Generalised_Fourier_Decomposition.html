@@ -92,12 +92,14 @@
                     <!--Slider Display N-->
                     <label class="sliderTitle" style="padding-bottom:20px;">Number of Terms:
                         <span id="NControllerDisplay" data-unit="">1</span>
+                        <span id="NController2Display" data-unit="">1</span>
                     </label>
                     <!--Slider N-->
                     <label class="slider">
-                        <span class="sliderMin">1</span>
-                        <input id="NController" class="inputs" type="range" value="1" min="1" max="20" step="1">
-                        <span class="sliderMax">20</span>
+                        <span class="sliderMin">0</span>
+                        <input id="NController2" class="inputs" type="range" value="1" min="0" max="10" step="1">
+                        <input id="NController" class="inputs" type="range" value="1" min="0" max="20" step="1">
+                        <span class="sliderMax" id="N">20</span>
                     </label>
                 </div>
                 <!--END Slider N-->
