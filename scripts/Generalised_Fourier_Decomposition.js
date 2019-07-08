@@ -1,3 +1,5 @@
+$('#NController2').hide();
+$('#NController2Display').hide();
 
 function setLayout(sometitlex, sometitley, plotTitle) {
 
@@ -7,7 +9,7 @@ function setLayout(sometitlex, sometitley, plotTitle) {
         margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
-        xaxis: {range: [-1.5,1.5], zeroline: true, title: sometitlex},
+        xaxis: {range: [], zeroline: true, title: sometitlex},
         yaxis: {range: [], zeroline: true, title: sometitley},
         aspectratio: {x: 1, y: 1}
     };
@@ -37,8 +39,11 @@ arcsin = Math.arcsin;
 arccos = Math.arccos;
 arctan = Math.arctan;
 arsinh = Math.asinh;
+arcsinh = Math.asinh;
 arcosh = Math.acosh;
+arccosh = Math.acosh;
 artanh = Math.atanh;
+arctanh = Math.atanh;
 sqrt = Math.sqrt
 
 
@@ -116,7 +121,7 @@ function coefficientPre (N){
     var alpha_n = [];
     var theta_n = [];
 
-    for (var i = 0; i < N; ++i){
+    for (let i = 0; i < N; ++i){
         n.push(i);
         an.push(aCoeff(shape,i));
         bn.push(bCoeff(shape,i));
@@ -140,8 +145,8 @@ function coefficientPre (N){
 
 // sum up all the number in the array
 function adding(array) {
-    var result = 0
-    for (let i = 0; i < array.length; ++i) {
+    var result = 0;
+    for (var i = 0; i < array.length; ++i) {
         result += array[i];
     }
     return result;
@@ -151,7 +156,7 @@ function adding(array) {
 function y_values(x_range) {
     //Takes the specified function and computes the y values for given x values
     var y = [];
-    for (let i in x_range) {
+    for (var i in x_range) {
         x = x_range[i];
         y.push(eval(equation));
         //eval turns the string specified by the user into a command
@@ -162,7 +167,7 @@ function y_values(x_range) {
 function y_values_cosine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
     var y = [];
-    for (let i in x_range) {
+    for (var i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.cos(n * Math.PI * x / L))
     }
@@ -173,7 +178,7 @@ function y_values_cosine(x_range, n, L) {
 function y_values_sine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
     var y = [];
-    for (let i in x_range) {
+    for (var i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.sin(n * Math.PI * x / L))
     }
@@ -192,7 +197,7 @@ function integration_simps(x, y) {
     var N = x.length;
     var h = (b - a) / N;
     var A = 0;
-    for (let i = 1; i < x.length; ++i) {
+    for (var i = 1; i < x.length; ++i) {
         if (i % 2 === 0) {
             A += 2 * y[i];
         } else {
@@ -210,7 +215,7 @@ function integration_ultra(kMax, L, n, integral) {
     var h = 5.0 / kMax
     var omega_k = [];
     var x_k = [];
-    for (let i = -kMax; i < kMax; ++i) {
+    for (var i = -kMax; i < kMax; ++i) {
         x_k.push((Math.tanh(0.5 * Math.PI * Math.sinh(i * h))) * L);
         omega_k.push(0.5 * h * Math.PI * Math.cosh(i * h) / (Math.cosh(0.5 * Math.PI * Math.sinh(i * h))) ** 2);
     }
@@ -226,7 +231,7 @@ function integration_ultra(kMax, L, n, integral) {
     }
 
     var Area = 0;
-    for (let i = 0; i < x_k.length; ++i) {
+    for (var i = 0; i < x_k.length; ++i) {
         Area += (omega_k[i] * f_of_xk[i]);
     }
     return Area * L;
@@ -234,7 +239,7 @@ function integration_ultra(kMax, L, n, integral) {
 
 function integration(x, y) {
     //Integration by Riemann sum
-    var A = 0;
+    let A = 0;
     for (let i = 0; i < x.length - 1; i++) {
         A += (x[i + 1] - x[i]) * (y[i + 1] + y[i]) / 2;
     }
@@ -256,7 +261,7 @@ function initFourier() {
 
 
 function a_n(n, x) {
-    var L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LController').value);
     //Updates L so that we can calculate a_n for all necessary n
 
     an = integration_ultra(kMax, L, n, "for_an") / L;
@@ -265,7 +270,7 @@ function a_n(n, x) {
 
 function b_n(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
-    var L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LController').value);
 
     bn = integration_ultra(kMax, L, n, "for_bn") / L;
     return bn;
@@ -273,7 +278,13 @@ function b_n(n, x) {
 
 function Fourier_coefficient(x) {
     //For all n from 0 to N, calculates a_n and b_n
-    var N = parseFloat(document.getElementById('NController').value)+1;
+    if (shape === 3) {
+        var N = parseFloat(document.getElementById('NController2').value)+1;
+    } else {
+        var N = parseFloat(document.getElementById('NController').value)+1;
+    }
+
+
 
     var n = [];//List of all terms that will be generated
     var an = [];
@@ -281,8 +292,8 @@ function Fourier_coefficient(x) {
     var alphan = [];
     var thetan = [];
     for (let i = 0; i < N; i++) {
-        var a = a_n(i, x);
-        var b = b_n(i, x);
+        let a = a_n(i, x);
+        let b = b_n(i, x);
         n.push(i);
         an.push(a);
         bn.push(b);
@@ -306,18 +317,23 @@ function Fourier_coefficient(x) {
 function Trig_summation_x(an, bn, x_value) {
     //For a certain x_value in the function domain, uses the values of a_n and b_n
     //up to a given N, to reconstruct the function at that particular x point
-    var N = parseFloat(document.getElementById('NController').value);
+    if (shape === 3) {
+        var N = parseFloat(document.getElementById('NController2').value)+1;
+    } else {
+        var N = parseFloat(document.getElementById('NController').value)+1;
+    }
+
     var L = parseFloat(document.getElementById('LController').value);
 
-    var single_y = [an[0] / 2];//Average function value term
+    let single_y = [an[0] / 2];//Average function value term
 
     //exception for triangle function
     if(shape === 0) {
-        for (var n = 1; n < N; n++) {
+        for (let n = 1; n < N; n++) {
         single_y.push(bn[n] * Math.sin(x_value*(2*n -1) *Math.PI /L));
         }
     } else {
-        for (var n = 1; n < N; n++) {
+        for (let n = 1; n < N; n++) {
         single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));
         }
     }
@@ -328,7 +344,7 @@ function Trig_summation_x(an, bn, x_value) {
 function Trig_summation_n(an, bn, x) {
     //Calls up trig_summation_x for every x value, so we reconstruct the function
     //at every point in the domain, returns the y values in order
-    var set_y = [];
+    let set_y = [];
     for (let i = 0; i < x.length; ++i) {
         set_y.push(Trig_summation_x(an, bn, x[i]));
     }
@@ -340,22 +356,35 @@ function Trig_summation_n(an, bn, x) {
 // return the data that stores one component of the Fourier Series
 function plotSines(an, bn, n, x) {
     //Plots individual components that are being built up to the total function
-    var N = parseFloat(document.getElementById('NController').value);
+    if (shape === 3) {
+        var N = parseFloat(document.getElementById('NController2').value);
+    } else {
+        var N = parseFloat(document.getElementById('NController').value);
+    }
+
     var L = parseFloat(document.getElementById('LController').value);
 
     //n = numeric.linspace(1,N,N);
 
-    var x_n = [];
-    var y_n = [];
-    var spacing = Math.sqrt((bn[0]) ** 2 + (an[1]) ** 2) * L / (Math.sqrt(L ** 2));
+    let x_n = [];
+    let y_n = [];
+    let spacing = Math.sqrt((bn[0]) ** 2 + (an[1]) ** 2) * L / (Math.sqrt(L ** 2));
 
+    n=n+1;
 
     for (let i = 0; i < x.length; ++i) {
         x_n.push(x[i]);
         y_n.push(((bn[n - 1]) * Math.sin((n - 1) * Math.PI * x[i] / L) + (an[n - 1]) * Math.cos((n - 1) * Math.PI * x[i] / L)));
     }
+
+
+
+    if(n === 1) {for(var i = 0, length = y_n.length; i < length; i++){
+    y_n[i] = y_n[i]/2;
+}}
+
     //y value gets shifted up so that the plots are distinctly different
-    var data =
+    let data =
         {
             type: "scatter",
             mode: "lines",
@@ -367,7 +396,7 @@ function plotSines(an, bn, n, x) {
     return data;
 
 }
-
+var data2
 
 //The above was to reconstruct the function, below is to actually plot
 function computePlot1(x, y) {
@@ -378,12 +407,18 @@ function computePlot1(x, y) {
 
     //Otherwise use predetermined coefficients
     else {
-    var N = parseFloat(document.getElementById('NController').value)+1;
+    if (shape === 3) {
+        var N = parseFloat(document.getElementById('NController2').value)+1;
+    } else {
+        var N = parseFloat(document.getElementById('NController').value)+1;
+    }
+
     [n, an, bn, alphan, thetan] = coefficientPre(N);}
     //console.log(bn);
     y2 = Trig_summation_n(an, bn, x);
+    //console.log(an[0]/2);
 
-    var data1 = [
+    let data1 = [
         {
             type: "scatter",
             mode: "lines",
@@ -393,13 +428,15 @@ function computePlot1(x, y) {
         },
     ];
 
-    var data2 = [];
-
+    data2 = [];
+    console.log(n);
+    data2.push(plotSines(an, bn, 0, x));
+    console.log(data2);
     for (var i = 1; i < n.length; ++i) {
         data2.push(plotSines(an, bn, n[i], x));
     }
-    var y3;
-    var title;
+    let y3;
+    let title;
 
     coefficient = document.getElementById('Coefficient').value
     if (coefficient == "a") {
@@ -419,7 +456,7 @@ function computePlot1(x, y) {
         title = "$θ_{n}$"
 
     }
-    var data3 = [
+    let data3 = [
         {
             type: "bar",
             mode: "lines",
@@ -441,10 +478,10 @@ function insert(index, item) {
 
 function updateFunction() {
     //Looks at equation the user typed in and retrieves this
-    var equation = document.getElementById("aInput").value;
-    var error = false;
-    var change = false;
-    var equationB =[];
+    let equation = document.getElementById("aInput").value;
+    let error = false;
+    let change = false;
+    let equationB =[];
     //Input Equation filtering
     for(let i=0; i<equation.length; i++){
         //Don't allow equations containing i
@@ -472,9 +509,9 @@ function updateFunction() {
 
 //For custom function
 function updatePlot() {
-    var data;
-    var L = parseFloat(document.getElementById('LController').value);
-    var xOriginal = numeric.linspace(-L, L, resolution);
+    let data;
+    let L = parseFloat(document.getElementById('LController').value);
+    let xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
     if (shape===6){
             equation = updateFunction();
@@ -507,32 +544,74 @@ function main() {
         updatePlot();
     })
 
+
+
     $('#Select').change(function(){
         let selectedValue = document.getElementById("Select").value;
         if (selectedValue==="main"){
             shape = 6;
             $('#input').show();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         } else if (selectedValue==="triangular"){
             shape = 0;
             $('#input').hide();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         } else if (selectedValue==="square"){
             shape = 1;
             $('#input').hide();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         } else if (selectedValue==="sawtooth"){
             shape = 2;
             $('#input').hide();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         } else if (selectedValue==="dirac"){
             shape = 3;
             $('#input').hide();
+            $('#N').text('10');
+            $('#NController').hide();
+            $('#NController2').show();
+            $('#NController2Display').show();
+            $('#NControllerDisplay').hide();
         } else if (selectedValue==="parabola"){
             shape = 4;
             $('#input').hide();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         }  else if (selectedValue==="mode"){
             shape = 5;
             $('#input').hide();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         } else if (selectedValue==="custom"){
             shape = 6;
             $('#input').show();
+            $('#N').text('20');
+            $('#NController2').hide();
+            $('#NController').show();
+            $('#NController2Display').hide();
+            $('#NControllerDisplay').show();
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
@@ -541,6 +620,7 @@ function main() {
     })
 
     initFourier();
+    updatePlot();
 }
 
 $(document).ready(main); //Load main when document is ready.
