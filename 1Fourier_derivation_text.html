@@ -69,15 +69,17 @@
 
 <div id="intro" class="divclass">
     <h1> Introduction to Fourier series </h1>
-    <p> Consider a function $f(x)$ which is periodic over the domain $-L < x < L $ where $L$ is positive.
-        $f(x)$ can be represented as a sum of $\sin$ and $\cos$ with varying "frequencies".
+    <p> Consider a function $f(x)$ which is periodic over the domain $  -L \leq x < L $ where $L$ is positive.
+        $f(x)$ can be represented as a sum of sines and cosines with varying frequencies.
         These trigonometric functions form orthogonal basis. </p>
     <p> The Fourier series of $f(x)$ is </p>
     $\displaystyle f(x) = \frac{a_0}{2}$ $+ \displaystyle\sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big)$
     $\displaystyle+ b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big]$ $ \qquad \left[ 1 \right]$
     <p> where </p>
     $\displaystyle a_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x)$ $\displaystyle \cos\Big(\frac{\pi nx}{L}\Big) dx, $
+    <p></p>
     $\displaystyle b_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x)$ $\displaystyle \sin\Big(\frac{\pi nx}{L}\Big) dx, $
+    <p></p>
     $\displaystyle a_0 = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x) dx, $
     <p> and</p> $$ n=0,1,2...$$
     <p><strong> Note:</strong> $a_0$$/2$ represents the average value of $f(x)$.</p>
@@ -94,29 +96,29 @@
     <h1> Derivation of the Fourier Series </h1>
     <p> We begin by assuming that $f(x)$ can be represented as a sum of exponential terms.</p>
     $\displaystyle f(x) = \displaystyle\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L}$
-    <p> Multiplying by $e^{{im \pi x}/L}$, where $m=0,1,2...$, and integrating both sides gives the following:</p>
-    $\displaystyle\int_{-L}^{L} f(x) e^{{im \pi x}/L} dx$ $=\displaystyle\sum_{n=-\infty}^{\infty} c_n $ $\displaystyle \int_{-L}^{L}
-    e^{{i(n-m) \pi x}/L} dx $
+    <p> Multiplying by $e^{{-im \pi x}/L}$, where $m=0,1,2...$, and integrating both sides gives the following:</p>
+    $\displaystyle\int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx$ $=\displaystyle\sum_{n=-\infty}^{\infty} c_n $ $\displaystyle \int_{-L}^{L}
+    e^{{i(n-m) \pi x}/L} dx. $
     <p> Performing the integral on the R.H.S gives </p>
     $ \displaystyle\int_{-L}^L e^{(i\pi x/L)(n-m)}dx$ $\displaystyle =\left\{
     \begin{array}{ll}
     2L \qquad \text{(if n=m)} \\
     0 \qquad \quad \text{(if n≠m)}
     \end{array}
-    \right \} $ $\displaystyle= 2L \cdot \delta_{nm}$
-    <p> This is due to orthonormality of complex exponentials.</p>
-    <p> As the only non-zero value of the sum is when $n=m$</p>
+    \right \} $ $\displaystyle= 2L \cdot \delta_{nm}.$
+    <p> This is the orthonormality of complex exponentials.</p>
+    <p> Now since the only non-zero value of the sum is when $n=m$,</p>
     $\displaystyle\int_{-L}^L f(x) e^{-im\pi x/L}dx$ $\displaystyle= 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn}$
-    $\displaystyle=2L\cdot c_m $
-    <p> Hence</p>
-    $\displaystyle c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) $ $\displaystyle e^{-im\pi x/L}dx $
-    <p><strong> Note:</strong> As $m$ is an arbitrary number, it can be assigned as $n$ for simplicity.</p>
+    $\displaystyle=2L\cdot c_m, $
+    <p> hence</p>
+    $\displaystyle c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) $ $\displaystyle e^{-im\pi x/L}dx. $
+    <p><strong> Note:</strong> As $m$ is an arbitrary integer, it can be assigned as $n$ for simplicity.</p>
 
-    <p> Given the previously derived Eqn., we can derive the trigonometric form of the Fourier series. By reorganising
+    <p> Given the previously derived equation, we can derive the trigonometric form of the Fourier series. By reorganising
         the sum, we get </p>
     $\displaystyle f(x)= \underbrace{c_0}_\text{n=0}$ $\displaystyle + \sum_{n=1}^{\infty} \big( \underbrace{c_n
     e^{in\pi x/L}}_\text{Positive n term}$ $\displaystyle + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms}
-    \big)$
+    \big).$
     <p> We can regroup the terms in the summation in the following way:</p>
 
     <div id="regroupexplain" class="solidline">
@@ -132,9 +134,9 @@
     <p></p>
 
     $\displaystyle f(x)= c_0 + \sum_{n=1}^{\infty}$ $\displaystyle \Big( \frac{c_n + c_{-n}}{2} \big(e^{in\pi
-    x/L}$ $\displaystyle +e^{-in\pi x/L} \big)$ $ \displaystyle \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} $ $\displaystyle -e^{-in\pi x/L} \big) \Big) $
-    <p> Now take $ a_n = c_n + c_{-n}$ and $ b_n = i(c_n - c_{-n})$ and notice the exponentials can we written as $\sin$
-        and $\cos$.</p>
+    x/L}$ $\displaystyle +e^{-in\pi x/L} \big)$ $+ \displaystyle \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} $ $\displaystyle -e^{-in\pi x/L} \big) \Big) $
+    <p> Now define $ a_n = c_n + c_{-n}$ and $ b_n = i(c_n - c_{-n})$ and use that these exponentials can we written as sines
+        and cosines.</p>
     <p><strong>Note:</strong> $a_0 = 2c_0$ and $b_0=0$.</p>
     <p> Hence</p>
     $ f(x) = \displaystyle\frac{a_0}{2}$ $+ \displaystyle\sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big)$
@@ -147,8 +149,8 @@
     <p> Factorise and spot the exponential form of $\cos$.</p>
     $\displaystyle =\frac{1}{L}\int_{-L}^{+L}f(x)$ $\displaystyle \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx$
     $\displaystyle= \displaystyle\frac{1}{L}\int_{-L}^{L} f(x)$ $\displaystyle \cos\Big(\frac{\pi nx}{L}\Big) dx$
-    <p> Similar method can be used to derived Eqn. for $b_n$.</p>
-    $ b_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x)$ $\displaystyle \sin\Big(\frac{\pi nx}{L}\Big) dx $
+    <p> Similarly for $b_n$,</p>
+    $ b_n = \displaystyle\frac{1}{L}\int_{-L}^{L} f(x)$ $\displaystyle \sin\Big(\frac{\pi nx}{L}\Big) dx. $
     <hr>
 </div>
 
@@ -157,16 +159,16 @@
     <p>The triangular function is defined by the following:</p>
     $\displaystyle f(x)=\left\{
     \begin{array}{ll}
-    \frac{-2A}{L} (x+L) \quad (-L < x < -L/2) \\
-    \frac{2A}{L} x \qquad \qquad (-L/2< x < L/2) \\
-    \frac{-2A}{L} (x-L) \quad (L/2< x < L)
+    \frac{-2A}{L} (x+L) \quad (-L \leq x < -L/2) \\
+    \frac{2A}{L} x \qquad \qquad (-L/2\leq x < L/2) \\
+    \frac{-2A}{L} (x-L) \quad (L/2\leq x < L)
     \end{array}
     \right. $
-    <p> First notice that $f(x)$ is odd about $x=0$, hence $a_n=0$ for all $n$. Also, </p>
-    $\displaystyle b_n=\frac{2}{L}\int_0^L f(x)$ $\displaystyle \sin \left(\frac{n \pi x}{L}\right)dx $
-    <p> since the $b_n$ integrand is even about $x=0$.</p>
-    <p> Notice that for even $n$, $b_n$ is odd about $x=L/2$. Hence </p>
-    $ \displaystyle b_n=\frac{2}{L}\int_0^{L} f(x)$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right) dx$ $\displaystyle = 0 $ $\displaystyle\quad \text{for even n} $
+    <p> First notice that $f(x)$ is odd about $x=0$, hence $a_n=0$ for all $n$. Also, since the $b_n$ integrand is even about $x=0$,</p>
+    $\displaystyle b_n=\frac{2}{L}\int_0^L f(x)$ $\displaystyle \sin \left(\frac{n \pi x}{L}\right)dx. $
+
+    <p> Notice that for even $n$, $b_n$ is odd about $x=L/2$. Hence, </p>
+    $ \displaystyle b_n=\frac{2}{L}\int_0^{L} f(x)$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right) dx$ $\displaystyle = 0 $ $\displaystyle\quad \text{for even n}. $
     <p> The integral from $0$ to $L/2$ is equal in magnitude but opposite in sign to the integral from $L/2$ to $L$, for
         even $n$. </p>
     <p> For odd $n$, the function is even around $L/2$, so we only have to integrate from $0$ to $L/2$ then multiply by
@@ -210,7 +212,8 @@
 <div id="parabolic" class="divclass bigdropdown">
     <h1> Parabolic Fourier Series Derivation </h1>
     <p>The parabolic function is defined as:</p>
-    $ \displaystyle f(x)=Ax^2 $
+    $ \displaystyle f(x)=Ax^2 \quad \text{for:} -L\leq x< L$
+    <p> and forced to be periodic. $A$ is a constant.</p>
     <p>Therefore, $a_n$ and $b_n$ coefficients are given as  </p>
     $\displaystyle b_n = \frac{1}{L}\int_{-L}^{+L} Ax^2$ $\displaystyle \sin \left(\frac{n \pi x}{L} \right)dx $
     <p> </p>
@@ -268,6 +271,7 @@
     \end{array}
     \right.
     $
+    <p> </p>
      $\displaystyle a_n=\frac{1}{L}\int_{-L}^{+L} \delta (x)$ $\displaystyle \cos \left(\frac{n\pi x}{L} \right)dx $
     <p> </p>
     $\displaystyle b_n=\frac{1}{L}\int_{-L}^{+L}\delta(x)$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right)dx $
@@ -284,8 +288,8 @@
         $\displaystyle b_n=\frac{1}{L}\sin \left(\frac{n\pi \times 0}{L} \right)=0$
 
     </div>
-    <p>Therefore, the fourier series can be written as </p>
-    $\displaystyle f(x)=\frac{1}{2L}+\sum_{n=1}^\infty \frac{1}{L}$ $\displaystyle \cos \left(\frac{n\pi x}{L} \right) $
+    <p>Therefore, the fourier series for positive $L$ can be written as </p>
+    $\displaystyle f(x)=\frac{1}{2L}+\sum_{n=1}^\infty \frac{1}{L}$ $\displaystyle \cos \left(\frac{n\pi x}{L} \right). $
 
     <hr>
 
@@ -297,14 +301,14 @@
     $\displaystyle
     f(x)=\left\{
     \begin{array}{ll}
-    -A \quad (-L < x < 0) \\
-    A \quad (0< x < L)
+    -A \quad (-L \leq x < 0) \\
+    A \quad (0/leq x < L)
     \end{array}
     \right.
     $
     <p>The $a_{n}$ terms can be found be noting that $f(x)$ is odd, so $a_n$ is $0$ for all $n$. </p>
 
-    <p>To find the $b_n$ terms, the integration can be split into two parts: $-L< x <0$ and $ 0< x < L.$
+    <p>To find the $b_n$ terms, the integration can be split into two parts: $-L\leq x <0$ and $ 0\leq x < L.$
         This gives the following integration:</p>
     $\displaystyle b_n=\frac{1}{L}\int_{-L}^0 -A$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right)dx$ $\displaystyle +
     \frac{1}{L}\int_0^L A$ $\displaystyle
@@ -315,7 +319,7 @@
     <p>Note that $\displaystyle\cos \left(n \pi\right)=(-1)^n$ </p>
     <p>Hence $\displaystyle b_n=\frac{2A}{n\pi}(1-(-1)^n)$ </p>
     <p>Therefore the final fourier series is:</p>
-    $\displaystyle f(x)=\sum_{n=1}^{\infty} \frac{2A}{n\pi}$ $\displaystyle (1-(-1)^n)$ $\displaystyle\sin \left(\frac{n\pi x}{L}\right)
+    $\displaystyle f(x)=\sum_{n=1}^{\infty} \frac{2A}{n\pi}$ $\displaystyle (1-(-1)^n)$ $\displaystyle\sin \left(\frac{n\pi x}{L}\right).
     $
     <hr>
 </div>
@@ -323,11 +327,11 @@
 <div id="sawtooth" class="divclass bigdropdown">
     <h1>Sawtooth Wave Derivation</h1>
     <p>The Sawtooth wave is defined as the following:</p>
-    $\displaystyle f(x)=\frac{Ax}{L} $ $\displaystyle \quad (-L < x < L) $
-    <p>$f(x)$ is odd so the $a_n= 0$ for all $n$.</p>
+    $\displaystyle f(x)=\frac{Ax}{L} $ $\displaystyle \quad (-L \leq x < L). $
+    <p>$f(x)$ is odd, so $a_n= 0$ for all $n$.</p>
     <p>The $b_n$ terms are given by the following integration:</p>
-    $\displaystyle b_n=\frac{A}{L^{2}}\int_{-L}^{L} x$ $\displaystyle\sin \left(\frac{n\pi x}{L} \right)dx $
-    $\displaystyle =\frac{2A}{L^{2}}\int_{0}^{L} x$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right)dx $
+    $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L} \frac{Ax}{L}$ $\displaystyle\sin \left(\frac{n\pi x}{L} \right)dx $
+    $\displaystyle =\frac{2A}{L^{2}}\int_{0}^{L} x$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right)dx. $
     <p>Using Integration by parts it can be shown that:</p>
     <div class="solidline">
         $\displaystyle u=x \quad $ $\displaystyle dv=\sin \left(\frac{n\pi x}{L} \right)dx $
@@ -342,30 +346,30 @@
         $\displaystyle b_n=-\frac{2A}{n\pi} \cos \left(n\pi \right)$ $\displaystyle=-\frac{2A}{n\pi}(-1)^n $
     </div>
     <p></p>
-    $\displaystyle b_n=\frac{2A}{n\pi}(-1)^{n+1} $
+    $\displaystyle b_n=\frac{2A}{n\pi}(-1)^{n+1}. $
     <p>Therefore the final fourier series is:</p>
-    $\displaystyle f(x)=\sum_{n=1}^\infty \frac{2A}{n\pi}(-1)^{n+1}$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right) $
+    $\displaystyle f(x)=\sum_{n=1}^\infty \frac{2A}{n\pi}(-1)^{n+1}$ $\displaystyle \sin \left(\frac{n\pi x}{L} \right). $
     <hr>
 </div>
 
 <div class="divclass bigdropdown" id="modx">
     <h1>Mod x Derivation</h1>
     <p>The $|x|$ function is defined as the following:</p>
-    $\displaystyle f(x)=A|x| $
+    $\displaystyle f(x)=A|x| \quad (-L \leq x < L). $
     <p></p>
     $\displaystyle a_n = \frac{1}{L}\int_{-L}^{+L} A|x| \cos \left(\frac{n \pi x}{L} \right)dx $
     <p></p>
     $\displaystyle b_n = \frac{1}{L}\int_{-L}^{+L} A|x|$ $\displaystyle \sin \left( \frac{n\pi x}{L}\right) dx $
-    <p> $f(c)$ is even about $x=0$. Hence $b_n=0 $</p>
-    <p> The $a_n$ integral is even about $x=0$. Hence </p>
-    $\displaystyle a_n = \frac{2}{L}\int_{0}^{+L} Ax $ $\displaystyle \cos \left(\frac{n \pi x}{L}\right)dx $
+    <p> $f(x)$ is even about $x=0$. Hence $b_n=0 $</p>
+    <p> The $a_n$ integral is even about $x=0$. Hence, </p>
+    $\displaystyle a_n = \frac{2}{L}\int_{0}^{+L} Ax $ $\displaystyle \cos \left(\frac{n \pi x}{L}\right)dx. $
 
     <p> For $n=0$:</p>
     $\displaystyle a_0 = \frac{2A}{L}\int_0^L x dx $
     $\displaystyle = \frac{2A}{L}\frac{x^2}{2} \biggr |_0^L $
-    $\displaystyle = AL $
+    $\displaystyle = AL .$
     <p> For $n \neq 0$: </p>
-    $\displaystyle a_n = \frac{2A}{L}\int_{0}^{+L} x $ $\displaystyle  \cos \left(\frac{n \pi x}{L} \right)dx $
+    $\displaystyle a_n = \frac{2A}{L}\int_{0}^{+L} x $ $\displaystyle  \cos \left(\frac{n \pi x}{L} \right)dx. $
     <p> By integrating by parts,</p>
 
     <div class="solidline">
@@ -379,13 +383,13 @@
 
     </div>
     <p></p>
-    $\displaystyle a_n = \frac{2A}{L}\frac{L^2}{(n\pi)^2}$ $\displaystyle  \cos \left( \frac{n\pi x}{L} \right)\biggr |_0^L $
+    $\displaystyle a_n = \frac{2A}{L}\frac{L^2}{(n\pi)^2}$ $\displaystyle  \cos \left( \frac{n\pi x}{L} \right)\biggr |_0^L . $
     <p>Hence,</p>
     $\displaystyle a_n = \frac{2A}{L}\frac{L^2}{(n\pi)^2}$ $\displaystyle  \left[(-1)^n-1 \right] $
-    $\displaystyle = \frac{2AL}{(n\pi)^2}\left[(-1)^n-1 \right] $
+    $\displaystyle = \frac{2AL}{(n\pi)^2}\left[(-1)^n-1 \right]. $
     <p>Therefore the final fourier series is:</p>
     $\displaystyle f(x)=\frac{AL}{2}+$ $\displaystyle \sum_{n=1}^\infty \frac{2AL}{(n\pi)^2}$ $\displaystyle \left[(-1)^n-1 \right]$ $\displaystyle  \cos \left(\frac{n\pi
-    x}{L} \right) $
+    x}{L} \right). $
     <hr>
 </div>
 

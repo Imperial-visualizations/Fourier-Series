@@ -258,6 +258,13 @@ function updatePlot() {
     // NB: updates according to the active tab
     var selectedValue = document.getElementById("Select").value; // finds out which function is active
     initFourier();
+    // NB: updates according to the active tab
+   
+        $(document).ready(() => { if (shape===3) {
+            $('#A').hide(); console.log('hidden')
+        } else {
+           $('#A').show(); console.log('shown')
+        }})
     var L = parseFloat(document.getElementById('LController').value);
     
     if ((L<=0 && shape==3)||(L<=0 && shape==6)){ 
