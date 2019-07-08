@@ -15,15 +15,15 @@ function setLayout(sometitlex, sometitley, plotTitle) {
 }
 
 //resolution, number of points on the graph shown
-var resolution = 10000;
+let resolution = 10000;
 // slider for N
 // slider for L
-var L = parseFloat(document.getElementById('LController').value);
-var xOriginal = numeric.linspace(-L, L, resolution);
+let L = parseFloat(document.getElementById('LController').value);
+let xOriginal = numeric.linspace(-L, L, resolution);
 
 // kMax is an integer, the larger it is the better the numerical integration
-var kMax = 1000;
-var h = 5.0 / kMax;
+let kMax = 1000;
+let h = 5.0 / kMax;
 //Common functions:
 sin = Math.sin;
 cos = Math.cos;
@@ -42,23 +42,23 @@ artanh = Math.atanh;
 sqrt = Math.sqrt
 
 
-var sin = Math.sin;
-var cos = Math.cos;
-var tan = Math.tan;
-var arctan = Math.atan;
-var log = Math.log;
+let sin = Math.sin;
+let cos = Math.cos;
+let tan = Math.tan;
+let arctan = Math.atan;
+let log = Math.log;
 
-var shape = 6;
+let shape = 6;
 
 x = 2;
-var equation = "x^2";
+let equation = "x^2";
 
 //return the a_n amplitudes of the fourier series
 function aCoeff (shape, n){
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = 1;//parseFloat(document.getElementById('AController').value);
+    let L = parseFloat(document.getElementById('LController').value);
+    let A = 1;//parseFloat(document.getElementById('AController').value);
 
-    var amplitude;
+    let amplitude;
     if (shape === 0) {
         amplitude = 0;
     } else if (shape === 1){
@@ -85,10 +85,10 @@ function aCoeff (shape, n){
 
 //Return the b_n amplitudes of the fourier series
 function bCoeff(shape,n){
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = 1; //parseFloat(document.getElementById('AController').value);
+    let L = parseFloat(document.getElementById('LController').value);
+    let A = 1; //parseFloat(document.getElementById('AController').value);
 
-    var amplitude;
+    let amplitude;
     if (n===0){
         amplitude = 0;
     } else {
@@ -110,13 +110,13 @@ function bCoeff(shape,n){
 }
 
 function coefficientPre (N){
-    var n = [];
-    var an = [];
-    var bn = [];
-    var alpha_n = [];
-    var theta_n = [];
+    let n = [];
+    let an = [];
+    let bn = [];
+    let alpha_n = [];
+    let theta_n = [];
 
-    for (var i = 0; i < N; ++i){
+    for (let i = 0; i < N; ++i){
         n.push(i);
         an.push(aCoeff(shape,i));
         bn.push(bCoeff(shape,i));
@@ -140,7 +140,7 @@ function coefficientPre (N){
 
 // sum up all the number in the array
 function adding(array) {
-    var result = 0
+    let result = 0
     for (let i = 0; i < array.length; ++i) {
         result += array[i];
     }
@@ -150,7 +150,7 @@ function adding(array) {
 // convert the string to a numerical function
 function y_values(x_range) {
     //Takes the specified function and computes the y values for given x values
-    var y = [];
+    let y = [];
     for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation));
@@ -161,7 +161,7 @@ function y_values(x_range) {
 
 function y_values_cosine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
-    var y = [];
+    let y = [];
     for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.cos(n * Math.PI * x / L))
@@ -172,7 +172,7 @@ function y_values_cosine(x_range, n, L) {
 
 function y_values_sine(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
-    var y = [];
+    let y = [];
     for (let i in x_range) {
         x = x_range[i];
         y.push(eval(equation) * Math.sin(n * Math.PI * x / L))
@@ -181,17 +181,17 @@ function y_values_sine(x_range, n, L) {
 }
 
 
-var yOriginal = y_values(xOriginal);
+let yOriginal = y_values(xOriginal);
 
 //Computes and stores the y values of the specified function
 
 function integration_simps(x, y) {
     //Integration by Simpson's rule
-    var a = x[0];
-    var b = x[x.length - 1];
-    var N = x.length;
-    var h = (b - a) / N;
-    var A = 0;
+    let a = x[0];
+    let b = x[x.length - 1];
+    let N = x.length;
+    let h = (b - a) / N;
+    let A = 0;
     for (let i = 1; i < x.length; ++i) {
         if (i % 2 === 0) {
             A += 2 * y[i];
@@ -207,25 +207,25 @@ function integration_simps(x, y) {
 function integration_ultra(kMax, L, n, integral) {
     //Numerical integration by tanh-sinh quadrature, integrates from -L to L
     //If specified, will integrate after multiplying by cos or sin n pi x/L
-    var h = 5.0 / kMax
-    var omega_k = [];
-    var x_k = [];
+    let h = 5.0 / kMax
+    let omega_k = [];
+    let x_k = [];
     for (let i = -kMax; i < kMax; ++i) {
         x_k.push((Math.tanh(0.5 * Math.PI * Math.sinh(i * h))) * L);
         omega_k.push(0.5 * h * Math.PI * Math.cosh(i * h) / (Math.cosh(0.5 * Math.PI * Math.sinh(i * h))) ** 2);
     }
     if (integral === "for_an") {
-        var f_of_xk = y_values_cosine(x_k, n, L);
+        let f_of_xk = y_values_cosine(x_k, n, L);
     }
 
     else if (integral === "for_bn") {
-        var f_of_xk = y_values_sine(x_k, n, L)
+        let f_of_xk = y_values_sine(x_k, n, L)
     }
     else {
-        var f_of_xk = y_values(x_k);
+        let f_of_xk = y_values(x_k);
     }
 
-    var Area = 0;
+    let Area = 0;
     for (let i = 0; i < x_k.length; ++i) {
         Area += (omega_k[i] * f_of_xk[i]);
     }
@@ -234,7 +234,7 @@ function integration_ultra(kMax, L, n, integral) {
 
 function integration(x, y) {
     //Integration by Riemann sum
-    var A = 0;
+    let A = 0;
     for (let i = 0; i < x.length - 1; i++) {
         A += (x[i + 1] - x[i]) * (y[i + 1] + y[i]) / 2;
     }
@@ -256,7 +256,7 @@ function initFourier() {
 
 
 function a_n(n, x) {
-    var L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LController').value);
     //Updates L so that we can calculate a_n for all necessary n
 
     an = integration_ultra(kMax, L, n, "for_an") / L;
@@ -265,7 +265,7 @@ function a_n(n, x) {
 
 function b_n(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
-    var L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LController').value);
 
     bn = integration_ultra(kMax, L, n, "for_bn") / L;
     return bn;
@@ -273,16 +273,16 @@ function b_n(n, x) {
 
 function Fourier_coefficient(x) {
     //For all n from 0 to N, calculates a_n and b_n
-    var N = parseFloat(document.getElementById('NController').value)+1;
+    let N = parseFloat(document.getElementById('NController').value)+1;
 
-    var n = [];//List of all terms that will be generated
-    var an = [];
-    var bn = [];
-    var alphan = [];
-    var thetan = [];
+    let n = [];//List of all terms that will be generated
+    let an = [];
+    let bn = [];
+    let alphan = [];
+    let thetan = [];
     for (let i = 0; i < N; i++) {
-        var a = a_n(i, x);
-        var b = b_n(i, x);
+        let a = a_n(i, x);
+        let b = b_n(i, x);
         n.push(i);
         an.push(a);
         bn.push(b);
@@ -306,18 +306,18 @@ function Fourier_coefficient(x) {
 function Trig_summation_x(an, bn, x_value) {
     //For a certain x_value in the function domain, uses the values of a_n and b_n
     //up to a given N, to reconstruct the function at that particular x point
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
+    let N = parseFloat(document.getElementById('NController').value);
+    let L = parseFloat(document.getElementById('LController').value);
 
-    var single_y = [an[0] / 2];//Average function value term
+    let single_y = [an[0] / 2];//Average function value term
 
     //exception for triangle function
     if(shape === 0) {
-        for (var n = 1; n < N; n++) {
+        for (let n = 1; n < N; n++) {
         single_y.push(bn[n] * Math.sin(x_value*(2*n -1) *Math.PI /L));
         }
     } else {
-        for (var n = 1; n < N; n++) {
+        for (let n = 1; n < N; n++) {
         single_y.push(an[n] * Math.cos(n * Math.PI * x_value / L) + bn[n] * Math.sin(n * Math.PI * x_value / L));
         }
     }
@@ -328,7 +328,7 @@ function Trig_summation_x(an, bn, x_value) {
 function Trig_summation_n(an, bn, x) {
     //Calls up trig_summation_x for every x value, so we reconstruct the function
     //at every point in the domain, returns the y values in order
-    var set_y = [];
+    let set_y = [];
     for (let i = 0; i < x.length; ++i) {
         set_y.push(Trig_summation_x(an, bn, x[i]));
     }
@@ -340,14 +340,14 @@ function Trig_summation_n(an, bn, x) {
 // return the data that stores one component of the Fourier Series
 function plotSines(an, bn, n, x) {
     //Plots individual components that are being built up to the total function
-    var N = parseFloat(document.getElementById('NController').value);
-    var L = parseFloat(document.getElementById('LController').value);
+    let N = parseFloat(document.getElementById('NController').value);
+    let L = parseFloat(document.getElementById('LController').value);
 
     //n = numeric.linspace(1,N,N);
 
-    var x_n = [];
-    var y_n = [];
-    var spacing = Math.sqrt((bn[0]) ** 2 + (an[1]) ** 2) * L / (Math.sqrt(L ** 2));
+    let x_n = [];
+    let y_n = [];
+    let spacing = Math.sqrt((bn[0]) ** 2 + (an[1]) ** 2) * L / (Math.sqrt(L ** 2));
 
 
     for (let i = 0; i < x.length; ++i) {
@@ -355,7 +355,7 @@ function plotSines(an, bn, n, x) {
         y_n.push(((bn[n - 1]) * Math.sin((n - 1) * Math.PI * x[i] / L) + (an[n - 1]) * Math.cos((n - 1) * Math.PI * x[i] / L)));
     }
     //y value gets shifted up so that the plots are distinctly different
-    var data =
+    let data =
         {
             type: "scatter",
             mode: "lines",
@@ -378,12 +378,12 @@ function computePlot1(x, y) {
 
     //Otherwise use predetermined coefficients
     else {
-    var N = parseFloat(document.getElementById('NController').value)+1;
+    let N = parseFloat(document.getElementById('NController').value)+1;
     [n, an, bn, alphan, thetan] = coefficientPre(N);}
     //console.log(bn);
     y2 = Trig_summation_n(an, bn, x);
 
-    var data1 = [
+    let data1 = [
         {
             type: "scatter",
             mode: "lines",
@@ -393,13 +393,13 @@ function computePlot1(x, y) {
         },
     ];
 
-    var data2 = [];
+    let data2 = [];
 
-    for (var i = 1; i < n.length; ++i) {
+    for (let i = 1; i < n.length; ++i) {
         data2.push(plotSines(an, bn, n[i], x));
     }
-    var y3;
-    var title;
+    let y3;
+    let title;
 
     coefficient = document.getElementById('Coefficient').value
     if (coefficient == "a") {
@@ -419,7 +419,7 @@ function computePlot1(x, y) {
         title = "$θ_{n}$"
 
     }
-    var data3 = [
+    let data3 = [
         {
             type: "bar",
             mode: "lines",
@@ -441,10 +441,10 @@ function insert(index, item) {
 
 function updateFunction() {
     //Looks at equation the user typed in and retrieves this
-    var equation = document.getElementById("aInput").value;
-    var error = false;
-    var change = false;
-    var equationB =[];
+    let equation = document.getElementById("aInput").value;
+    let error = false;
+    let change = false;
+    let equationB =[];
     //Input Equation filtering
     for(let i=0; i<equation.length; i++){
         //Don't allow equations containing i
@@ -472,9 +472,9 @@ function updateFunction() {
 
 //For custom function
 function updatePlot() {
-    var data;
-    var L = parseFloat(document.getElementById('LController').value);
-    var xOriginal = numeric.linspace(-L, L, resolution);
+    let data;
+    let L = parseFloat(document.getElementById('LController').value);
+    let xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
     if (shape===6){
             equation = updateFunction();
