@@ -54,12 +54,12 @@ function triangle_function(x, L, A) {
     var y_first = [];
     var y_second = [];
     for (var i = 0; i < x.length / 2; ++i) {
-        y_first.push((5 * A / L) * x[i]);
+        y_first.push((2 * A / L) * x[i]);
         x_first.push(x[i]);
     }
 
     for (var i = x.length / 2 + 1; i <= x.length; ++i) {
-        y_second.push((-5 * A / L) * (x[i] - L));
+        y_second.push((-2 * A / L) * (x[i] - L));
         x_second.push(x[i]);
     }
 
