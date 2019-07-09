@@ -61,7 +61,7 @@ UI Styles
   margin-top: -5em;
 }
 .eq_popup {
-    position: absolute;
+    position: relative;
     display: inline-block;
     cursor: none;
     text-align: center;
