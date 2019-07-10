@@ -1,3 +1,4 @@
+/*jshint esversion: 7 */
 //Global Initial Parameters:
 var defaultHref = window.location.href;
 var initX = 0, initY = 0;
@@ -22,14 +23,14 @@ so the setLayout allows the layout to fit the graph, instead of fixing the layou
 // set a smaller layout with smaller height
 function setLayoutSmall(someTitles){
     const new_layout = {
-    autosize: true,
-    margin: {l:45,r:0, t:20, b:30},
-    hovermode: "closest",
-    showlegend: false,
-    xaxis: {range: [], zeroline: true, title: "$n$"},
-    yaxis: {range: [], zeroline: true, title: someTitles},
-    aspectratio: {x:1, y:1},
-    }
+        autosize: true,
+        margin: {l:45,r:0, t:20, b:30},
+        hovermode: "closest",
+        showlegend: false,
+        xaxis: {range: [], zeroline: true, title: "$n$"},
+        yaxis: {range: [], zeroline: true, title: someTitles},
+        aspectratio: {x:1, y:1},
+    };
     return new_layout;
 }
 
@@ -47,7 +48,7 @@ function initFourier() {
 
 // sum up all the number in the array
 function adding(array){
-    var result = 0
+    var result = 0;
     for(var i =0; i<array.length; ++i){
         result+=array[i];
     }
@@ -105,7 +106,7 @@ function b_n(shape,n){
         } else if (shape === 1){
             amplitude=A/(n*Math.PI) *(1-(-1)**n);
         } else if (shape === 2){
-            amplitude = 2*A*(-1)**(n+1) /(n*Math.PI)
+            amplitude = 2*A*(-1)**(n+1) /(n*Math.PI);
         } else if (shape === 3){
             amplitude = 0;
         } else if (shape === 4){
@@ -261,20 +262,20 @@ function updatePlot() {
     // NB: updates according to the active tab
    
         $(document).ready(() => { if (shape===3) {
-            $('#A').hide(); console.log('hidden')
+            $('#A').hide(); console.log('hidden');
         } else {
-           $('#A').show(); console.log('shown')
-        }})
+           $('#A').show(); console.log('shown');
+        }});
     var L = parseFloat(document.getElementById('LController').value);
     
     if ((L<=0 && shape==3)||(L<=0 && shape==6)){ 
         $(document).ready(() => {
             $('#Popup').show();
-        })
+        });
     } else {
         $(document).ready(() => {
             $('#Popup').hide();
-        })
+        });
     }
     //data = computeComponents(z);
 
@@ -296,7 +297,7 @@ function main() {
     
     $(document).ready(() => {
         $('#Popup').hide();
-    })      ;
+    });
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
@@ -339,7 +340,7 @@ function main() {
         $("#"+selectedValue+"Title").show();
         initFourier();
         updatePlot();
-    })
+    });
 
     // to select either a_n and b_n or alpha_n and theta_n in the power spectrum tab
     $('#Coefficient').change(function(){
@@ -351,12 +352,12 @@ function main() {
         } else if (selectedValue==="powerSpectrum"){
             label = "alpha&theta";
             title1="$α_{n}$";
-            title2="$θ_{n}$"
+            title2="$θ_{n}$";
         }
         initFourier();
         updatePlot();
-        console.log(shape)
-    })
+        console.log(shape);
+    });
 
     //The First Initialisation - I use 's' rather than 'z' :p
     initFourier();

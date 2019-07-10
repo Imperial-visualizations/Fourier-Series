@@ -1,3 +1,4 @@
+/*jshint esversion: 7 */
 //Global Initial Parameters:
 const layout = {
     autosize: true,
@@ -42,7 +43,7 @@ function setLayout() {
     var y_lab = [];
     for (var i = 0; i < 10; i++) {
         n_lab.push("n=" + (i ));
-        y_lab.push(29.5 * (i + 1))
+        y_lab.push(29.5 * (i + 1));
     }
     const new_layout = {
         autosize: true,
@@ -67,7 +68,7 @@ function setLayout() {
 // initialize the Cartesian coordinates for the plots and the functions
 function initFourier() {
     Plotly.purge("graph");
-    console.log(computeComponents())
+    console.log(computeComponents());
     Plotly.newPlot("graph", computeComponents(z), setLayout());
     $("#Triangle_eqn").show();
     $("#Square_eqn").hide();
@@ -105,7 +106,7 @@ function odd_selection2(n, A, L, type) {
     } else if (type === 3) {
         amplitude = 0;
     } else if (type === 4) {
-        amplitude = 0// (((4*L**2)/(n*Math.PI)**2)*(-1)**n)
+        amplitude = 0;// (((4*L**2)/(n*Math.PI)**2)*(-1)**n)
     } else if (type === 5) {
         amplitude = 0.5 * A * (2 * (-1) ** (n + 1) * decay ** n); //A*(2*L/(n*Math.PI)*(-1)**(n+1)
     } else if (type === 6) {
@@ -152,18 +153,20 @@ function plotSines(n, x, shape) {
 
     var x_n = [];
     var y_n = [];
+    var spacing;
+    var scale;
     if (shape === 4) {
-        var spacing = 580;
-        var scale = 0.05;
+        spacing = 580;
+        scale = 0.05;
     } else if (shape === 3) {
-        var scale = 5;
-        var spacing = 5.8;
+        scale = 5;
+        spacing = 5.8;
     } else if (shape === 6) {
-        var scale = 0.5;
-        var spacing = 60;
+        scale = 0.5;
+        spacing = 60;
     } else {
-        var spacing = 30;
-        var scale = 1;
+        spacing = 30;
+        scale = 1;
     }
     var spacing2 = Math.sqrt((odd_selection2(n, A, L, shape)) ** 2 + (even_selection2(n, A, L, shape))) + 1;
 
@@ -244,7 +247,7 @@ function updatePlot() {
                 $("#Triangle_eqn").hide();
                 $("#Square_eqn").hide();
                 $("#Sawtooth_eqn").show();
-                $("#Dirac_eqn").hide()
+                $("#Dirac_eqn").hide();
                 $("#Parabola_eqn").hide();
                 $("#Modx_eqn").hide();
             });
