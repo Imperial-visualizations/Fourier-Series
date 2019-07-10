@@ -66,42 +66,42 @@ function normalised(vector){
 function find_xy(resulting_vector, base_1 , base_2){
     // Finds the projection of "resulting vector" into base_1 and base_2 and returns the
     //coefficients that are needed such the reconstruct the result from the two bases
-    b1 = resulting_vector[0]
-    b2 = resulting_vector[1]
-    p1 = base_1[0]
-    p2 = base_1[1]
-    q1 = base_2[0]
-    q2 = base_2[1]
+    b1 = resulting_vector[0];
+    b2 = resulting_vector[1];
+    p1 = base_1[0];
+    p2 = base_1[1];
+    q1 = base_2[0];
+    q2 = base_2[1];
 
     if (p1 === 0){
-        y = b1 / q1
-        x = (q1*b2 - b1*q2)/p2
+        y = b1 / q1;
+        x = (q1*b2 - b1*q2)/p2;
     }
     else if (p1*q2 === p2**2){
-        y = (p1*b2 - b1)/(p2**2 - q1*p2)
-        x = (b1 - y*q1)/(p1)
+        y = (p1*b2 - b1)/(p2**2 - q1*p2);
+        x = (b1 - y*q1)/(p1);
     }
     else{
-        y = (p1*b2 - p2*b1)/(p1*q2 - p2**2)
-        x = (b1/p1) - y*p2
+        y = (p1*b2 - p2*b1)/(p1*q2 - p2**2);
+        x = (b1/p1) - y*p2;
     }
-    return x,y
+    return x,y;
 }
 
 function projection(target_vector, base_vector){
     //Finds the distance along 'base_vector' the vector 'target_vector' is projected
-    dot_product = inner_product(target_vector ,base_vector)
-    base_size = Math.sqrt(inner_product(base_vector, base_vector))
-    span = dot_product / base_size
-    return span
+    dot_product = inner_product(target_vector ,base_vector);
+    base_size = Math.sqrt(inner_product(base_vector, base_vector));
+    span = dot_product / base_size;
+    return span;
 }
 
 function scale_vector(original_vector, scale){
     // Multiplies the each component of the original vector by 'scale'
-    new_1 = scale * original_vector[0]
-    new_2 = scale * original_vector[1]
-    new_vector = [new_1, new_2]
-    return new_vector
+    new_1 = scale * original_vector[0];
+    new_2 = scale * original_vector[1];
+    new_vector = [new_1, new_2];
+    return new_vector;
 }
 
 function computeBasis(x1, y1,x2,y2 , x3,y3) {
@@ -118,12 +118,12 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     rho3 = Math.sqrt(x3**2+y3**2);
     phi3 = Math.atan(x3/y3);
 
-    dx1 = 1
-    dy1 = 1
-    dx2= 1
-    dy2 = 1
-    dx3= 1
-    dy3 = 1
+    dx1 = 1;
+    dy1 = 1;
+    dx2 = 1;
+    dy2 = 1;
+    dx3 = 1;
+    dy3 = 1;
 
     if (x1<0 && y1>0){
     dx1=-dx1;
@@ -171,42 +171,42 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     var m1 = (y1/x1);
     var m2 = (y2/x2);
     //fixes case when gradients are infinite
-    if(m1 > 100000){m1 = 1000000;};
-    if(m2 > 100000){m2 = 1000000;};
+    if(m1 > 100000){m1 = 1000000;}
+    if(m2 > 100000){m2 = 1000000;}
 
-    var x_prime = (y3 - m1*x3)/(m2 - m1)
-    var y_prime = m2*x_prime
+    var x_prime = (y3 - m1*x3)/(m2 - m1);
+    var y_prime = m2*x_prime;
 
-    var x_dprime = (y3 - m2*x3)/(m1-m2)
-    var y_dprime = m1*x_dprime
+    var x_dprime = (y3 - m2*x3)/(m1-m2);
+    var y_dprime = m1*x_dprime;
 
     function isPositive(x){
         if (Math.abs(x) === x) {
-        return true
+        return true;
         } else {
-        return false
+        return false;
         }
-    };
+    }
 
     function quadrant(x,y){
-        if (isPositive(x) && isPositive(y)) {return 1}
-        else if(!isPositive(x) && isPositive(y)) {return 2}
-        else if (!isPositive(x) && !isPositive(y)) {return 3}
-        else {return 4}
-    };
+        if (isPositive(x) && isPositive(y)) {return 1;}
+        else if(!isPositive(x) && isPositive(y)) {return 2;}
+        else if (!isPositive(x) && !isPositive(y)) {return 3;}
+        else {return 4;}
+    }
 
     //define scale factors
     if (quadrant(x_prime, y_prime) === quadrant(x2,y2)) { //correct for negative sign
-    var scale2 = Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100
+    var scale2 = Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100;
     } else {
-    var scale2 = -Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100
-    };
+    var scale2 = -Math.round((Math.pow((Math.pow(x_prime,2)+Math.pow(y_prime,2)),(1/2))/Math.pow((Math.pow(x2,2)+Math.pow(y2,2)),(1/2)))*100)/100;
+    }
 
     if (quadrant(x_dprime,y_dprime)=== quadrant(x1,y1)) {
-    var scale1 = Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100
+    var scale1 = Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100;
     } else {
-    var scale1 = -Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100
-    };
+    var scale1 = -Math.round((Math.pow((Math.pow(x_dprime,2)+Math.pow(y_dprime,2)),(1/2))/Math.pow((Math.pow(x1,2)+Math.pow(y1,2)),(1/2)))*100)/100;
+    }
 
     //remove projections if parallel
     //if (Math.abs(m1-m2) > 0.1){
@@ -331,8 +331,8 @@ function initCarte(type) {
     var x3 = parseFloat(document.getElementById('x3Controller').value);
     var y3 = parseFloat(document.getElementById('y3Controller').value);
 
-    var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]))
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]))
+    var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]));
+    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
 
     Plotly.newPlot("graph", computeBasis(x1, y1), layout);
     Plotly.newPlot("graph", computeBasis(x2, y2), layout);
@@ -370,7 +370,7 @@ function updatePlot() {
             fromcurrent: true,
             transition: {duration: 0,},
             frame: {duration: 0, redraw: false,},
-            mode: "afterall"
+            mode: "immediate"
         }
     );
 }
