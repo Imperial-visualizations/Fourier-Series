@@ -16,6 +16,9 @@ function setLayout(sometitlex, sometitley, plotTitle) {
     return new_layout;
 }
 
+
+let numbers = "0123456789";
+
 //resolution, number of points on the graph shown
 var resolution = 10000;
 // slider for N
@@ -259,12 +262,65 @@ function initFourier() {
     return;
 }
 
+function oddEvenCheck(L){
+    let x_ar = numeric.linspace(0, L, 100);
+    let y_plus = x_ar.map(x => {
+        return eval(equation);
+    });
+
+    //console.log(`y_plus ${y_plus}`);
+    x_ar = numeric.linspace(0, -L, 100);
+    let y_minus = x_ar.map(x => {
+        return eval(equation);
+    });
+    //console.log(`y_minus ${y_minus}`)
+
+    let y2 = [];
+    for (let i = 0; i < x_ar.length; i++){
+        y2.push(y_plus[i] + y_minus[i]);
+    }
+    //console.log(`y2 ${y2}`);
+
+    //weird doesn't work
+    /*
+    let allZero = y2.every(elem => {
+        return -1e-7 <= elem <= 1e-7;
+    });
+    */
+
+    let sum = y2.reduce((accum, currVal) => {
+        return accum + currVal;
+    });
+    if (Math.abs(sum) <= 1e-7) {
+        return 'odd';
+    } else{
+        y2=[];
+        for (let i = 0; i<x_ar.length; i++){
+            y2.push(y_plus[i] - y_minus[i]);
+        }
+        //console.log(y2);
+        sum = y2.reduce((accum, currVal) => {
+            return accum + currVal;
+        });
+        //console.log(`sum ${sum}`);
+        if (Math.abs(sum) <= 1e-7){
+            return 'even';
+        } else {
+            return 'neither';
+        }
+    }
+}
 
 function a_n(n, x) {
     let L = parseFloat(document.getElementById('LController').value);
     //Updates L so that we can calculate a_n for all necessary n
 
-    an = integration_ultra(kMax, L, n, "for_an") / L;
+    let parity = oddEvenCheck(L);
+    if (parity === 'odd'){
+        an = 0;
+    } else {
+        an = integration_ultra(kMax, L, n, "for_an") / L;
+    }
     return an;
 }
 
@@ -272,7 +328,12 @@ function b_n(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
     let L = parseFloat(document.getElementById('LController').value);
 
-    bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    let parity = oddEvenCheck(L);
+    if (parity === 'even'){
+        bn = 0;
+    } else {
+        bn = integration_ultra(kMax, L, n, "for_bn") / L;
+    }
     return bn;
 }
 
@@ -429,9 +490,9 @@ function computePlot1(x, y) {
     ];
 
     data2 = [];
-    console.log(n);
+    //console.log(n);
     data2.push(plotSines(an, bn, 0, x));
-    console.log(data2);
+    //console.log(data2);
     for (var i = 1; i < n.length; ++i) {
         data2.push(plotSines(an, bn, n[i], x));
     }
@@ -480,25 +541,37 @@ function updateFunction() {
     //Looks at equation the user typed in and retrieves this
     let equation = document.getElementById("aInput").value;
     let error = false;
-    let change = false;
-    let equationB =[];
+
     //Input Equation filtering
+    equation = equation.replace("=", "");
+
+    //Change the syntax for symbol
+    equation = equation.replace("^", "**");
+                    
     for(let i=0; i<equation.length; i++){
         //Don't allow equations containing i
         if(equation[i] === 'i'){
             //Allow sin and arcsin
-            if(equation[i-1] === 's'){error = false}
-            else {error = true;}
-            };
-
-        equationB.push(equation[i]);
-
-        //Replace ^ with ** for exponents
-        if(equationB[i] === '^'){equationB[i] = '**'; change = true;};
+            if(equation[i-1] === 's'){
+                error = false
+            }else {
+                error = true;
+            }
+        }
+        if (equation[i] === 'x'){
+            if (equation.length > 1) {
+                //console.log(typeof eq[eq.length-2]);
+                if (numbers.includes(equation[i-1])){
+                    //console.log('passed');
+                    equation = equation.slice(0,i) + '*' + equation.slice(i,equation.length);
+                    //console.log(eq);
+                }
+            }
+        }
     }
-    if(change) {equation = equationB.join("");}
-
-    if(error===true) {return '';}
+    if(error===true) {
+        return '';
+    }
     else {return equation;}
 }
 
