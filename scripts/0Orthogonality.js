@@ -4,18 +4,18 @@
 any layout properties (which you probably want to keep constant for an individual part of a visualisation
 should go here */
 
-const initialPoint = [0, 1];
-const initialPoint1 = [1.1, 0.1];
-const initialPoint2 = [0.1,1.1];
-const initialPoint3 = [1,1];
-const layout = {
-    autosize: true,
-    //width: 450, "height": 500,
+var initialPoint = [0, 1];
+var initialPoint1 = [1.1, 0.1];
+var initialPoint2 = [0.1,1.1];
+var initialPoint3 = [1,1];
+var layout = {
+    //autosize: true,
+    //width: "40vw",
     margin: {l:30, r:30, t:30, b:30},
     hovermode: "closest",
     showlegend: false,
-    xaxis: {range: [-5, 5], zeroline: true},
-    yaxis: {range: [-5, 5], zeroline: true},
+    xaxis: {range: [-3, 3], zeroline: true},
+    yaxis: {range: [-3, 3], zeroline: true},
     aspectratio: {x:1, y:1},
 };
 var currentPoint = initialPoint;
@@ -31,7 +31,7 @@ that's fine, no need to recreate stuff, but any functions you need to construct 
 next block*/
 
 
-function inner_product(first_vector , second_vector){
+function inner_productSec1(first_vector , second_vector){
     // Returns the inner product of two vectors
     var sum = 0;
     for (var i=0; i<2; i++) {
@@ -40,9 +40,9 @@ function inner_product(first_vector , second_vector){
     return sum;
 }
 
-function orthogonal(vector_a , vector_b, tolerance = 0){
+function orthogonalSec1(vector_a , vector_b, tolerance = 0){
     //Returns whether vectors a and b are orthogonal
-    dot = inner_product(vector_a , vector_b);
+    dot = inner_productSec1(vector_a , vector_b);
     if (dot === 0){
         return true;
         }
@@ -52,9 +52,9 @@ function orthogonal(vector_a , vector_b, tolerance = 0){
     }
 
 
-function normalised(vector){
+function normalisedSec1(vector){
     // Returns whether a vector has a normalised basis
-    dot = inner_product(vector, vector);
+    dot = inner_productSec1(vector, vector);
     if (dot === 1){
         return true;
         }
@@ -63,7 +63,7 @@ function normalised(vector){
         }
     }
 
-function find_xy(resulting_vector, base_1 , base_2){
+function find_xySec1(resulting_vector, base_1 , base_2){
     // Finds the projection of "resulting vector" into base_1 and base_2 and returns the
     //coefficients that are needed such the reconstruct the result from the two bases
     b1 = resulting_vector[0];
@@ -88,15 +88,15 @@ function find_xy(resulting_vector, base_1 , base_2){
     return x,y;
 }
 
-function projection(target_vector, base_vector){
+function projectionSec1(target_vector, base_vector){
     //Finds the distance along 'base_vector' the vector 'target_vector' is projected
-    dot_product = inner_product(target_vector ,base_vector);
-    base_size = Math.sqrt(inner_product(base_vector, base_vector));
+    dot_product = inner_productSec1(target_vector ,base_vector);
+    base_size = Math.sqrt(inner_productSec1(base_vector, base_vector));
     span = dot_product / base_size;
     return span;
 }
 
-function scale_vector(original_vector, scale){
+function scale_vectorSec1(original_vector, scale){
     // Multiplies the each component of the original vector by 'scale'
     new_1 = scale * original_vector[0];
     new_2 = scale * original_vector[1];
@@ -104,7 +104,7 @@ function scale_vector(original_vector, scale){
     return new_vector;
 }
 
-function computeBasis(x1, y1,x2,y2 , x3,y3) {
+function computeBasisSec1(x1, y1,x2,y2 , x3,y3) {
     currentPoint1 = [x1, y1];
     currentPoint2 = [x2, y2];
     currentPoint3 = [x3, y3];
@@ -165,8 +165,8 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
     y3Vector = new Line2d([[x3, y3], [x3, y3+dy3]]);
     vertex3  = new Line2d([[0, 0], [x3, y3]]);
 
-    var project_1 = scale_vector([x1,y1] ,projection([x3,y3] , [x1,y1]));
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
+    var project_1 = scale_vectorSec1([x1,y1] ,projectionSec1([x3,y3] , [x1,y1]));
+    var project_2 = scale_vectorSec1([x2,y2] , projectionSec1([x3,y3] , [x2,y2]));
 
     var m1 = (y1/x1);
     var m2 = (y2/x2);
@@ -218,7 +218,7 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
        vertex7 = new Line2d([[x_dprime, y_dprime] , [x3, y3]] );//[project_2[0],project_2[1]]]);
 
        $(document).ready(() => {
-	        $('.popup').hide();
+	        $('#popup1').hide();
        });
 
 
@@ -230,7 +230,8 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
         vertex7 = new Line2d([[0, 0], [0.005,0]]);
 
         $(document).ready(() => {
-            $('.popup').show();
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,"popup1"]);
+            $('#popup1').show();
         });
 
 
@@ -278,7 +279,8 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
      ]
     ;
 
-    $("#vectorComponents").text(`${scale1} x vector1 & ${scale2} x vector2`);
+    $("#vector1val").text(`${scale1}`);
+    $("#vector2val").text(`${scale2}`);
     return data;
 }
 
@@ -287,8 +289,8 @@ function computeBasis(x1, y1,x2,y2 , x3,y3) {
 /* We've now got all the functions we need to use such that for a given user input, we have a data output that we'll use.
 Now we just have to actually obtain the user input from the HTML file by using JQuery and then plot everything relevant that we want to see*/
 
-function initCarte(type) {
-    Plotly.purge("graph");
+function initCarteSec1(type) {
+    Plotly.purge("graph1Sec1");
     initX1 = initialPoint1[0];
     initY1 = initialPoint1[1];
     initX2 = initialPoint2[0];
@@ -331,12 +333,12 @@ function initCarte(type) {
     var x3 = parseFloat(document.getElementById('x3Controller').value);
     var y3 = parseFloat(document.getElementById('y3Controller').value);
 
-    var project_1 = scale_vector([x1,y1] , projection([x3,y3] , [x1,y1]));
-    var project_2 = scale_vector([x2,y2] , projection([x3,y3] , [x2,y2]));
+    var project_1 = scale_vectorSec1([x1,y1] , projectionSec1([x3,y3] , [x1,y1]));
+    var project_2 = scale_vectorSec1([x2,y2] , projectionSec1([x3,y3] , [x2,y2]));
 
-    Plotly.newPlot("graph", computeBasis(x1, y1), layout);
-    Plotly.newPlot("graph", computeBasis(x2, y2), layout);
-    Plotly.newPlot("graph", computeBasis(x3, y3), layout);
+    Plotly.newPlot("graph1Sec1", computeBasisSec1(x1, y1), layout);
+    Plotly.newPlot("graph1Sec1", computeBasisSec1(x2, y2), layout);
+    Plotly.newPlot("graph1Sec1", computeBasisSec1(x3, y3), layout);
 
     return;
 }
@@ -348,7 +350,7 @@ function initCarte(type) {
 define what we want it to do when it updates, and then actually ask it to do that. These are the two functions below.
 */
 
-function updatePlot() {
+function updatePlotSec1() {
     var data = [];
 
     var x1 = parseFloat(document.getElementById('x1Controller').value);
@@ -361,10 +363,10 @@ function updatePlot() {
     var y3 = parseFloat(document.getElementById('y3Controller').value);
 
 
-    data = computeBasis(x1, y1 , x2, y2 ,x3,y3);
+    data = computeBasisSec1(x1, y1 , x2, y2 ,x3,y3);
 
     Plotly.animate(
-        'graph',
+        'graph1Sec1',
         {data: data},
         {
             fromcurrent: true,
@@ -379,8 +381,8 @@ function updatePlot() {
 
 
 
-function main() {
-    computeBasis(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
+function mainSec1() {
+    computeBasisSec1(initX1, initY1,initX2,initY2 , initialPoint3[0],initialPoint3[1]);
 
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
@@ -389,7 +391,7 @@ function main() {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#"+$(this).attr("id") + "Display").val( $(this).val());
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlotSec1(); //Updating the plot is linked with display (Just My preference)
         });
 
     //Update sliders if value in box is changed
@@ -397,37 +399,37 @@ function main() {
     $("#x1ControllerDisplay").change(function () {
      var value = this.value;
      $("#x1Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     $("#y1ControllerDisplay").change(function () {
      var value = this.value;
      $("#y1Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     $("#x2ControllerDisplay").change(function () {
      var value = this.value;
      $("#x2Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     $("#y2ControllerDisplay").change(function () {
      var value = this.value;
      $("#y2Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     $("#x3ControllerDisplay").change(function () {
      var value = this.value;
      $("#x3Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     $("#y3ControllerDisplay").change(function () {
      var value = this.value;
      $("#y3Controller").val(value);
-     updatePlot();
+     updatePlotSec1();
     });
 
     });
@@ -441,14 +443,16 @@ function main() {
             $('.tab-pane.active', $(href).parent()).removeClass('active');
             $(href).addClass('active');
 
-            initCarte(href); //re-initialise when tab is changed
+            initCarteSec1(href); //re-initialise when tab is changed
             return false;
         });
     });
 
     //The First Initialisation - I use 's' rather than 'z' :p
-    initCarte("#basis");
-    updatePlot(); //Shows initial positions of vectors
+    initCarteSec1("#basis");
+    updatePlotSec1(); //Shows initial positions of vectors
     }
 
-$(document).ready(main); //Load main when document is ready.
+
+
+mainSec1(); //Load main when document is ready.

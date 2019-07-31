@@ -1,7 +1,7 @@
-$('#NController2').hide();
-$('#NController2Display').hide();
+$('#NController2Sec5').hide();
+$('#NController2Sec5Display').hide();
 
-function setLayout(sometitlex, sometitley, plotTitle) {
+function setLayoutSec5(sometitlex, sometitley, plotTitle) {
 
     const new_layout = {
         autosize: true,
@@ -17,13 +17,13 @@ function setLayout(sometitlex, sometitley, plotTitle) {
 }
 
 
-let numbers = "0123456789";
+var numbers = "0123456789";
 
 //resolution, number of points on the graph shown
 var resolution = 10000;
 // slider for N
 // slider for L
-var L = parseFloat(document.getElementById('LController').value);
+var L = parseFloat(document.getElementById('LControllerSec5').value);
 var xOriginal = numeric.linspace(-L, L, resolution);
 
 // kMax is an integer, the larger it is the better the numerical integration
@@ -47,7 +47,7 @@ arcosh = Math.acosh;
 arccosh = Math.acosh;
 artanh = Math.atanh;
 arctanh = Math.atanh;
-sqrt = Math.sqrt
+sqrt = Math.sqrt;
 
 
 var sin = Math.sin;
@@ -62,9 +62,9 @@ x = 2;
 var equation = "x^2";
 
 //return the a_n amplitudes of the fourier series
-function aCoeff (shape, n){
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = 1;//parseFloat(document.getElementById('AController').value);
+function aCoeffSec5 (shape, n){
+    var L = parseFloat(document.getElementById('LControllerSec5').value);
+    var A = 1;//parseFloat(document.getElementById('AControllerSec5').value);
 
     var amplitude;
     if (shape === 0) {
@@ -92,9 +92,9 @@ function aCoeff (shape, n){
 }
 
 //Return the b_n amplitudes of the fourier series
-function bCoeff(shape,n){
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = 1; //parseFloat(document.getElementById('AController').value);
+function bCoeffSec5(shape,n){
+    var L = parseFloat(document.getElementById('LControllerSec5').value);
+    var A = 1; //parseFloat(document.getElementById('AControllerSec5').value);
 
     var amplitude;
     if (n===0){
@@ -117,7 +117,7 @@ function bCoeff(shape,n){
     return amplitude;
 }
 
-function coefficientPre (N){
+function coefficientPreSec5 (N){
     var n = [];
     var an = [];
     var bn = [];
@@ -126,28 +126,28 @@ function coefficientPre (N){
 
     for (let i = 0; i < N; ++i){
         n.push(i);
-        an.push(aCoeff(shape,i));
-        bn.push(bCoeff(shape,i));
-        alpha_n.push(Math.sqrt(aCoeff(shape,i)**2+bCoeff(shape,i)**2));
+        an.push(aCoeffSec5(shape,i));
+        bn.push(bCoeffSec5(shape,i));
+        alpha_n.push(Math.sqrt(aCoeffSec5(shape,i)**2+bCoeffSec5(shape,i)**2));
         //Theta is defined strangely because javascript can't handle arctan( plus/minus infinity)
-        if (aCoeff(shape,i)===0){
-            if (bCoeff(shape,i)>0) {
+        if (aCoeffSec5(shape,i)===0){
+            if (bCoeffSec5(shape,i)>0) {
                 theta_n.push(Math.PI/2);
-            } else if (bCoeff(shape,i)<0) {
+            } else if (bCoeffSec5(shape,i)<0) {
                 theta_n.push(-Math.PI/2);
-            } else if (bCoeff(shape,i)===0){
+            } else if (bCoeffSec5(shape,i)===0){
                 theta_n.push(0);
             }
         } else {
-            theta_n.push(Math.atan2(bCoeff(shape,i),aCoeff(shape,i)));
+            theta_n.push(Math.atan2(bCoeffSec5(shape,i),aCoeffSec5(shape,i)));
         }
     }
 
-    return [n, an, bn, alphan, thetan];
+    return [n, an, bn, alpha_n, theta_n];
 }
 
 // sum up all the number in the array
-function adding(array) {
+function addingSec5(array) {
     var result = 0;
     for (var i = 0; i < array.length; ++i) {
         result += array[i];
@@ -156,7 +156,7 @@ function adding(array) {
 }
 
 // convert the string to a numerical function
-function y_values(x_range) {
+function y_valuesSec5(x_range) {
     //Takes the specified function and computes the y values for given x values
     var y = [];
     for (var i in x_range) {
@@ -167,7 +167,7 @@ function y_values(x_range) {
     return y;
 }
 
-function y_values_cosine(x_range, n, L) {
+function y_values_cosineSec5(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)cos(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
@@ -178,7 +178,7 @@ function y_values_cosine(x_range, n, L) {
 }
 
 
-function y_values_sine(x_range, n, L) {
+function y_values_sineSec5(x_range, n, L) {
 //Takes the input function f(x) and finds f(x)sin(n pi x/L) for specified x
     var y = [];
     for (var i in x_range) {
@@ -189,11 +189,11 @@ function y_values_sine(x_range, n, L) {
 }
 
 
-var yOriginal = y_values(xOriginal);
+var yOriginal = y_valuesSec5(xOriginal);
 
 //Computes and stores the y values of the specified function
 
-function integration_simps(x, y) {
+function integration_simpsSec5(x, y) {
     //Integration by Simpson's rule
     var a = x[0];
     var b = x[x.length - 1];
@@ -212,7 +212,7 @@ function integration_simps(x, y) {
     return A
 }
 
-function integration_ultra(kMax, L, n, integral) {
+function integration_ultraSec5(kMax, L, n, integral) {
     //Numerical integration by tanh-sinh quadrature, integrates from -L to L
     //If specified, will integrate after multiplying by cos or sin n pi x/L
     var h = 5.0 / kMax
@@ -223,14 +223,14 @@ function integration_ultra(kMax, L, n, integral) {
         omega_k.push(0.5 * h * Math.PI * Math.cosh(i * h) / (Math.cosh(0.5 * Math.PI * Math.sinh(i * h))) ** 2);
     }
     if (integral === "for_an") {
-        var f_of_xk = y_values_cosine(x_k, n, L);
+        var f_of_xk = y_values_cosineSec5(x_k, n, L);
     }
 
     else if (integral === "for_bn") {
-        var f_of_xk = y_values_sine(x_k, n, L)
+        var f_of_xk = y_values_sineSec5(x_k, n, L)
     }
     else {
-        var f_of_xk = y_values(x_k);
+        var f_of_xk = y_valuesSec5(x_k);
     }
 
     var Area = 0;
@@ -240,7 +240,7 @@ function integration_ultra(kMax, L, n, integral) {
     return Area * L;
 }
 
-function integration(x, y) {
+function integrationSec5(x, y) {
     //Integration by Riemann sum
     let A = 0;
     for (let i = 0; i < x.length - 1; i++) {
@@ -250,19 +250,19 @@ function integration(x, y) {
 }
 
 //For custom functions
-function initFourier() {
-    Plotly.purge("graph");
-    Plotly.purge("graph2");
-    Plotly.purge("graph3");
-    [datalist,titley] = computePlot1(xOriginal, yOriginal)
-    Plotly.newPlot("graph", datalist[0], setLayout('$x$', '$f(x)$', 'Fourier Series'));
-    Plotly.newPlot("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$', 'Components of Series'));
-    Plotly.newPlot("graph3", datalist[2], setLayout('$n$', titley, 'Power Spectrum'));
+function initFourierSec5() {
+    Plotly.purge("graph1Sec5");
+    Plotly.purge("graph2Sec5");
+    Plotly.purge("graph3Sec5");
+    [datalist,titley] = computePlot1Sec5(xOriginal, yOriginal)
+    Plotly.newPlot("graph1Sec5", datalist[0], setLayoutSec5('$x$', '$f(x)$', 'Fourier Series'));
+    Plotly.newPlot("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series'));
+    Plotly.newPlot("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum'));
 
     return;
 }
 
-function oddEvenCheck(L){
+function oddEvenCheckSec5(L){
     let x_ar = numeric.linspace(0, L, 100);
     let y_plus = x_ar.map(x => {
         return eval(equation);
@@ -311,38 +311,38 @@ function oddEvenCheck(L){
     }
 }
 
-function a_n(n, x) {
-    let L = parseFloat(document.getElementById('LController').value);
+function a_nSec5(n, x) {
+    let L = parseFloat(document.getElementById('LControllerSec5').value);
     //Updates L so that we can calculate a_n for all necessary n
 
-    let parity = oddEvenCheck(L);
+    let parity = oddEvenCheckSec5(L);
     if (parity === 'odd'){
         an = 0;
     } else {
-        an = integration_ultra(kMax, L, n, "for_an") / L;
+        an = integration_ultraSec5(kMax, L, n, "for_an") / L;
     }
     return an;
 }
 
-function b_n(n, x) {
+function b_nSec5(n, x) {
     //Same as in an but for bn (sin as opposed to cos)
-    let L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LControllerSec5').value);
 
-    let parity = oddEvenCheck(L);
+    let parity = oddEvenCheckSec5(L);
     if (parity === 'even'){
         bn = 0;
     } else {
-        bn = integration_ultra(kMax, L, n, "for_bn") / L;
+        bn = integration_ultraSec5(kMax, L, n, "for_bn") / L;
     }
     return bn;
 }
 
-function Fourier_coefficient(x) {
+function Fourier_coefficientSec5(x) {
     //For all n from 0 to N, calculates a_n and b_n
     if (shape === 3) {
-        var N = parseFloat(document.getElementById('NController2').value)+1;
+        var N = parseFloat(document.getElementById('NController2Sec5').value)+1;
     } else {
-        var N = parseFloat(document.getElementById('NController').value)+1;
+        var N = parseFloat(document.getElementById('NControllerSec5').value)+1;
     }
 
 
@@ -353,8 +353,8 @@ function Fourier_coefficient(x) {
     var alphan = [];
     var thetan = [];
     for (let i = 0; i < N; i++) {
-        let a = a_n(i, x);
-        let b = b_n(i, x);
+        let a = a_nSec5(i, x);
+        let b = b_nSec5(i, x);
         n.push(i);
         an.push(a);
         bn.push(b);
@@ -375,16 +375,16 @@ function Fourier_coefficient(x) {
 
 //Above code was for calculating components, below is for reconstructing the function for given N.
 
-function Trig_summation_x(an, bn, x_value) {
+function Trig_summation_xSec5(an, bn, x_value) {
     //For a certain x_value in the function domain, uses the values of a_n and b_n
     //up to a given N, to reconstruct the function at that particular x point
     if (shape === 3) {
-        var N = parseFloat(document.getElementById('NController2').value)+1;
+        var N = parseFloat(document.getElementById('NController2Sec5').value)+1;
     } else {
-        var N = parseFloat(document.getElementById('NController').value)+1;
+        var N = parseFloat(document.getElementById('NControllerSec5').value)+1;
     }
 
-    var L = parseFloat(document.getElementById('LController').value);
+    var L = parseFloat(document.getElementById('LControllerSec5').value);
 
     let single_y = [an[0] / 2];//Average function value term
 
@@ -399,15 +399,15 @@ function Trig_summation_x(an, bn, x_value) {
         }
     }
 
-    return adding(single_y);
+    return addingSec5(single_y);
 }
 
-function Trig_summation_n(an, bn, x) {
+function Trig_summation_nSec5(an, bn, x) {
     //Calls up trig_summation_x for every x value, so we reconstruct the function
     //at every point in the domain, returns the y values in order
     let set_y = [];
     for (let i = 0; i < x.length; ++i) {
-        set_y.push(Trig_summation_x(an, bn, x[i]));
+        set_y.push(Trig_summation_xSec5(an, bn, x[i]));
     }
     //console.log(set_y);
     return set_y;
@@ -415,15 +415,15 @@ function Trig_summation_n(an, bn, x) {
 
 
 // return the data that stores one component of the Fourier Series
-function plotSines(an, bn, n, x) {
+function plotSinesSec5(an, bn, n, x) {
     //Plots individual components that are being built up to the total function
     if (shape === 3) {
-        var N = parseFloat(document.getElementById('NController2').value);
+        var N = parseFloat(document.getElementById('NController2Sec5').value);
     } else {
-        var N = parseFloat(document.getElementById('NController').value);
+        var N = parseFloat(document.getElementById('NControllerSec5').value);
     }
 
-    var L = parseFloat(document.getElementById('LController').value);
+    var L = parseFloat(document.getElementById('LControllerSec5').value);
 
     //n = numeric.linspace(1,N,N);
 
@@ -460,23 +460,23 @@ function plotSines(an, bn, n, x) {
 var data2
 
 //The above was to reconstruct the function, below is to actually plot
-function computePlot1(x, y) {
+function computePlot1Sec5(x, y) {
     //Retrieves an,bn, then uses those to find the reconstructed function y values
     //then plots this
     //Calculate coefficients if custom function
-    if (shape === 6) {[n, an, bn, alphan, thetan] = Fourier_coefficient(x);}
+    if (shape === 6) {[n, an, bn, alphan, thetan] = Fourier_coefficientSec5(x);}
 
     //Otherwise use predetermined coefficients
     else {
     if (shape === 3) {
-        var N = parseFloat(document.getElementById('NController2').value)+1;
+        var N = parseFloat(document.getElementById('NController2Sec5').value)+1;
     } else {
-        var N = parseFloat(document.getElementById('NController').value)+1;
+        var N = parseFloat(document.getElementById('NControllerSec5').value)+1;
     }
 
-    [n, an, bn, alphan, thetan] = coefficientPre(N);}
+    [n, an, bn, alphan, thetan] = coefficientPreSec5(N);}
     //console.log(bn);
-    y2 = Trig_summation_n(an, bn, x);
+    let y2 = Trig_summation_nSec5(an, bn, x);
     //console.log(an[0]/2);
 
     let data1 = [
@@ -491,17 +491,17 @@ function computePlot1(x, y) {
 
     data2 = [];
     //console.log(n);
-    data2.push(plotSines(an, bn, 0, x));
+    data2.push(plotSinesSec5(an, bn, 0, x));
     //console.log(data2);
     for (var i = 1; i < n.length; ++i) {
-        data2.push(plotSines(an, bn, n[i], x));
+        data2.push(plotSinesSec5(an, bn, n[i], x));
     }
     let y3;
     let title;
 
-    coefficient = document.getElementById('Coefficient').value
+    coefficient = document.getElementById('CoefficientSec5').value
     if (coefficient == "a") {
-        y3 = an
+        y3 = an;
         title = "$a_{n}$"
     }
     if (coefficient == "b") {
@@ -533,13 +533,13 @@ function computePlot1(x, y) {
     return [datalist, title];
 }
 
-function insert(index, item) {
+function insertSec5(index, item) {
     this.splice( index, 0, item );
 };
 
-function updateFunction() {
+function updateFunctionSec5() {
     //Looks at equation the user typed in and retrieves this
-    let equation = document.getElementById("aInput").value;
+    let equation = document.getElementById("aInputSec5").value;
     let error = false;
 
     //Input Equation filtering
@@ -581,26 +581,26 @@ function updateFunction() {
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 
 //For custom function
-function updatePlot() {
+function updatePlotSec5() {
     let data;
-    let L = parseFloat(document.getElementById('LController').value);
+    let L = parseFloat(document.getElementById('LControllerSec5').value);
     let xOriginal = numeric.linspace(-L, L, resolution);
     // NB: updates according to the active tab
     if (shape===6){
-            equation = updateFunction();
+            equation = updateFunctionSec5();
     }
 
-    [datalist, titley] = computePlot1(xOriginal, yOriginal);
+    [datalist, titley] = computePlot1Sec5(xOriginal, yOriginal);
 
-    yOriginal = y_values(xOriginal);
+    yOriginal = y_valuesSec5(xOriginal);
 
-    Plotly.react("graph", datalist[0], setLayout('$x$', '$f(x)$', 'Fourier Series'));
-    Plotly.react("graph2", datalist[1], setLayout('$x$', '$f_{n}(x)$', 'Components of Series'));
-    Plotly.react("graph3", datalist[2], setLayout('$n$', titley, 'Power Spectrum'));
+    Plotly.react("graph1Sec5", datalist[0], setLayoutSec5('$x$', '$f(x)$', 'Fourier Series'));
+    Plotly.react("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series'));
+    Plotly.react("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum'));
 
 }
 
-function main() {
+function mainSec5() {
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input").each(function () {
         /*Allows for live update for display values*/
@@ -608,92 +608,92 @@ function main() {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlotSec5(); //Updating the plot is linked with display (Just My preference)
         });
 
     });
 
-    $('#Coefficient').change(function () {
-        updatePlot();
+    $('#CoefficientSec5').change(function () {
+        updatePlotSec5();
     })
 
 
 
-    $('#Select').change(function(){
-        let selectedValue = document.getElementById("Select").value;
+    $('#SelectSec5').change(function(){
+        let selectedValue = document.getElementById("SelectSec5").value;
         if (selectedValue==="main"){
             shape = 6;
-            $('#input').show();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').show();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         } else if (selectedValue==="triangular"){
             shape = 0;
-            $('#input').hide();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         } else if (selectedValue==="square"){
             shape = 1;
-            $('#input').hide();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         } else if (selectedValue==="sawtooth"){
             shape = 2;
-            $('#input').hide();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         } else if (selectedValue==="dirac"){
             shape = 3;
-            $('#input').hide();
-            $('#N').text('10');
-            $('#NController').hide();
-            $('#NController2').show();
-            $('#NController2Display').show();
-            $('#NControllerDisplay').hide();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('10');
+            $('#NControllerSec5').hide();
+            $('#NController2Sec5').show();
+            $('#NController2Sec5Display').show();
+            $('#NControllerSec5Display').hide();
         } else if (selectedValue==="parabola"){
             shape = 4;
-            $('#input').hide();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         }  else if (selectedValue==="mode"){
             shape = 5;
-            $('#input').hide();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').hide();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         } else if (selectedValue==="custom"){
             shape = 6;
-            $('#input').show();
-            $('#N').text('20');
-            $('#NController2').hide();
-            $('#NController').show();
-            $('#NController2Display').hide();
-            $('#NControllerDisplay').show();
+            $('#inputSec5').show();
+            $('#NMaxSec5').text('20');
+            $('#NController2Sec5').hide();
+            $('#NControllerSec5').show();
+            $('#NController2Sec5Display').hide();
+            $('#NControllerSec5Display').show();
         }
         $(".title").hide();
         $("#"+selectedValue+"Title").show();
-        initFourier();
-        updatePlot();
+        initFourierSec5();
+        updatePlotSec5();
     })
 
-    initFourier();
-    updatePlot();
+    initFourierSec5();
+    updatePlotSec5();
 }
 
-$(document).ready(main); //Load main when document is ready.
+$(document).ready(mainSec5); //Load main when document is ready.

@@ -1,0 +1,420 @@
+/* Visualisations Vue Template Style */
+
+* {
+    box-sizing: border-box;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.mathJaxDisplay {
+    display:table;
+    margin: 10px auto;
+    font-size: calc(4px + 0.95vw);
+    font-family: "Fira Sans", sans-serif;
+}
+
+.mathJaxInline {
+    font-size: calc(4px + 0.95vw);
+    font-family: "Fira Sans", sans-serif;
+}
+
+.vis-container {
+    float: left;
+}
+
+/* LEFT SIDE STYLES */
+
+.left {
+    height: fit-content;
+    width: 33vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #ccdfff;
+    z-index: 1;
+}
+
+#progress-container {
+    display: flex;
+    width: 33vw;
+    height: 4vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border:none;
+    z-index: 2;
+}
+
+meter {
+    visibility: visible;
+    flex-basis: 0;
+    flex-grow: 1;
+    border: none;
+    height: 4vh;
+    min-width: 30px;
+    transition: flex-grow 450ms ease;
+}
+
+meter::-webkit-meter-bar {
+    background: none; /* Required to get rid of the default background property */
+    background-color: #37578b;
+    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+}
+
+meter::-webkit-meter-optimum-value {
+    box-shadow: 0 5px 5px -5px #999 inset;
+    height: 0.4vh;
+    background: #ff1447;
+    background-size: 100% 100%; 
+}
+
+meter {
+    /* Firefox */
+    background: none; /* Required to get rid of the default background property */
+    background-color: #37578b;
+    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+}
+
+meter::-moz-meter-bar {
+    box-shadow: 0 5px 5px -5px #999 inset;
+    height: 0.4vh;
+    background: #ff1447;
+    background-size: 100% 100%;
+}
+
+.activeMeter {
+    flex-grow: 6;
+}
+
+#overlay {
+    display: flex;
+    height: 4vh;
+    width: inherit;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.overlay-button {
+    height: 4vh;
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    line-height: 4vh;
+    text-align: center;
+    vertical-align: middle;
+    font-size:2vh;
+    background: none;
+    color: #ffffff !important;
+    border: none;
+    min-width: 25px;
+    transition: flex-grow 450ms ease;
+    z-index: 4;
+    box-shadow: none;
+}
+
+.activeButton {
+    flex-grow: 5.7;
+    color: #ffffff !important;
+    /*font-size: 14pt;*/
+    font-size: 2.8vh;
+    /*letter-spacing: 2pt;*/
+}
+
+.activeButton:hover {
+    color: #ffffff !important;
+    font-size: 3vh;
+    background-color: unset;
+}
+
+.overlay-button:not(.activeButton):hover {
+    color: #ffffff !important;
+    font-size: 2.4vh;
+    background-color: unset;
+}
+
+#hoverTitleSpace {
+    position: fixed;
+    top: 6vh;
+    left: 0;
+    font-size: 12pt;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5vh 0.5vw;
+    border-radius: 0.5vh;
+    background: #000000;
+    color: #ffffff;
+    z-index: 2;
+    box-shadow: 0.2vw 0.2vh 0.2vh 0.1vh #888888;
+}
+
+#hoverTitleSpace::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    margin-left: -5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #000000 transparent;
+    z-index: 2;
+}
+
+.journey {
+    width: inherit;
+    padding: 0;
+    position: fixed;
+    top: 4vh;
+    bottom: 0;
+    background: #ffffff;
+    overflow-y:auto !important;
+    overflow-x:hidden;
+    text-align: justify;
+    /*border-right: solid 1px #b8b8b8;*/
+    box-shadow: 0px 0px 5px #a8a8a8;
+}
+
+.section-body {
+    margin: 0;
+    padding: 2vh 0 0 0;
+    font-size: calc(4px + 0.95vw);
+    text-align: justify;
+}
+
+.section-container {
+    width: inherit;
+    padding: 1vw 2vw 0 1vw;
+    margin-bottom: 100px;
+}
+
+.section-head {
+    color: #003E74;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 4vh;
+    text-align: center;
+    font-weight: bolder;
+
+}
+
+hr {
+    border-top: 1px solid #033482;
+    /*border-top: 1px solid #37578B;*/
+    /*border-top: 1px solid #ff1447;*/
+    margin: 1vh 0;
+}
+
+.placeholder {
+    margin-bottom: 3vh;
+}
+
+button.section-sub-head {
+    width: 100%;
+    position: relative;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    font-size: 2.5vh;
+    border: solid 1px #033482;
+    color: #033482;
+    box-shadow: none;
+}
+
+button.section-sub-head:hover {
+    background-color: #eaf2ff;
+}
+
+h3.section-sub-head {
+    width: 100%;
+    margin: 4vh 0 2vh 0;
+    padding: 0.5vh 0 0.5vh 0;
+    text-align: center;
+    font-size: 3.2vh;
+    background: #eaf2ff;
+    color: #033482;
+}
+
+.section-sub-content {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+i {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    transition-delay: 0.1s;
+    transition: transform 0.4s ease-in-out;
+}
+
+.section-sub-head:not(.collapsed) i {
+    transform: rotate(-180deg);
+}
+
+.section-extra-head-container {
+    display: table;
+    margin: 30px auto 10px auto;
+}
+
+.section-extra-head {
+    margin: 10px 0 20px 0;
+    text-align: center;
+    font-size: 10pt;
+    border: solid 1px #033482;
+    color: #033482;
+    box-shadow: none;
+}
+
+.section-extra-head:hover {
+    background-color: #eaf2ff;
+}
+
+.first-sub-head {
+    margin: 0 0 20px 0 !important;
+}
+
+/* RIGHT SIDE STYLES */
+
+.right {
+    width: 67vw;
+    position: fixed;
+    top: 4vh;
+    bottom: 0;
+    right: 0;
+    background: #ffffff;
+}
+
+#banner-dummy {
+    height: 4vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1vh 2.5vh #b1b1b1;
+    z-index: 1;
+}
+
+.banner {
+    height: 4vh;
+    width: 67vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: linear-gradient(
+            90deg,
+            #003E74 0%,
+            #37578b 15%,
+            #37578b 100%
+    );
+    color: #ffffff;
+    z-index: 2;
+}
+
+#vis-title {
+    height: 3vh;
+    margin:0;
+    position: fixed;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 3vh;
+    font-weight: bolder;
+    padding-top: 0.5vh;
+    left: 33vw;
+    right: 200px;
+    /*min-height: 40px;*/
+    background: none;
+    color: #ffffff;
+    font-size: 20pt;
+    letter-spacing: 2pt;
+}
+
+#vis-logo {
+    position: absolute;
+    top: 0.7vh;
+    right: 0.7vh;
+    height: 65%;
+}
+
+#vis-logo img{
+     max-height: 65%;
+     width: auto;
+}
+
+.wait {
+    font-size: 12pt;
+}
+
+.scriptSpace {
+    width:0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* TRANSITION STYLES */
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
+/* IMPORTED STYLE FROM LEARNING EXPERIENCE TEAM */
+
+.divclass {
+    width: inherit;
+}
+
+.extra-content {
+    /* Indicates a drop down box to hide stuff */
+    background: #ccdfff;
+    padding: 25px 40px;
+    border-radius: 5px;
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+
+/*---------------------------------------------------slider style------------------------------------------------------------------------*/
+
+/*
+
+input[type="range"] {
+               !* -webkit-box-shadow: 0 1px 0 0px #424242, 0 1px 0 #060607 inset, 0px 2px 10px 0px black inset, 1px 0px 2px rgba(0, 0, 0, 0.4) inset, 0 0px 1px rgba(0, 0, 0, 0.6) inset;
+                *!margin-top: 2px;
+
+                border-radius: 15px;
+                color: #ff5153;
+                -webkit-appearance: none;
+                height:10px;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                cursor: default;
+                top: -5px;
+                height: 30px;
+                width: 20px;
+                transform: translateY(-4px);
+                background: none repeat scroll 0 0 #777;
+                border-radius: 15px;
+                -webkit-box-shadow: 0 -1px 1px #0091D4 inset;
+            }
+input[type="range"]::-webkit-slider-thumb{
+       -webkit-appearance: none;
+       width: 25px;
+       height: 25px;
+
+       cursor: pointer;
+       border-radius: 15px;
+       background: #DEF3F8;
+       box-shadow: 0 0 10px #0091D4 inset;
+   }
+input[type="range"]::-webkit-slider-runnable-track{
+       height: 7px;
+       border-radius: 10px;
+       border: 1px solid currentcolor;
+
+   }
+*/

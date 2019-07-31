@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Title-->
+    <title>Visualisations Vue Template - Amol</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+<body>
+<div id="app">
+    <!--   Title of non-current sections to appear on hovering above respective number in navbar     -->
+    <div  id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
+        {{hoverTitle}}
+    </div>
+    <!--    Left Side of Window - containing mainly text    -->
+    <div class="vis-container left" id="left-container">
+        <!--     Dynamic Navigation Bar and Section Headings       -->
+        <div class="" id="progress-container">
+            <div id="banner-dummy"></div>
+            <!--    Dynamic Section Heading Text - overlaid on meters    -->
+            <!--    Also act as buttons to navigate between sections    -->
+            <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
+                <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
+                        key="sectionTitle1" data-no=1 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[0]}}
+                </button>
+                <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
+                        key="sectionTitle2" data-no=2 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[1]}}
+                </button>
+                <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
+                        key="sectionTitle3" data-no=3 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[2]}}
+                </button>
+                <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
+                        key="sectionTitle4" data-no=4 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[3]}}
+                </button>
+                <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
+                        key="sectionTitle5" data-no=5 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[4]}}
+                </button>
+            </div>
+            <!--    Dynamic meters indicating progress through each section    -->
+            <meter :class="[currentTitle === 1 ? 'activeMeter' : '']" id="m1" :min="sectionTops[0]"
+                   :max="sectionBottoms[0]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 2 ? 'activeMeter' : '']" id="m2" :min="sectionTops[1]"
+                   :max="sectionBottoms[1]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 3 ? 'activeMeter' : '']" id="m3" :min="sectionTops[2]"
+                   :max="sectionBottoms[2]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 4 ? 'activeMeter' : '']" id="m4" :min="sectionTops[3]"
+                   :max="sectionBottoms[3]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
+                   :max="sectionBottoms[4]" :value="scrollPos"></meter>
+        </div>
+        <!--    Container for text content split into sections    -->
+        <!--suppress XmlUnboundNsPrefix -->
+        <div class="journey" id="main-journey" v-on:scroll.passive="scrollFunc">
+            <!--    Section Text Containers   -->
+            <div class="section-container" id="sc1">
+                <div class="placeholder" id="ph1">
+                    <hr>
+                    <h2 class="text section-head" id="s1">
+                        Orthogonality
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p1">
+                    Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
+                    inner product as
+                    <span class="mathJaxDisplay">
+                            $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
+                        </span>
+                    where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span> component of the vector
+                    <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
+                    <span class="mathJaxDisplay">
+                            $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
+                        </span>
+                    then we say the vectors are <strong>orthogonal</strong>.
+                    <br><br>
+                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do not change the position
+                    component in the direction of any vector
+                    orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are perpendicular.
+                    <!--(... talk about definition of orthogonality)-->
+                    <br><br>
+                    If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the vectors are said to be
+                    <strong>orthonormal</strong>.
+                    <span class="mathJaxDisplay">
+                            $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
+                            \\ 1 \quad \text{if } m = n
+                            \end{matrix}\right. $$
+                        </span>
+                    This mean the vectors are orthogonal and conveniently normalised.
+                    <br><br>
+                    Use the visualisation to see that when the basis vectors are not parallel they span <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
+                    using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
+                    <br><br>
+                    If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span class="mathJaxInline">$ n $</span> vectors,
+                    then the basis vectors form a <strong>complete set</strong>.
+                    If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal
+                    set</strong>.
+                    <br><br>
+                    In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
+                    be complete.
+                    We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain <span class="mathJaxInline">$ \left[a,b \right] $</span>.
+                    <br><br>
+                    We define their inner product to be
+                    <span class="mathJaxDisplay">
+                            $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
+                        </span>
+                    and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
+                    for <span class="mathJaxInline">$ m \neq n $</span>.
+                    <br><br>
+                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
+                    <br><br>
+                    We now claim that you can construct any square integrable function from a <strong>complete
+                    set</strong> of basis
+                    functions in the same way vectors could be constructed from a complete set of basis vectors. A
+                    square integrable function <span class="mathJaxInline">$ f $</span> is
+                    a function whose inner product with itself, <span class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
+
+                </div>
+            </div>
+            <div class="section-container" id="sc2">
+                <div class="placeholder" id="ph2">
+                    <hr>
+                    <h2 class="text section-head" id="s2">
+                        Derivation
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p2">
+                    <div id="intro" class="divclass">
+                        <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#introContentContainer"
+                        :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
+                            Introduction to Fourier series <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="introContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="introContent" class="section-sub-content" key="introContent">
+                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
+                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
+                                of
+                                sines and cosines with varying
+                                frequencies.
+                                <br><br>
+                                These trigonometric functions form orthogonal basis.
+                                <br><br>
+                                The Fourier series of <span class="mathJaxInline">$ f(x) $</span> is
+                                <span class="mathJaxDisplay">
+                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
+                                    </span>
+                                where
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
+                                        b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
+                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
+                                        \end{align}
+                                    </span>
+                                and
+                                <span class="mathJaxDisplay">
+                                        $$ n=0,1,2... $$
+                                    </span>
+                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the average value of <span class="mathJaxInline">$ f(x) $</span>.
+                                <br><br>
+                                The Fourier series representation of the function <span class="mathJaxInline">$ f(x) $</span> in exponential
+                                (complex) form is
+                                <span class="mathJaxDisplay">
+                                        $$ f(x) =\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad $$
+                                    </span>
+                                where
+                                <span class="mathJaxDisplay">
+                                        $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
+                                    </span>
+                                <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
+                                the trigonometric and exponential fourier series are different. Also note the limit of
+                                the
+                                summations.
+                            </div>
+                        </div>
+                    </div>
+                    <div id="FSderivation" class="divclass">
+                        <button id="ssh2" class="section-sub-head collapsed" key="ssh2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#FSderivationContentContainer"
+                                :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
+                            General Derivation <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="FSderivationContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="FSderivationContent" class="section-sub-content" key="FSderivationContent">
+                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum of
+                                exponential terms.
+                                <span class="mathJaxDisplay">
+                                        $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
+                                    </span>
+                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span class="mathJaxInline">$ m=0,1,2... $</span>,
+                                and integrating both sides gives the following:
+                                <span class="mathJaxDisplay">
+                                        $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
+                                    </span>
+                                Performing the integral on the R.H.S gives
+                                <span class="mathJaxDisplay">
+                                        $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
+                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
+                                    </span>
+                                This is the orthonormality of complex exponentials.
+                                <br><br>
+                                Now since the only non-zero value of the sum is when <span class="mathJaxInline">$ n=m $</span>,
+                                <span class="mathJaxDisplay">
+                                        $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
+                                    </span>
+                                hence
+                                <span class="mathJaxDisplay">
+                                        $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx. $$
+                                    </span>
+                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary integer, it can be assigned
+                                as <span class="mathJaxInline">$ n $</span> for simplicity.
+                                <br><br>
+                                Given the previously derived equation, we can derive the trigonometric form of the
+                                Fourier series. By reorganising the sum, we get
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)= \underbrace{c_0}_\text{n=0} + \sum_{n=1}^{\infty} \big( \underbrace{c_n e^{in\pi x/L}}_\text{Positive n term} + \underbrace{c_{-n} e^{-in\pi x/L}}_\text{Negative n terms} \big).$$
+                                    </span>
+                                We can regroup the terms in the summation in the following way:
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="regroupexplainContainer" class="collapse show extra-content-container">
+                                    <div id="regroupexplain" class="extra-content">
+                                            <span class="mathJaxDisplay">
+                                                \begin{align}
+                                                = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
+                                                + \underbrace{c_{-n} e^{in\pi x/L} - c_{-n} e^{in\pi x/L}}_\text{ =0} & \\
+                                                + \underbrace{c_{n} e^{-in\pi x/L} -c_{n} e^{-in\pi x/L}}_\text{ =0} & \Big] \\
+                                                \end{align}
+                                                <br>
+                                                \begin{align}
+                                                = \frac{1}{2} \Big[ c_n e^{in\pi x/L} +c_{-n} e^{in\pi x/L} & \\
+                                                + c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \\
+                                                + c_n e^{in\pi x/L} - c_{-n} e^{in\pi x/L} & \\
+                                                - c_n e^{-in\pi x/L} + c_{-n} e^{-in\pi x/L} & \Big] \\
+                                                \end{align}
+                                            </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        f(x)= c_0 + \sum_{n=1}^{\infty} \Big[ & \frac{c_n + c_{-n}}{2} \big(e^{in\pi x/L} +e^{-in\pi x/L} \big) \\
+                                        & \frac{c_n - c_{-n}}{2} \big(e^{in\pi x/L} -e^{-in\pi x/L} \big) \Big]
+                                        \end{align}
+                                    </span>
+                                Now define <span class="mathJaxInline">$ a_n = c_n + c_{-n} $</span> and
+                                <span class="mathJaxInline">$ b_n = i(c_n - c_{-n}) $</span>
+                                and use that these exponentials can we written as
+                                sines and cosines.
+                                <br><br>
+                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
+                                <br><br>
+                                Hence
+                                <span class="mathJaxDisplay">
+                                        $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
+                                    </span>
+                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        a_n = c_n + c_{-n} = & \frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx \\
+                                        + & \frac{1}{2L} \int_{-L}^{+L}f(x) e^{in\pi x/L}dx
+                                        \end{align}
+                                    </span>
+                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        & =\frac{1}{L}\int_{-L}^{+L}f(x) \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx \\
+                                        & =\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx
+                                        \end{align}
+                                    </span>
+                                Similarly for <span class="mathJaxInline">$ b_n $</span>,
+                                <span class="mathJaxDisplay">
+                                        $$ b_n =\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx. $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="triangular1" class="divclass">
+                        <button id="ssh3" class="section-sub-head collapsed" key="ssh3" @click="updateSubSection(3); subScrollTo($event)" data-toggle="collapse" data-target="#triangular1ContentContainer"
+                                :style="derivationSubSection === 3 ? 'background-color: #eaf2ff;' : ''">
+                            Triangular Function Part 1 <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="triangular1ContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="triangular1Content" class="section-sub-content" key="triangular1Content">
+                                The triangular function is defined by the following:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\left\{
+                                        \begin{array}{ll}
+                                        \frac{-2A}{L} (x+L) \quad (-L \leq x < -L/2) \\
+                                        \frac{2A}{L} x \qquad \qquad (-L/2\leq x < L/2) \\
+                                        \frac{-2A}{L} (x-L) \quad (L/2\leq x < L)
+                                        \end{array}
+                                        \right. $$
+                                    </span>
+                                First notice that <span class="mathJaxInline">$ f(x) $</span> is odd about <span class="mathJaxInline">$ x=0 $</span>, hence <span class="mathJaxInline">$ a_n=0 $</span>
+                                for all <span class="mathJaxInline">$ n $</span>. Also, since the <span class="mathJaxInline">$ b_n $</span> integrand is even about
+                                <span class="mathJaxInline">$ x=0 $</span>,
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{2}{L}\int_0^L f(x) \sin \left(\frac{n \pi x}{L}\right)dx. $$
+                                    </span>
+                                Notice that for even <span class="mathJaxInline">$ n $</span>, <span class="mathJaxInline">$ b_n $</span> is odd about
+                                <span class="mathJaxInline">$ x=L/2 $</span>.
+                                Hence,
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{2}{L}\int_0^{L} f(x) \sin \left(\frac{n\pi x}{L} \right) dx = 0 \quad \text{for even n}. $$
+                                    </span>
+                                The integral from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ L/2 $</span> is equal in magnitude but
+                                opposite in sign to the integral from <span class="mathJaxInline">$ L/2 $</span> to <span class="mathJaxInline">$ L $</span>, for
+                                even <span class="mathJaxInline">$ n $</span>.
+                                <br><br>
+                                For odd <span class="mathJaxInline">$ n $</span>, the function is even around <span class="mathJaxInline">$ L/2 $</span>, so we only
+                                have to integrate from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ L/2 $</span> then multiply by
+                                <span class="mathJaxInline">$ 2 $</span>. This has made our job much easier.
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=2\frac{2}{L}\int_0^{L/2} f(x) \sin \left(\frac{n\pi x}{L} \right) dx \quad \text{for odd n} $$
+                                    </span>
+                                Play around with the visualisation to the right to convince yourself this is true.
+                            </div>
+                        </div>
+                    </div>
+                    <div id="triangular2" class="divclass">
+                        <button id="ssh4" class="section-sub-head collapsed" key="ssh4" @click="updateSubSection(4); subScrollTo($event)" data-toggle="collapse" data-target="#triangular2ContentContainer"
+                                :style="derivationSubSection === 4 ? 'background-color: #eaf2ff;' : ''">
+                            Triangular Function Part 2 <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="triangular2ContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="triangular2Content" class="section-sub-content" key="triangular2Content">
+                                    <span class="mathJaxDisplay">
+                                        $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
+                                    </span>
+                                Remembering that for even <span class="mathJaxInline">$ n $</span>, <span class="mathJaxInline">$ b_n=0 $</span>, therefore only
+                                consider odd <span class="mathJaxInline">$ n $</span>.
+                                <span class="mathJaxDisplay">
+                                        $$ b_n = \frac{4}{L} \frac{2A}{L}\int_0^{L/2} x \sin \left(\frac{n\pi x}{L} \right) dx $$
+                                    </span>
+                                This integral can be performed by parts.
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#BypartsTriangularContainer"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="BypartsTriangularContainer" class="collapse show extra-content-container">
+                                    <div id="BypartsTriangular" class="extra-content">
+                                            <span class="mathJaxDisplay">
+                                                $$ u=x \qquad dv= \sin \left(\frac{n\pi x}{L} \right)dx $$
+                                            </span>
+                                        <span class="mathJaxDisplay">
+                                                $$ du=dx \qquad v=\frac{-L}{n\pi} \cos \left(\frac{n\pi x}{L} \right) $$
+                                            </span>
+                                        <span class="mathJaxDisplay">
+                                                \begin{align}
+                                                b_n=\frac{8A}{L^2} \Bigg[ \Big[ \frac{-xL}{n\pi} & \cos \Big(\frac{n\pi x}{L}\Big) \Big] \Bigr|_0^{L/2} \\
+                                                -\int_0^{L/2}\frac{-L}{n\pi} & \cos \Big(\frac{n\pi x}{L} \Big)dx \Bigg]
+                                                \end{align}
+                                            </span>
+                                        For odd n,
+                                        <span class="mathJaxDisplay">
+                                                $$ \cos \left(\frac{n\pi}{2} \right)=0 $$
+                                            </span>
+                                        Therefore,
+                                        <span class="mathJaxDisplay">
+                                                $$ b_n=\frac{8A}{L^2} \Bigg[0+ \int_0^{L/2}\frac{L}{n\pi} \cos \left(\frac{n\pi x}{L}
+                                                \right)dx \Bigg] $$
+                                            </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{8A}{L^2} \frac{L^2}{(n\pi)^2} \sin \left(\frac{n\pi x}{L} \right) \biggr |_0^{L/2} $$
+                                    </span>
+                                Note for odd <span class="mathJaxInline">$ n $</span>:
+                                <span class="mathJaxDisplay">
+                                    $$ \sin \left(\frac{n\pi}{2} \right)=(-1)^{\frac{n-1}{2}} $$
+                                    </span>
+                                Therefore,
+                                <span class="mathJaxDisplay">
+                                    $$ b_n=\frac{8A}{n^2\pi^2}(-1)^{\frac{n-1}{2}} $$
+                                    </span>
+                                Finally,
+                                <span class="mathJaxDisplay">
+                                    $$ f(x)=\sum_{n=1,3,5...}^\infty \frac{8A}{n^2\pi^2} (-1)^{\frac{n-1}{2}} \sin \left(\frac{n\pi x}{L} \right) $$
+                                    </span>
+                                And the using that an odd number is given by <span class="mathJaxInline">$ 2n +1 $</span> for any
+                                <span class="mathJaxInline">$ n $</span>,
+                                <span class="mathJaxDisplay">
+                                    $$ f(x)=\sum_{n=1,2,3...}^\infty \frac{8A}{(2n-1)^2\pi^2}(-1)^n \sin \left(\frac{(2n-1)\pi x}{L} \right) $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="parabolic" class="divclass">
+                        <button id="ssh5" class="section-sub-head collapsed" key="ssh5" @click="updateSubSection(5); subScrollTo($event)" data-toggle="collapse" data-target="#parabolicContentContainer"
+                                :style="derivationSubSection === 5 ? 'background-color: #eaf2ff;' : ''">
+                            Parabolic Function <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="parabolicContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="parabolicContent" class="section-sub-content" key="parabolicContent">
+                                The parabolic function is defined as:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=Ax^2 \quad \text{for:} -L\leq x< L$$
+                                    </span>
+                                and forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
+                                Therefore, <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span> coefficients are given as
+                                <span class="mathJaxDisplay">
+                                        $$ b_n = \frac{1}{L}\int_{-L}^{+L} Ax^2 \sin \left(\frac{n \pi x}{L} \right)dx $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n= \frac{1}{L}\int_{-L}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                    </span>
+                                The <span class="mathJaxInline">$ b_n $</span> integral is odd about <span class="mathJaxInline">$ x=0 $</span>, hence
+                                <span class="mathJaxInline">$ b_n=0 $</span> for all <span class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is even about
+                                <span class="mathJaxInline">$ x=0 $</span>. Hence
+                                <span class="mathJaxDisplay">
+                                        $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                    </span>
+                                For <span class="mathJaxInline">$ n=0 $</span>:
+                                <span class="mathJaxDisplay">
+                                        $$ a_0 = \frac{2}{L} \int _{0}^{+L} Ax^2 dx  = \frac{2AL^2}{3} $$
+                                    </span>
+                                For <span class="mathJaxInline">$ n\neq 0 $</span>:
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{2A}{L}\int_0^L x^2 \cos \left(\frac{n\pi x}{L} \right)dx $$
+                                    </span>
+                                This Eqn. can be solved by integrating by parts.
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#ByPartsParabolic1Container"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="ByPartsParabolic1Container" class="collapse show extra-content-container">
+                                    <div id="ByPartsParabolic1" class="extra-content">
+                                        <span class="mathJaxDisplay">
+                                            $$ du = 2x\cdot dx \qquad v=\frac{L}{n\pi} \sin \left(\frac{n\pi x}{L} \right) $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ u=x^2 \qquad dv= \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            \begin{align}
+                                            a_n = \frac{2A}{L} \Bigg[ \Big[\frac{Lx^2}{n\pi} & \sin \left(\frac{n\pi x}{L} \right) \Big] \biggr |_0^L \\
+                                            -\int_0^L\frac{2xL}{n\pi} & \sin \left(\frac{n \pi x}{L} \right)dx \Bigg]
+                                            \end{align}
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ = \frac{2A}{L} \Bigg[0 -\int_0^L\frac{2xL}{n\pi} \sin\left(\frac{n \pi x}{L}\right)dx \Bigg] $$
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = -\frac{4A}{n\pi}\int_{0}^{L} x \sin \left(\frac{n \pi x}{L} \right)dx $$
+                                    </span>
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#ByPartsParabolic2Container"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="ByPartsParabolic2Container" class="collapse show extra-content-container">
+                                    <div id="ByPartsParabolic2" class="extra-content">
+                                        <span class="mathJaxDisplay">
+                                            $$ u = x \qquad dv = \sin \left(\frac{n\pi x}{L} \right) dx $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ du = dx \qquad v = -\frac{L}{n\pi} \cos \left(\frac{n\pi x}{L} \right) $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            \begin{align}
+                                            a_n = \frac{-4A}{n\pi} \Bigg[\Big[-\frac{xL}{n\pi} & \cos \left(\frac{n\pi x}{L} \right)\Big] \biggr |_0^L \\
+                                            - \int_0^L\frac{-L}{n\pi} & \cos \left(\frac{n\pi x}{L} \right)dx \Bigg]
+                                            \end{align}
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{4A}{n\pi} \Bigg[\frac{xL}{n\pi} \cos \left(\frac{n\pi x}{L} \right) \Bigg] \biggr |_0^L $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ = \frac{4AL^2}{n^2\pi^2}(-1)^n $$
+                                    </span>
+                                Therefore, the fourier series can be written as
+                                <span class="mathJaxDisplay">
+                                        $$ f(x) = \frac{AL^2}{3} + \sum_{n=1}^\infty \frac{4AL^2}{n^2\pi^2} (-1)^n \cos \left(\frac{n\pi x}{L} \right) $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="delta" class="divclass">
+                        <button id="ssh6" class="section-sub-head collapsed" key="ssh6" @click="updateSubSection(6); subScrollTo($event)" data-toggle="collapse" data-target="#deltaContentContainer"
+                                :style="derivationSubSection === 6 ? 'background-color: #eaf2ff;' : ''">
+                            Dirac-Delta Function <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="deltaContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="deltaContent" class="section-sub-content" key="deltaContent">
+                                The Dirac-delta function can be thought of as a infinite spike at <span class="mathJaxInline">$ x=0 $</span>.
+                                <span class="mathJaxDisplay">
+                                        $$
+                                        f(x) = \delta(x)=\left\{
+                                        \begin{array}{ll}
+                                        +\infty \quad (x=0) \\
+                                        0 \qquad (x \neq 0)
+                                        \end{array}
+                                        \right.
+                                        $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n=\frac{1}{L}\int_{-L}^{+L} \delta (x) \cos \left(\frac{n\pi x}{L} \right)dx $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{1}{L}\int_{-L}^{+L}\delta(x) \sin \left(\frac{n\pi x}{L} \right)dx $$
+                                    </span>
+                                <span class="mathJaxInline">$ \delta(x) $</span> is an even function. Hence <span class="mathJaxInline">$ b_n=0 $</span> and
+                                <span class="mathJaxDisplay">
+                                        $$ a_n=\frac{1}{L} $$
+                                    </span>
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#ByPartsDiracContainer"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="ByPartsDiracContainer" class="collapse show extra-content-container">
+                                    <div id="ByPartsDirac" class="extra-content">
+                                        By considering the shifting property of the Dirac-Delta function,
+                                        <span class="mathJaxDisplay">
+                                        $$ \int_{\alpha-\epsilon}^{\alpha+\epsilon} g(x) \delta(x-\alpha)dx=g(\alpha) $$
+                                        </span>
+                                        For us, <span class="mathJaxInline">$ \alpha=0 $</span>, <span class="mathJaxInline">$ \epsilon=L, $</span> and <span class="mathJaxInline">$ g(x)= \sin \left(n \pi x/L \right) $</span>.
+                                        <br><br>
+                                        Therefore,
+                                        <span class="mathJaxDisplay">
+                                        $$ a_n=\frac{1}{L}\cos \left(\frac{n\pi \times 0}{L} \right)=\frac{1}{L} $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{1}{L}\sin \left(\frac{n\pi \times 0}{L} \right)=0 $$
+                                        </span>
+                                    </div>
+                                </div>
+                                Therefore, the fourier series for positive <span class="mathJaxInline">$ L $</span> can be written as
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\frac{1}{2L}+\sum_{n=1}^\infty \frac{1}{L} \cos \left(\frac{n\pi x}{L} \right). $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="square" class="divclass">
+                        <button id="ssh7" class="section-sub-head collapsed" key="ssh7" @click="updateSubSection(7); subScrollTo($event)" data-toggle="collapse" data-target="#squareContentContainer"
+                                :style="derivationSubSection === 7 ? 'background-color: #eaf2ff;' : ''">
+                            Square Wave <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="squareContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="squareContent" class="section-sub-content" key="squareContent">
+                                The square wave is defined as the following:
+                                <span class="mathJaxDisplay">
+                                        $$
+                                        f(x)=\left\{
+                                        \begin{array}{ll}
+                                        -A \quad (-L \leq x < 0) \\
+                                        A \quad (0\leq x < L)
+                                        \end{array}
+                                        \right.
+                                        $$
+                                    </span>
+                                The <span class="mathJaxInline">$ a_{n} $</span> terms can be found be noting that <span class="mathJaxInline">$ f(x) $</span> is
+                                odd,
+                                so <span class="mathJaxInline">$ a_n $</span> is <span class="mathJaxInline">$ 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
+                                <br><br>
+                                To find the <span class="mathJaxInline">$ b_n $</span> terms, the integration can be split into two parts:
+                                <span class="mathJaxInline">$ -L\leq x <0 $</span>
+                                and <span class="mathJaxInline">$ 0\leq x < L $</span>.
+                                <br><br>
+                                This gives the following integration:
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        b_n & =\frac{1}{L}\int_{-L}^0 -A \sin \left(\frac{n\pi x}{L} \right)dx \\
+                                        & + \frac{1}{L}\int_0^L A \sin \left(\frac{n \pi x}{L} \right)dx
+                                        \end{align}
+                                    </span>
+                                which can be evaluated to:
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{-2A}{L}\frac{L}{n\pi} \cos \left(\frac{n\pi x}{L} \right)\biggr |_0^L
+                                        =\frac{2A}{n\pi}\left[1-\cos\left(n\pi \right) \right] $$
+                                    </span>
+                                Note that
+                                <span class="mathJaxDisplay">
+                                        $$ \cos \left(n \pi\right)=(-1)^n $$
+                                    </span>
+                                Hence
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{2A}{n\pi}(1-(-1)^n)$$
+                                    </span>
+                                Therefore the final fourier series is:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\sum_{n=1}^{\infty} \frac{2A}{n\pi} (1-(-1)^n)\sin \left(\frac{n\pi x}{L}\right). $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sawtooth" class="divclass">
+                        <button id="ssh8" class="section-sub-head collapsed" key="ssh8" @click="updateSubSection(8); subScrollTo($event)" data-toggle="collapse" data-target="#sawtoothContentContainer"
+                                :style="derivationSubSection === 8 ? 'background-color: #eaf2ff;' : ''">
+                            Sawtooth Wave <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="sawtoothContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="sawtoothContent" class="section-sub-content" key="sawtoothContent">
+                                The Sawtooth wave is defined as the following:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\frac{Ax}{L}  \quad (-L \leq x < L). $$
+                                    </span>
+                                <span class="mathJaxInline">$ f(x) $</span> is odd, so <span class="mathJaxInline">$ a_n= 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
+                                <br><br>
+                                The <span class="mathJaxInline">$ b_n $</span> terms are given by the following integration:
+                                <span class="mathJaxDisplay">
+                                        \begin{align}
+                                        b_n & =\frac{1}{L}\int_{-L}^{L} \frac{Ax}{L}\sin \left(\frac{n\pi x}{L} \right)dx \\
+                                        & =\frac{2A}{L^{2}}\int_{0}^{L} x \sin \left(\frac{n\pi x}{L} \right)dx.
+                                        \end{align}
+                                    </span>
+                                Using Integration by parts it can be shown that:
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#ByPartsSawtoothContainer"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="ByPartsSawtoothContainer" class="collapse show extra-content-container">
+                                    <div id="ByPartsSawtooth" class="extra-content">
+                                        <span class="mathJaxDisplay">
+                                            $$ u=x \quad  dv=\sin \left(\frac{n\pi x}{L} \right)dx $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ du=dx \quad v=\frac{-L}{n\pi}\cos \left(\frac{n\pi x}{L} \right) $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            \begin{align}
+                                            b_n=\frac{2A}{L^{2}} \Bigg[ \frac{-Lx}{n\pi} & \cos \left(\frac{n\pi x}{L} \right)\biggr |_0^L \\
+                                            -\int_0^L\frac{-L}{n\pi} & \cos \left(\frac{n\pi x}{L} \right)dx \Bigg]
+                                            \end{align}
+                                        </span>
+                                        Note that the second integrand is zero as it is of cosine over a full
+                                        period.
+                                        <span class="mathJaxDisplay">
+                                            $$ b_n=-\frac{2A}{n\pi} \cos \left(n\pi \right)=-\frac{2A}{n\pi}(-1)^n $$
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        $$ b_n=\frac{2A}{n\pi}(-1)^{n+1}. $$
+                                    </span>
+                                Therefore the final fourier series is:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\sum_{n=1}^\infty \frac{2A}{n\pi}(-1)^{n+1} \sin \left(\frac{n\pi x}{L} \right). $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modx" class="divclass">
+                        <button id="ssh9" class="section-sub-head collapsed" key="ssh9" @click="updateSubSection(9); subScrollTo($event)" data-toggle="collapse" data-target="#modxContentContainer"
+                                :style="derivationSubSection === 9 ? 'background-color: #eaf2ff;' : ''">
+                            Mod x Function <i class='fas fa-chevron-down'></i>
+                        </button>
+                        <div id="modxContentContainer" class="collapse show" data-parent="#p2">
+                            <div id="modxContent" class="section-sub-content" key="modxContent">
+                                The <span class="mathJaxInline">$ |x| $</span> function is defined as the following:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=A|x| \quad (-L \leq x < L). $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{1}{L}\int_{-L}^{+L} A|x| \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                    </span>
+                                <span class="mathJaxDisplay">
+                                        $$ b_n = \frac{1}{L}\int_{-L}^{+L} A|x| \sin \left( \frac{n\pi x}{L}\right) dx $$
+                                    </span>
+                                <span class="mathJaxInline">$ f(x) $</span> is even about <span class="mathJaxInline">$ x=0 $</span>. Hence <span class="mathJaxInline">$ b_n=0 $</span>.
+                                The <span class="mathJaxInline">$ a_n $</span> integral is even about <span class="mathJaxInline">$ x=0 $</span>. Hence,
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{2}{L}\int_{0}^{+L} Ax  \cos \left(\frac{n \pi x}{L}\right)dx. $$
+                                    </span>
+                                For <span class="mathJaxInline">$ n=0 $</span>
+                                <span class="mathJaxDisplay">
+                                        $$ a_0 = \frac{2A}{L}\int_0^L x dx = \frac{2A}{L}\frac{x^2}{2} \biggr |_0^L = AL. $$
+                                    </span>
+                                For <span class="mathJaxInline">$ n \neq 0 $</span>:
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{2A}{L}\int_{0}^{+L} x   \cos \left(\frac{n \pi x}{L} \right)dx. $$
+                                    </span>
+                                By integrating by parts,
+                                <span class="section-extra-head-container">
+                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                                data-target="#ByPartsModxContainer"> <span>Show</span> Full Calculation </button>
+                                    </span>
+                                <div id="ByPartsModxContainer" class="collapse show extra-content-container">
+                                    <div id="ByPartsModx" class="extra-content">
+                                        <span class="mathJaxDisplay">
+                                            $$ u=x \qquad  dv= \cos\left(\frac{n\pi x}{L}\right)dx $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ du=dx \qquad  v=\frac{L}{n\pi} \sin \left(\frac{n\pi x}{L} \right) $$
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            \begin{align}
+                                            a_n = \frac{2A}{L} \Bigg[ \Big[\frac{Lx}{n\pi} & \sin \left( \frac{n \pi x}{L} \right) \Big] \Biggr|_0^L \\
+                                            -\int_0^{+L} \frac{L}{n\pi} & \sin \left(\frac{n \pi x}{L} \right)dx \Bigg]
+                                            \end{align}
+                                        </span>
+                                        <span class="mathJaxDisplay">
+                                            $$ a_n = \frac{2A}{L} \Bigg[ 0  -\int_0^{+L}\frac{L}{n\pi}  \sin \left(\frac{n\pi x}{L} \right)dx \Bigg] $$
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{2A}{L}\frac{L^2}{(n\pi)^2}  \cos \left( \frac{n\pi x}{L} \right)\biggr |_0^L . $$
+                                    </span>
+                                Hence,
+                                <span class="mathJaxDisplay">
+                                        $$ a_n = \frac{2A}{L}\frac{L^2}{(n\pi)^2}  \left[(-1)^n-1 \right] = \frac{2AL}{(n\pi)^2}\left[(-1)^n-1 \right]. $$
+                                    </span>
+                                Therefore the final fourier series is:
+                                <span class="mathJaxDisplay">
+                                        $$ f(x)=\frac{AL}{2}+ \sum_{n=1}^\infty \frac{2AL}{(n\pi)^2} \left[(-1)^n-1 \right]  \cos \left(\frac{n\pi
+                                        x}{L} \right). $$
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container" id="sc3">
+                <div class="placeholder" id="ph3">
+                    <hr>
+                    <h2 class="text section-head" id="s3">
+                        Components
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p3">
+                    The 0<sup>th</sup> term of the series is the constant term before the sum;
+                    <span class="mathJaxInline">$ \frac{a_0}{2} $</span>.
+                    <br><br>
+                    This is labelled as the 0<sup>th</sup> term so that the series may start indexing its terms from
+                    <span class="mathJaxInline">$ n=1 $</span>.
+                    <span class="mathJaxDisplay">
+                            $$ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n \cos\left(\frac{n\pi x}{L}\right)+b_n \sin\left(\frac{n \pi x}{L}\right) $$
+                        </span>
+                    If the function is not periodic, then we may cut the function, forcing it to be periodic over some
+                    <span class="mathJaxInline">$ -L < x < L $</span>. This means that we can prescribe a Fourier series
+                    that is now valid for the function over the selected range. If we take the limit as <span class="mathJaxInline">$ L \rightarrow \infty $</span>,
+                    then a Fourier transform need be used. This is a different problem entirely!
+                </div>
+            </div>
+            <div class="section-container" id="sc4">
+                <div class="placeholder" id="ph4">
+                    <hr>
+                    <h2 class="text section-head" id="s4">
+                        Power Spectrum
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p4">
+                    <h3 class="section-sub-head first-sub-head">
+                        Decomposition of a function into odd and even parts
+                    </h3>
+                    Representing a function in terms of a trigonometric Fourier series is analogous to representing a
+                    vector in
+                    terms of basis vectors. Here sines and cosines are our basis functions, we have a method for finding
+                    the projection
+                    of the function in the direction of each basis function (<span class="mathJaxInline">$ a_{n} $</span> and
+                    <span class="mathJaxInline">$ b_{n} $</span> are the "projections" of <span class="mathJaxInline">$ f(x) $</span> onto
+                    <span class="mathJaxInline">$ \sin\left(\frac{n\pi x}{L} \right) $</span> and <span class="mathJaxInline">$ \cos\left(\frac{n \pi x}{L} \right) $</span>
+                    respectively).
+                    <br><br>
+                    This visualisation shows how the first ten terms are introduced to the series, notice that
+                    usually as the number of terms included in the series increases, new terms become less
+                    significant (their amplitude decreases).
+                    <h3 class="section-sub-head">
+                        Power spectrum
+                    </h3>
+                    The power spectrum form is a different representation of a continuous signal.
+                    <br><br>
+                    One can think of a signal as a sound wave that is a superposition of different frequencies <span class="mathJaxInline">$ \omega_n $</span>,
+                    each with amplitude <span class="mathJaxInline">$ \alpha_n $</span>, and relative phases <span class="mathJaxInline">$ \theta_n $</span>.
+                    Any signal of period <span class="mathJaxInline">$ 2L $</span> can be decomposed in terms of the amplitude and relative
+                    phase of its discrete frequency modes. Its two parameters <span class="mathJaxInline">$ \alpha_n $</span> and <span class="mathJaxInline">$ \theta_n $</span>,
+                    enable us to measure the amount of
+                    each frequency <span class="mathJaxInline">$ \omega_n=\frac{n\pi}{L} $</span>contained in the signal, and the relative
+                    phase difference between the <span class="mathJaxInline">$ n^{th} $</span> frequency and a cosine wave centered at <span class="mathJaxInline">$ x=0 $</span>.
+                    This is simply a different way to represent a signal
+                    rather than decomposing it into its even and odd parts.
+                    <span class="mathJaxDisplay">
+                           $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\alpha_n \cos\bigg(\frac{n\pi x}{L} - \theta_n\bigg) $$
+                        </span>
+                    <span class="mathJaxDisplay">
+                            $$ \alpha_n = \sqrt{a^2_n + b^2_n} $$
+                        </span>
+                    <span class="mathJaxDisplay">
+                            $$ \theta_n = \tan^{-1} \bigg(\frac{b_n}{a_n}\bigg) $$
+                        </span>
+                    For some even functions, when the period transitions from 0 to negative, the value of
+                    <span class="mathJaxInline">$ \theta_n $</span> change from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ \pi $</span> or vice versa. Why
+                    do you think
+                    this happens?
+                    <span class="section-extra-head-container">
+                            <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                    data-target="#evenThetaAnswerContainer"> <span>Show</span> Answer </button>
+                        </span>
+                    <div id="evenThetaAnswerContainer" class="collapse show extra-content-container">
+                        <div id="evenThetaAnswer" class="extra-content">
+                            This happens because the value of <span class="mathJaxInline">$ a_n $</span> changes sign
+                            (<span class="mathJaxInline">$ b_n $</span> is 0) causing the value of
+                            <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0 $</span>, <span class="mathJaxInline">$ \tan^{-1}(\frac{b_n}{a_n}) $</span>
+                            can be both
+                            0 or <span class="mathJaxInline">$ \pi $</span> depending on whether <span class="mathJaxInline">$ a_n $</span> is positive or
+                            negative. Not all even functions exhibit this.
+                            The parabola for example, has its <span class="mathJaxInline">$ a_n $</span> proportional to
+                            <span class="mathJaxInline">$ L^2 $</span>, so its sign does not change when $L$ changes sign.
+                        </div>
+                    </div>
+                    <h3 class="section-sub-head">
+                        Orthogonal functions
+                    </h3>
+                    Two functions <span class="mathJaxInline">$ f $</span> and <span class="mathJaxInline">$ g $</span> are said to be orthogonal if their inner
+                    product <span class="mathJaxInline">$ \langle f,g\rangle $</span> is 0. Just like basis vectors in a finite vector space,
+                    a set of orthogonal functions can form an infinite basis in a function space and a linear sum of
+                    these basis functions can describe any function in that function space.
+                    <br><br>
+                    For functions that are periodic over <span class="mathJaxInline">$ -L < x \leq L $</span> with a period of
+                    <span class="mathJaxInline">$ 2L $</span>, the fourier components <span class="mathJaxInline">$ \rightarrow $</span> <span class="mathJaxInline">$ \sin(\frac{\pi x}{L}), \cos(\frac{\pi x}{L}),
+                        \sin(\frac{2\pi x}{L}), \cos(\frac{2\pi x}{L})... $</span> and so on form a complete orthogonal
+                    set that can be used to describe these functions. This means that increasing the amplitude of one of
+                    the components does not affect the other components, so changing the amount of any frequency
+                    contained
+                    in a signal leaves all the other frequencies unaffected.
+                </div>
+            </div>
+            <div class="section-container" id="sc5">
+                <div class="placeholder" id="ph5">
+                    <hr>
+                    <h2 class="text section-head" id="s5">
+                        Overview
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p5">
+                    <h3 class="section-sub-head first-sub-head">
+                        Description
+                    </h3>
+                    Finally, you can see the components of the series, the power spectrum
+                    and the resultant Fourier series displayed all at once.
+                    You can select one of the example functions from the previous sections, or input your own custom
+                    function,
+                    and see how all the elements work together to build a Fourier series.
+                    <h3 class="section-sub-head">
+                        How To Use Custom Functions
+                    </h3>
+                    To specify a custom function, select custom from the drop down menu and input your desired function
+                    into the
+                    input for <span class="mathJaxInline">$ f(x) $</span>.
+                    <br><br>
+                    The period slider forces the function you have specified to be periodic over
+                    <span class="mathJaxInline">$ -L < x \leq L $</span>.
+                    For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span class="mathJaxInline">$ L = 1 $</span>, this is the sine
+                    function but cut at <span class="mathJaxInline">$ x = \pm 1 $</span> and forced
+                    to be periodic over just this range (not the full <span class="mathJaxInline">$ 2\pi $</span> period).
+                    <br><br>
+                    The following functions can be used:
+                    <br><br>
+                    <ul>
+                        <li>Trigonometric functions (e.g. sin(), cos())</li>
+                        <li>Trigonometric inverses (e.g. arcsin(), arccos())</li>
+                        <li>Hyperbolic functions (e.g. sinh(), cosh())</li>
+                        <li>Hyperbolic inverses (e.g. arsinh(), arcosh())</li>
+                        <li>Exponentials and logs (e.g. exp(), log())</li>
+                    </ul>
+                    <h3 class="section-sub-head">
+                        Syntax:
+                    </h3>
+                    Entering <span class="mathJaxInline">$ 5x $</span> does not work: instead you should write 5*x.
+                    <br><br>
+                    Write exponents as a^(exponent), so <span class="mathJaxInline">$ x^2 $</span> is written as x^2.
+                    <br><br>
+                    Functions should be real and fully defined over the domain, for example <span class="mathJaxInline">$ log(x) $</span> is
+                    imaginary
+                    for values less than zero, so does not work.
+                    <br><br>
+                    <span class="mathJaxInline">$ log(x+1) $</span> does not work either (with a period of 1), since log is undefined at zero,
+                    however
+                    <span class="mathJaxInline">$ log(1+x^2) $</span> does work for all periods, since it is defined over the whole domain and
+                    is real.
+                    <br><br>
+                    Sometimes due to the numerical integration methods used, the power spectrum shows very small values
+                    (<span class="mathJaxInline">$ 10^{-17} $</span>).
+                    These are simply due to the inexact integration and should be treated as zero.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    Right Side of Window - containing mainly interactive and visual content    -->
+    <div class="vis-container right" id="right-container">
+        <!--    fade transition tag for RHS - applied by Vue and CSS    -->
+        <transition-group name="fade" tag="div" class="transition-container">
+            <!--    Interactive Zone Containers   -->
+            <div class="rightload text odd" id='loadout1'
+                 key="loadout1" v-if="currentSection === 1">
+                <!--Graph-->
+                <div id='graph1Sec1'></div>
+                <!--Display of vector 1 and 2 lengths to reach target vector-->
+                <div id="vectorComponentsCustom">
+                        <span style="font-weight: bolder">
+                            Components of Projections:
+                        </span>
+                    <span id="vector1val">
+                            0.83
+                        </span>
+                    x
+                    <span style="color: rgb(213,0,50);">
+                            vector 1
+                        </span>
+                    &
+                    <span id="vector2val">
+                            0.83
+                        </span>
+                    x
+                    <span style="color: rgb(0,0,255);">
+                            vector 2
+                        </span>
+                </div>
+                <!--Popup if vector 1 and 2 are parallel (meaning they cannot span R2)-->
+                <div id="popup1">
+                    Vectors 1 and 2 are parallel so <span class="mathJaxRight">$\Bbb{R}^2$</span> is not spanned.
+                </div>
+                <!--Buttons/Sliders-->
+                <div class="overall-sliders-container">
+                    <!--Slider Display--> <!--Linked with the slider below-->
+                    <!--Linked with a slider and shows the live values of its corresponding slider-->
+                    <div class="partial-sliders-container">
+                        <h6 class="graphcolor1 slider-label">Basis vector 1:</h6>
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="x1Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="x1.value=x1Controller.value"/></input>
+                            <span> x: <output id="x1" for="x1Controller">1.1</output></span>
+                        </label>
+                        <!--END Slider-->
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="y1Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="y1.value=y1Controller.value"/></input>
+                            <span> y: <output id="y1" for="y1Controller">0.1</output></span>
+                        </label>
+                        <!--END Slider-->
+                    </div>
+                    <div class="partial-sliders-container">
+                        <h6 class="graphcolor2 slider-label">Basis vector 2:</h6>
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="x2Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="x2.value=x2Controller.value"/></input>
+                            <span> x: <output id="x2" for="x2Controller">0.1</output></span>
+                        </label>
+                        <!--END Slider-->
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="y2Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="y2.value=y2Controller.value"/></input>
+                            <span> y: <output id="y2" for="y2Controller">1.1</output></span>
+                        </label>
+                        <!--END Slider-->
+                    </div>
+                    <div class="partial-sliders-container">
+                        <h6 class="graphcolor3 slider-label">Target vector:</h6>
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="x3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="x3.value=x3Controller.value"/></input>
+                            <span> x: <output id="x3" for="x3Controller">1</output></span>
+                        </label>
+                        <!--END Slider-->
+                        <!--BEGIN Slider-->
+                        <label class="slider">
+                            <input id="y3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
+                                   step="0.01" oninput="y3.value=y3Controller.value"/></input>
+                            <span> y: <output id="y3" for="y3Controller">1</output></span>
+                        </label>
+                        <!--END Slider-->
+                    </div>
+                </div>
+            </div>
+            <div class="rightload text even" id='loadout2'
+                 key="loadout2" v-if="currentSection === 2">
+                <transition name="fade">
+                    <!--Interactive Zone Sub Containers-->
+                    <div class="rightload text" id='loadout2sub0' key="loadout2sub0" v-if="derivationSubSection !== 3">
+                        <!--Graph-->
+                        <div id='graph0Sec2'></div>
+                        <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
+                        <h4 id="subSecTitle"></h4>
+                        <!--Scroll down to select the function-->
+                        <!--Scroll down-->
+                        <div id="scrollSec2Sub1">
+                            <div class="scroll_down">
+                                <strong>Select Function: </strong>
+                                <select id="SelectSec2Sub1">
+                                    <option id="opt1" title="Triangular Function" value="triangular">Triangular
+                                        Function
+                                    </option>
+                                    <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
+                                    </option>
+                                    <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta Function
+                                    </option>
+                                    <option id="opt4" title="Square Function" value="square">Square Function</option>
+                                    <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
+                                    </option>
+                                    <option id="opt6" title="|x| Function" value="mode">|x| Function</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Slider-->
+                        <div class="overall-sliders-container">
+                            <!--NB: Be careful with classes and types-->
+                            <!--BEGIN Slider A-->
+                            <div id="ASec2Sub1" class="partial-sliders-container">
+                                <!--Slider Display A-->
+                                <label class="slider-label" style="padding-bottom:20px;">Amplitude:
+                                    <span id="AControllerSec2Sub1Display" data-unit="">1</span>
+                                </label>
+                                <!--Slider A-->
+                                <label class="slider">
+                                    <span class="sliderMin">-5</span>
+                                    <input id="AControllerSec2Sub1" class="inputs" type="range" value="1.0" min="-5.0"
+                                           max="5.0" step="0.1"/>
+                                    <span class="sliderMax">5</span></label>
+                            </div>
+                            <!--END Slider A-->
+                            <!--BEGIN Slider N-->
+                            <div id="N" class="partial-sliders-container">
+                                <!--Slider Display N-->
+                                <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+                                    <span id="NControllerSec2Sub1Display" data-unit="">1</span>
+                                </label>
+                                <!--Slider N-->
+                                <label class="slider">
+                                    <span class="sliderMin">0</span>
+                                    <input id="NControllerSec2Sub1" class="inputs" type="range" value="1" min="0"
+                                           max="20" step="1"/>
+                                    <span class="sliderMax">20</span>
+                                </label>
+                            </div>
+                            <!--END Slider N-->
+                            <!--BEGIN Slider L-->
+                            <div id="L" class="partial-sliders-container">
+                                <!--Slider Display L-->
+                                <label class="slider-label" style="padding-bottom:20px;">Period:
+                                    <span id="LControllerSec2Sub1Display" data-unit="">1</span>
+                                </label>
+                                <!--Slider L-->
+                                <label class="slider">
+                                    <span class="sliderMin">-5</span>
+                                    <input id="LControllerSec2Sub1" class="inputs" type="range" value="1" min="-5"
+                                           max="5" step="0.5"/>
+                                    <span class="sliderMax">5</span>
+                                </label>
+                            </div>
+                            <!--END Slider L-->
+                        </div>
+                    </div>
+                    <div class="rightload text" id='loadout2sub3' key="loadout2sub3"
+                         v-else>
+                        <!-- Graph -->
+                        <div id='graph1Sec2'></div>
+                        <div id='graph2Sec2'></div>
+                        <!--Slider-->
+                        <div class="overall-sliders-container">
+                            <!--BEGIN Slider N-->
+                            <!--Slider Display N-->
+                            <label class="slider-label">Term Number:
+                                <span id="NControllerSec2Sub2Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider N-->
+                            <label class="slider">
+                                <span class="sliderMin">0</span>
+                                <input id="NControllerSec2Sub2" class="inputs" min="0" type="range" value="1" max="50"
+                                       step="1"/>
+                                <span class="sliderMax">50</span>
+                            </label>
+                            <!--END Slider N-->
+                            <!--BEGIN Slider A-->
+                            <!--Slider Display A-->
+                            <label class="slider-label">Amplitude:<!--Amplitude-->
+                                <span id="AControllerSec2Sub2Display" data-unit="">1</span> <!--default: 1-->
+                            </label>
+                            <!--Slider A-->
+                            <label class="slider">
+                                <span class="sliderMin">-1</span>
+                                <input id="AControllerSec2Sub2" class="inputs" type="range" value="1" min="-1" max="3"
+                                       step="0.1"/>
+                                <span class="sliderMax">3</span>
+                            </label>
+                            <!--END Slider A-->
+                            <!--BEGIN Slider L-->
+                            <!--Slider Display L-->
+                            <label class="slider-label">Period:
+                                <span id="LControllerSec2Sub2Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider L-->
+                            <label class="slider">
+                                <span class="sliderMin">0</span>
+                                <input id="LControllerSec2Sub2" class="inputs" type="range" value="1" min="0" max="1"
+                                       step="0.05"/>
+                                <span class="sliderMax">1</span>
+                            </label>
+                            <!--END Slider L-->
+                        </div>
+                    </div>
+                </transition>
+            </div>
+            <div class="rightload text odd" id='loadout3'
+                 key="loadout3" v-if="currentSection === 3">
+                <!--Graph-->
+                <div id='graph1Sec3'></div>
+                <!--Scroll-down-->
+                <div id="scrollSec3">
+                    <div class="scroll_down">
+                        <strong>Select Function: </strong>
+                        <select id="SelectSec3" v-model="equationID">
+                            <option value="triangular">Triangular Function</option>
+                            <option value="square">Square Function</option>
+                            <option value="sawtooth">Sawtooth Function</option>
+                            <option value="dirac">Dirac-Delta Function</option>
+                            <option value="parabola">Parabola Function</option>
+                            <option value="mode">|x| Function</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Sliders-->
+                <div class="overall-sliders-container">
+                    <!--BEGIN Slider A-->
+                    <div id="ASec3" class="partial-sliders-container">
+                        <!--Slider Display A-->
+                        <label class="slider-label" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
+                            <span id="AControllerSec3Display" data-unit="">5</span> <!--default: 1-->
+                        </label>
+                        <!--Slider A-->
+                        <label class="slider">
+                            <span class="sliderMin">&nbsp0</span>
+                            <input id="AControllerSec3" class="inputs" type="range" value="5" min="0" max="10"
+                                   step="0.1"/>
+                            <span class="sliderMax">10</span>
+                        </label>
+                    </div>
+                    <!--END Slider A-->
+                    <!--BEGIN Slider N-->
+                    <div id="NSec3" class="partial-sliders-container">
+                        <!--Slider Display N-->
+                        <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+                            <span id="NControllerDisplaySec3" data-unit="">1</span>
+                        </label>
+                        <!--Slider N-->
+                        <label class="slider">
+                            <span class="sliderMin">&nbsp0</span>
+                            <input id="NControllerSec3" class="inputs" type="range" value="1" min="0" max="9" step="1"/>
+                            <span class="sliderMax">9</span>
+                        </label>
+                    </div>
+                    <!--END Slider N-->
+                    <!--BEGIN Slider L-->
+                    <div id="LSec3" class="partial-sliders-container">
+                        <!--Slider Display L-->
+                        <label class="slider-label" style="padding-bottom:20px;">Period:
+                            <span id="LControllerSec3Display" data-unit="">1</span>
+                        </label>
+                        <!--Slider L-->
+                        <label class="slider">
+                            <span class="sliderMin">-5</span>
+                            <input id="LControllerSec3" class="inputs" type="range" value="1" min="-5" max="5"
+                                   step="0.5"/>
+                            <span class="sliderMax">5</span>
+                        </label>
+                    </div>
+                    <!--END Slider L-->
+                </div>
+
+                <div id="equationSpace" v-if="showEq">
+
+                    <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
+                            <img src="Triangle_Eqn.png">
+                    </div>
+
+                    <div id="Square_eqn" class="equationContainer" v-else-if="equationID === 'square'">
+                            <img src="Square_Eqn.png">
+                    </div>
+
+                    <div id="Sawtooth_eqn" class="equationContainer" v-else-if="equationID === 'sawtooth'">
+                            <img src="Sawtooth_Eqn.png">
+                    </div>
+
+                    <div id="Dirac_eqn" class="equationContainer" v-else-if="equationID === 'dirac'">
+                        <img src="Dirac_Eqn.png">
+                    </div>
+
+                    <div id="Parabola_eqn" class="equationContainer" v-else-if="equationID === 'parabola'">
+                            <img src="Parabola_Eqn.png">
+                    </div>
+
+                    <div id="Modx_eqn" class="equationContainer" v-else-if="equationID === 'mode'">
+                            <img src="Modx_Eqn.png">
+                    </div>
+
+                </div>
+            </div>
+            <div class="rightload text even" id='loadout4'
+                 key="loadout4" v-if="currentSection === 4">
+                <!--Graphs-->
+                <div id='graph1Sec4'></div>
+                <div id='graph2Sec4'></div>
+                <!--Container for all Inputs-->
+                <div class="inputsContainer">
+                    <!--Scroll-down to select function-->
+                    <div class="selectorContainer">
+                        <strong>Select Function: </strong>
+                        <select id="SelectSec4">
+                            <option value="triangular">Triangular Function</option>
+                            <option value="square">Square Function</option>
+                            <option value="sawtooth">Sawtooth Function</option>
+                            <option value="dirac">Dirac-Delta Function</option>
+                            <option value="parabola">Parabola Function</option>
+                            <option value="mode">|x| Function</option>
+                        </select>
+                    </div>
+                    <!--Select parameter type-->
+                    <div class="selectorContainer">
+                        <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                        <!--Scroll-down to select coefficient-->
+                        <strong>Select Coefficient: </strong>
+                        <select id="Coefficient">
+                            <option value="an&bn">a and b</option>
+                            <option value="powerSpectrum">α and θ</option>
+                        </select>
+                    </div>
+                    <!--Sliders-->
+                    <div class="overall-sliders-container">
+                        <!--BEGIN Slider A-->
+                        <div id="ASec4" class="partial-sliders-container">
+                            <!--Slider Display A-->
+                            <label class="slider-label">Amplitude:<!--Amplitude-->
+                                <span id="AControllerSec4Display" data-unit="">1</span> <!--default: 1-->
+                            </label>
+                            <!--Slider A-->
+                            <label class="slider">
+                                <span class="sliderMin">-5</span>
+                                <input id="AControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                                       step="0.1"/>
+                                <span class="sliderMax">5</span>
+                            </label>
+                        </div>
+                        <!--END Slider A-->
+                        <!--BEGIN Slider N-->
+                        <div id="NSec4" class="partial-sliders-container">
+                            <!--Slider Display N-->
+                            <label class="slider-label" style="padding-bottom:20px;">Number <br>of Terms:
+                                <span id="NControllerSec4Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider N-->
+                            <label class="slider">
+                                <span class="sliderMin">0</span>
+                                <input id="NControllerSec4" class="inputs" type="range" value="1" min="0" max="50"
+                                       step="1"/>
+                                <span class="sliderMax">50</span>
+                            </label>
+                        </div>
+                        <!--END Slider N-->
+                        <!--BEGIN Slider L-->
+                        <div id="LSec4" class="partial-sliders-container">
+                            <!--Slider Display L-->
+                            <label class="slider-label" style="padding-bottom:20px;">Period:
+                                <span id="LControllerSec4Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider L-->
+                            <label class="slider">
+                                <span class="sliderMin">-5</span>
+                                <input id="LControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                                       step="0.1"/>
+                                <span class="sliderMax">5</span>
+                            </label>
+                        </div>
+                        <!--END Slider L-->
+                    </div>
+                </div>
+            </div>
+            <div class="rightload text odd" id='loadout5'
+                 key="loadout5" v-if="currentSection === 5">
+                <!--Graphs-->
+                <div id='graph1Sec5'></div>
+                <div id='graph2Sec5'></div>
+                <div id='graph3Sec5'></div>
+                <!--Container for all Inputs-->
+                <div class="inputsContainer">
+                    <!--Scroll dropdown list for option of functions-->
+                    <div id="scrollSec5">
+                        <div class="scroll_down">
+                            <strong>Select Function:</strong>
+                            <select id="SelectSec5">
+                                <option value="custom">Custom Input</option>
+                                <option value="triangular">Triangular Function</option>
+                                <option value="square">Square Function</option>
+                                <option value="sawtooth">Sawtooth Function</option>
+                                <option value="dirac">Dirac-Delta Function</option>
+                                <option value="parabola">Parabola Function</option>
+                                <option value="mode">|x| Function</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--BEGIN Input function box -->
+                    <div id="inputSec5">
+                        <label>Input Function: f(x)=
+                            <input id="aInputSec5" type="text" value="x^2">
+                            <p id="aInputError" style="color:#ff0000" hidden></p>
+                        </label>
+                    </div>
+                    <!--END Input function box  -->
+                    <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                    <!--Scroll-down to select coefficient-->
+                    <div>
+                        <strong>Select Coefficient: </strong>
+                        <select id="CoefficientSec5">
+                            <option value="a">a</option>
+                            <option value="b">b</option>
+                            <option value="α">α</option>
+                            <option value="θ">θ</option>
+                        </select>
+                    </div>
+                    <!--Sliders-->
+                    <!--BEGIN Slider N-->
+                    <div id="NSec5" class="partial-sliders-container">
+                        <!--Slider Display N-->
+                        <label class="slider-label">Number of Terms:
+                            <span id="NControllerSec5Display" data-unit="">1</span>
+                            <span id="NController2Sec5Display" data-unit="">1</span>
+                        </label>
+                        <!--Slider N-->
+                        <label class="slider">
+                            <span class="sliderMin">0</span>
+                            <input id="NController2Sec5" class="inputs" type="range" value="1" min="0" max="10"
+                                   step="1">
+                            <input id="NControllerSec5" class="inputs" type="range" value="1" min="0" max="20"
+                                   step="1">
+                            <span class="sliderMax" id="NMaxSec5">20</span>
+                        </label>
+                    </div>
+                    <!--END Slider N-->
+                    <!--BEGIN Slider L-->
+                    <div id="LSec5" class="partial-sliders-container">
+                        <!--Slider Display L-->
+                        <label class="slider-label">Period:
+                            <span id="LControllerSec5Display" data-unit="">1</span>
+                        </label>
+                        <!--Slider L-->
+                        <label class="slider">
+                            <span class="sliderMin">-5</span>
+                            <input id="LControllerSec5" class="inputs" type="range" value="1" min="-5" max="5"
+                                   step="0.5"/>
+                            <span class="sliderMax">5</span>
+                        </label>
+                    </div>
+                    <!--END Slider L-->
+                </div>
+            </div>
+            <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
+                 v-if="1 <= currentSection <= 5 === false">
+                please wait...
+            </div>
+        </transition-group>
+    </div>
+    <!--    Title Banner above Right Side    -->
+    <div class="banner">
+        <!--    Visualisation Title    -->
+        <h1 class="" id="vis-title">
+            THE FOURIER SERIES
+        </h1>
+        <a href="https://www.imperialvisualisations.com/learn/">
+            <img id="vis-logo" src="VisualisationsLogoWhite2.png">
+        </a>
+    </div>
+    <div class="rightScriptSpace"></div>
+    <div class="derivationScriptSpace"></div>
+</div>
+</body>
+
+<script src="scripts/nav_Script.js"></script>
+
+</html>

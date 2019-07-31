@@ -1,7 +1,7 @@
 'use strict';
 // Colour definitions:
 var magenta = "#FF00FF",
-    blue = "#0000FF",
+    blue = "#003E74",
     green = "#008000",
     impBlue = "#003E74",
     black = "rgb(0,0,0)",
@@ -9,7 +9,8 @@ var magenta = "#FF00FF",
     cyan = "rgb(0,146,146)", //1
     lilac = "rgb(182,109,255)", //2
     orange = "rgb(219,209,0)", //3
-    cherry = "rgb(213,0,50)"
+    //cherry = "rgb(213,0,50)"
+    cherry = "#FF1447"
 
 // Plot Utilities:
 /**

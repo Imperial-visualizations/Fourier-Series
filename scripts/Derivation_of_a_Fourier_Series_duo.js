@@ -1,31 +1,31 @@
-let resolution = 2000;
+// let resolution = 2000;
 // set the step of the x axis from -2pi to 2pi
-let z = numeric.linspace(-2 * Math.PI, 2 * Math.PI, resolution);
+// let z = numeric.linspace(-2 * Math.PI, 2 * Math.PI, resolution);
 
 // initialize the Cartesian coordinates for the plots and the functions
 //this function will plot the graphs for the default values of the sliders
 
-function initFourier(type) {
+function initFourierSec2Sub1(type) {
     console.log("The function is being initiated")
-    Plotly.purge("graph3");
-    Plotly.purge("graph4");
+    Plotly.purge("graph1Sec2");
+    Plotly.purge("graph2Sec2");
 
-    Plotly.newPlot("graph3", plot_triangle_sine(), setLayoutSmall("Sines Function and Triangle Function"));
-    Plotly.newPlot("graph4", plot_combination(), setLayoutSmall("Multiplication of the two Functions"));
+    Plotly.newPlot("graph1Sec2", plot_triangle_sineSec2Sub1(), setLayoutSmallSec2Sub1("Sines Function and Triangle Function"));
+    Plotly.newPlot("graph2Sec2", plot_combinationSec2Sub1(), setLayoutSmallSec2Sub1("Multiplication of the two Functions"));
 
     return;
 }
 
 // set a smaller layout with smaller height
-function setLayoutSmall(someTitles) {
-    const new_layout = {
-        autosize: true,
+function setLayoutSmallSec2Sub1(someTitles) {
+    var new_layout = {
+        //autosize: true,
         //width: 450, "height": 250,
         margin: {l: 30, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
-        xaxis: {range: [], zeroline: true, title: "x"},
-        yaxis: {range: [], zeroline: true, title: "y"},
+        xaxis: {range: [], zeroline: false, title: "", showticklabels: false},
+        yaxis: {range: [], zeroline: true, title: "", showticklabels: false},
         aspectratio: {x: 1, y: 1},
         title: someTitles
     }
@@ -36,7 +36,7 @@ function setLayoutSmall(someTitles) {
 // Start. Functions to illustrate the math derivation part of triangular function.
 
 // return the y values of the sine plot in the first graph
-function sine_n(x, n, L) {
+function sine_nSec2Sub1(x, n, L) {
     sin = [];
 
     for (var i = 0; i < x.length; ++i) {
@@ -48,7 +48,7 @@ function sine_n(x, n, L) {
 }
 
 // return both the x and y values of the triangular plot in the first graph
-function triangle_function(x, L, A) {
+function triangle_functionSec2Sub1(x, L, A) {
     var x_first = [];
     var x_second = [];
     var y_first = [];
@@ -74,7 +74,7 @@ function triangle_function(x, L, A) {
 // when you do the integration, you need to multiply the triangular function with the sine function
 // so this function is to
 // return the product of the triangular function and the sine function
-function combination(y_triangle, y_sine) {
+function combinationSec2Sub1(y_triangle, y_sine) {
     var combination = [];
     for (var i = 0; i < y_triangle.length; ++i) {
         combination.push(y_triangle[i] * y_sine[i]);
@@ -84,17 +84,18 @@ function combination(y_triangle, y_sine) {
 }
 
 // By recalling the sine_n function and the triangular_function, plot out but functions in the first graph
-function plot_triangle_sine() {
-    var L = parseFloat(document.getElementById('LController').value);
+function plot_triangle_sineSec2Sub1() {
+    var resolution = 2000;
+    var L = parseFloat(document.getElementById('LControllerSec2Sub2').value);
     //console.log(L);
-    var A = parseFloat(document.getElementById('AController').value);
-    var n = parseFloat(document.getElementById('N2Controller').value);
+    var A = parseFloat(document.getElementById('AControllerSec2Sub2').value);
+    var n = parseFloat(document.getElementById('NControllerSec2Sub2').value);
     var x = numeric.linspace(0, L, resolution);
     var mid_x = L / 2;
     var mid_y
 
-    var [x_value, y_value] = triangle_function(x, L, A);
-    var sin = sine_n(x, n, L);
+    var [x_value, y_value] = triangle_functionSec2Sub1(x, L, A);
+    var sin = sine_nSec2Sub1(x, n, L);
     var data =
         [{
             type: "scatter",
@@ -128,16 +129,17 @@ function plot_triangle_sine() {
 // if the function is odd around L/2, then the integration is even around L/2, so two areas are equal, total size just double the area.
 // if the function is even around L.2, then the integration is odd around L/2, so just cancel out.
 // plot out the product of triangular function and the sine function.
-function plot_combination() {
-    var L = parseFloat(document.getElementById('LController').value);
-    var A = parseFloat(document.getElementById('AController').value);
-    var n = parseFloat(document.getElementById('N2Controller').value);
+function plot_combinationSec2Sub1() {
+    var resolution = 2000;
+    var L = parseFloat(document.getElementById('LControllerSec2Sub2').value);
+    var A = parseFloat(document.getElementById('AControllerSec2Sub2').value);
+    var n = parseFloat(document.getElementById('NControllerSec2Sub2').value);
     var x = numeric.linspace(0, L, resolution);
 
-    [x_triangle, y_triangle] = triangle_function(x, L, A);
-    y_sine = sine_n(x, n, L);
+    [x_triangle, y_triangle] = triangle_functionSec2Sub1(x, L, A);
+    y_sine = sine_nSec2Sub1(x, n, L);
 
-    y_combine = combination(y_triangle, y_sine);
+    y_combine = combinationSec2Sub1(y_triangle, y_sine);
 
     var leftSide_y = y_combine.splice(0, y_combine.length / 2);
     var leftSide_x = x.splice(0, x.length / 2);
@@ -186,16 +188,16 @@ function plot_combination() {
 /** updates the plot according to the slider controls. */
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 //animates the graphs
-function updatePlot() {
+function updatePlotSec2Sub1() {
     // NB: updates according to the active tab
 
     // in this case, only the triangular math part2 would have displayed the graph
     // because there's no sliders for other functions
-    data = plot_triangle_sine();
-    data2 = plot_combination();
+    data = plot_triangle_sineSec2Sub1();
+    data2 = plot_combinationSec2Sub1();
 
     Plotly.animate(
-        'graph3',
+        'graph1Sec2',
         {data: data},
         {
             fromcurrent: true,
@@ -205,7 +207,7 @@ function updatePlot() {
         }
     );
     Plotly.animate(
-        'graph4',
+        'graph2Sec2',
         {data: data2},
         {
             fromcurrent: true,
@@ -218,7 +220,7 @@ function updatePlot() {
 
 }
 //
-function main() {
+function mainSec2Sub1() {
 
 
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
@@ -228,7 +230,7 @@ function main() {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlotSec2Sub1(); //Updating the plot is linked with display (Just My preference)
         });
 
     });
@@ -239,9 +241,8 @@ function main() {
 
 }
 
-window.onload = function () {
-    initFourier()
 
-}
+initFourierSec2Sub1();
 
-$(document).ready(main); //Load main when document is ready.
+
+mainSec2Sub1(); //Load main when document is ready.

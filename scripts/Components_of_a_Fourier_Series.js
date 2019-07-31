@@ -1,10 +1,10 @@
 /*jshint esversion: 7 */
 //Global Initial Parameters:
-const layout = {
-    autosize: true,
+var layout = {
+    //autosize: true,
     margin: {l: 30, r: 40, t: 30, b: 30},
     hovermode: "closest",
-    xaxis: {range: [-5, 5], zeroline: true, title: "x"},
+    xaxis: {range: [-5, 5], zeroline: true, title: ""},
     yaxis: {
         range: [0, 305], zeroline: true, title: "$N$", showticklabels: true, tickmode: 'array',
         tickvals: [30, 60, 90, 120, 150, 180, 210, 240, 270,300],
@@ -21,9 +21,9 @@ var resolution = 4000;
 var z = numeric.linspace(-2 * Math.PI, 2 * Math.PI, resolution);
 // Define our interacting Jquery elements
 
-var Nslider = $("#NController");
-var Lslider = $("#LController");
-var Aslider = $("#AController");
+var Nslider = $("#NControllerSec3");
+var Lslider = $("#LControllerSec3");
+var Aslider = $("#AControllerSec3");
 
 //----------------------------------------------------------------------------------------------------------------------
 //VERY IMPORTANT!!!
@@ -38,7 +38,7 @@ var decay2 = 0.6;
 it changes the range of the y-axis according to the amplitude and number of terms
 so the setLayout allows the layout to fit the graph, instead of fixing the layout to some values
 */
-function setLayout() {
+function setLayoutSec3() {
     var n_lab = [];
     var y_lab = [];
     for (var i = 0; i < 10; i++) {
@@ -46,11 +46,11 @@ function setLayout() {
         y_lab.push(29.5 * (i + 1));
     }
     const new_layout = {
-        autosize: true,
+        // autosize: true,
         showlegend: false,
         margin: {l: 45, r: 60, t: 0, b: 30},
         hovermode: "closest",
-        xaxis: {range: [], zeroline: true, title: "$x$"},
+        xaxis: {range: [], zeroline: true, title: ""},
         yaxis: {
             range: [0, 305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
             tickvals: y_lab,
@@ -66,21 +66,21 @@ function setLayout() {
 }
 
 // initialize the Cartesian coordinates for the plots and the functions
-function initFourier() {
-    Plotly.purge("graph");
-    console.log(computeComponents());
-    Plotly.newPlot("graph", computeComponents(z), setLayout());
-    $("#Triangle_eqn").show();
-    $("#Square_eqn").hide();
-    $("#Sawtooth_eqn").hide();
-    $("#Dirac_eqn").hide();
-    $("#Parabola_eqn").hide();
-    $("#Modx_eqn").hide();
+function initFourierSec3() {
+    Plotly.purge("graph1Sec3");
+    console.log(computeComponentsSec3());
+    Plotly.newPlot("graph1Sec3", computeComponentsSec3(z), setLayoutSec3());
+    // $("#Triangle_eqn").show();
+    // $("#Square_eqn").hide();
+    // $("#Sawtooth_eqn").hide();
+    // $("#Dirac_eqn").hide();
+    // $("#Parabola_eqn").hide();
+    // $("#Modx_eqn").hide();
 }
 
 
 // sum up all the number in the array
-function adding(array) {
+function addingSec3(array) {
     var result = 0;
     for (var i = 0; i < array.length; ++i) {
         result += array[i];
@@ -95,7 +95,7 @@ function adding(array) {
 // a_n part is to multiply the function f(x) by sin, and sin is an odd function
 // after the if statement, each function has been optimized for better visualization
 // comment behind each if statement is the original a_n of each function without optimization
-function odd_selection2(n, A, L, type) {
+function odd_selection2Sec3(n, A, L, type) {
     //Represents the bn part of the function summand
     if (type === 0) {
         amplitude = (A * (-1) ** n) * (decay) ** n; // (8*A*1/((2*(n)-1) *np.pi)**2)*((-1)**(n))
@@ -119,7 +119,7 @@ function odd_selection2(n, A, L, type) {
 //get too small, so we use a decay power law, so that the components dont get too small too quickly
 // b_n
 // b_n part is to multiply the function f(x) by cos, and cos is and even function
-function even_selection2(n, A, L, type) {
+function even_selection2Sec3(n, A, L, type) {
     //Gives the an part of the function sum
     if (type === 6) {
         if (n === 0) {
@@ -146,7 +146,7 @@ function even_selection2(n, A, L, type) {
 }
 
 // return the data that stores one component of the Fourier Series
-function plotSines(n, x, shape) {
+function plotSinesSec3(n, x, shape) {
     //Plots individual components that are being built up to the total function
     var L = Lslider.val();
     var A = Aslider.val();
@@ -168,12 +168,12 @@ function plotSines(n, x, shape) {
         spacing = 30;
         scale = 1;
     }
-    var spacing2 = Math.sqrt((odd_selection2(n, A, L, shape)) ** 2 + (even_selection2(n, A, L, shape))) + 1;
+    var spacing2 = Math.sqrt((odd_selection2Sec3(n, A, L, shape)) ** 2 + (even_selection2Sec3(n, A, L, shape))) + 1;
 
 
     for (var i = 0; i < x.length-1; ++i) {
         x_n.push(x[i]);
-        y_n.push(scale * 0.98*(((odd_selection2(n, A, L, shape)) * Math.sin(n * Math.PI * x[i] / L) + (even_selection2(n, A, L, shape)) * Math.cos(n * Math.PI * x[i] / L)) + spacing * (n+1)));
+        y_n.push(scale * 0.98*(((odd_selection2Sec3(n, A, L, shape)) * Math.sin(n * Math.PI * x[i] / L) + (even_selection2Sec3(n, A, L, shape)) * Math.cos(n * Math.PI * x[i] / L)) + spacing * (n+1)));
     }
     //y value gets shifted up so that the plots are distinctly different
     var n_lab2 = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9','10'];
@@ -193,11 +193,11 @@ function plotSines(n, x, shape) {
 }
 
 // get each single component by recalling plotSines, and plot out all the components of the Fourier Series
-function computeComponents(x) {
+function computeComponentsSec3(x) {
     var N = parseFloat(Nslider.val());
     var data_value = [];
     for (var n = 0; n < N+1; ++n) {
-        data_value.push(plotSines(n, z, shape));
+        data_value.push(plotSinesSec3(n, z, shape));
     }
 
     return data_value;
@@ -210,79 +210,82 @@ function computeComponents(x) {
 
 /** updates the plot according to the slider controls. */
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
-function updatePlot() {
+function updatePlotSec3() {
     var data;
     // NB: updates according to the active tab
-    var selectedValue = document.getElementById("Select").value; // finds out which function is active
+    var selectedValue = document.getElementById("SelectSec3").value; // finds out which function is active
     $(document).ready(() => {
         if (shape === 3) {
-            $('#A').hide();
-
-            $("#Triangle_eqn").hide();
-            $("#Square_eqn").hide();
-            $("#Sawtooth_eqn").hide();
-            $("#Dirac_eqn").show();
-            $("#Parabola_eqn").hide();
-            $("#Modx_eqn").hide();
+            $('#ASec3').hide();
+            //
+            // $("#Triangle_eqn").hide();
+            // $("#Square_eqn").hide();
+            // $("#Sawtooth_eqn").hide();
+            // $("#Dirac_eqn").show();
+            // $("#Parabola_eqn").hide();
+            // $("#Modx_eqn").hide();
 
         } else {
-            $('#A').show();
-            if (shape === 0)  $(document).ready(() => {
-                $("#Triangle_eqn").show();
-                $("#Square_eqn").hide();
-                $("#Sawtooth_eqn").hide();
-                $("#Dirac_eqn").hide();
-                $("#Parabola_eqn").hide();
-                $("#Modx_eqn").hide();
-            });
-            else if (shape === 1)  $(document).ready(() => {
-                $("#Triangle_eqn").hide();
-                $("#Square_eqn").show();
-                $("#Sawtooth_eqn").hide();
-                $("#Dirac_eqn").hide();
-                $("#Parabola_eqn").hide();
-                $("#Modx_eqn").hide();
-            });
-            else if (shape === 2)  $(document).ready(() => {
-                $("#Triangle_eqn").hide();
-                $("#Square_eqn").hide();
-                $("#Sawtooth_eqn").show();
-                $("#Dirac_eqn").hide();
-                $("#Parabola_eqn").hide();
-                $("#Modx_eqn").hide();
-            });
-            else if (shape === 4)  $(document).ready(() => {
-                $("#Triangle_eqn").hide();
-                $("#Square_eqn").hide();
-                $("#Sawtooth_eqn").hide();
-                $("#Dirac_eqn").hide();
-                $("#Parabola_eqn").show();
-                $("#Modx_eqn").hide();
-            });
-            else if (shape === 6)  $(document).ready(() => {
-                $("#Triangle_eqn").hide();
-                $("#Square_eqn").hide();
-                $("#Sawtooth_eqn").hide();
-                $("#Dirac_eqn").hide();
-                $("#Parabola_eqn").hide();
-                $("#Modx_eqn").show();
-            });
+            $('#ASec3').show();
+            // if (shape === 0)  $(document).ready(() => {
+            //     $("#Triangle_eqn").show();
+            //     $("#Square_eqn").hide();
+            //     $("#Sawtooth_eqn").hide();
+            //     $("#Dirac_eqn").hide();
+            //     $("#Parabola_eqn").hide();
+            //     $("#Modx_eqn").hide();
+            // });
+            // else if (shape === 1)  $(document).ready(() => {
+            //     $("#Triangle_eqn").hide();
+            //     $("#Square_eqn").show();
+            //     $("#Sawtooth_eqn").hide();
+            //     $("#Dirac_eqn").hide();
+            //     $("#Parabola_eqn").hide();
+            //     $("#Modx_eqn").hide();
+            // });
+            // else if (shape === 2)  $(document).ready(() => {
+            //     $("#Triangle_eqn").hide();
+            //     $("#Square_eqn").hide();
+            //     $("#Sawtooth_eqn").show();
+            //     $("#Dirac_eqn").hide();
+            //     $("#Parabola_eqn").hide();
+            //     $("#Modx_eqn").hide();
+            // });
+            // else if (shape === 4)  $(document).ready(() => {
+            //     $("#Triangle_eqn").hide();
+            //     $("#Square_eqn").hide();
+            //     $("#Sawtooth_eqn").hide();
+            //     $("#Dirac_eqn").hide();
+            //     $("#Parabola_eqn").show();
+            //     $("#Modx_eqn").hide();
+            // });
+            // else if (shape === 6)  $(document).ready(() => {
+            //     $("#Triangle_eqn").hide();
+            //     $("#Square_eqn").hide();
+            //     $("#Sawtooth_eqn").hide();
+            //     $("#Dirac_eqn").hide();
+            //     $("#Parabola_eqn").hide();
+            //     $("#Modx_eqn").show();
+            // });
 
         }
     });
-    initFourier();
+    initFourierSec3();
 }
 
-function main() {
+function mainSec3() {
+
+    console.log("mainRunning");
 
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
+        console.log("fired");
         $(this).on('input', function () {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
             //NB: Display values are restricted by their definition in the HTML to always display nice number.
-            updatePlot(); //Updating the plot is linked with display (Just My preference)
+            updatePlotSec3(); //Updating the plot is linked with display (Just My preference)
         });
 
     });
@@ -290,39 +293,40 @@ function main() {
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
-    $('#Select').change(function () {
-        var selectedValue = document.getElementById("Select").value;
+    $('#SelectSec3').change(function () {
+        var selectedValue = document.getElementById("SelectSec3").value;
+        console.log(selectedValue);
         if (selectedValue === "main") {
             shape = 0;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "triangular") {
             shape = 0;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "square") {
             shape = 1;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "sawtooth") {
             shape = 2;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "dirac") {
             shape = 3;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "parabola") {
             shape = 4;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "linear") {
             shape = 5;
-            updatePlot();
+            updatePlotSec3();
         } else if (selectedValue === "mode") {
             shape = 6;
-            updatePlot();
+            updatePlotSec3();
         }
         $(".title").hide();
         $("#" + selectedValue + "Title").show();
-        initFourier();
+        initFourierSec3();
     });
     //The First Initialisation - I use 's' rather than 'z' :p
-    initFourier();
+    initFourierSec3();
 }
 
-$(document).ready(main); //Load main when document is ready.
+$(document).ready(mainSec3); //Load main when document is ready.
