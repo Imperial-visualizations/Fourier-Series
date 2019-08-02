@@ -161,7 +161,7 @@
                     <div id="intro" class="divclass">
                         <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#introContentContainer"
                         :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
-                            Introduction to Fourier series <i class='fas fa-chevron-down'></i>
+                            Basics and Definition <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="introContentContainer" class="collapse show" data-parent="#p2">
                             <div id="introContent" class="section-sub-content" key="introContent">
@@ -918,411 +918,251 @@
         </div>
     </div>
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
-    <div class="vis-container right" id="right-container">
-        <!--    fade transition tag for RHS - applied by Vue and CSS    -->
-        <transition-group name="fade" tag="div" class="transition-container">
-            <!--    Interactive Zone Containers   -->
-            <div class="rightload text odd" id='loadout1'
-                 key="loadout1" v-if="currentSection === 1">
-                <!--Graph-->
-                <div id='graph1Sec1'></div>
-                <!--Display of vector 1 and 2 lengths to reach target vector-->
-                <div id="vectorComponentsCustom">
+    <div class="vis-container right" id="right-container"><!--    Title Banner above Right Side    -->
+        <div class="banner">
+            <!--    Visualisation Title    -->
+            <h1 class="" id="vis-title">
+                UNDERSTANDING FOURIER SERIES
+            </h1>
+            <a href="https://www.imperialvisualisations.com/learn/">
+                <img id="vis-logo" src="VisualisationsLogoWhite2.png">
+            </a>
+        </div>
+        <!--    Space into which visualisations are loaded    -->
+        <div id="rightloadSpace">
+            <!--    fade transition tag for RHS - applied by Vue and CSS    -->
+            <transition-group name="fade" tag="div" class="transition-container">
+                <!--    Interactive Zone Containers   -->
+                <div class="rightload text odd" id='loadout1'
+                     key="loadout1" v-if="currentSection === 1">
+                    <!--Graph-->
+                    <div id='graph1Sec1'></div>
+                    <!--Display of vector 1 and 2 lengths to reach target vector-->
+                    <div id="vectorComponentsCustom">
                         <span style="font-weight: bolder">
                             Components of Projections:
                         </span>
-                    <span id="vector1val">
+                        <span id="vector1val">
                             0.83
                         </span>
-                    x
-                    <span style="color: rgb(213,0,50);">
+                        x
+                        <span style="color: rgb(213,0,50);">
                             vector 1
                         </span>
-                    &
-                    <span id="vector2val">
+                        &
+                        <span id="vector2val">
                             0.83
                         </span>
-                    x
-                    <span style="color: rgb(0,0,255);">
+                        x
+                        <span style="color: rgb(0,0,255);">
                             vector 2
                         </span>
-                </div>
-                <!--Popup if vector 1 and 2 are parallel (meaning they cannot span R2)-->
-                <div id="popup1">
-                    Vectors 1 and 2 are parallel so <span class="mathJaxRight">$\Bbb{R}^2$</span> is not spanned.
-                </div>
-                <!--Buttons/Sliders-->
-                <div class="overall-sliders-container">
-                    <!--Slider Display--> <!--Linked with the slider below-->
-                    <!--Linked with a slider and shows the live values of its corresponding slider-->
-                    <div class="partial-sliders-container">
-                        <h6 class="graphcolor1 slider-label">Basis vector 1:</h6>
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="x1Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="x1.value=x1Controller.value"/></input>
-                            <span> x: <output id="x1" for="x1Controller">1.1</output></span>
-                        </label>
-                        <!--END Slider-->
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="y1Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="y1.value=y1Controller.value"/></input>
-                            <span> y: <output id="y1" for="y1Controller">0.1</output></span>
-                        </label>
-                        <!--END Slider-->
                     </div>
-                    <div class="partial-sliders-container">
-                        <h6 class="graphcolor2 slider-label">Basis vector 2:</h6>
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="x2Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="x2.value=x2Controller.value"/></input>
-                            <span> x: <output id="x2" for="x2Controller">0.1</output></span>
-                        </label>
-                        <!--END Slider-->
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="y2Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="y2.value=y2Controller.value"/></input>
-                            <span> y: <output id="y2" for="y2Controller">1.1</output></span>
-                        </label>
-                        <!--END Slider-->
+                    <!--Popup if vector 1 and 2 are parallel (meaning they cannot span R2)-->
+                    <div id="popup1">
+                        Vectors 1 and 2 are parallel so <span class="mathJaxRight">$\Bbb{R}^2$</span> is not spanned.
                     </div>
-                    <div class="partial-sliders-container">
-                        <h6 class="graphcolor3 slider-label">Target vector:</h6>
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="x3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="x3.value=x3Controller.value"/></input>
-                            <span> x: <output id="x3" for="x3Controller">1</output></span>
-                        </label>
-                        <!--END Slider-->
-                        <!--BEGIN Slider-->
-                        <label class="slider">
-                            <input id="y3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
-                                   step="0.01" oninput="y3.value=y3Controller.value"/></input>
-                            <span> y: <output id="y3" for="y3Controller">1</output></span>
-                        </label>
-                        <!--END Slider-->
+                    <!--Buttons/Sliders-->
+                    <div class="overall-sliders-container">
+                        <!--Slider Display--> <!--Linked with the slider below-->
+                        <!--Linked with a slider and shows the live values of its corresponding slider-->
+                        <div class="partial-sliders-container">
+                            <h6 class="graphcolor1 slider-label">Basis vector 1:</h6>
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="x1Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="x1.value=x1Controller.value"/></input>
+                                <span> x: <output id="x1" for="x1Controller">1.1</output></span>
+                            </label>
+                            <!--END Slider-->
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="y1Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="y1.value=y1Controller.value"/></input>
+                                <span> y: <output id="y1" for="y1Controller">0.1</output></span>
+                            </label>
+                            <!--END Slider-->
+                        </div>
+                        <div class="partial-sliders-container">
+                            <h6 class="graphcolor2 slider-label">Basis vector 2:</h6>
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="x2Controller" class="inputs" type="range" value="0.1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="x2.value=x2Controller.value"/></input>
+                                <span> x: <output id="x2" for="x2Controller">0.1</output></span>
+                            </label>
+                            <!--END Slider-->
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="y2Controller" class="inputs" type="range" value="1.1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="y2.value=y2Controller.value"/></input>
+                                <span> y: <output id="y2" for="y2Controller">1.1</output></span>
+                            </label>
+                            <!--END Slider-->
+                        </div>
+                        <div class="partial-sliders-container">
+                            <h6 class="graphcolor3 slider-label">Target vector:</h6>
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="x3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="x3.value=x3Controller.value"/></input>
+                                <span> x: <output id="x3" for="x3Controller">1</output></span>
+                            </label>
+                            <!--END Slider-->
+                            <!--BEGIN Slider-->
+                            <label class="slider">
+                                <input id="y3Controller" class="inputs" type="range" value="1" min="-2.5" max="2.5"
+                                       step="0.01" oninput="y3.value=y3Controller.value"/></input>
+                                <span> y: <output id="y3" for="y3Controller">1</output></span>
+                            </label>
+                            <!--END Slider-->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="rightload text even" id='loadout2'
-                 key="loadout2" v-if="currentSection === 2">
-                <transition name="fade">
-                    <!--Interactive Zone Sub Containers-->
-                    <div class="rightload text" id='loadout2sub0' key="loadout2sub0" v-if="derivationSubSection !== 3">
-                        <!--Graph-->
-                        <div id='graph0Sec2'></div>
-                        <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
-                        <h4 id="subSecTitle"></h4>
-                        <!--Scroll down to select the function-->
-                        <!--Scroll down-->
-                        <div id="scrollSec2Sub1">
-                            <div class="scroll_down">
-                                <strong>Select Function: </strong>
-                                <select id="SelectSec2Sub1">
-                                    <option id="opt1" title="Triangular Function" value="triangular">Triangular
-                                        Function
-                                    </option>
-                                    <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
-                                    </option>
-                                    <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta Function
-                                    </option>
-                                    <option id="opt4" title="Square Function" value="square">Square Function</option>
-                                    <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
-                                    </option>
-                                    <option id="opt6" title="|x| Function" value="mode">|x| Function</option>
-                                </select>
+                <div class="rightload text even" id='loadout2'
+                     key="loadout2" v-if="currentSection === 2">
+                    <transition name="fade">
+                        <!--Interactive Zone Sub Containers-->
+                        <div class="rightload text" id='loadout2sub0' key="loadout2sub0"
+                             v-if="derivationSubSection !== 3">
+                            <!--Graph-->
+                            <div id='graph0Sec2'></div>
+                            <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
+                            <h4 id="subSecTitle"></h4>
+                            <!--Scroll down to select the function-->
+                            <!--Scroll down-->
+                            <div id="scrollSec2Sub1">
+                                <div class="scroll_down">
+                                    <strong>Select Function: </strong>
+                                    <select id="SelectSec2Sub1">
+                                        <option id="opt1" title="Triangular Function" value="triangular">Triangular
+                                            Function
+                                        </option>
+                                        <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
+                                        </option>
+                                        <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta
+                                            Function
+                                        </option>
+                                        <option id="opt4" title="Square Function" value="square">Square Function
+                                        </option>
+                                        <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
+                                        </option>
+                                        <option id="opt6" title="|x| Function" value="mode">|x| Function</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--Slider-->
+                            <div class="overall-sliders-container">
+                                <!--NB: Be careful with classes and types-->
+                                <!--BEGIN Slider A-->
+                                <div id="ASec2Sub1" class="partial-sliders-container">
+                                    <!--Slider Display A-->
+                                    <label class="slider-label" style="padding-bottom:20px;">Amplitude:
+                                        <span id="AControllerSec2Sub1Display" data-unit="">1</span>
+                                    </label>
+                                    <!--Slider A-->
+                                    <label class="slider">
+                                        <span class="sliderMin">-5</span>
+                                        <input id="AControllerSec2Sub1" class="inputs" type="range" value="1.0"
+                                               min="-5.0"
+                                               max="5.0" step="0.1"/>
+                                        <span class="sliderMax">5</span></label>
+                                </div>
+                                <!--END Slider A-->
+                                <!--BEGIN Slider N-->
+                                <div id="N" class="partial-sliders-container">
+                                    <!--Slider Display N-->
+                                    <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+                                        <span id="NControllerSec2Sub1Display" data-unit="">1</span>
+                                    </label>
+                                    <!--Slider N-->
+                                    <label class="slider">
+                                        <span class="sliderMin">0</span>
+                                        <input id="NControllerSec2Sub1" class="inputs" type="range" value="1" min="0"
+                                               max="20" step="1"/>
+                                        <span class="sliderMax">20</span>
+                                    </label>
+                                </div>
+                                <!--END Slider N-->
+                                <!--BEGIN Slider L-->
+                                <div id="L" class="partial-sliders-container">
+                                    <!--Slider Display L-->
+                                    <label class="slider-label" style="padding-bottom:20px;">Period:
+                                        <span id="LControllerSec2Sub1Display" data-unit="">1</span>
+                                    </label>
+                                    <!--Slider L-->
+                                    <label class="slider">
+                                        <span class="sliderMin">-5</span>
+                                        <input id="LControllerSec2Sub1" class="inputs" type="range" value="1" min="-5"
+                                               max="5" step="0.5"/>
+                                        <span class="sliderMax">5</span>
+                                    </label>
+                                </div>
+                                <!--END Slider L-->
                             </div>
                         </div>
-                        <!--Slider-->
-                        <div class="overall-sliders-container">
-                            <!--NB: Be careful with classes and types-->
-                            <!--BEGIN Slider A-->
-                            <div id="ASec2Sub1" class="partial-sliders-container">
-                                <!--Slider Display A-->
-                                <label class="slider-label" style="padding-bottom:20px;">Amplitude:
-                                    <span id="AControllerSec2Sub1Display" data-unit="">1</span>
-                                </label>
-                                <!--Slider A-->
-                                <label class="slider">
-                                    <span class="sliderMin">-5</span>
-                                    <input id="AControllerSec2Sub1" class="inputs" type="range" value="1.0" min="-5.0"
-                                           max="5.0" step="0.1"/>
-                                    <span class="sliderMax">5</span></label>
-                            </div>
-                            <!--END Slider A-->
-                            <!--BEGIN Slider N-->
-                            <div id="N" class="partial-sliders-container">
+                        <div class="rightload text" id='loadout2sub3' key="loadout2sub3"
+                             v-else>
+                            <!-- Graph -->
+                            <div id='graph1Sec2'></div>
+                            <div id='graph2Sec2'></div>
+                            <!--Slider-->
+                            <div class="overall-sliders-container">
+                                <!--BEGIN Slider N-->
                                 <!--Slider Display N-->
-                                <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
-                                    <span id="NControllerSec2Sub1Display" data-unit="">1</span>
+                                <label class="slider-label">Term Number:
+                                    <span id="NControllerSec2Sub2Display" data-unit="">1</span>
                                 </label>
                                 <!--Slider N-->
                                 <label class="slider">
                                     <span class="sliderMin">0</span>
-                                    <input id="NControllerSec2Sub1" class="inputs" type="range" value="1" min="0"
-                                           max="20" step="1"/>
-                                    <span class="sliderMax">20</span>
+                                    <input id="NControllerSec2Sub2" class="inputs" min="0" type="range" value="1"
+                                           max="50"
+                                           step="1"/>
+                                    <span class="sliderMax">50</span>
                                 </label>
-                            </div>
-                            <!--END Slider N-->
-                            <!--BEGIN Slider L-->
-                            <div id="L" class="partial-sliders-container">
+                                <!--END Slider N-->
+                                <!--BEGIN Slider A-->
+                                <!--Slider Display A-->
+                                <label class="slider-label">Amplitude:<!--Amplitude-->
+                                    <span id="AControllerSec2Sub2Display" data-unit="">1</span> <!--default: 1-->
+                                </label>
+                                <!--Slider A-->
+                                <label class="slider">
+                                    <span class="sliderMin">-1</span>
+                                    <input id="AControllerSec2Sub2" class="inputs" type="range" value="1" min="-1"
+                                           max="3"
+                                           step="0.1"/>
+                                    <span class="sliderMax">3</span>
+                                </label>
+                                <!--END Slider A-->
+                                <!--BEGIN Slider L-->
                                 <!--Slider Display L-->
-                                <label class="slider-label" style="padding-bottom:20px;">Period:
-                                    <span id="LControllerSec2Sub1Display" data-unit="">1</span>
+                                <label class="slider-label">Period:
+                                    <span id="LControllerSec2Sub2Display" data-unit="">1</span>
                                 </label>
                                 <!--Slider L-->
                                 <label class="slider">
-                                    <span class="sliderMin">-5</span>
-                                    <input id="LControllerSec2Sub1" class="inputs" type="range" value="1" min="-5"
-                                           max="5" step="0.5"/>
-                                    <span class="sliderMax">5</span>
+                                    <span class="sliderMin">0</span>
+                                    <input id="LControllerSec2Sub2" class="inputs" type="range" value="1" min="0"
+                                           max="1"
+                                           step="0.05"/>
+                                    <span class="sliderMax">1</span>
                                 </label>
+                                <!--END Slider L-->
                             </div>
-                            <!--END Slider L-->
                         </div>
-                    </div>
-                    <div class="rightload text" id='loadout2sub3' key="loadout2sub3"
-                         v-else>
-                        <!-- Graph -->
-                        <div id='graph1Sec2'></div>
-                        <div id='graph2Sec2'></div>
-                        <!--Slider-->
-                        <div class="overall-sliders-container">
-                            <!--BEGIN Slider N-->
-                            <!--Slider Display N-->
-                            <label class="slider-label">Term Number:
-                                <span id="NControllerSec2Sub2Display" data-unit="">1</span>
-                            </label>
-                            <!--Slider N-->
-                            <label class="slider">
-                                <span class="sliderMin">0</span>
-                                <input id="NControllerSec2Sub2" class="inputs" min="0" type="range" value="1" max="50"
-                                       step="1"/>
-                                <span class="sliderMax">50</span>
-                            </label>
-                            <!--END Slider N-->
-                            <!--BEGIN Slider A-->
-                            <!--Slider Display A-->
-                            <label class="slider-label">Amplitude:<!--Amplitude-->
-                                <span id="AControllerSec2Sub2Display" data-unit="">1</span> <!--default: 1-->
-                            </label>
-                            <!--Slider A-->
-                            <label class="slider">
-                                <span class="sliderMin">-1</span>
-                                <input id="AControllerSec2Sub2" class="inputs" type="range" value="1" min="-1" max="3"
-                                       step="0.1"/>
-                                <span class="sliderMax">3</span>
-                            </label>
-                            <!--END Slider A-->
-                            <!--BEGIN Slider L-->
-                            <!--Slider Display L-->
-                            <label class="slider-label">Period:
-                                <span id="LControllerSec2Sub2Display" data-unit="">1</span>
-                            </label>
-                            <!--Slider L-->
-                            <label class="slider">
-                                <span class="sliderMin">0</span>
-                                <input id="LControllerSec2Sub2" class="inputs" type="range" value="1" min="0" max="1"
-                                       step="0.05"/>
-                                <span class="sliderMax">1</span>
-                            </label>
-                            <!--END Slider L-->
-                        </div>
-                    </div>
-                </transition>
-            </div>
-            <div class="rightload text odd" id='loadout3'
-                 key="loadout3" v-if="currentSection === 3">
-                <!--Graph-->
-                <div id='graph1Sec3'></div>
-                <!--Scroll-down-->
-                <div id="scrollSec3">
-                    <div class="scroll_down">
-                        <strong>Select Function: </strong>
-                        <select id="SelectSec3" v-model="equationID">
-                            <option value="triangular">Triangular Function</option>
-                            <option value="square">Square Function</option>
-                            <option value="sawtooth">Sawtooth Function</option>
-                            <option value="dirac">Dirac-Delta Function</option>
-                            <option value="parabola">Parabola Function</option>
-                            <option value="mode">|x| Function</option>
-                        </select>
-                    </div>
+                    </transition>
                 </div>
-                <!--Sliders-->
-                <div class="overall-sliders-container">
-                    <!--BEGIN Slider A-->
-                    <div id="ASec3" class="partial-sliders-container">
-                        <!--Slider Display A-->
-                        <label class="slider-label" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
-                            <span id="AControllerSec3Display" data-unit="">5</span> <!--default: 1-->
-                        </label>
-                        <!--Slider A-->
-                        <label class="slider">
-                            <span class="sliderMin">&nbsp0</span>
-                            <input id="AControllerSec3" class="inputs" type="range" value="5" min="0" max="10"
-                                   step="0.1"/>
-                            <span class="sliderMax">10</span>
-                        </label>
-                    </div>
-                    <!--END Slider A-->
-                    <!--BEGIN Slider N-->
-                    <div id="NSec3" class="partial-sliders-container">
-                        <!--Slider Display N-->
-                        <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
-                            <span id="NControllerDisplaySec3" data-unit="">1</span>
-                        </label>
-                        <!--Slider N-->
-                        <label class="slider">
-                            <span class="sliderMin">&nbsp0</span>
-                            <input id="NControllerSec3" class="inputs" type="range" value="1" min="0" max="9" step="1"/>
-                            <span class="sliderMax">9</span>
-                        </label>
-                    </div>
-                    <!--END Slider N-->
-                    <!--BEGIN Slider L-->
-                    <div id="LSec3" class="partial-sliders-container">
-                        <!--Slider Display L-->
-                        <label class="slider-label" style="padding-bottom:20px;">Period:
-                            <span id="LControllerSec3Display" data-unit="">1</span>
-                        </label>
-                        <!--Slider L-->
-                        <label class="slider">
-                            <span class="sliderMin">-5</span>
-                            <input id="LControllerSec3" class="inputs" type="range" value="1" min="-5" max="5"
-                                   step="0.5"/>
-                            <span class="sliderMax">5</span>
-                        </label>
-                    </div>
-                    <!--END Slider L-->
-                </div>
-
-                <div id="equationSpace" v-if="showEq">
-
-                    <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
-                            <img src="Triangle_Eqn.png">
-                    </div>
-
-                    <div id="Square_eqn" class="equationContainer" v-else-if="equationID === 'square'">
-                            <img src="Square_Eqn.png">
-                    </div>
-
-                    <div id="Sawtooth_eqn" class="equationContainer" v-else-if="equationID === 'sawtooth'">
-                            <img src="Sawtooth_Eqn.png">
-                    </div>
-
-                    <div id="Dirac_eqn" class="equationContainer" v-else-if="equationID === 'dirac'">
-                        <img src="Dirac_Eqn.png">
-                    </div>
-
-                    <div id="Parabola_eqn" class="equationContainer" v-else-if="equationID === 'parabola'">
-                            <img src="Parabola_Eqn.png">
-                    </div>
-
-                    <div id="Modx_eqn" class="equationContainer" v-else-if="equationID === 'mode'">
-                            <img src="Modx_Eqn.png">
-                    </div>
-
-                </div>
-            </div>
-            <div class="rightload text even" id='loadout4'
-                 key="loadout4" v-if="currentSection === 4">
-                <!--Graphs-->
-                <div id='graph1Sec4'></div>
-                <div id='graph2Sec4'></div>
-                <!--Container for all Inputs-->
-                <div class="inputsContainer">
-                    <!--Scroll-down to select function-->
-                    <div class="selectorContainer">
-                        <strong>Select Function: </strong>
-                        <select id="SelectSec4">
-                            <option value="triangular">Triangular Function</option>
-                            <option value="square">Square Function</option>
-                            <option value="sawtooth">Sawtooth Function</option>
-                            <option value="dirac">Dirac-Delta Function</option>
-                            <option value="parabola">Parabola Function</option>
-                            <option value="mode">|x| Function</option>
-                        </select>
-                    </div>
-                    <!--Select parameter type-->
-                    <div class="selectorContainer">
-                        <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
-                        <!--Scroll-down to select coefficient-->
-                        <strong>Select Coefficient: </strong>
-                        <select id="Coefficient">
-                            <option value="an&bn">a and b</option>
-                            <option value="powerSpectrum">α and θ</option>
-                        </select>
-                    </div>
-                    <!--Sliders-->
-                    <div class="overall-sliders-container">
-                        <!--BEGIN Slider A-->
-                        <div id="ASec4" class="partial-sliders-container">
-                            <!--Slider Display A-->
-                            <label class="slider-label">Amplitude:<!--Amplitude-->
-                                <span id="AControllerSec4Display" data-unit="">1</span> <!--default: 1-->
-                            </label>
-                            <!--Slider A-->
-                            <label class="slider">
-                                <span class="sliderMin">-5</span>
-                                <input id="AControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
-                                       step="0.1"/>
-                                <span class="sliderMax">5</span>
-                            </label>
-                        </div>
-                        <!--END Slider A-->
-                        <!--BEGIN Slider N-->
-                        <div id="NSec4" class="partial-sliders-container">
-                            <!--Slider Display N-->
-                            <label class="slider-label" style="padding-bottom:20px;">Number <br>of Terms:
-                                <span id="NControllerSec4Display" data-unit="">1</span>
-                            </label>
-                            <!--Slider N-->
-                            <label class="slider">
-                                <span class="sliderMin">0</span>
-                                <input id="NControllerSec4" class="inputs" type="range" value="1" min="0" max="50"
-                                       step="1"/>
-                                <span class="sliderMax">50</span>
-                            </label>
-                        </div>
-                        <!--END Slider N-->
-                        <!--BEGIN Slider L-->
-                        <div id="LSec4" class="partial-sliders-container">
-                            <!--Slider Display L-->
-                            <label class="slider-label" style="padding-bottom:20px;">Period:
-                                <span id="LControllerSec4Display" data-unit="">1</span>
-                            </label>
-                            <!--Slider L-->
-                            <label class="slider">
-                                <span class="sliderMin">-5</span>
-                                <input id="LControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
-                                       step="0.1"/>
-                                <span class="sliderMax">5</span>
-                            </label>
-                        </div>
-                        <!--END Slider L-->
-                    </div>
-                </div>
-            </div>
-            <div class="rightload text odd" id='loadout5'
-                 key="loadout5" v-if="currentSection === 5">
-                <!--Graphs-->
-                <div id='graph1Sec5'></div>
-                <div id='graph2Sec5'></div>
-                <div id='graph3Sec5'></div>
-                <!--Container for all Inputs-->
-                <div class="inputsContainer">
-                    <!--Scroll dropdown list for option of functions-->
-                    <div id="scrollSec5">
+                <div class="rightload text odd" id='loadout3'
+                     key="loadout3" v-if="currentSection === 3">
+                    <!--Graph-->
+                    <div id='graph1Sec3'></div>
+                    <!--Scroll-down-->
+                    <div id="scrollSec3">
                         <div class="scroll_down">
-                            <strong>Select Function:</strong>
-                            <select id="SelectSec5">
-                                <option value="custom">Custom Input</option>
+                            <strong>Select Function: </strong>
+                            <select id="SelectSec3" v-model="equationID">
                                 <option value="triangular">Triangular Function</option>
                                 <option value="square">Square Function</option>
                                 <option value="sawtooth">Sawtooth Function</option>
@@ -1332,76 +1172,246 @@
                             </select>
                         </div>
                     </div>
-                    <!--BEGIN Input function box -->
-                    <div id="inputSec5">
-                        <label>Input Function: f(x)=
-                            <input id="aInputSec5" type="text" value="x^2">
-                            <p id="aInputError" style="color:#ff0000" hidden></p>
-                        </label>
-                    </div>
-                    <!--END Input function box  -->
-                    <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
-                    <!--Scroll-down to select coefficient-->
-                    <div>
-                        <strong>Select Coefficient: </strong>
-                        <select id="CoefficientSec5">
-                            <option value="a">a</option>
-                            <option value="b">b</option>
-                            <option value="α">α</option>
-                            <option value="θ">θ</option>
-                        </select>
-                    </div>
                     <!--Sliders-->
-                    <!--BEGIN Slider N-->
-                    <div id="NSec5" class="partial-sliders-container">
-                        <!--Slider Display N-->
-                        <label class="slider-label">Number of Terms:
-                            <span id="NControllerSec5Display" data-unit="">1</span>
-                            <span id="NController2Sec5Display" data-unit="">1</span>
-                        </label>
-                        <!--Slider N-->
-                        <label class="slider">
-                            <span class="sliderMin">0</span>
-                            <input id="NController2Sec5" class="inputs" type="range" value="1" min="0" max="10"
-                                   step="1">
-                            <input id="NControllerSec5" class="inputs" type="range" value="1" min="0" max="20"
-                                   step="1">
-                            <span class="sliderMax" id="NMaxSec5">20</span>
-                        </label>
+                    <div class="overall-sliders-container">
+                        <!--BEGIN Slider A-->
+                        <div id="ASec3" class="partial-sliders-container">
+                            <!--Slider Display A-->
+                            <label class="slider-label" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
+                                <span id="AControllerSec3Display" data-unit="">5</span> <!--default: 1-->
+                            </label>
+                            <!--Slider A-->
+                            <label class="slider">
+                                <span class="sliderMin">&nbsp0</span>
+                                <input id="AControllerSec3" class="inputs" type="range" value="5" min="0" max="10"
+                                       step="0.1"/>
+                                <span class="sliderMax">10</span>
+                            </label>
+                        </div>
+                        <!--END Slider A-->
+                        <!--BEGIN Slider N-->
+                        <div id="NSec3" class="partial-sliders-container">
+                            <!--Slider Display N-->
+                            <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+                                <span id="NControllerDisplaySec3" data-unit="">1</span>
+                            </label>
+                            <!--Slider N-->
+                            <label class="slider">
+                                <span class="sliderMin">&nbsp0</span>
+                                <input id="NControllerSec3" class="inputs" type="range" value="1" min="0" max="9"
+                                       step="1"/>
+                                <span class="sliderMax">9</span>
+                            </label>
+                        </div>
+                        <!--END Slider N-->
+                        <!--BEGIN Slider L-->
+                        <div id="LSec3" class="partial-sliders-container">
+                            <!--Slider Display L-->
+                            <label class="slider-label" style="padding-bottom:20px;">Period:
+                                <span id="LControllerSec3Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider L-->
+                            <label class="slider">
+                                <span class="sliderMin">-5</span>
+                                <input id="LControllerSec3" class="inputs" type="range" value="1" min="-5" max="5"
+                                       step="0.5"/>
+                                <span class="sliderMax">5</span>
+                            </label>
+                        </div>
+                        <!--END Slider L-->
                     </div>
-                    <!--END Slider N-->
-                    <!--BEGIN Slider L-->
-                    <div id="LSec5" class="partial-sliders-container">
-                        <!--Slider Display L-->
-                        <label class="slider-label">Period:
-                            <span id="LControllerSec5Display" data-unit="">1</span>
-                        </label>
-                        <!--Slider L-->
-                        <label class="slider">
-                            <span class="sliderMin">-5</span>
-                            <input id="LControllerSec5" class="inputs" type="range" value="1" min="-5" max="5"
-                                   step="0.5"/>
-                            <span class="sliderMax">5</span>
-                        </label>
+
+                    <div id="equationSpace" v-if="showEq">
+
+                        <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
+                            <img src="Triangle_Eqn.png">
+                        </div>
+
+                        <div id="Square_eqn" class="equationContainer" v-else-if="equationID === 'square'">
+                            <img src="Square_Eqn.png">
+                        </div>
+
+                        <div id="Sawtooth_eqn" class="equationContainer" v-else-if="equationID === 'sawtooth'">
+                            <img src="Sawtooth_Eqn.png">
+                        </div>
+
+                        <div id="Dirac_eqn" class="equationContainer" v-else-if="equationID === 'dirac'">
+                            <img src="Dirac_Eqn.png">
+                        </div>
+
+                        <div id="Parabola_eqn" class="equationContainer" v-else-if="equationID === 'parabola'">
+                            <img src="Parabola_Eqn.png">
+                        </div>
+
+                        <div id="Modx_eqn" class="equationContainer" v-else-if="equationID === 'mode'">
+                            <img src="Modx_Eqn.png">
+                        </div>
+
                     </div>
-                    <!--END Slider L-->
                 </div>
-            </div>
-            <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                 v-if="1 <= currentSection <= 5 === false">
-                please wait...
-            </div>
-        </transition-group>
-    </div>
-    <!--    Title Banner above Right Side    -->
-    <div class="banner">
-        <!--    Visualisation Title    -->
-        <h1 class="" id="vis-title">
-            UNDERSTANDING FOURIER SERIES
-        </h1>
-        <a href="https://www.imperialvisualisations.com/learn/">
-            <img id="vis-logo" src="VisualisationsLogoWhite2.png">
-        </a>
+                <div class="rightload text even" id='loadout4'
+                     key="loadout4" v-if="currentSection === 4">
+                    <!--Graphs-->
+                    <div id='graph1Sec4'></div>
+                    <div id='graph2Sec4'></div>
+                    <!--Container for all Inputs-->
+                    <div class="inputsContainer">
+                        <!--Scroll-down to select function-->
+                        <div class="selectorContainer">
+                            <strong>Select Function: </strong>
+                            <select id="SelectSec4">
+                                <option value="triangular">Triangular Function</option>
+                                <option value="square">Square Function</option>
+                                <option value="sawtooth">Sawtooth Function</option>
+                                <option value="dirac">Dirac-Delta Function</option>
+                                <option value="parabola">Parabola Function</option>
+                                <option value="mode">|x| Function</option>
+                            </select>
+                        </div>
+                        <!--Select parameter type-->
+                        <div class="selectorContainer">
+                            <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                            <!--Scroll-down to select coefficient-->
+                            <strong>Select Coefficient: </strong>
+                            <select id="Coefficient">
+                                <option value="an&bn">a and b</option>
+                                <option value="powerSpectrum">α and θ</option>
+                            </select>
+                        </div>
+                        <!--Sliders-->
+                        <div class="overall-sliders-container">
+                            <!--BEGIN Slider A-->
+                            <div id="ASec4" class="partial-sliders-container">
+                                <!--Slider Display A-->
+                                <label class="slider-label">Amplitude:<!--Amplitude-->
+                                    <span id="AControllerSec4Display" data-unit="">1</span> <!--default: 1-->
+                                </label>
+                                <!--Slider A-->
+                                <label class="slider">
+                                    <span class="sliderMin">-5</span>
+                                    <input id="AControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                                           step="0.1"/>
+                                    <span class="sliderMax">5</span>
+                                </label>
+                            </div>
+                            <!--END Slider A-->
+                            <!--BEGIN Slider N-->
+                            <div id="NSec4" class="partial-sliders-container">
+                                <!--Slider Display N-->
+                                <label class="slider-label" style="padding-bottom:20px;">Number <br>of Terms:
+                                    <span id="NControllerSec4Display" data-unit="">1</span>
+                                </label>
+                                <!--Slider N-->
+                                <label class="slider">
+                                    <span class="sliderMin">0</span>
+                                    <input id="NControllerSec4" class="inputs" type="range" value="1" min="0" max="50"
+                                           step="1"/>
+                                    <span class="sliderMax">50</span>
+                                </label>
+                            </div>
+                            <!--END Slider N-->
+                            <!--BEGIN Slider L-->
+                            <div id="LSec4" class="partial-sliders-container">
+                                <!--Slider Display L-->
+                                <label class="slider-label" style="padding-bottom:20px;">Period:
+                                    <span id="LControllerSec4Display" data-unit="">1</span>
+                                </label>
+                                <!--Slider L-->
+                                <label class="slider">
+                                    <span class="sliderMin">-5</span>
+                                    <input id="LControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                                           step="0.1"/>
+                                    <span class="sliderMax">5</span>
+                                </label>
+                            </div>
+                            <!--END Slider L-->
+                        </div>
+                    </div>
+                </div>
+                <div class="rightload text odd" id='loadout5'
+                     key="loadout5" v-if="currentSection === 5">
+                    <!--Graphs-->
+                    <div id='graph1Sec5'></div>
+                    <div id='graph2Sec5'></div>
+                    <div id='graph3Sec5'></div>
+                    <!--Container for all Inputs-->
+                    <div class="inputsContainer">
+                        <!--Scroll dropdown list for option of functions-->
+                        <div id="scrollSec5">
+                            <div class="scroll_down">
+                                <strong>Select Function:</strong>
+                                <select id="SelectSec5">
+                                    <option value="custom">Custom Input</option>
+                                    <option value="triangular">Triangular Function</option>
+                                    <option value="square">Square Function</option>
+                                    <option value="sawtooth">Sawtooth Function</option>
+                                    <option value="dirac">Dirac-Delta Function</option>
+                                    <option value="parabola">Parabola Function</option>
+                                    <option value="mode">|x| Function</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--BEGIN Input function box -->
+                        <div id="inputSec5">
+                            <label>Input Function: f(x)=
+                                <input id="aInputSec5" type="text" value="x^2">
+                                <p id="aInputError" style="color:#ff0000" hidden></p>
+                            </label>
+                        </div>
+                        <!--END Input function box  -->
+                        <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+                        <!--Scroll-down to select coefficient-->
+                        <div>
+                            <strong>Select Coefficient: </strong>
+                            <select id="CoefficientSec5">
+                                <option value="a">a</option>
+                                <option value="b">b</option>
+                                <option value="α">α</option>
+                                <option value="θ">θ</option>
+                            </select>
+                        </div>
+                        <!--Sliders-->
+                        <!--BEGIN Slider N-->
+                        <div id="NSec5" class="partial-sliders-container">
+                            <!--Slider Display N-->
+                            <label class="slider-label">Number of Terms:
+                                <span id="NControllerSec5Display" data-unit="">1</span>
+                                <span id="NController2Sec5Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider N-->
+                            <label class="slider">
+                                <span class="sliderMin">0</span>
+                                <input id="NController2Sec5" class="inputs" type="range" value="1" min="0" max="10"
+                                       step="1">
+                                <input id="NControllerSec5" class="inputs" type="range" value="1" min="0" max="20"
+                                       step="1">
+                                <span class="sliderMax" id="NMaxSec5">20</span>
+                            </label>
+                        </div>
+                        <!--END Slider N-->
+                        <!--BEGIN Slider L-->
+                        <div id="LSec5" class="partial-sliders-container">
+                            <!--Slider Display L-->
+                            <label class="slider-label">Period:
+                                <span id="LControllerSec5Display" data-unit="">1</span>
+                            </label>
+                            <!--Slider L-->
+                            <label class="slider">
+                                <span class="sliderMin">-5</span>
+                                <input id="LControllerSec5" class="inputs" type="range" value="1" min="-5" max="5"
+                                       step="0.5"/>
+                                <span class="sliderMax">5</span>
+                            </label>
+                        </div>
+                        <!--END Slider L-->
+                    </div>
+                </div>
+                <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
+                     v-if="1 <= currentSection <= 5 === false">
+                    please wait...
+                </div>
+            </transition-group>
+        </div>
     </div>
     <div class="rightScriptSpace"></div>
     <div class="derivationScriptSpace"></div>
