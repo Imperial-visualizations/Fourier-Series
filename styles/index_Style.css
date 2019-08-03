@@ -24,7 +24,7 @@
 /* LEFT SIDE STYLES */
 
 .left {
-    height: fit-content;
+    height: 100vh;
     width: 33vw;
     position: fixed;
     top: 0;
@@ -36,7 +36,7 @@
 
 #progress-container {
     display: flex;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     width: 33vw;
     height: 4vh;
     min-height: 30px;
@@ -172,10 +172,9 @@ meter::-moz-meter-bar {
 .journey {
     flex: 1 1 auto;
     width: inherit;
+    height: 100%;
     padding: 0;
     /*position: fixed;*/
-    top: 4vh;
-    bottom: 0;
     background: #ffffff;
     overflow-y:auto !important;
     overflow-x:hidden;
@@ -379,7 +378,7 @@ i {
 
 .banner {
     display: flex;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     justify-content: flex-end;
     align-items: center;
     height: 4vh;
@@ -426,8 +425,20 @@ i {
     width: auto;
 }
 
-.wait {
-    font-size: 12pt;
+#loadwait {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-border {
+    width: 2vw;
+    height: 2vw;
 }
 
 .scriptSpace {

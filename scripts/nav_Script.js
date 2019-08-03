@@ -28,8 +28,6 @@ let app = new Vue ({
             ["scripts/Power_Spectrum_of_a_Fourier_Series.js"],
             ["scripts/Generalised_Fourier_Decomposition.js"],
         ],
-        removeScript: "",
-        addScript: "",
         firstRunDone: false,
         derivationSubSection: 1,
         derivationScripts: [
@@ -54,9 +52,7 @@ let app = new Vue ({
 
         handleElement: function (section) {
             // update currentSection variable if user scrolls past the top edge of its corresponding section on left side
-            let topSection = document.querySelectorAll("#"+"sc"+section)[0].offsetTop - 2;
-            let bottomSection = topSection + document.querySelectorAll("#"+"sc"+section)[0].offsetHeight - 2;
-            if (app.scrollPos >= topSection && app.scrollPos < bottomSection) {
+            if (app.scrollPos >= app.sectionTops[section -1] && app.scrollPos < app.sectionBottoms[section -1]) {
                 app.currentTitle = section;
             }
         },
@@ -95,6 +91,8 @@ let app = new Vue ({
                         app.sectionBottoms[i-1] = (app.sectionTops[i-1] + document.querySelectorAll("#"+"sc"+i)[0].offsetHeight - document.querySelectorAll(".journey")[0].offsetHeight);
                     }
                 }
+                app.firstRunDone = true;
+                app.scrollFunc();
             })
         },
 
@@ -268,9 +266,6 @@ let app = new Vue ({
             app.n = document.querySelectorAll(".section-container").length;
             // calculates initial div section positions in journey with respect to the top
             this.sectionPos();
-            app.firstRunDone = true;
-            // runs scrollFunc once on loading in case page does not load with top of journey in view
-            app.scrollFunc();
             // checks if journey div height changes every x seconds
             // if it does change, re-runs sectionPos to calculate section div positions
             app.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;
