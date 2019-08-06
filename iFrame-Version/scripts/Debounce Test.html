@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+</head>
+<body>
+<h1>debounceTest</h1>
+
+<button>clicker</button>
+
+<h2>0</h2>
+</body>
+<script>
+    let x=0;
+
+  /*  function debounce (func, wait, immediate) {
+        var timeout;
+        return function () {
+            /!*var /!*context = this,*!/ /!*args = arguments*!/;*!/
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(/!*context,*!/ /!*args*!/);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply();
+        }
+    }*/
+
+    document.getElementsByTagName("button")[0].addEventListener("click",
+        _.debounce( function () {
+            x=x+1;
+            document.getElementsByTagName("h2")[0].innerHTML = x;
+            },1000)
+    );
+
+</script>
+
+</html>
