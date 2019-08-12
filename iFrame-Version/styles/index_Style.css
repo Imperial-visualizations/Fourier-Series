@@ -6,7 +6,7 @@
 }
 
 .mathJaxDisplay {
-    display:table;
+    display: table;
     margin: 10px auto;
     font-size: calc(4px + 0.95vw);
 }
@@ -19,6 +19,12 @@
     float: left;
     display: flex;
     flex-direction: column;
+}
+
+iframe {
+    border: none;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* LEFT SIDE STYLES */
@@ -43,7 +49,7 @@
     /*position: fixed;*/
     left: 0;
     top: 0;
-    border:none;
+    border: none;
     z-index: 6;
 }
 
@@ -61,7 +67,7 @@ meter {
 meter::-webkit-meter-bar {
     background: none; /* Required to get rid of the default background property */
     background-color: #37578b;
-    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
 }
 
 meter::-webkit-meter-optimum-value {
@@ -76,7 +82,7 @@ meter {
     /* Firefox */
     background: none; /* Required to get rid of the default background property */
     background-color: #37578b;
-    box-shadow: 0 0.5vhpx 0.5vh -0.5vhpx #333 inset;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
 }
 
 meter::-moz-meter-bar {
@@ -144,7 +150,7 @@ meter::-moz-meter-bar {
 
 #hoverTitleSpace {
     position: fixed;
-    top: 6vh;
+    top: calc(40px + 1.5vh);
     left: 0;
     font-size: 12pt;
     width: fit-content;
@@ -176,8 +182,8 @@ meter::-moz-meter-bar {
     padding: 0;
     /*position: fixed;*/
     background: #ffffff;
-    overflow-y:auto !important;
-    overflow-x:hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden;
     text-align: justify;
     box-shadow: 0 0 5px #a8a8a8;
 }
@@ -218,14 +224,9 @@ button.section-sub-head {
     position: relative;
     margin: 10px 0 20px 0;
     text-align: center;
-    /*font-size: 18pt;*/
     font-size: 1.4vw;
-    /*background: #ccdfff;*/
-    /*border: solid 1px black;*/
     border: solid 1px #033482;
-    /*border-radius: 10%;*/
     color: #033482;
-    /*border-radius: 40px;*/
     box-shadow: none;
 }
 
@@ -246,7 +247,7 @@ button.section-sub-head:hover {
     flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
-    border-radius: 0.5vh 0.5vh 0 0 ;
+    border-radius: 0.5vh 0.5vh 0 0;
     text-align: center;
     background: #ffffff;
     align-items: stretch;
@@ -283,9 +284,9 @@ button.section-sub-head:hover {
 
 .tab-content {
     position: relative;
-    color : #000000;
+    color: #000000;
     background-color: #eaf2ff;
-    padding : 2vh 2vw;
+    padding: 2vh 2vw;
     /*box-shadow: 3px 4px 3px #a8a8a8;*/
     z-index: 2;
     /*border-radius: 8px 8px 8px 8px;*/
@@ -305,7 +306,7 @@ button.section-sub-head:hover {
 .tab-content > .tab-pane.active,
 .pill-content > .pill-pane.active {
     display: block;
-    visibility:visible;
+    visibility: visible;
 }
 
 h3.section-sub-head {
@@ -401,7 +402,7 @@ i {
     flex-basis: 0;
     flex-grow: 1;
     min-height: 30px;
-    margin:0;
+    margin: 0;
     padding: 0;
     position: fixed;
     text-align: center;
@@ -421,7 +422,7 @@ i {
     margin-right: 7px;
 }
 
-#vis-logo img{
+#vis-logo img {
     width: auto;
 }
 
@@ -437,12 +438,18 @@ i {
 }
 
 .spinner-border {
-    width: 2vw;
-    height: 2vw;
+    width: 2vh;
+    height: 2vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    z-index: -10;
 }
 
 .scriptSpace {
-    width:0;
+    width: 0;
     height: 0;
     margin: 0;
     padding: 0;
@@ -454,7 +461,8 @@ i {
     transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
     opacity: 0;
 }
 

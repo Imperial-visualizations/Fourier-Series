@@ -1,7 +1,6 @@
-
 // Code for navigation functionality in visualisations main screen using Vue
 
-let app = new Vue ({
+let app = new Vue({
 
     el: "#app",
 
@@ -13,7 +12,7 @@ let app = new Vue ({
         sectionTops: [],
         sectionBottoms: [],
         sectionTitleLong: ["Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview"],
-        sectionTitleShort: ["1","2","3","4","5","6"],
+        sectionTitleShort: ["1", "2", "3", "4", "5", "6"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -21,19 +20,8 @@ let app = new Vue ({
         n: "",
         journeyHeightOld: "",
         journeyHeightNew: "",
-        rightScripts: [
-            [],
-            [],
-            [],
-            [],
-            [],
-        ],
         firstRunDone: false,
         derivationSubSection: 1,
-        derivationScripts: [
-            [],
-            [],
-        ],
         showEq: true,
         equationID: "triangular",
     },
@@ -52,28 +40,32 @@ let app = new Vue ({
 
         handleElement: function (section) {
             // update currentSection variable if user scrolls past the top edge of its corresponding section on left side
-            if (app.scrollPos >= app.sectionTops[section -1] && app.scrollPos < app.sectionBottoms[section -1]) {
+            if (app.scrollPos >= app.sectionTops[section - 1] && app.scrollPos < app.sectionBottoms[section - 1]) {
                 app.currentTitle = section;
             }
         },
 
-        changeTitle:  function () {
-            for (let i=1; i<=app.n; i++) {
+        changeTitle: function () {
+            for (let i = 1; i <= app.n; i++) {
                 app.handleElement(i)
             }
         },
 
         changeSec: debounce(function () {
-          app.currentSection = app.currentTitle;
+            app.currentSection = app.currentTitle;
         }, 200),
 
         swapTitles: function (newValue, oldValue) {
-            for (let i=1; i<=app.n; i++) {
+            for (let i = 1; i <= app.n; i++) {
                 if (i !== newValue) {
-                    app.sectionTitle[i-1] = app.sectionTitleShort[i-1];
+                    app.sectionTitle[i - 1] = app.sectionTitleShort[i - 1];
                 } else {
-                    setTimeout (function () {app.sectionTitle[i-1] = app.sectionTitleLong[i-1];}, 20);
-                    setTimeout (function () {app.$forceUpdate();}, 100);
+                    setTimeout(function () {
+                        app.sectionTitle[i - 1] = app.sectionTitleLong[i - 1];
+                    }, 20);
+                    setTimeout(function () {
+                        app.$forceUpdate();
+                    }, 100);
                 }
             }
         },
@@ -81,15 +73,15 @@ let app = new Vue ({
         // Function called every x seconds to check if section div sizes have changed and recalculate scroll positions if so
         // Div sizes may change if window re-sized or if a subsection is expanded/collapsed
         sectionPos: function () {
-            this.$nextTick (function () {
+            this.$nextTick(function () {
                 let overallTop = document.querySelectorAll("#sc1")[0].offsetTop;
-                for (let i=1; i<=app.n; i++) {
-                    if (i<app.n) {
-                        app.sectionTops[i-1] = (document.querySelectorAll("#"+"sc"+i)[0].offsetTop - overallTop);
-                        app.sectionBottoms[i-1] = (app.sectionTops[i-1] + document.querySelectorAll("#"+"sc"+i)[0].offsetHeight);
+                for (let i = 1; i <= app.n; i++) {
+                    if (i < app.n) {
+                        app.sectionTops[i - 1] = (document.querySelectorAll("#" + "sc" + i)[0].offsetTop - overallTop);
+                        app.sectionBottoms[i - 1] = (app.sectionTops[i - 1] + document.querySelectorAll("#" + "sc" + i)[0].offsetHeight);
                     } else {
-                        app.sectionTops[i-1] = (document.querySelectorAll("#"+"sc"+i)[0].offsetTop - overallTop);
-                        app.sectionBottoms[i-1] = (app.sectionTops[i-1] + document.querySelectorAll("#"+"sc"+i)[0].offsetHeight - document.querySelectorAll(".journey")[0].offsetHeight);
+                        app.sectionTops[i - 1] = (document.querySelectorAll("#" + "sc" + i)[0].offsetTop - overallTop);
+                        app.sectionBottoms[i - 1] = (app.sectionTops[i - 1] + document.querySelectorAll("#" + "sc" + i)[0].offsetHeight - document.querySelectorAll(".journey")[0].offsetHeight);
                     }
                 }
                 app.firstRunDone = true;
@@ -99,7 +91,7 @@ let app = new Vue ({
 
         // Function activated when button in nav/progress bar clicked to scroll automatically to relevant section
         scrollTo: function (event) {
-            document.querySelectorAll("#"+"sc"+event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
+            document.querySelectorAll("#" + "sc" + event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
         },
 
         // Same as above but for subsections
@@ -108,6 +100,18 @@ let app = new Vue ({
             let scrollTarget = event.currentTarget;
             if (scrollTarget.id === "ssh" + app.derivationSubSection) {
                 scrollTarget.scrollIntoView();
+            }
+        },
+
+        hoverPosUpdate: function (event) {
+            app.hoverPos = parseFloat(event.currentTarget.dataset.no)
+        },
+
+        selectHover: function () {
+            if (app.currentTitle !== app.hoverPos) {
+                app.hoverTitle = app.sectionTitleLong[app.hoverPos - 1]
+            } else {
+                app.hoverTitle = false
             }
         },
 
@@ -121,21 +125,9 @@ let app = new Vue ({
             app.$forceUpdate();
         },
 
-        hoverPosUpdate: function (event) {
-            app.hoverPos = parseFloat(event.currentTarget.dataset.no)
-        },
-
-        selectHover: function () {
-            if (app.currentTitle !== app.hoverPos) {
-                app.hoverTitle=app.sectionTitleLong[app.hoverPos-1]
-            } else {
-                app.hoverTitle=false
-            }
-        },
-
-        updateMouseX: function(event) {
+        updateMouseX: function (event) {
             // pass event object, bound to mouse move with update
-            app.mouseX = event.clientX -15;
+            app.mouseX = event.clientX - 15;
         },
 
         hideShowToggle: function (event) {
@@ -150,73 +142,35 @@ let app = new Vue ({
 
     watch: {
 
-        currentTitle: function (newValue, oldValue) {
         // Updates current section title to display in full in nav/progress bar whilst minimising other section titles
+        currentTitle: function (newValue, oldValue) {
             app.swapTitles(newValue, oldValue)
         },
 
         currentSection: function (newValue, oldValue) {
-
-            // Removes and adds scripts depending on which section is at top of visible part of journey
-            document.querySelectorAll('.rightScriptSpace')[0].innerHTML = "";
-            for (let i=1; i<=app.rightScripts[newValue-1].length; i++) {
-                app.addScript = document.createElement("script");
-                app.addScript.id ="rightScriptS" + newValue + "E" + i;
-                app.addScript.src = (app.rightScripts[newValue-1][i-1]);
-                app.addScript.async = false;
-                document.querySelectorAll('.rightScriptSpace')[0].appendChild(app.addScript);
-            }
-            // Code to deal with loading / unloading appropriate scripts when entering / leaving section 2 as the scripts depend on which subsection is active
-            if (oldValue === 2) {
-                document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
-            }
             if (newValue === 2) {
-                if (app.derivationSubSection !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
+                if (app.derivationSubSection !== 3) {
+                    // locks function displayed to show only specific example if subsection about specific function is active
                     setTimeout(function () {
+                        let iframeTarget = document.querySelectorAll("#iframe2-1")[0].contentWindow;
                         if (app.derivationSubSection > 3) {
-                            let iframeTarget = document.querySelectorAll("#iframe2-1")[0].contentWindow;
                             iframeTarget.document.querySelectorAll('#opt' + (app.derivationSubSection - 3))[0].setAttribute("selected", "true");
                             iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
                             iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
                             setTimeout(function () {
                                 iframeTarget.selectorFuncSec2Sub0();
-                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML=iframeTarget.document.querySelectorAll("#opt"+(app.derivationSubSection-3))[0].title;
-                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display="block";
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (app.derivationSubSection - 3))[0].title;
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
                             }, 200);
                         }
                     }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
                 }
             }
         },
 
         derivationSubSection: function (newValue, oldValue) {
-            // Removes and adds scripts depending on which subsection is active when on section 2
-
-            document.querySelectorAll('.derivationScriptSpace')[0].innerHTML = "";
             if (app.currentSection === 2) {
-                if (newValue !==3) {
-                    for (let i=1; i<=app.derivationScripts[0].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 0 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[0][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
+                if (newValue !== 3) {
                     // locks function displayed to show only specific example if subsection about specific function is active
                     setTimeout(function () {
                         let iframeTarget = document.querySelectorAll("#iframe2-1")[0].contentWindow;
@@ -232,61 +186,53 @@ let app = new Vue ({
                             iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
                             setTimeout(function () {
                                 iframeTarget.selectorFuncSec2Sub0();
-                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML=iframeTarget.document.querySelectorAll("#opt"+(newValue-3))[0].title;
-                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display="block";
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (newValue - 3))[0].title;
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
                             }, 200);
                         }
                     }, 200);
-                } else {
-                    for (let i=1; i<=app.derivationScripts[1].length; i++) {
-                        app.addScript = document.createElement("script");
-                        app.addScript.id ="derivationScriptS" + 1 + "E" + i;
-                        app.addScript.src = (app.derivationScripts[1][i-1]);
-                        app.addScript.async = false;
-                        document.querySelectorAll('.derivationScriptSpace')[0].appendChild(app.addScript);
-                    }
-                }
-                if (oldValue !== 0) {
-                    document.querySelectorAll("ssh" + oldValue)
                 }
             }
         },
 
         equationID: function () {
             // changes to correct equation to display in section 4 (depending on dropdown selection)
-            app.showEq=false;
+            app.showEq = false;
             setTimeout(
-                function () {app.showEq=true
-            }, 50);
+                function () {
+                    app.showEq = true
+                }, 50);
         },
     },
 
-    mounted () {
+    mounted() {
 
         // $nextTick ensures initial functions only run once Vue is initialised sufficiently
-        this.$nextTick ( function () {
-            // makes n equal to total number of sections
-            app.n = document.querySelectorAll(".section-container").length;
-            // calculates initial div section positions in journey with respect to the top
-            this.sectionPos();
-            // checks if journey div height changes every x seconds
-            // if it does change, re-runs sectionPos to calculate section div positions
-            app.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;
-            window.setInterval(() => {
-                app.journeyHeightNew = document.querySelectorAll(".journey")[0].scrollHeight;
-                if (app.journeyHeightOld !== app.journeyHeightNew) {
-                    app.journeyHeightOld = app.journeyHeightNew;
-                    this.sectionPos();
-                }
-            },2000);
-            // collapses collapsible divs once mathJax has loaded fully
-            setTimeout(function () {MathJax.Hub.Queue(function () {
-               let collapseDivs = document.querySelectorAll(".collapse:not(#introContentContainer)");
-               for (let i=0; i<collapseDivs.length; i++) {
-                   collapseDivs[i].classList.remove("show");
-               }
-            })
-            }, 1000)
-        }
-    )},
+        this.$nextTick(function () {
+                // makes n equal to total number of sections
+                app.n = document.querySelectorAll(".section-container").length;
+                // calculates initial div section positions in journey with respect to the top
+                this.sectionPos();
+                // checks if journey div height changes every x seconds
+                // if it does change, re-runs sectionPos to calculate section div positions
+                app.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;
+                window.setInterval(() => {
+                    app.journeyHeightNew = document.querySelectorAll(".journey")[0].scrollHeight;
+                    if (app.journeyHeightOld !== app.journeyHeightNew) {
+                        app.journeyHeightOld = app.journeyHeightNew;
+                        this.sectionPos();
+                    }
+                }, 2000);
+                // collapses collapsible divs once mathJax has loaded fully
+                setTimeout(function () {
+                    MathJax.Hub.Queue(function () {
+                        let collapseDivs = document.querySelectorAll(".collapse:not(#introContentContainer)");
+                        for (let i = 0; i < collapseDivs.length; i++) {
+                            collapseDivs[i].classList.remove("show");
+                        }
+                    })
+                }, 1000)
+            }
+        )
+    },
 });

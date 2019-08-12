@@ -35,14 +35,16 @@
     "HTML-CSS": { fonts: ["TeX"] }
   });
 
+
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 
 <body>
 <div id="app">
     <!--   Title of non-current sections to appear on hovering above respective number in navbar     -->
-    <div  id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
+    <div id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
         {{hoverTitle}}
     </div>
     <!--    Left Side of Window - containing mainly text    -->
@@ -54,19 +56,29 @@
             <!--    Also act as buttons to navigate between sections    -->
             <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
                 <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
-                        key="sectionTitle1" data-no=1 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[0]}}
+                        key="sectionTitle1" data-no=1 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[0]}}
                 </button>
                 <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
-                        key="sectionTitle2" data-no=2 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[1]}}
+                        key="sectionTitle2" data-no=2 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[1]}}
                 </button>
                 <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
-                        key="sectionTitle3" data-no=3 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[2]}}
+                        key="sectionTitle3" data-no=3 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[2]}}
                 </button>
                 <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
-                        key="sectionTitle4" data-no=4 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[3]}}
+                        key="sectionTitle4" data-no=4 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[3]}}
                 </button>
                 <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
-                        key="sectionTitle5" data-no=5 @click="scrollTo($event)" @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">{{sectionTitle[4]}}
+                        key="sectionTitle5" data-no=5 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[4]}}
                 </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
@@ -94,24 +106,29 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
-                    Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
+                    Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
+                        class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
                     inner product as
                     <span class="mathJaxDisplay">
                             $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
                         </span>
-                    where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span> component of the vector
+                    where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span>
+                    component of the vector
                     <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
                     <span class="mathJaxDisplay">
                             $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
                         </span>
                     then we say the vectors are <strong>orthogonal</strong>.
                     <br><br>
-                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do not change the position
+                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do
+                    not change the position
                     component in the direction of any vector
-                    orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are perpendicular.
+                    orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are
+                    perpendicular.
                     <!--(... talk about definition of orthogonality)-->
                     <br><br>
-                    If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the vectors are said to be
+                    If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the
+                    vectors are said to be
                     <strong>orthonormal</strong>.
                     <span class="mathJaxDisplay">
                             $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
@@ -120,17 +137,20 @@
                         </span>
                     This mean the vectors are orthogonal and conveniently normalised.
                     <br><br>
-                    Use the visualisation to see that when the basis vectors are not parallel they span <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
+                    Use the visualisation to see that when the basis vectors are not parallel they span <span
+                        class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
                     using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
                     <br><br>
-                    If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span class="mathJaxInline">$ n $</span> vectors,
+                    If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span
+                        class="mathJaxInline">$ n $</span> vectors,
                     then the basis vectors form a <strong>complete set</strong>.
                     If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal
                     set</strong>.
                     <br><br>
                     In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
                     be complete.
-                    We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain <span class="mathJaxInline">$ \left[a,b \right] $</span>.
+                    We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain
+                    <span class="mathJaxInline">$ \left[a,b \right] $</span>.
                     <br><br>
                     We define their inner product to be
                     <span class="mathJaxDisplay">
@@ -145,7 +165,8 @@
                     set</strong> of basis
                     functions in the same way vectors could be constructed from a complete set of basis vectors. A
                     square integrable function <span class="mathJaxInline">$ f $</span> is
-                    a function whose inner product with itself, <span class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
+                    a function whose inner product with itself, <span
+                        class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
 
                 </div>
             </div>
@@ -159,14 +180,18 @@
                 </div>
                 <div class="text section-body odd" id="p2">
                     <div id="intro" class="divclass">
-                        <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1" @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse" data-target="#introContentContainer"
-                        :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
+                        <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1"
+                                @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#introContentContainer"
+                                :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
                             Basics and Definition <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="introContentContainer" class="collapse show" data-parent="#p2">
                             <div id="introContent" class="section-sub-content" key="introContent">
-                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
-                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum
+                                Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over
+                                the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
+                                where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span>
+                                can be represented as a sum
                                 of
                                 sines and cosines with varying
                                 frequencies.
@@ -189,9 +214,11 @@
                                 <span class="mathJaxDisplay">
                                         $$ n=0,1,2... $$
                                     </span>
-                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the average value of <span class="mathJaxInline">$ f(x) $</span>.
+                                <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the
+                                average value of <span class="mathJaxInline">$ f(x) $</span>.
                                 <br><br>
-                                The Fourier series representation of the function <span class="mathJaxInline">$ f(x) $</span> in exponential
+                                The Fourier series representation of the function <span
+                                    class="mathJaxInline">$ f(x) $</span> in exponential
                                 (complex) form is
                                 <span class="mathJaxDisplay">
                                         $$ f(x) =\sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} \qquad $$
@@ -208,18 +235,22 @@
                         </div>
                     </div>
                     <div id="FSderivation" class="divclass">
-                        <button id="ssh2" class="section-sub-head collapsed" key="ssh2" @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse" data-target="#FSderivationContentContainer"
+                        <button id="ssh2" class="section-sub-head collapsed" key="ssh2"
+                                @click="updateSubSection(2); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#FSderivationContentContainer"
                                 :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
                             General Derivation <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="FSderivationContentContainer" class="collapse show" data-parent="#p2">
                             <div id="FSderivationContent" class="section-sub-content" key="FSderivationContent">
-                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented as a sum of
+                                We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented
+                                as a sum of
                                 exponential terms.
                                 <span class="mathJaxDisplay">
                                         $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
                                     </span>
-                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span class="mathJaxInline">$ m=0,1,2... $</span>,
+                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span
+                                    class="mathJaxInline">$ m=0,1,2... $</span>,
                                 and integrating both sides gives the following:
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
@@ -231,7 +262,8 @@
                                     </span>
                                 This is the orthonormality of complex exponentials.
                                 <br><br>
-                                Now since the only non-zero value of the sum is when <span class="mathJaxInline">$ n=m $</span>,
+                                Now since the only non-zero value of the sum is when <span
+                                    class="mathJaxInline">$ n=m $</span>,
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
                                     </span>
@@ -239,7 +271,8 @@
                                 <span class="mathJaxDisplay">
                                         $$ c_m=\frac{1}{2L}\int_{-L}^{+L}f(x) e^{-im\pi x/L}dx. $$
                                     </span>
-                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary integer, it can be assigned
+                                <strong>Note:</strong> As <span class="mathJaxInline">$ m $</span> is an arbitrary
+                                integer, it can be assigned
                                 as <span class="mathJaxInline">$ n $</span> for simplicity.
                                 <br><br>
                                 Given the previously derived equation, we can derive the trigonometric form of the
@@ -249,7 +282,8 @@
                                     </span>
                                 We can regroup the terms in the summation in the following way:
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="regroupexplainContainer" class="collapse show extra-content-container">
@@ -281,13 +315,15 @@
                                 and use that these exponentials can we written as
                                 sines and cosines.
                                 <br><br>
-                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span class="mathJaxInline">$ b_0=0 $</span>.
+                                <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span
+                                    class="mathJaxInline">$ b_0=0 $</span>.
                                 <br><br>
                                 Hence
                                 <span class="mathJaxDisplay">
                                         $$ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \Big[ a_n\cos\Big(\frac{\pi nx}{L}\Big) + b_n\sin\Big(\frac{\pi nx}{L}\Big) \Big] $$
                                     </span>
-                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from <span class="mathJaxInline">$ c_n $</span>
+                                <span class="mathJaxInline">$ a_n $</span> can be derived by using the expression from
+                                <span class="mathJaxInline">$ c_n $</span>
                                 <span class="mathJaxDisplay">
                                         \begin{align}
                                         a_n = c_n + c_{-n} = & \frac{1}{2L}\int_{-L}^{+L}f(x) e^{-in\pi x/L}dx \\
@@ -309,7 +345,9 @@
                         </div>
                     </div>
                     <div id="triangular1" class="divclass">
-                        <button id="ssh3" class="section-sub-head collapsed" key="ssh3" @click="updateSubSection(3); subScrollTo($event)" data-toggle="collapse" data-target="#triangular1ContentContainer"
+                        <button id="ssh3" class="section-sub-head collapsed" key="ssh3"
+                                @click="updateSubSection(3); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#triangular1ContentContainer"
                                 :style="derivationSubSection === 3 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 1 <i class='fas fa-chevron-down'></i>
                         </button>
@@ -325,24 +363,32 @@
                                         \end{array}
                                         \right. $$
                                     </span>
-                                First notice that <span class="mathJaxInline">$ f(x) $</span> is odd about <span class="mathJaxInline">$ x=0 $</span>, hence <span class="mathJaxInline">$ a_n=0 $</span>
-                                for all <span class="mathJaxInline">$ n $</span>. Also, since the <span class="mathJaxInline">$ b_n $</span> integrand is even about
+                                First notice that <span class="mathJaxInline">$ f(x) $</span> is odd about <span
+                                    class="mathJaxInline">$ x=0 $</span>, hence <span
+                                    class="mathJaxInline">$ a_n=0 $</span>
+                                for all <span class="mathJaxInline">$ n $</span>. Also, since the <span
+                                    class="mathJaxInline">$ b_n $</span> integrand is even about
                                 <span class="mathJaxInline">$ x=0 $</span>,
                                 <span class="mathJaxDisplay">
                                         $$ b_n=\frac{2}{L}\int_0^L f(x) \sin \left(\frac{n \pi x}{L}\right)dx. $$
                                     </span>
-                                Notice that for even <span class="mathJaxInline">$ n $</span>, <span class="mathJaxInline">$ b_n $</span> is odd about
+                                Notice that for even <span class="mathJaxInline">$ n $</span>, <span
+                                    class="mathJaxInline">$ b_n $</span> is odd about
                                 <span class="mathJaxInline">$ x=L/2 $</span>.
                                 Hence,
                                 <span class="mathJaxDisplay">
                                         $$ b_n=\frac{2}{L}\int_0^{L} f(x) \sin \left(\frac{n\pi x}{L} \right) dx = 0 \quad \text{for even n}. $$
                                     </span>
-                                The integral from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ L/2 $</span> is equal in magnitude but
-                                opposite in sign to the integral from <span class="mathJaxInline">$ L/2 $</span> to <span class="mathJaxInline">$ L $</span>, for
+                                The integral from <span class="mathJaxInline">$ 0 $</span> to <span
+                                    class="mathJaxInline">$ L/2 $</span> is equal in magnitude but
+                                opposite in sign to the integral from <span class="mathJaxInline">$ L/2 $</span> to
+                                <span class="mathJaxInline">$ L $</span>, for
                                 even <span class="mathJaxInline">$ n $</span>.
                                 <br><br>
-                                For odd <span class="mathJaxInline">$ n $</span>, the function is even around <span class="mathJaxInline">$ L/2 $</span>, so we only
-                                have to integrate from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ L/2 $</span> then multiply by
+                                For odd <span class="mathJaxInline">$ n $</span>, the function is even around <span
+                                    class="mathJaxInline">$ L/2 $</span>, so we only
+                                have to integrate from <span class="mathJaxInline">$ 0 $</span> to <span
+                                    class="mathJaxInline">$ L/2 $</span> then multiply by
                                 <span class="mathJaxInline">$ 2 $</span>. This has made our job much easier.
                                 <span class="mathJaxDisplay">
                                         $$ b_n=2\frac{2}{L}\int_0^{L/2} f(x) \sin \left(\frac{n\pi x}{L} \right) dx \quad \text{for odd n} $$
@@ -352,7 +398,9 @@
                         </div>
                     </div>
                     <div id="triangular2" class="divclass">
-                        <button id="ssh4" class="section-sub-head collapsed" key="ssh4" @click="updateSubSection(4); subScrollTo($event)" data-toggle="collapse" data-target="#triangular2ContentContainer"
+                        <button id="ssh4" class="section-sub-head collapsed" key="ssh4"
+                                @click="updateSubSection(4); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#triangular2ContentContainer"
                                 :style="derivationSubSection === 4 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 2 <i class='fas fa-chevron-down'></i>
                         </button>
@@ -361,14 +409,16 @@
                                     <span class="mathJaxDisplay">
                                         $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
                                     </span>
-                                Remembering that for even <span class="mathJaxInline">$ n $</span>, <span class="mathJaxInline">$ b_n=0 $</span>, therefore only
+                                Remembering that for even <span class="mathJaxInline">$ n $</span>, <span
+                                    class="mathJaxInline">$ b_n=0 $</span>, therefore only
                                 consider odd <span class="mathJaxInline">$ n $</span>.
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{4}{L} \frac{2A}{L}\int_0^{L/2} x \sin \left(\frac{n\pi x}{L} \right) dx $$
                                     </span>
                                 This integral can be performed by parts.
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#BypartsTriangularContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="BypartsTriangularContainer" class="collapse show extra-content-container">
@@ -411,7 +461,8 @@
                                 <span class="mathJaxDisplay">
                                     $$ f(x)=\sum_{n=1,3,5...}^\infty \frac{8A}{n^2\pi^2} (-1)^{\frac{n-1}{2}} \sin \left(\frac{n\pi x}{L} \right) $$
                                     </span>
-                                And the using that an odd number is given by <span class="mathJaxInline">$ 2n +1 $</span> for any
+                                And the using that an odd number is given by <span
+                                    class="mathJaxInline">$ 2n +1 $</span> for any
                                 <span class="mathJaxInline">$ n $</span>,
                                 <span class="mathJaxDisplay">
                                     $$ f(x)=\sum_{n=1,2,3...}^\infty \frac{8A}{(2n-1)^2\pi^2}(-1)^n \sin \left(\frac{(2n-1)\pi x}{L} \right) $$
@@ -420,7 +471,9 @@
                         </div>
                     </div>
                     <div id="parabolic" class="divclass">
-                        <button id="ssh5" class="section-sub-head collapsed" key="ssh5" @click="updateSubSection(5); subScrollTo($event)" data-toggle="collapse" data-target="#parabolicContentContainer"
+                        <button id="ssh5" class="section-sub-head collapsed" key="ssh5"
+                                @click="updateSubSection(5); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#parabolicContentContainer"
                                 :style="derivationSubSection === 5 ? 'background-color: #eaf2ff;' : ''">
                             Parabolic Function <i class='fas fa-chevron-down'></i>
                         </button>
@@ -431,15 +484,19 @@
                                         $$ f(x)=Ax^2 \quad \text{for:} -L\leq x< L$$
                                     </span>
                                 and forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
-                                Therefore, <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span> coefficients are given as
+                                Therefore, <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span>
+                                coefficients are given as
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{1}{L}\int_{-L}^{+L} Ax^2 \sin \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
                                 <span class="mathJaxDisplay">
                                         $$ a_n= \frac{1}{L}\int_{-L}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
-                                The <span class="mathJaxInline">$ b_n $</span> integral is odd about <span class="mathJaxInline">$ x=0 $</span>, hence
-                                <span class="mathJaxInline">$ b_n=0 $</span> for all <span class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is even about
+                                The <span class="mathJaxInline">$ b_n $</span> integral is odd about <span
+                                    class="mathJaxInline">$ x=0 $</span>, hence
+                                <span class="mathJaxInline">$ b_n=0 $</span> for all <span
+                                    class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is
+                                even about
                                 <span class="mathJaxInline">$ x=0 $</span>. Hence
                                 <span class="mathJaxDisplay">
                                         $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
@@ -454,7 +511,8 @@
                                     </span>
                                 This Eqn. can be solved by integrating by parts.
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#ByPartsParabolic1Container"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="ByPartsParabolic1Container" class="collapse show extra-content-container">
@@ -480,7 +538,8 @@
                                         $$ a_n = -\frac{4A}{n\pi}\int_{0}^{L} x \sin \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#ByPartsParabolic2Container"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="ByPartsParabolic2Container" class="collapse show extra-content-container">
@@ -513,13 +572,16 @@
                         </div>
                     </div>
                     <div id="delta" class="divclass">
-                        <button id="ssh6" class="section-sub-head collapsed" key="ssh6" @click="updateSubSection(6); subScrollTo($event)" data-toggle="collapse" data-target="#deltaContentContainer"
+                        <button id="ssh6" class="section-sub-head collapsed" key="ssh6"
+                                @click="updateSubSection(6); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#deltaContentContainer"
                                 :style="derivationSubSection === 6 ? 'background-color: #eaf2ff;' : ''">
                             Dirac-Delta Function <i class='fas fa-chevron-down'></i>
                         </button>
                         <div id="deltaContentContainer" class="collapse show" data-parent="#p2">
                             <div id="deltaContent" class="section-sub-content" key="deltaContent">
-                                The Dirac-delta function can be thought of as a infinite spike at <span class="mathJaxInline">$ x=0 $</span>.
+                                The Dirac-delta function can be thought of as a infinite spike at <span
+                                    class="mathJaxInline">$ x=0 $</span>.
                                 <span class="mathJaxDisplay">
                                         $$
                                         f(x) = \delta(x)=\left\{
@@ -536,12 +598,14 @@
                                 <span class="mathJaxDisplay">
                                         $$ b_n=\frac{1}{L}\int_{-L}^{+L}\delta(x) \sin \left(\frac{n\pi x}{L} \right)dx $$
                                     </span>
-                                <span class="mathJaxInline">$ \delta(x) $</span> is an even function. Hence <span class="mathJaxInline">$ b_n=0 $</span> and
+                                <span class="mathJaxInline">$ \delta(x) $</span> is an even function. Hence <span
+                                    class="mathJaxInline">$ b_n=0 $</span> and
                                 <span class="mathJaxDisplay">
                                         $$ a_n=\frac{1}{L} $$
                                     </span>
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#ByPartsDiracContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="ByPartsDiracContainer" class="collapse show extra-content-container">
@@ -550,7 +614,9 @@
                                         <span class="mathJaxDisplay">
                                         $$ \int_{\alpha-\epsilon}^{\alpha+\epsilon} g(x) \delta(x-\alpha)dx=g(\alpha) $$
                                         </span>
-                                        For us, <span class="mathJaxInline">$ \alpha=0 $</span>, <span class="mathJaxInline">$ \epsilon=L, $</span> and <span class="mathJaxInline">$ g(x)= \sin \left(n \pi x/L \right) $</span>.
+                                        For us, <span class="mathJaxInline">$ \alpha=0 $</span>, <span
+                                            class="mathJaxInline">$ \epsilon=L, $</span> and <span
+                                            class="mathJaxInline">$ g(x)= \sin \left(n \pi x/L \right) $</span>.
                                         <br><br>
                                         Therefore,
                                         <span class="mathJaxDisplay">
@@ -561,7 +627,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                Therefore, the fourier series for positive <span class="mathJaxInline">$ L $</span> can be written as
+                                Therefore, the fourier series for positive <span class="mathJaxInline">$ L $</span> can
+                                be written as
                                 <span class="mathJaxDisplay">
                                         $$ f(x)=\frac{1}{2L}+\sum_{n=1}^\infty \frac{1}{L} \cos \left(\frac{n\pi x}{L} \right). $$
                                     </span>
@@ -569,7 +636,9 @@
                         </div>
                     </div>
                     <div id="square" class="divclass">
-                        <button id="ssh7" class="section-sub-head collapsed" key="ssh7" @click="updateSubSection(7); subScrollTo($event)" data-toggle="collapse" data-target="#squareContentContainer"
+                        <button id="ssh7" class="section-sub-head collapsed" key="ssh7"
+                                @click="updateSubSection(7); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#squareContentContainer"
                                 :style="derivationSubSection === 7 ? 'background-color: #eaf2ff;' : ''">
                             Square Wave <i class='fas fa-chevron-down'></i>
                         </button>
@@ -586,11 +655,14 @@
                                         \right.
                                         $$
                                     </span>
-                                The <span class="mathJaxInline">$ a_{n} $</span> terms can be found be noting that <span class="mathJaxInline">$ f(x) $</span> is
+                                The <span class="mathJaxInline">$ a_{n} $</span> terms can be found be noting that <span
+                                    class="mathJaxInline">$ f(x) $</span> is
                                 odd,
-                                so <span class="mathJaxInline">$ a_n $</span> is <span class="mathJaxInline">$ 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
+                                so <span class="mathJaxInline">$ a_n $</span> is <span
+                                    class="mathJaxInline">$ 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
                                 <br><br>
-                                To find the <span class="mathJaxInline">$ b_n $</span> terms, the integration can be split into two parts:
+                                To find the <span class="mathJaxInline">$ b_n $</span> terms, the integration can be
+                                split into two parts:
                                 <span class="mathJaxInline">$ -L\leq x <0 $</span>
                                 and <span class="mathJaxInline">$ 0\leq x < L $</span>.
                                 <br><br>
@@ -622,7 +694,9 @@
                         </div>
                     </div>
                     <div id="sawtooth" class="divclass">
-                        <button id="ssh8" class="section-sub-head collapsed" key="ssh8" @click="updateSubSection(8); subScrollTo($event)" data-toggle="collapse" data-target="#sawtoothContentContainer"
+                        <button id="ssh8" class="section-sub-head collapsed" key="ssh8"
+                                @click="updateSubSection(8); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#sawtoothContentContainer"
                                 :style="derivationSubSection === 8 ? 'background-color: #eaf2ff;' : ''">
                             Sawtooth Wave <i class='fas fa-chevron-down'></i>
                         </button>
@@ -632,9 +706,11 @@
                                 <span class="mathJaxDisplay">
                                         $$ f(x)=\frac{Ax}{L}  \quad (-L \leq x < L). $$
                                     </span>
-                                <span class="mathJaxInline">$ f(x) $</span> is odd, so <span class="mathJaxInline">$ a_n= 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
+                                <span class="mathJaxInline">$ f(x) $</span> is odd, so <span class="mathJaxInline">$ a_n= 0 $</span>
+                                for all <span class="mathJaxInline">$ n $</span>.
                                 <br><br>
-                                The <span class="mathJaxInline">$ b_n $</span> terms are given by the following integration:
+                                The <span class="mathJaxInline">$ b_n $</span> terms are given by the following
+                                integration:
                                 <span class="mathJaxDisplay">
                                         \begin{align}
                                         b_n & =\frac{1}{L}\int_{-L}^{L} \frac{Ax}{L}\sin \left(\frac{n\pi x}{L} \right)dx \\
@@ -643,7 +719,8 @@
                                     </span>
                                 Using Integration by parts it can be shown that:
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#ByPartsSawtoothContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="ByPartsSawtoothContainer" class="collapse show extra-content-container">
@@ -678,7 +755,9 @@
                         </div>
                     </div>
                     <div id="modx" class="divclass">
-                        <button id="ssh9" class="section-sub-head collapsed" key="ssh9" @click="updateSubSection(9); subScrollTo($event)" data-toggle="collapse" data-target="#modxContentContainer"
+                        <button id="ssh9" class="section-sub-head collapsed" key="ssh9"
+                                @click="updateSubSection(9); subScrollTo($event)" data-toggle="collapse"
+                                data-target="#modxContentContainer"
                                 :style="derivationSubSection === 9 ? 'background-color: #eaf2ff;' : ''">
                             Mod x Function <i class='fas fa-chevron-down'></i>
                         </button>
@@ -694,8 +773,10 @@
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{1}{L}\int_{-L}^{+L} A|x| \sin \left( \frac{n\pi x}{L}\right) dx $$
                                     </span>
-                                <span class="mathJaxInline">$ f(x) $</span> is even about <span class="mathJaxInline">$ x=0 $</span>. Hence <span class="mathJaxInline">$ b_n=0 $</span>.
-                                The <span class="mathJaxInline">$ a_n $</span> integral is even about <span class="mathJaxInline">$ x=0 $</span>. Hence,
+                                <span class="mathJaxInline">$ f(x) $</span> is even about <span class="mathJaxInline">$ x=0 $</span>.
+                                Hence <span class="mathJaxInline">$ b_n=0 $</span>.
+                                The <span class="mathJaxInline">$ a_n $</span> integral is even about <span
+                                    class="mathJaxInline">$ x=0 $</span>. Hence,
                                 <span class="mathJaxDisplay">
                                         $$ a_n = \frac{2}{L}\int_{0}^{+L} Ax  \cos \left(\frac{n \pi x}{L}\right)dx. $$
                                     </span>
@@ -709,7 +790,8 @@
                                     </span>
                                 By integrating by parts,
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                                        <button class="section-extra-head" data-toggle="collapse"
+                                                @click="hideShowToggle($event)"
                                                 data-target="#ByPartsModxContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
                                 <div id="ByPartsModxContainer" class="collapse show extra-content-container">
@@ -767,7 +849,8 @@
                         </span>
                     If the function is not periodic, then we may cut the function, forcing it to be periodic over some
                     <span class="mathJaxInline">$ -L < x < L $</span>. This means that we can prescribe a Fourier series
-                    that is now valid for the function over the selected range. If we take the limit as <span class="mathJaxInline">$ L \rightarrow \infty $</span>,
+                    that is now valid for the function over the selected range. If we take the limit as <span
+                        class="mathJaxInline">$ L \rightarrow \infty $</span>,
                     then a Fourier transform need be used. This is a different problem entirely!
                 </div>
             </div>
@@ -787,9 +870,12 @@
                     vector in
                     terms of basis vectors. Here sines and cosines are our basis functions, we have a method for finding
                     the projection
-                    of the function in the direction of each basis function (<span class="mathJaxInline">$ a_{n} $</span> and
-                    <span class="mathJaxInline">$ b_{n} $</span> are the "projections" of <span class="mathJaxInline">$ f(x) $</span> onto
-                    <span class="mathJaxInline">$ \sin\left(\frac{n\pi x}{L} \right) $</span> and <span class="mathJaxInline">$ \cos\left(\frac{n \pi x}{L} \right) $</span>
+                    of the function in the direction of each basis function (<span
+                        class="mathJaxInline">$ a_{n} $</span> and
+                    <span class="mathJaxInline">$ b_{n} $</span> are the "projections" of <span class="mathJaxInline">$ f(x) $</span>
+                    onto
+                    <span class="mathJaxInline">$ \sin\left(\frac{n\pi x}{L} \right) $</span> and <span
+                        class="mathJaxInline">$ \cos\left(\frac{n \pi x}{L} \right) $</span>
                     respectively).
                     <br><br>
                     This visualisation shows how the first ten terms are introduced to the series, notice that
@@ -800,13 +886,19 @@
                     </h3>
                     The power spectrum form is a different representation of a continuous signal.
                     <br><br>
-                    One can think of a signal as a sound wave that is a superposition of different frequencies <span class="mathJaxInline">$ \omega_n $</span>,
-                    each with amplitude <span class="mathJaxInline">$ \alpha_n $</span>, and relative phases <span class="mathJaxInline">$ \theta_n $</span>.
-                    Any signal of period <span class="mathJaxInline">$ 2L $</span> can be decomposed in terms of the amplitude and relative
-                    phase of its discrete frequency modes. Its two parameters <span class="mathJaxInline">$ \alpha_n $</span> and <span class="mathJaxInline">$ \theta_n $</span>,
+                    One can think of a signal as a sound wave that is a superposition of different frequencies <span
+                        class="mathJaxInline">$ \omega_n $</span>,
+                    each with amplitude <span class="mathJaxInline">$ \alpha_n $</span>, and relative phases <span
+                        class="mathJaxInline">$ \theta_n $</span>.
+                    Any signal of period <span class="mathJaxInline">$ 2L $</span> can be decomposed in terms of the
+                    amplitude and relative
+                    phase of its discrete frequency modes. Its two parameters <span
+                        class="mathJaxInline">$ \alpha_n $</span> and <span class="mathJaxInline">$ \theta_n $</span>,
                     enable us to measure the amount of
-                    each frequency <span class="mathJaxInline">$ \omega_n=\frac{n\pi}{L} $</span>contained in the signal, and the relative
-                    phase difference between the <span class="mathJaxInline">$ n^{th} $</span> frequency and a cosine wave centered at <span class="mathJaxInline">$ x=0 $</span>.
+                    each frequency <span class="mathJaxInline">$ \omega_n=\frac{n\pi}{L} $</span>contained in the
+                    signal, and the relative
+                    phase difference between the <span class="mathJaxInline">$ n^{th} $</span> frequency and a cosine
+                    wave centered at <span class="mathJaxInline">$ x=0 $</span>.
                     This is simply a different way to represent a signal
                     rather than decomposing it into its even and odd parts.
                     <span class="mathJaxDisplay">
@@ -819,35 +911,43 @@
                             $$ \theta_n = \tan^{-1} \bigg(\frac{b_n}{a_n}\bigg) $$
                         </span>
                     For some even functions, when the period transitions from 0 to negative, the value of
-                    <span class="mathJaxInline">$ \theta_n $</span> change from <span class="mathJaxInline">$ 0 $</span> to <span class="mathJaxInline">$ \pi $</span> or vice versa. Why
+                    <span class="mathJaxInline">$ \theta_n $</span> change from <span class="mathJaxInline">$ 0 $</span>
+                    to <span class="mathJaxInline">$ \pi $</span> or vice versa. Why
                     do you think
                     this happens?
                     <span class="section-extra-head-container">
-                            <button class="section-extra-head" data-toggle="collapse"  @click="hideShowToggle($event)"
+                            <button class="section-extra-head" data-toggle="collapse" @click="hideShowToggle($event)"
                                     data-target="#evenThetaAnswerContainer"> <span>Show</span> Answer </button>
                         </span>
                     <div id="evenThetaAnswerContainer" class="collapse show extra-content-container">
                         <div id="evenThetaAnswer" class="extra-content">
                             This happens because the value of <span class="mathJaxInline">$ a_n $</span> changes sign
                             (<span class="mathJaxInline">$ b_n $</span> is 0) causing the value of
-                            <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0 $</span>, <span class="mathJaxInline">$ \tan^{-1}(\frac{b_n}{a_n}) $</span>
+                            <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0 $</span>,
+                            <span class="mathJaxInline">$ \tan^{-1}(\frac{b_n}{a_n}) $</span>
                             can be both
-                            0 or <span class="mathJaxInline">$ \pi $</span> depending on whether <span class="mathJaxInline">$ a_n $</span> is positive or
+                            0 or <span class="mathJaxInline">$ \pi $</span> depending on whether <span
+                                class="mathJaxInline">$ a_n $</span> is positive or
                             negative. Not all even functions exhibit this.
                             The parabola for example, has its <span class="mathJaxInline">$ a_n $</span> proportional to
-                            <span class="mathJaxInline">$ L^2 $</span>, so its sign does not change when $L$ changes sign.
+                            <span class="mathJaxInline">$ L^2 $</span>, so its sign does not change when $L$ changes
+                            sign.
                         </div>
                     </div>
                     <h3 class="section-sub-head">
                         Orthogonal functions
                     </h3>
-                    Two functions <span class="mathJaxInline">$ f $</span> and <span class="mathJaxInline">$ g $</span> are said to be orthogonal if their inner
-                    product <span class="mathJaxInline">$ \langle f,g\rangle $</span> is 0. Just like basis vectors in a finite vector space,
+                    Two functions <span class="mathJaxInline">$ f $</span> and <span class="mathJaxInline">$ g $</span>
+                    are said to be orthogonal if their inner
+                    product <span class="mathJaxInline">$ \langle f,g\rangle $</span> is 0. Just like basis vectors in a
+                    finite vector space,
                     a set of orthogonal functions can form an infinite basis in a function space and a linear sum of
                     these basis functions can describe any function in that function space.
                     <br><br>
-                    For functions that are periodic over <span class="mathJaxInline">$ -L < x \leq L $</span> with a period of
-                    <span class="mathJaxInline">$ 2L $</span>, the fourier components <span class="mathJaxInline">$ \rightarrow $</span> <span class="mathJaxInline">$ \sin(\frac{\pi x}{L}), \cos(\frac{\pi x}{L}),
+                    For functions that are periodic over <span class="mathJaxInline">$ -L < x \leq L $</span> with a
+                    period of
+                    <span class="mathJaxInline">$ 2L $</span>, the fourier components <span class="mathJaxInline">$ \rightarrow $</span>
+                    <span class="mathJaxInline">$ \sin(\frac{\pi x}{L}), \cos(\frac{\pi x}{L}),
                         \sin(\frac{2\pi x}{L}), \cos(\frac{2\pi x}{L})... $</span> and so on form a complete orthogonal
                     set that can be used to describe these functions. This means that increasing the amplitude of one of
                     the components does not affect the other components, so changing the amount of any frequency
@@ -881,9 +981,11 @@
                     <br><br>
                     The period slider forces the function you have specified to be periodic over
                     <span class="mathJaxInline">$ -L < x \leq L $</span>.
-                    For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span class="mathJaxInline">$ L = 1 $</span>, this is the sine
+                    For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span
+                        class="mathJaxInline">$ L = 1 $</span>, this is the sine
                     function but cut at <span class="mathJaxInline">$ x = \pm 1 $</span> and forced
-                    to be periodic over just this range (not the full <span class="mathJaxInline">$ 2\pi $</span> period).
+                    to be periodic over just this range (not the full <span class="mathJaxInline">$ 2\pi $</span>
+                    period).
                     <br><br>
                     The following functions can be used:
                     <br><br>
@@ -901,13 +1003,16 @@
                     <br><br>
                     Write exponents as a^(exponent), so <span class="mathJaxInline">$ x^2 $</span> is written as x^2.
                     <br><br>
-                    Functions should be real and fully defined over the domain, for example <span class="mathJaxInline">$ log(x) $</span> is
+                    Functions should be real and fully defined over the domain, for example <span class="mathJaxInline">$ log(x) $</span>
+                    is
                     imaginary
                     for values less than zero, so does not work.
                     <br><br>
-                    <span class="mathJaxInline">$ log(x+1) $</span> does not work either (with a period of 1), since log is undefined at zero,
+                    <span class="mathJaxInline">$ log(x+1) $</span> does not work either (with a period of 1), since log
+                    is undefined at zero,
                     however
-                    <span class="mathJaxInline">$ log(1+x^2) $</span> does work for all periods, since it is defined over the whole domain and
+                    <span class="mathJaxInline">$ log(1+x^2) $</span> does work for all periods, since it is defined
+                    over the whole domain and
                     is real.
                     <br><br>
                     Sometimes due to the numerical integration methods used, the power spectrum shows very small values
@@ -933,71 +1038,68 @@
             <!--    fade transition tag for RHS - applied by Vue and CSS    -->
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
-                <iframe src="Right-Sec1-Orthogonality.html" class="rightload text odd" id="iframe1"
-                     key="loadout1" v-if="currentSection === 1">
-                </iframe>
-                <div class="rightload text even"
-                     key="loadout2" v-if="currentSection === 2">
+                <div id="loadout1Container" key="loadout1Container" v-if="currentSection === 1">
+                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe1">
+                    </iframe>
+                </div>
+                <div class="rightload text even" id="loadout2Container"
+                     key="loadout2Container" v-if="currentSection === 2">
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
-                        <iframe src="Right-Sec2-Sub0-FourierExamples.html" class="rightload text" id='iframe2-1' key="loadout2sub0"
-                             v-if="derivationSubSection !== 3">
-                        </iframe>
-                        <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe2-2' key="loadout2sub3"
-                             v-else>
-                        </iframe>
+                        <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
+                            <iframe src="Right-Sec2-Sub0-FourierExamples.html" class="rightload text"
+                                    id='iframe2-1'></iframe>
+                        </div>
+                        <div id="loadout2sub1Container" key="loadout2sub3Container" v-else>
+                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe2-2'></iframe>
+                        </div>
                     </transition>
                 </div>
-                <iframe src="Right-Sec3-Components.html" class="rightload text odd" id="iframe3"
-                     key="loadout3" v-if="currentSection === 3">
-                </iframe>
-                <div id="equationSpace" key="equationSpace" v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
-
-                    <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
-                        <img src="Triangle_Eqn.png">
+                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
+                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
+                    <div id="equationSpace" key="equationSpace"
+                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                        <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
+                            <img src="Triangle_Eqn.png">
+                        </div>
+                        <div id="Square_eqn" class="equationContainer" v-else-if="equationID === 'square'">
+                            <img src="Square_Eqn.png">
+                        </div>
+                        <div id="Sawtooth_eqn" class="equationContainer" v-else-if="equationID === 'sawtooth'">
+                            <img src="Sawtooth_Eqn.png">
+                        </div>
+                        <div id="Dirac_eqn" class="equationContainer" v-else-if="equationID === 'dirac'">
+                            <img src="Dirac_Eqn.png">
+                        </div>
+                        <div id="Parabola_eqn" class="equationContainer" v-else-if="equationID === 'parabola'">
+                            <img src="Parabola_Eqn.png">
+                        </div>
+                        <div id="Modx_eqn" class="equationContainer" v-else-if="equationID === 'mode'">
+                            <img src="Modx_Eqn.png">
+                        </div>
                     </div>
-
-                    <div id="Square_eqn" class="equationContainer" v-else-if="equationID === 'square'">
-                        <img src="Square_Eqn.png">
-                    </div>
-
-                    <div id="Sawtooth_eqn" class="equationContainer" v-else-if="equationID === 'sawtooth'">
-                        <img src="Sawtooth_Eqn.png">
-                    </div>
-
-                    <div id="Dirac_eqn" class="equationContainer" v-else-if="equationID === 'dirac'">
-                        <img src="Dirac_Eqn.png">
-                    </div>
-
-                    <div id="Parabola_eqn" class="equationContainer" v-else-if="equationID === 'parabola'">
-                        <img src="Parabola_Eqn.png">
-                    </div>
-
-                    <div id="Modx_eqn" class="equationContainer" v-else-if="equationID === 'mode'">
-                        <img src="Modx_Eqn.png">
-                    </div>
-
-                </div>
-                <!--Scroll-down-->
-                <div id="scrollSec3" key="scrollSec3" v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
-                    <div class="scroll_down">
-                        <strong>Select Function: </strong>
-                        <select id="SelectSec3" v-model="equationID">
-                            <option value="triangular">Triangular Function</option>
-                            <option value="square">Square Function</option>
-                            <option value="sawtooth">Sawtooth Function</option>
-                            <option value="dirac">Dirac-Delta Function</option>
-                            <option value="parabola">Parabola Function</option>
-                            <option value="mode">|x| Function</option>
-                        </select>
+                    <!--Scroll-down-->
+                    <div id="scrollSec3" key="scrollSec3"
+                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                        <div class="scroll_down">
+                            <strong>Select Function: </strong>
+                            <select id="SelectSec3" v-model="equationID">
+                                <option value="triangular">Triangular Function</option>
+                                <option value="square">Square Function</option>
+                                <option value="sawtooth">Sawtooth Function</option>
+                                <option value="dirac">Dirac-Delta Function</option>
+                                <option value="parabola">Parabola Function</option>
+                                <option value="mode">|x| Function</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text even" id="iframe4"
-                     key="loadout4" v-if="currentSection === 4">
-                </iframe>
-                <iframe src="Right-Sec5-Overview.html" class="rightload text odd" id="iframe5"
-                     key="loadout5" v-if="currentSection === 5">
-                </iframe>
+                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
+                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe4"></iframe>
+                </div>
+                <div id="loadout5Container" key="loadout5" v-if="currentSection === 5">
+                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe5"></iframe>
+                </div>
                 <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
                      v-if="1 <= currentSection <= 5 === false">
                     please wait...
@@ -1005,8 +1107,6 @@
             </transition-group>
         </div>
     </div>
-    <div class="rightScriptSpace"></div>
-    <div class="derivationScriptSpace"></div>
 </div>
 </body>
 
