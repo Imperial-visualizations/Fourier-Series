@@ -189,12 +189,16 @@
                     We define their inner product to be
                     <span class="mathJaxDisplay">
                             $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
-                        </span>
-                    and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
+                        </span>, where * denotes the complex conjugate of the function. This is commutative, just like the inner product of two vectors.
+                    We say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
                     for <span class="mathJaxInline">$ m \neq n $</span>.
                     <br><br>
-                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
-                    <br><br>
+                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>,
+                    where                     <span class="mathJaxDisplay">
+                            $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
+                            \\ 1 \quad \text{if } m = n
+                            \end{matrix}\right. $$
+                        </span>
                     We now claim that you can construct any square integrable function from a <strong>complete
                     set</strong> of basis
                     functions in the same way vectors could be constructed from a complete set of basis vectors. A
@@ -241,7 +245,6 @@
                                         \begin{align}
                                         a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
                                         b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
                                         \end{align}
                                     </span>
                                 and
@@ -262,9 +265,8 @@
                                         $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
                                     </span>
                                 <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
-                                the trigonometric and exponential fourier series are different. Also note the limit of
-                                the
-                                summations.
+                                the trigonometric and exponential fourier series are different. Also note the limit of the
+                                summations. Follow through the derivation to understand the difference.
                             </div>
                         </div>
                     </div>
@@ -284,7 +286,7 @@
                                         $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
                                     </span>
                                 Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span
-                                    class="mathJaxInline">$ m=0,1,2... $</span>,
+                                    class="mathJaxInline">$ m=0,1,2,... $</span>,
                                 and integrating both sides gives the following:
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
@@ -873,8 +875,7 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p4">
-                    The 0<sup>th</sup> term of the series is the constant term before the sum;
-                    <span class="mathJaxInline">$ \frac{a_0}{2} $</span>.
+                    The 0<sup>th</sup> term of the series, <span class="mathJaxInline">$ \frac{a_0}{2} $</span>, is the constant term before the sum.
                     <br><br>
                     This is labelled as the 0<sup>th</sup> term so that the series may start indexing its terms from
                     <span class="mathJaxInline">$ n=1 $</span>.
