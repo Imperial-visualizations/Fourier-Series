@@ -17,9 +17,10 @@ var z = numeric.linspace(-2*Math.PI,2*Math.PI,resolution);
 //----------------------------------------------------------------------------------------------------------------------
 //VERY IMPORTANT!!!
 // 0 is triangular, 1 is square, 2 is sawtooth, 3 is delta's, 4 is parabola, 5 is x, 6 is |x|,
-var shape = 0;
+var shape = 1;
 //----------------------------------------------------------------------------------------------------------------------
-
+const A = 2;
+const L = 1;
 
 // initialize the Cartesian coordinates for the plots and the functions
 function initFourierSec2Sub0() {
@@ -42,115 +43,30 @@ function addingSec2Sub0(array){
 // Start. Functions to plot the Fourier Series
 
 // select the kind of Fourier Series you want
-function selectionSec2Sub0(n,A,L,x,type){
+function selectionSec2Sub0(n,A,L,x){
     //Is summand of the particular function
-    if (type===0){
-        formula = -(8*A*1/((2*(n)-1) *Math.PI)**2)*(-1)**(n) * Math.sin(x*(2*n -1) *Math.PI /L);
-    } else if (type===1){
-        formula = 2*A/(n*Math.PI) *(1-(-1)**n) *Math.sin(n*Math.PI *x/L);
-    } else if (type===2){
-        formula = 2*A*(-1)**(n+1) /(n*Math.PI) * Math.sin(n *Math.PI* x/L);
-    } else if (type===3){
-        formula = 1/L * Math.cos(n*Math.PI*x/L);
-    } else if (type===4){
-        if (n===0){
-            formula=(2*L**2)/3;
-        } else {
-            formula=A*((4*L**2)/(n*Math.PI)**2)*(-1)**n*Math.cos(n*Math.PI*x/L);
-        }
-    } else if (type===6){
-        if (n===0){
-            formula=A*L;
-        } else {
-            formula=(2*A*L/(n*Math.PI)**2)*((-1)**(n) -1)*Math.cos(n*Math.PI*x/L);
-        }
-    }
+    formula = 2*A/(n*Math.PI) *(1-(-1)**n) *Math.sin(n*Math.PI *x/L);
     return formula;
 }
 
 // Function for exact Targets
-function exactSec2Sub0 (A,L,x,shape) {
+function exactSec2Sub0 (A,L,x) {
     let data;
     let x_values = [];
     let y_values = [];
     let newX;
     let newY;
-    switch (shape) {
-        case 0:
-            newY = -A;
-            for (let i=0; i<=30; i++) {
-                newX = (-15.5+i)*L;
-                x_values.push(newX);
-                newY = newY*(-1);
-                y_values.push(newY);
-            }
-            break;
-        case 1:
-            newY = -A;
-            newX = -15*L;
-            for (let i=0; i<=50; i++) {
-                newX=newX+L;
-                x_values.push(newX);
-                y_values.push(newY);
-                newY=-newY;
-                x_values.push(newX);
-                y_values.push(newY);
-            }
-            break;
-        case 2:
-            newY = -A;
-            newX = -15*L;
-            for (let i=0; i<=50; i++) {
-                x_values.push(newX);
-                y_values.push(newY);
-                newX=newX+L*2;
-                newY=-newY;
-                x_values.push(newX);
-                y_values.push(newY);
-                newY=-newY;
-                x_values.push(newX);
-                y_values.push(newY);
-            }
-            break;
-        case 3:
-            newY = 0;
-            newX = -16*L;
-            for (let i=0; i<=50; i++) {
-                newX=newX+L*2;
-                x_values.push(newX);
-                y_values.push(newY);
-                newY=1000;
-                x_values.push(newX);
-                y_values.push(newY);
-                newY=0;
-                x_values.push(newX);
-                y_values.push(newY);
-            }
-            break;
-        case 4:
-            let x_base=math.multiply(L,numeric.linspace(-1,1,1000));
-            let y_base=math.multiply(A,math.dotMultiply(x_base,x_base));
-            let x_base2=math.add(x_base,-16*L);
-            for (let i=0; i<=12; i++) {
-                x_base2=math.add(x_base2,2*L);
-                x_values=x_values.concat(x_base2);
-                y_values=y_values.concat(y_base);
-            }
-            break;
-        case 6:
-            newY=0;
-            for (let i=0; i<=30; i++) {
-                newX = (-15 + i) * L;
-                x_values.push(newX);
-                if (newY===A*L) {
-                    newY=0
-                } else {
-                    newY=A*L
-                }
-                y_values.push(newY);
-            }
-            break;
-    }
+
+    newY = -A;
+    newX = -15*L;
+    for (let i=0; i<=50; i++) {
+        newX=newX+L;
+        x_values.push(newX);
+        y_values.push(newY);
+        newY=-newY;
+        x_values.push(newX);
+        y_values.push(newY);
+    };
 
     data=
         {
@@ -168,8 +84,6 @@ function exactSec2Sub0 (A,L,x,shape) {
 function summationSec2Sub0(x) {
     //Goes through and sums up each component of the summand up to N
     let N = parseFloat(document.getElementById('NControllerSec2Sub1').value);
-    let L = parseFloat(document.getElementById('LControllerSec2Sub1').value);
-    let A = parseFloat(document.getElementById('AControllerSec2Sub1').value);
 
     n = numeric.linspace(1,N,N);
 
@@ -178,7 +92,7 @@ function summationSec2Sub0(x) {
 
 
     for (let i = 0; i < N; ++i){
-        y.push(selectionSec2Sub0(n[i],A,L,x,shape));
+        y.push(selectionSec2Sub0(n[i],A,L,x));
         //y.push((8*A/((2*n[i]-1)*Math.PI)**2)*((-1)**n[i])*Math.sin((2*n[i]-1)*Math.PI*x/L));
     }
     let sum = addingSec2Sub0(y);
@@ -186,31 +100,13 @@ function summationSec2Sub0(x) {
 }
 
 
-function a_zeroSec2Sub0(shape,A,L){
-// Returns a_0 for the particular function
-    if (shape === 0) {
-        a = 0;
-    }else if (shape === 1){
-        a = 0;
-    }else if (shape ===2){
-        a = 0;
-    }else if (shape ===3){
-        a = 1.0/L;
-    }else if (shape ===4){
-        a = (2.0/3)*A*L**2;
-    }else if (shape ===6){
-        a = A*L;
-    }
-    return a
-}
 
-function c_interceptSec2Sub0(shape, N,A,L) {
-    let number = a_zeroSec2Sub0(shape,A,L)/2;
+function c_interceptSec2Sub0(N,A,L) {
+    let number = 0;
     for (let n = 1; n < N; ++n){
-        number += selectionSec2Sub0(n, A,L, 0, shape);
-        }
-
-    return number
+        number += selectionSec2Sub0(n, A,L, 0);
+        };
+    return number;
 }
 
 
@@ -221,8 +117,6 @@ function c_interceptSec2Sub0(shape, N,A,L) {
 function computePlotSec2Sub0(x){
     //Just plots the sum approximation of the function
     let N = parseFloat(document.getElementById('NControllerSec2Sub1').value);
-    let L = parseFloat(document.getElementById('LControllerSec2Sub1').value);
-    let A = parseFloat(document.getElementById('AControllerSec2Sub1').value);
 
     let x_values = [];
     let y_values = [];
@@ -233,7 +127,7 @@ function computePlotSec2Sub0(x){
         x_values.push(x[i]);
     }
     for (let i = 0; i< y_values.length; ++i){
-        y_values_cheat.push(-y_values[y_values.length/2]+y_values[i] + c_interceptSec2Sub0(shape, N,A,L));
+        y_values_cheat.push(-y_values[y_values.length/2]+y_values[i] + c_interceptSec2Sub0(N,A,L));
 
         //The part "-y_values[y_values.length/2] +y_values[i]" centres
         //the equation so that the y value is equal to zero at x = 0
@@ -242,16 +136,6 @@ function computePlotSec2Sub0(x){
         //so this fixes it. It's not too time consuming which is good.
     }
     let data1;
-    if (shape === 3){
-        data1=
-         {
-            type:"scatter",
-            mode:"lines",
-            x: x_values,
-            y: y_values,
-            line:{color:"#960078", width:3, dash: "solid"},
-         };
-    } else {
         data1=
          {
             type:"scatter",
@@ -260,11 +144,8 @@ function computePlotSec2Sub0(x){
             y: y_values_cheat,
             line:{color:"#960078", width:3, dash: "solid"},
          };
-    }
-    let data2 = exactSec2Sub0(A,L,x,shape);
+    let data2 = exactSec2Sub0(A,L,x);
     return [data1,data2];
-
-
 }
 // End. Functions to plot the Fourier Series.
 //----------------------------------------------------------------------------------------------------------------------
@@ -275,12 +156,10 @@ function computePlotSec2Sub0(x){
 function updatePlotSec2Sub0() {
     let data;
     // NB: updates according to the active tab
-    let selectedValue = document.getElementById("SelectSec2Sub1").value; // finds out which function is active
-        $(document).ready(() => { if (shape===3) {
-            $('#ASec2Sub1').hide(); console.log('hidden')
-        } else {
-           $('#ASec2Sub1').show(); console.log('shown')
-        }})
+//    let selectedValue = document.getElementById("SelectSec2Sub1").value; // finds out which function is active
+//        $(document).ready(() => {
+//           $('#ASec2Sub1').show(); console.log('shown')
+//        })
     data = computePlotSec2Sub0(z);
     //This is animation bit.
     Plotly.animate(
@@ -294,33 +173,6 @@ function updatePlotSec2Sub0() {
         }
     );
 }
-
-function selectorFuncSec2Sub0 () {
-    let selectedValue = document.getElementById("SelectSec2Sub1").value;
-    if (selectedValue==="main"){
-        shape = 0;
-    } else if (selectedValue==="triangular"){
-        shape = 0;
-        updatePlotSec2Sub0();
-    } else if (selectedValue==="square"){
-        shape = 1;
-        updatePlotSec2Sub0();
-    } else if (selectedValue==="sawtooth"){
-        shape = 2;
-        updatePlotSec2Sub0();
-    } else if (selectedValue==="dirac"){
-        shape = 3;
-        updatePlotSec2Sub0();
-    } else if (selectedValue==="parabola"){
-        shape = 4;
-        updatePlotSec2Sub0();
-    }  else if (selectedValue==="mode"){
-        shape = 6;
-        updatePlotSec2Sub0();
-    };
-
-    initFourierSec2Sub0();
-};
 
 function mainSec2Sub0() {
 
@@ -339,7 +191,7 @@ function mainSec2Sub0() {
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
-    $('#SelectSec2Sub1').change(selectorFuncSec2Sub0);
+//    $('#SelectSec2Sub1').change(selectorFuncSec2Sub0);
 
     initFourierSec2Sub0();
 }
