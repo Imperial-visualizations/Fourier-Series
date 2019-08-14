@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Title-->
+    <title>Right-Sec2-Sub0-FourierExamples</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+<!--    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+<body>
+
+<div class="container_journey">
+     <center><h4>The Fourier Series</h4></center>
+        A Fourier Series is an expansion of any reasonable (see Dirichlet conditions) periodic function $f(x)$ in terms of an infinite sums of sines and cosines,
+        due to the orthogonality relationships of sines and cosines functions.
+        Any set of functions that form a complete orthogonal system has a Fourier Series counterpart.
+        By representing functions in sines and cosines, we have a wide range of tools (differentiation and integration) for analysis that might not be possible in the original function domain.
+    <br>
+        In this visualisation, we aim to provide a visual approach to understanding how some
+        important periodic functions can be composed using sine and cosine functions.
+    <br>
+    <h5>Visualisation Guide</h5>
+        On the right, we can see a square function, and a summation of sines and cosine functions with a finite number of terms that represents the square function.
+        Try changing the number of terms in the Fourier Series.
+        By increasing this, we can see that the function resembles closer and closer to the square function.
+    <br>
+        By the end of this suite, you would be able to understand the intuition behind Fourier Series, and to do it yourself for any reasonable periodic function.
+</div>
+
+</body>

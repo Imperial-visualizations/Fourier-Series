@@ -11,8 +11,8 @@ let app = new Vue({
         currentSection: 0,
         sectionTops: [],
         sectionBottoms: [],
-        sectionTitleLong: ["Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview"],
-        sectionTitleShort: ["1", "2", "3", "4", "5", "6"],
+        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview"],
+        sectionTitleShort: ["1", "2", "3", "4", "5", "6", "7"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -91,7 +91,7 @@ let app = new Vue({
 
         // Function activated when button in nav/progress bar clicked to scroll automatically to relevant section
         scrollTo: function (event) {
-            document.querySelectorAll("#" + "sc" + event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
+            document.querySelectorAll("#" + "ph" + event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
         },
 
         // Same as above but for subsections
