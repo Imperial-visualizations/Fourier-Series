@@ -105,87 +105,41 @@
         <div class="journey" id="main-journey" v-on:scroll.passive="scrollFunc">
             <!--    Section Text Containers   -->
             <div class="section-container" id="sc1">
-                    <div class="placeholder" id="ph1">
-                        <hr>
-                        <h2 class="text section-head" id="s1">
-                            Orthogonality
-                        </h2>
-                        <hr>
-                    </div>
-                    <div class="text section-body odd" id="p1">
-                        Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
-                            class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
-                        inner product as
-                        <span class="mathJaxDisplay">
-                                $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
-                            </span>
-                        where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span>
-                        component of the vector
-                        <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
-                        <span class="mathJaxDisplay">
-                                $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
-                            </span>
-                        then we say the vectors are <strong>orthogonal</strong>.
-                        <br><br>
-                        If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do
-                        not change the position
-                        component in the direction of any vector
-                        orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are
-                        perpendicular.
-                        <!--(... talk about definition of orthogonality)-->
-                        <br><br>
-                        If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the
-                        vectors are said to be
-                        <strong>orthonormal</strong>.
-                        <span class="mathJaxDisplay">
-                                $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
-                                \\ 1 \quad \text{if } m = n
-                                \end{matrix}\right. $$
-                            </span>
-                        This mean the vectors are orthogonal and conveniently normalised.
-                        <br><br>
-                        Use the visualisation to see that when the basis vectors are not parallel they span <span
-                            class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
-                        using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
-                        <br><br>
-                        If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span
-                            class="mathJaxInline">$ n $</span> vectors,
-                        then the basis vectors form a <strong>complete set</strong>.
-                        If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal
-                        set</strong>.
-                        <br><br>
-                        In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
-                        be complete.
-                        We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain
-                        <span class="mathJaxInline">$ \left[a,b \right] $</span>.
-                        <br><br>
-                        We define their inner product to be
-                        <span class="mathJaxDisplay">
-                                $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
-                            </span>
-                        and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
-                        for <span class="mathJaxInline">$ m \neq n $</span>.
-                        <br><br>
-                        We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
-                        <br><br>
-                        We now claim that you can construct any square integrable function from a <strong>complete
-                        set</strong> of basis
-                        functions in the same way vectors could be constructed from a complete set of basis vectors. A
-                        square integrable function <span class="mathJaxInline">$ f $</span> is
-                        a function whose inner product with itself, <span
-                            class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
-    
-                    </div>
-            </div>
-            <div class="section-container" id="sc2">
                 <div class="placeholder" id="ph1">
                     <hr>
                     <h2 class="text section-head" id="s1">
-                        Orthogonality
+                        The Fourier Series
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
+                    A Fourier Series is an expansion of any reasonable (see Dirichlet conditions) periodic function $f(x)$ in terms of an infinite sums of sines and cosines,
+                    due to the orthogonality relationships of sines and cosines functions.
+                    Any set of functions that form a complete orthogonal system has a Fourier Series counterpart.
+                    By representing functions in sines and cosines, we have a wide range of tools (differentiation and integration) for analysis that might not be possible in the original function domain.
+                    <br>
+                    In this visualisation, we aim to provide a visual approach to understanding how some
+                    important periodic functions can be composed using sine and cosine functions.
+                    <br><br>
+                    <h3 class="section-sub-head first-sub-head">
+                        Visualisation Guide
+                    </h3>
+                    On the right, we can see a square function, and a summation of sines and cosine functions with a finite number of terms that represents the square function.
+                    Try changing the number of terms in the Fourier Series.
+                    By increasing this, we can see that the function resembles closer and closer to the square function.
+                    <br>
+                    By the end of this suite, you would be able to understand the intuition behind Fourier Series, and to do it yourself for any reasonable periodic function.
+                </div>
+            </div>
+            <div class="section-container" id="sc2">
+                <div class="placeholder" id="ph2">
+                    <hr>
+                    <h2 class="text section-head" id="s2">
+                        Orthogonality
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p2">
                     Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
                         class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
                     inner product as
@@ -251,14 +205,14 @@
                 </div>
             </div>
             <div class="section-container" id="sc3">
-                <div class="placeholder" id="ph2">
+                <div class="placeholder" id="ph3">
                     <hr>
-                    <h2 class="text section-head" id="s2">
+                    <h2 class="text section-head" id="s3">
                         Derivation
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p2">
+                <div class="text section-body odd" id="p3">
                     <div id="intro" class="divclass">
                         <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1"
                                 @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse"
@@ -266,7 +220,7 @@
                                 :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
                             Basics and Definition <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="introContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="introContentContainer" class="collapse show" data-parent="#p3">
                             <div id="introContent" class="section-sub-content" key="introContent">
                                 Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over
                                 the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
@@ -911,14 +865,14 @@
                 </div>
             </div>
             <div class="section-container" id="sc4">
-                <div class="placeholder" id="ph3">
+                <div class="placeholder" id="ph4">
                     <hr>
-                    <h2 class="text section-head" id="s3">
+                    <h2 class="text section-head" id="s4">
                         Components
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p3">
+                <div class="text section-body odd" id="p4">
                     The 0<sup>th</sup> term of the series is the constant term before the sum;
                     <span class="mathJaxInline">$ \frac{a_0}{2} $</span>.
                     <br><br>
@@ -935,14 +889,14 @@
                 </div>
             </div>
             <div class="section-container" id="sc5">
-                <div class="placeholder" id="ph4">
+                <div class="placeholder" id="ph5">
                     <hr>
-                    <h2 class="text section-head" id="s4">
+                    <h2 class="text section-head" id="s5">
                         Power Spectrum
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p4">
+                <div class="text section-body odd" id="p5">
                     <h3 class="section-sub-head first-sub-head">
                         Decomposition of a function into odd and even parts
                     </h3>
@@ -1036,14 +990,14 @@
                 </div>
             </div>
             <div class="section-container" id="sc6">
-                <div class="placeholder" id="ph5">
+                <div class="placeholder" id="ph6">
                     <hr>
-                    <h2 class="text section-head" id="s5">
+                    <h2 class="text section-head" id="s6">
                         Overview
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p5">
+                <div class="text section-body odd" id="p6">
                     <h3 class="section-sub-head first-sub-head">
                         Description
                     </h3>
@@ -1119,7 +1073,7 @@
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
                 <div id="loadout1Container" key="loadout1Container" v-if="currentSection === 1">
-                        <iframe src="Intro.html" class="rightload text" id="iframe1">
+                        <iframe src="Intro_interactive.html" class="rightload text" id="iframe1">
                         </iframe>
                 </div>
                 <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
