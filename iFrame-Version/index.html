@@ -58,7 +58,7 @@
                 <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
                         key="sectionTitle1" data-no=1 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
-                    {{sectionTitle[0]}}
+                        {{sectionTitle[0]}}
                 </button>
                 <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
                         key="sectionTitle2" data-no=2 @click="scrollTo($event)"
@@ -66,19 +66,24 @@
                     {{sectionTitle[1]}}
                 </button>
                 <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
-                        key="sectionTitle3" data-no=3 @click="scrollTo($event)"
+                        key="sectionTitle2" data-no=3 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[2]}}
                 </button>
                 <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
-                        key="sectionTitle4" data-no=4 @click="scrollTo($event)"
+                        key="sectionTitle3" data-no=4 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[3]}}
                 </button>
                 <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
-                        key="sectionTitle5" data-no=5 @click="scrollTo($event)"
+                        key="sectionTitle4" data-no=5 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[4]}}
+                </button>
+                <button :class="[currentTitle === 6 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle6"
+                        key="sectionTitle5" data-no=6 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[5]}}
                 </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
@@ -92,12 +97,87 @@
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 6 ? 'activeMeter' : '']" id="m6" :min="sectionTops[5]"
+                   :max="sectionBottoms[5]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
         <!--suppress XmlUnboundNsPrefix -->
         <div class="journey" id="main-journey" v-on:scroll.passive="scrollFunc">
             <!--    Section Text Containers   -->
             <div class="section-container" id="sc1">
+                    <div class="placeholder" id="ph1">
+                        <hr>
+                        <h2 class="text section-head" id="s1">
+                            Orthogonality
+                        </h2>
+                        <hr>
+                    </div>
+                    <div class="text section-body odd" id="p1">
+                        Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
+                            class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
+                        inner product as
+                        <span class="mathJaxDisplay">
+                                $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
+                            </span>
+                        where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span>
+                        component of the vector
+                        <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
+                        <span class="mathJaxDisplay">
+                                $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
+                            </span>
+                        then we say the vectors are <strong>orthogonal</strong>.
+                        <br><br>
+                        If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do
+                        not change the position
+                        component in the direction of any vector
+                        orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are
+                        perpendicular.
+                        <!--(... talk about definition of orthogonality)-->
+                        <br><br>
+                        If <span class="mathJaxInline">$ \vec{V}_{n} \cdot \vec{V}_{m} = \delta_{nm} $</span> then the
+                        vectors are said to be
+                        <strong>orthonormal</strong>.
+                        <span class="mathJaxDisplay">
+                                $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
+                                \\ 1 \quad \text{if } m = n
+                                \end{matrix}\right. $$
+                            </span>
+                        This mean the vectors are orthogonal and conveniently normalised.
+                        <br><br>
+                        Use the visualisation to see that when the basis vectors are not parallel they span <span
+                            class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
+                        using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
+                        <br><br>
+                        If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span
+                            class="mathJaxInline">$ n $</span> vectors,
+                        then the basis vectors form a <strong>complete set</strong>.
+                        If the set of these vectors are all orthonormal, then we have a <strong>complete orthonormal
+                        set</strong>.
+                        <br><br>
+                        In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
+                        be complete.
+                        We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain
+                        <span class="mathJaxInline">$ \left[a,b \right] $</span>.
+                        <br><br>
+                        We define their inner product to be
+                        <span class="mathJaxDisplay">
+                                $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
+                            </span>
+                        and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
+                        for <span class="mathJaxInline">$ m \neq n $</span>.
+                        <br><br>
+                        We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
+                        <br><br>
+                        We now claim that you can construct any square integrable function from a <strong>complete
+                        set</strong> of basis
+                        functions in the same way vectors could be constructed from a complete set of basis vectors. A
+                        square integrable function <span class="mathJaxInline">$ f $</span> is
+                        a function whose inner product with itself, <span
+                            class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
+    
+                    </div>
+            </div>
+            <div class="section-container" id="sc2">
                 <div class="placeholder" id="ph1">
                     <hr>
                     <h2 class="text section-head" id="s1">
@@ -170,7 +250,7 @@
 
                 </div>
             </div>
-            <div class="section-container" id="sc2">
+            <div class="section-container" id="sc3">
                 <div class="placeholder" id="ph2">
                     <hr>
                     <h2 class="text section-head" id="s2">
@@ -830,7 +910,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section-container" id="sc3">
+            <div class="section-container" id="sc4">
                 <div class="placeholder" id="ph3">
                     <hr>
                     <h2 class="text section-head" id="s3">
@@ -854,7 +934,7 @@
                     then a Fourier transform need be used. This is a different problem entirely!
                 </div>
             </div>
-            <div class="section-container" id="sc4">
+            <div class="section-container" id="sc5">
                 <div class="placeholder" id="ph4">
                     <hr>
                     <h2 class="text section-head" id="s4">
@@ -955,7 +1035,7 @@
                     in a signal leaves all the other frequencies unaffected.
                 </div>
             </div>
-            <div class="section-container" id="sc5">
+            <div class="section-container" id="sc6">
                 <div class="placeholder" id="ph5">
                     <hr>
                     <h2 class="text section-head" id="s5">
@@ -1039,11 +1119,14 @@
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
                 <div id="loadout1Container" key="loadout1Container" v-if="currentSection === 1">
+                        <iframe src="Intro.html" class="rightload text" id="iframe1">
+                        </iframe>
+                </div>
+                <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
                     <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe1">
                     </iframe>
                 </div>
-                <div class="rightload text even" id="loadout2Container"
-                     key="loadout2Container" v-if="currentSection === 2">
+                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
@@ -1055,7 +1138,7 @@
                         </div>
                     </transition>
                 </div>
-                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
+                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
                     <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
                     <div id="equationSpace" key="equationSpace"
                          v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
@@ -1094,14 +1177,14 @@
                         </div>
                     </div>
                 </div>
-                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
+                <div id="loadout5Container" key="loadout5Container" v-if="currentSection === 5">
                     <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe4"></iframe>
                 </div>
-                <div id="loadout5Container" key="loadout5" v-if="currentSection === 5">
+                <div id="loadout6Container" key="loadout6" v-if="currentSection === 6">
                     <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe5"></iframe>
                 </div>
                 <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                     v-if="1 <= currentSection <= 5 === false">
+                     v-if="1 <= currentSection <= 6 === false">
                     please wait...
                 </div>
             </transition-group>
