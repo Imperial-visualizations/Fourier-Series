@@ -1,7 +1,7 @@
 $('#NController2Sec5').hide();
 $('#NController2Sec5Display').hide();
 
-function setLayoutSec5(sometitlex, sometitley, plotTitle) {
+function setLayoutSec5(sometitlex, sometitley, plotTitle, L) {
 
     const new_layout = {
         autosize: true,
@@ -9,7 +9,7 @@ function setLayoutSec5(sometitlex, sometitley, plotTitle) {
         margin: {l: 45, r: 30, t: 30, b: 30},
         hovermode: "closest",
         showlegend: false,
-        xaxis: {range: [], zeroline: true, title: sometitlex},
+        xaxis: {range: [-L,L], zeroline: true, title: sometitlex},
         yaxis: {range: [], zeroline: true, title: sometitley},
         aspectratio: {x: 1, y: 1}
     };
@@ -249,15 +249,17 @@ function integrationSec5(x, y) {
     return A;
 }
 
+
 //For custom functions
 function initFourierSec5() {
     Plotly.purge("graph1Sec5");
     Plotly.purge("graph2Sec5");
     Plotly.purge("graph3Sec5");
     [datalist,titley] = computePlot1Sec5(xOriginal, yOriginal)
-    Plotly.newPlot("graph1Sec5", datalist[0], setLayoutSec5('$x$', '$f(x)$', 'Fourier Series'));
-    Plotly.newPlot("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series'));
-    Plotly.newPlot("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum'));
+
+    Plotly.newPlot("graph1Sec5", datalist[0], setLayoutSec5('$x$', '$f(x)$', 'Fourier Series', L));
+    Plotly.newPlot("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series', L));
+    Plotly.newPlot("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum', L));
 
     return;
 }
@@ -580,6 +582,119 @@ function updateFunctionSec5() {
 
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 
+
+// Function for exact Targets
+//NOTE - This function is NOT optimised
+//     - there may be some unnecessary calculations but for the sake of rapid development, this function was more or less copy pasted from an earlier script
+function TargetLine (xOriginal,shape, L) {
+    let data;
+    let x_values = [];
+    let y_values = [];
+    let newX;
+    let newY;
+    switch (shape) {
+        //triangular
+        case 0:
+            A =1;
+            newY = A;
+            for (let i=0; i<=30; i++) {
+                newX = (-15.5+i)*L;
+                x_values.push(newX);
+                newY = newY*(-1);
+                y_values.push(newY);
+            }
+            break;
+        case 1:
+            A = 0.5;
+            //square
+            newY = -A;
+            newX = -15*L;
+            for (let i=0; i<=50; i++) {
+                newX=newX+L;
+                x_values.push(newX);
+                y_values.push(newY);
+                newY=-newY;
+                x_values.push(newX);
+                y_values.push(newY);
+            }
+            break;
+        case 2:
+            //sawtooth
+            A = 1;
+            newY = -A;
+            newX = -15*L;
+            for (let i=0; i<=50; i++) {
+                x_values.push(newX);
+                y_values.push(newY);
+                newX=newX+L*2;
+                newY=-newY;
+                x_values.push(newX);
+                y_values.push(newY);
+                newY=-newY;
+                x_values.push(newX);
+                y_values.push(newY);
+            }
+            break;
+        case 3:
+            //dirac
+            newY = 0;
+            newX = -16*L;
+            for (let i=0; i<=50; i++) {
+                newX=newX+L*2;
+                x_values.push(newX);
+                y_values.push(newY);
+                newY=1000;
+                x_values.push(newX);
+                y_values.push(newY);
+                newY=0;
+                x_values.push(newX);
+                y_values.push(newY);
+            }
+            break;
+        case 4:
+            //parabola
+            let x_base=math.multiply(L,numeric.linspace(-1,1,1000));
+            let y_base=math.multiply(A,math.dotMultiply(x_base,x_base));
+            let x_base2=math.add(x_base,-16*L);
+            for (let i=0; i<=12; i++) {
+                x_base2=math.add(x_base2,2*L);
+                x_values=x_values.concat(x_base2);
+                y_values=y_values.concat(y_base);
+            }
+            break;
+        case 5:
+            //|x|
+            newY=0;
+            for (let i=0; i<=30; i++) {
+                newX = (-15 + i) * L;
+                x_values.push(newX);
+                if (newY===A*L) {
+                    newY=0
+                } else {
+                    newY=A*L
+                }
+                y_values.push(newY);
+            }
+            break;
+
+            case 6:
+                equation = updateFunctionSec5();
+                x_values = xOriginal;
+                y_values = y_valuesSec5(xOriginal)
+                break;
+    }
+
+    line=
+        {
+            type:"scatter",
+            mode:"lines",
+            x: x_values,
+            y: y_values,
+            line:{color:"#000000", width:3, dash: "dot"},
+        };
+    return line;
+}
+
 //For custom function
 function updatePlotSec5() {
     let data;
@@ -592,11 +707,27 @@ function updatePlotSec5() {
 
     [datalist, titley] = computePlot1Sec5(xOriginal, yOriginal);
 
-    yOriginal = y_valuesSec5(xOriginal);
+    // yOriginal = y_valuesSec5(xOriginal);
 
-    Plotly.react("graph1Sec5", datalist[0], setLayoutSec5('$x$', '$f(x)$', 'Fourier Series'));
-    Plotly.react("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series'));
-    Plotly.react("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum'));
+
+    // let target_data = 
+    //     {
+    //         type: "scatter",
+    //         mode: "lines",
+    //         x: xOriginal,
+    //         y: yOriginal,
+    //         line: {color: "#7f7f7f", width: 3, dash: "dot"},
+    //     }
+
+    //console.log("target_data ", target_data)
+
+    let fourier_series_data = [datalist[0][0], TargetLine(xOriginal, shape, L)];
+
+    console.log("datalist[0]", datalist[0])
+
+    Plotly.react("graph1Sec5", fourier_series_data, setLayoutSec5('$x$', '$f(x)$', 'Fourier Series', L));
+    Plotly.react("graph2Sec5", datalist[1], setLayoutSec5('$x$', '$f_{n}(x)$', 'Components of Series', L));
+    Plotly.react("graph3Sec5", datalist[2], setLayoutSec5('$n$', titley, 'Power Spectrum', L));
 
 }
 
