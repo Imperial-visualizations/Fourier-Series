@@ -36,36 +36,31 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
-<body id="loadout2sub0">
+<body>
     <!--Graph-->
-    <div id='graph0Sec2'></div>
+    <div id='Top_Hat_Graph'style="width:50%; float: left;"></div>
+
+    <div id='Fourier_Transform_Graph'style="width:50%; float: right;"></div>
     <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
-    <h4 id="subSecTitle"></h4>
-    <!--Scroll down to select the function-->
-    <!--Scroll down-->
-    <!--Slider-->
-    <div class="overall-sliders-container">
-        <!--NB: Be careful with classes and types-->
-        <!--BEGIN Slider A-->
-        <!--END Slider A-->
-        <!--BEGIN Slider N-->
-        <div id="N" class="partial-sliders-container">
+
+    <center>
             <!--Slider Display N-->
-            <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
-                <span id="NControllerSec2Sub1Display" data-unit="">3</span>
-            </label>
+            <h4>
+            width of top hat $=$
+            <output id="Slider_l_value" for="Slider_l_value" style="padding-bottom:20px;">5
+            </output>
             <!--Slider N-->
             <label class="slider">
-                <span class="sliderMin">0</span>
-                <input id="NControllerSec2Sub1" class="inputs" type="range" value="3" min="0"
-                       max="20" step="1"/>
-                <span class="sliderMax">20</span>
+                <span class="sliderMin">0.5</span>
+                <input id="Slider_l" class="inputs" type="range" value="5" min="0.5"
+                       max="10" step="0.01" oninput="Slider_l_value.value = Slider_l.value"/>
+                <span class="sliderMax">10</span>
             </label>
-        </div>
+            </h4>
         <!--END Slider N-->
         <!--BEGIN Slider L-->
         <!--END Slider L-->
-    </div>
+    </center>
 </body>
-<script src="scripts/Intro.js"></script>
+<script src="scripts/Outro.js"></script>
 </html>
