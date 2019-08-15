@@ -350,7 +350,7 @@ function mainSec3() {
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
-        console.log("fired");
+        console.log("fired 2");
         $(this).on('input', function () {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
