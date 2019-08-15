@@ -41,16 +41,33 @@ so the setLayout allows the layout to fit the graph, instead of fixing the layou
 function setLayoutSec3() {
     var n_lab = [];
     var y_lab = [];
+    let L = Math.abs($("#LControllerSec3").val());
+    let x_lab = [];
+    let x_pos = [];
+
     for (var i = 0; i < 10; i++) {
         n_lab.push("n=" + (i ));
         y_lab.push(29.5 * (i + 1));
     }
+
+    let numOfTerms = Math.round(12/L);
+    if(L == 0){numOfTerms = 0;};
+
+    for (let i = 0; i < numOfTerms+1; i++){
+        x_pos.push(L*i - 6);
+        x_lab.push(0.5*(i-(numOfTerms/2) ) + 'L');
+    }
+
+
     const new_layout = {
         // autosize: true,
         showlegend: false,
         margin: {l: 45, r: 60, t: 0, b: 30},
         hovermode: "closest",
-        xaxis: {range: [], zeroline: true, title: ""},
+        xaxis: {range: [-6,6], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
+            tickvals: x_pos,
+            ticktext: x_lab,
+        },
         yaxis: {
             range: [0, 305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
             tickvals: y_lab,
@@ -226,13 +243,47 @@ function computeComponentsSec3(x) {
 // End. Functions for to plot all the Fourier Series' components.
 //----------------------------------------------------------------------------------------------------------------------
 
+/** updates the plot according to the function selector control. */
+// called in html index file
+function setPlotTypeSec3 () {
+    var selectedValue = window.parent.document.getElementById("SelectSec3").value;
+
+    if (selectedValue === "main") {
+        shape = 0;
+        updatePlotSec3();
+    } else if (selectedValue === "triangular") {
+        shape = 0;
+        updatePlotSec3();
+    } else if (selectedValue === "square") {
+        shape = 1;
+        updatePlotSec3();
+    } else if (selectedValue === "sawtooth") {
+        shape = 2;
+        updatePlotSec3();
+    } else if (selectedValue === "dirac") {
+        shape = 3;
+        updatePlotSec3();
+    } else if (selectedValue === "parabola") {
+        shape = 4;
+        updatePlotSec3();
+    } else if (selectedValue === "linear") {
+        shape = 5;
+        updatePlotSec3();
+    } else if (selectedValue === "mode") {
+        shape = 6;
+        updatePlotSec3();
+    }
+    $(".title").hide();
+    $("#" + selectedValue + "Title").show();
+    initFourierSec3();
+};
 
 /** updates the plot according to the slider controls. */
 // Plotly.animate does not support bar charts, so need to reinitialize the Cartesian every time.
 function updatePlotSec3() {
     var data;
     // NB: updates according to the active tab
-    var selectedValue = document.getElementById("SelectSec3").value; // finds out which function is active
+    var selectedValue = window.parent.document.getElementById("SelectSec3").value; // finds out which function is active
     $(document).ready(() => {
         if (shape === 3) {
             $('#ASec3').hide();
@@ -299,7 +350,7 @@ function mainSec3() {
     /*Jquery*/ //NB: Put Jquery stuff in the main not in HTML
     $("input[type=range]").each(function () {
         /*Allows for live update for display values*/
-        console.log("fired");
+        console.log("fired 2");
         $(this).on('input', function () {
             //Displays: (FLT Value) + (Corresponding Unit(if defined))
             $("#" + $(this).attr("id") + "Display").text($(this).val() + $("#" + $(this).attr("id") + "Display").attr("data-unit"));
@@ -312,38 +363,7 @@ function mainSec3() {
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
-    $('#SelectSec3').change(function () {
-        var selectedValue = $("#SelectSec3").val();
-
-        if (selectedValue === "main") {
-            shape = 0;
-            updatePlotSec3();
-        } else if (selectedValue === "triangular") {
-            shape = 0;
-            updatePlotSec3();
-        } else if (selectedValue === "square") {
-            shape = 1;
-            updatePlotSec3();
-        } else if (selectedValue === "sawtooth") {
-            shape = 2;
-            updatePlotSec3();
-        } else if (selectedValue === "dirac") {
-            shape = 3;
-            updatePlotSec3();
-        } else if (selectedValue === "parabola") {
-            shape = 4;
-            updatePlotSec3();
-        } else if (selectedValue === "linear") {
-            shape = 5;
-            updatePlotSec3();
-        } else if (selectedValue === "mode") {
-            shape = 6;
-            updatePlotSec3();
-        }
-        $(".title").hide();
-        $("#" + selectedValue + "Title").show();
-        initFourierSec3();
-    });
+    console.log( window.parent.document.getElementById("SelectSec3").value);
     //The First Initialisation - I use 's' rather than 'z' :p
     initFourierSec3();
 }

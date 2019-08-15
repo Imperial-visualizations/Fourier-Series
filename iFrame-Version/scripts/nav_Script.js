@@ -11,8 +11,8 @@ let app = new Vue({
         currentSection: 0,
         sectionTops: [],
         sectionBottoms: [],
-        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview"],
-        sectionTitleShort: ["1", "2", "3", "4", "5", "6", "7"],
+        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview","Conclusion"],
+        sectionTitleShort: ["1", "2", "3", "4", "5", "6","7"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -115,7 +115,7 @@ let app = new Vue({
             }
         },
 
-        // Updates derivationSubSection variable to reflect active subsection in derivatives section
+        // Updates derivationSubSection variable to reflect active subsection in derivation section
         updateSubSection: function (newSubSection) {
             if (app.derivationSubSection !== newSubSection) {
                 app.derivationSubSection = newSubSection;
@@ -169,7 +169,7 @@ let app = new Vue({
         },
 
         derivationSubSection: function (newValue, oldValue) {
-            if (app.currentSection === 2) {
+            if (app.currentSection === 3) {
                 if (newValue !== 3) {
                     // locks function displayed to show only specific example if subsection about specific function is active
                     setTimeout(function () {
@@ -189,6 +189,10 @@ let app = new Vue({
                                 iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (newValue - 3))[0].title;
                                 iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
                             }, 200);
+                        } else {
+                            if (oldValue > 3) {
+                                iframeTarget.document.querySelectorAll('#opt' + (oldValue - 3))[0].setAttribute("selected", "true");
+                            }
                         }
                     }, 200);
                 }

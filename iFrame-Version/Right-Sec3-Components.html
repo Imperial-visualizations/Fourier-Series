@@ -40,19 +40,6 @@
     <!--Graph-->
     <div id='graph1Sec3'></div>
 
-    <!--Select Function-->
-    <div class="selectorContainer" style="position:absolute; right: 50vw;">
-            <strong>Select Function: </strong>
-            <select id="SelectSec3">
-                <option value="triangular">Triangular Function</option>
-                <option value="square">Square Function</option>
-                <option value="sawtooth">Sawtooth Function</option>
-                <option value="dirac">Dirac-Delta Function</option>
-                <option value="parabola">Parabola Function</option>
-                <option value="mode">|x| Function</option>
-            </select>
-    </div>
-
     <!--Sliders-->
     <div class="overall-sliders-container">
         <!--BEGIN Slider A-->
@@ -74,12 +61,12 @@
         <div id="NSec3" class="partial-sliders-container">
             <!--Slider Display N-->
             <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
-                <span id="NControllerDisplaySec3" data-unit="">1</span>
+                <span id="NControllerDisplaySec3" data-unit="">3</span>
             </label>
             <!--Slider N-->
             <label class="slider">
                 <span class="sliderMin">&nbsp0</span>
-                <input id="NControllerSec3" class="inputs" type="range" value="1" min="0" max="9"
+                <input id="NControllerSec3" class="inputs" type="range" value="3" min="0" max="9"
                        step="1"/>
                 <span class="sliderMax">9</span>
             </label>
@@ -93,10 +80,9 @@
             </label>
             <!--Slider L-->
             <label class="slider">
-                <span class="sliderMin">-5</span>
-                <input id="LControllerSec3" class="inputs" type="range" value="1" min="-5" max="5"
-                       step="0.5"/>
-                <span class="sliderMax">5</span>
+                <span class="sliderMin">-3</span>
+                <input id="LControllerSec3" class="inputs" type="range" value="1" min="-3" max="3" step="1"/>
+                <span class="sliderMax">3</span>
             </label>
         </div>
         <!--END Slider L-->

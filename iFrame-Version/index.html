@@ -85,6 +85,11 @@
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[5]}}
                 </button>
+                <button :class="[currentTitle === 7 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle7"
+                        key="sectionTitle5" data-no=7 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[6]}}
+                </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
             <meter :class="[currentTitle === 1 ? 'activeMeter' : '']" id="m1" :min="sectionTops[0]"
@@ -99,6 +104,8 @@
                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 6 ? 'activeMeter' : '']" id="m6" :min="sectionTops[5]"
                    :max="sectionBottoms[5]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 7 ? 'activeMeter' : '']" id="m7" :min="sectionTops[6]"
+                   :max="sectionBottoms[6]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
         <!--suppress XmlUnboundNsPrefix -->
@@ -277,7 +284,7 @@
                                 :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
                             General Derivation <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="FSderivationContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="FSderivationContentContainer" class="collapse show" data-parent="#p3">
                             <div id="FSderivationContent" class="section-sub-content" key="FSderivationContent">
                                 We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented
                                 as a sum of
@@ -292,9 +299,9 @@
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
                                     </span>
                                 Performing the integral on the R.H.S gives
-                                <span class="mathJaxDisplay">
+                                <span class="mathJaxDisplay" style="font-size: 90%">
                                         $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
-                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
+                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \}=2L\cdot\delta_{nm}. $$
                                     </span>
                                 This is the orthonormality of complex exponentials.
                                 <br><br>
@@ -387,7 +394,7 @@
                                 :style="derivationSubSection === 3 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 1 <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="triangular1ContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="triangular1ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="triangular1Content" class="section-sub-content" key="triangular1Content">
                                 The triangular function is defined by the following:
                                 <span class="mathJaxDisplay">
@@ -440,7 +447,7 @@
                                 :style="derivationSubSection === 4 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 2 <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="triangular2ContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="triangular2ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="triangular2Content" class="section-sub-content" key="triangular2Content">
                                     <span class="mathJaxDisplay">
                                         $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
@@ -493,14 +500,14 @@
                                 <span class="mathJaxDisplay">
                                     $$ b_n=\frac{8A}{n^2\pi^2}(-1)^{\frac{n-1}{2}} $$
                                     </span>
-                                Finally,
+                                and,
                                 <span class="mathJaxDisplay">
                                     $$ f(x)=\sum_{n=1,3,5...}^\infty \frac{8A}{n^2\pi^2} (-1)^{\frac{n-1}{2}} \sin \left(\frac{n\pi x}{L} \right) $$
                                     </span>
-                                And the using that an odd number is given by <span
-                                    class="mathJaxInline">$ 2n +1 $</span> for any
-                                <span class="mathJaxInline">$ n $</span>,
-                                <span class="mathJaxDisplay">
+                                Finally, using the fact that odd number can be written as <span
+                                    class="mathJaxInline">$ 2n +1 $</span> for any integer
+                                <span class="mathJaxInline">$ n $</span>, we have
+                                <span class="mathJaxDisplay" style="font-size: 90%">
                                     $$ f(x)=\sum_{n=1,2,3...}^\infty \frac{8A}{(2n-1)^2\pi^2}(-1)^n \sin \left(\frac{(2n-1)\pi x}{L} \right) $$
                                     </span>
                             </div>
@@ -513,15 +520,15 @@
                                 :style="derivationSubSection === 5 ? 'background-color: #eaf2ff;' : ''">
                             Parabolic Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="parabolicContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="parabolicContentContainer" class="collapse show" data-parent="#p3">
                             <div id="parabolicContent" class="section-sub-content" key="parabolicContent">
                                 The parabolic function is defined as:
                                 <span class="mathJaxDisplay">
                                         $$ f(x)=Ax^2 \quad \text{for:} -L\leq x< L$$
                                     </span>
-                                and forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
-                                Therefore, <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span>
-                                coefficients are given as
+                                and is forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
+                                Therefore, the coefficients <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span>
+                                are given by
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{1}{L}\int_{-L}^{+L} Ax^2 \sin \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
@@ -533,9 +540,9 @@
                                 <span class="mathJaxInline">$ b_n=0 $</span> for all <span
                                     class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is
                                 even about
-                                <span class="mathJaxInline">$ x=0 $</span>. Hence
+                                <span class="mathJaxInline">$ x=0 $</span>. Thus,
                                 <span class="mathJaxDisplay">
-                                        $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                        $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx. $$
                                     </span>
                                 For <span class="mathJaxInline">$ n=0 $</span>:
                                 <span class="mathJaxDisplay">
@@ -545,7 +552,7 @@
                                 <span class="mathJaxDisplay">
                                         $$ a_n = \frac{2A}{L}\int_0^L x^2 \cos \left(\frac{n\pi x}{L} \right)dx $$
                                     </span>
-                                This Eqn. can be solved by integrating by parts.
+                                This equation can now be solved using integration by parts.
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
                                                 @click="hideShowToggle($event)"
@@ -614,7 +621,7 @@
                                 :style="derivationSubSection === 6 ? 'background-color: #eaf2ff;' : ''">
                             Dirac-Delta Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="deltaContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="deltaContentContainer" class="collapse show" data-parent="#p3">
                             <div id="deltaContent" class="section-sub-content" key="deltaContent">
                                 The Dirac-delta function can be thought of as a infinite spike at <span
                                     class="mathJaxInline">$ x=0 $</span>.
@@ -678,7 +685,7 @@
                                 :style="derivationSubSection === 7 ? 'background-color: #eaf2ff;' : ''">
                             Square Wave <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="squareContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="squareContentContainer" class="collapse show" data-parent="#p3">
                             <div id="squareContent" class="section-sub-content" key="squareContent">
                                 The square wave is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -736,7 +743,7 @@
                                 :style="derivationSubSection === 8 ? 'background-color: #eaf2ff;' : ''">
                             Sawtooth Wave <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="sawtoothContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="sawtoothContentContainer" class="collapse show" data-parent="#p3">
                             <div id="sawtoothContent" class="section-sub-content" key="sawtoothContent">
                                 The Sawtooth wave is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -797,7 +804,7 @@
                                 :style="derivationSubSection === 9 ? 'background-color: #eaf2ff;' : ''">
                             Mod x Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="modxContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="modxContentContainer" class="collapse show" data-parent="#p3">
                             <div id="modxContent" class="section-sub-content" key="modxContent">
                                 The <span class="mathJaxInline">$ |x| $</span> function is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -1056,6 +1063,32 @@
                     These are simply due to the inexact integration and should be treated as zero. -->
                 </div>
             </div>
+            <div class="section-container" id="sc7">
+                <div class="placeholder" id="ph7">
+                    <hr>
+                    <h2 class="text section-head" id="s7">
+                        Fourier Transform
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p7">
+                    In a Fourier Series, if the range over which the function is periodic, $L$ goes to infinity, this function is no longer periodic.
+                    To treat such a function, we would use Fourier Transform.
+                    In its core, Fourier Transform transform the function from one domain to another.
+                    For example, by performing a Fourier Transform of a wave packet in the time domain,
+                    we can transform the wave packet into the frequency domain. This can make analysis (such as differentiation) much easier than performing it in the original domain.
+                <br>
+                    One major application of Fourier Transform is in sound signal editing. Sound data is picked up by a microphone which records the pressure variation of air against time.
+                    When a Fourier Transform is performed, the relative intensities of the constituent frequencies that make up the signal is broken down, making it easier for
+                    sound correction and timbre analysis.
+                <br><br>
+                <h5>Visualisation Guide</h5>
+                    On the left, we see a top-hat function that we intend to perform a Fourier Transform on.
+                    The graph on the right shows the Fourier Transform of the top hat function. We have represented the top hat graph in the frequency space.
+                    The Fourier Transform graph gives with relative "intensity" of the composition of the respective frequencies that make up the top-hat graph.
+                <br>
+                </div>
+            </div>
         </div>
     </div>
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
@@ -1079,7 +1112,7 @@
                         </iframe>
                 </div>
                 <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
-                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe1">
+                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2">
                     </iframe>
                 </div>
                 <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
@@ -1087,17 +1120,17 @@
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
                             <iframe src="Right-Sec2-Sub0-FourierExamples.html" class="rightload text"
-                                    id='iframe2-1'></iframe>
+                                    id='iframe3-1'></iframe>
                         </div>
                         <div id="loadout2sub1Container" key="loadout2sub3Container" v-else>
-                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe2-2'></iframe>
+                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe3-2'></iframe>
                         </div>
                     </transition>
                 </div>
                 <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
-                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
+                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
                     <div id="equationSpace" key="equationSpace"
-                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
                         <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
                             <img src="Triangle_Eqn.png">
                         </div>
@@ -1119,10 +1152,10 @@
                     </div>
                     <!--Scroll-down-->
                     <div id="scrollSec3" key="scrollSec3"
-                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
                         <div class="scroll_down">
                             <strong>Select Function: </strong>
-                            <select id="SelectSec3" v-model="equationID">
+                            <select id="SelectSec3" v-model="equationID" oninput="document.getElementById('iframe3').contentWindow.setPlotTypeSec3()">
                                 <option value="triangular">Triangular Function</option>
                                 <option value="square">Square Function</option>
                                 <option value="sawtooth">Sawtooth Function</option>
@@ -1134,13 +1167,17 @@
                     </div>
                 </div>
                 <div id="loadout5Container" key="loadout5Container" v-if="currentSection === 5">
-                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe4"></iframe>
+                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe5"></iframe>
                 </div>
-                <div id="loadout6Container" key="loadout6" v-if="currentSection === 6">
-                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe5"></iframe>
+                <div id="loadout6Container" key="loadout6Container" v-if="currentSection === 6">
+                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe6"></iframe>
                 </div>
+                <div id="loadout7Container" key="loadout7Container" v-if="currentSection === 7">
+                    <iframe src="Outro_interactive.html" class="rightload text" id="iframe7"></iframe>
+                </div>
+                
                 <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                     v-if="1 <= currentSection <= 6 === false">
+                     v-if="1 <= currentSection <= 7 === false">
                     please wait...
                 </div>
             </transition-group>
