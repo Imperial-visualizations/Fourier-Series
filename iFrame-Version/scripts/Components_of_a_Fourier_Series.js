@@ -41,16 +41,33 @@ so the setLayout allows the layout to fit the graph, instead of fixing the layou
 function setLayoutSec3() {
     var n_lab = [];
     var y_lab = [];
+    let L = Math.abs($("#LControllerSec3").val());
+    let x_lab = [];
+    let x_pos = [];
+
     for (var i = 0; i < 10; i++) {
         n_lab.push("n=" + (i ));
         y_lab.push(29.5 * (i + 1));
     }
+
+    let numOfTerms = Math.round(12/L);
+    if(L == 0){numOfTerms = 0;};
+
+    for (let i = 0; i < numOfTerms+1; i++){
+        x_pos.push(L*i - 6);
+        x_lab.push(0.5*(i-(numOfTerms/2) ) + 'L');
+    }
+
+
     const new_layout = {
         // autosize: true,
         showlegend: false,
         margin: {l: 45, r: 60, t: 0, b: 30},
         hovermode: "closest",
-        xaxis: {range: [], zeroline: true, title: ""},
+        xaxis: {range: [-6,6], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
+            tickvals: x_pos,
+            ticktext: x_lab,
+        },
         yaxis: {
             range: [0, 305], zeroline: true, title: "", showticklabels: true, tickmode: 'array',
             tickvals: y_lab,
