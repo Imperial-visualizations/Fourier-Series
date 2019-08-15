@@ -178,6 +178,7 @@ function plotSinesSec3(n, x, shape) {
     //y value gets shifted up so that the plots are distinctly different
     var n_lab2 = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9','10'];
     var y_lab2 = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300,330];
+
     var data =
         {
             type: "scatter",
@@ -187,6 +188,23 @@ function plotSinesSec3(n, x, shape) {
             line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
 
         }
+    console.log(shape);
+    //If 0th term is non-zero shade bottom section
+    if(n == 0){
+        if(shape == 3 || shape == 4 || shape == 6){
+
+           var data =
+            {
+                type: "scatter",
+                mode: "lines",
+                x: x_n,
+                y: y_n,
+                fill: 'tozeroy',
+                //line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
+
+            };
+        }
+    }
     ;
     return data;
 
