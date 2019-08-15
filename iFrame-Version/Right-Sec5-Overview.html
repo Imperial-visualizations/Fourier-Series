@@ -40,14 +40,25 @@
 </head>
 <body id="loadout5">
 <!--Graphs-->
-<div id='graph1Sec5'></div>
-<div id='graph2Sec5'></div>
-<div id='graph3Sec5'></div>
+<div id='graph1Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id='graph2Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id='graph3Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 <!--Container for all Inputs-->
 <div class="inputsContainer">
     <!--Scroll dropdown list for option of functions-->
     <div id="scrollSec5">
-        <div class="scroll_down">
             <strong>Select Function:</strong>
             <select id="SelectSec5">
                 <option value="custom">Custom Input</option>
@@ -58,20 +69,18 @@
                 <option value="parabola">Parabola Function</option>
                 <option value="mode">|x| Function</option>
             </select>
-        </div>
     </div>
     <!--BEGIN Input function box -->
     <div id="inputSubContainerSec5">
-        <label>Input Function: f(x)=
-            <input id="aInputSec5" type="text" value="x^2">
-            <p id="aInputError" style="color:#ff0000" hidden></p>
-        </label>
+        <strong>Input Function: f(x)=</strong>
+        <input id="aInputSec5" type="text" value="x^2">
+        <p id="aInputError" style="color:#ff0000" hidden></p>
     </div>
     <!--END Input function box  -->
     <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
     <!--Scroll-down to select coefficient-->
     <div id="coefficientSubContainerSec5">
-        <strong>Select Coefficient: </strong>
+        <strong>Select Coefficient:</strong>
         <select id="CoefficientSec5">
             <option value="a">a</option>
             <option value="b">b</option>

@@ -211,8 +211,13 @@ meter::-moz-meter-bar {
 }
 
 hr {
-    border-top: 1px solid #033482;
-    margin: 1vh 0;
+    box-sizing: content-box;
+    border: none;
+    height: 1px;
+    background: #033482;
+    background-clip: content-box;
+    padding: 1vh 0;
+    margin: 0;
 }
 
 .placeholder {

@@ -38,8 +38,16 @@
 </head>
 <body id="loadout4">
     <!--Graphs-->
-    <div id='graph1Sec4'></div>
-    <div id='graph2Sec4'></div>
+    <div id='graph1Sec4'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div id='graph2Sec4'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!--Container for all Inputs-->
     <div class="inputsContainer">
         <!--Scroll-down to select function-->
@@ -84,7 +92,7 @@
             <!--BEGIN Slider N-->
             <div id="NSec4" class="partial-sliders-container">
                 <!--Slider Display N-->
-                <label class="slider-label" style="padding-bottom:20px;">Number <br>of Terms:
+                <label class="slider-label">Number of Terms:
                     <span id="NControllerSec4Display" data-unit="">10</span>
                 </label>
                 <!--Slider N-->
@@ -99,7 +107,7 @@
             <!--BEGIN Slider L-->
             <div id="LSec4" class="partial-sliders-container">
                 <!--Slider Display L-->
-                <label class="slider-label" style="padding-bottom:20px;">Period:
+                <label class="slider-label">Period:
                     <span id="LControllerSec4Display" data-unit="">1</span>
                 </label>
                 <!--Slider L-->

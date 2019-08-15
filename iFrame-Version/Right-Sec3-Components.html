@@ -38,14 +38,17 @@
 </head>
 <body id="loadout3">
     <!--Graph-->
-    <div id='graph1Sec3'></div>
-
+    <div id='graph1Sec3'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!--Sliders-->
     <div class="overall-sliders-container">
         <!--BEGIN Slider A-->
         <div id="ASec3" class="partial-sliders-container">
             <!--Slider Display A-->
-            <label class="slider-label" style="padding-bottom:20px;">Amplitude:<!--Amplitude-->
+            <label class="slider-label">Amplitude:<!--Amplitude-->
                 <span id="AControllerSec3Display" data-unit="">5</span> <!--default: 1-->
             </label>
             <!--Slider A-->
@@ -60,12 +63,12 @@
         <!--BEGIN Slider N-->
         <div id="NSec3" class="partial-sliders-container">
             <!--Slider Display N-->
-            <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+            <label class="slider-label">Number of Terms:
                 <span id="NControllerDisplaySec3" data-unit="">3</span>
             </label>
             <!--Slider N-->
             <label class="slider">
-                <span class="sliderMin">&nbsp0</span>
+                <span class="sliderMin">0</span>
                 <input id="NControllerSec3" class="inputs" type="range" value="3" min="0" max="9"
                        step="1"/>
                 <span class="sliderMax">9</span>
@@ -75,7 +78,7 @@
         <!--BEGIN Slider L-->
         <div id="LSec3" class="partial-sliders-container">
             <!--Slider Display L-->
-            <label class="slider-label" style="padding-bottom:20px;">Period:
+            <label class="slider-label">Period:
                 <span id="LControllerSec3Display" data-unit="">1</span>
             </label>
             <!--Slider L-->

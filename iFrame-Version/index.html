@@ -108,14 +108,13 @@
                    :max="sectionBottoms[6]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
-        <!--suppress XmlUnboundNsPrefix -->
-        <div class="journey" id="main-journey" v-on:scroll.passive="scrollFunc">
+        <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
             <!--    Section Text Containers   -->
             <div class="section-container" id="sc1">
                 <div class="placeholder" id="ph1">
                     <hr>
                     <h2 class="text section-head" id="s1">
-                        The Fourier Series
+                        {{sectionTitleLong[0]}}
                     </h2>
                     <hr>
                 </div>
@@ -144,7 +143,7 @@
                 <div class="placeholder" id="ph2">
                     <hr>
                     <h2 class="text section-head" id="s2">
-                        Orthogonality
+                        {{sectionTitleLong[1]}}
                     </h2>
                     <hr>
                 </div>
@@ -221,7 +220,7 @@
                 <div class="placeholder" id="ph3">
                     <hr>
                     <h2 class="text section-head" id="s3">
-                        Derivation
+                        {{sectionTitleLong[2]}}
                     </h2>
                     <hr>
                 </div>
@@ -879,7 +878,7 @@
                 <div class="placeholder" id="ph4">
                     <hr>
                     <h2 class="text section-head" id="s4">
-                        Components
+                        {{sectionTitleLong[3]}}
                     </h2>
                     <hr>
                 </div>
@@ -902,7 +901,7 @@
                 <div class="placeholder" id="ph5">
                     <hr>
                     <h2 class="text section-head" id="s5">
-                        Power Spectrum
+                        {{sectionTitleLong[4]}}
                     </h2>
                     <hr>
                 </div>
@@ -1003,7 +1002,7 @@
                 <div class="placeholder" id="ph6">
                     <hr>
                     <h2 class="text section-head" id="s6">
-                        Overview
+                        {{sectionTitleLong[5]}}
                     </h2>
                     <hr>
                 </div>
@@ -1041,7 +1040,7 @@
                         <li>Exponentials and logs (e.g. exp(), log())</li>
                     </ul>
                     <h3 class="section-sub-head">
-                        Syntax:
+                        Syntax
                     </h3>
                     Entering <span class="mathJaxInline">$ 5x $</span> does not work: instead you should write 5*x.
                     <br><br>
@@ -1069,7 +1068,7 @@
                 <div class="placeholder" id="ph7">
                     <hr>
                     <h2 class="text section-head" id="s7">
-                        Fourier Transform
+                        {{sectionTitleLong[6]}}
                     </h2>
                     <hr>
                 </div>
@@ -1099,7 +1098,8 @@
         </div>
     </div>
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
-    <div class="vis-container right" id="right-container"><!--    Title Banner above Right Side    -->
+    <div class="vis-container right" id="right-container">
+        <!--    Title Banner above Right Side    -->
         <div class="banner">
             <!--    Visualisation Title    -->
             <h1 class="" id="vis-title">
@@ -1114,15 +1114,16 @@
             <!--    fade transition tag for RHS - applied by Vue and CSS    -->
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
-                <div id="loadout1Container" key="loadout1Container" v-if="currentSection === 1">
-                        <iframe src="Right-Sec0-Introduction.html" class="rightload text" id="iframe1">
-                        </iframe>
+                <div class="rightload text odd" id="loadout1Container" key="loadout1Container"
+                     v-if="currentSection === 1">
+                    <iframe src="Right-Sec0-Introduction.html" class="rightload text" id="iframe1"></iframe>
                 </div>
-                <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
-                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2">
-                    </iframe>
+                <div class="rightload text even" id="loadout2Container" key="loadout2Container"
+                     v-if="currentSection === 2">
+                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2"></iframe>
                 </div>
-                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
+                <div class="rightload text odd" id="loadout3Container" key="loadout3Container"
+                     v-if="currentSection === 3">
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
@@ -1130,12 +1131,15 @@
                                     id='iframe3-1'></iframe>
                         </div>
                         <div id="loadout2sub1Container" key="loadout2sub3Container" v-else>
-                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe3-2'></iframe>
+                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text"
+                                    id='iframe3-2'></iframe>
                         </div>
                     </transition>
                 </div>
-                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
+                <div class="rightload text even" id="loadout4Container" key="loadout4Container"
+                     v-if="currentSection === 4">
                     <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
+                    <!--Equation Space-->
                     <div id="equationSpace" key="equationSpace"
                          v-if="showEq && currentSection === 4">
                         <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
@@ -1160,7 +1164,6 @@
                     <!--Scroll-down-->
                     <div id="scrollSec3" key="scrollSec3"
                          v-if="showEq && currentSection === 4">
-                        <div class="scroll_down">
                             <strong>Select Function: </strong>
                             <select id="SelectSec3" v-model="equationID" oninput="document.getElementById('iframe4').contentWindow.setPlotTypeSec3()">
                                 <option value="triangular">Triangular Function</option>
@@ -1170,28 +1173,24 @@
                                 <option value="parabola">Parabola Function</option>
                                 <option value="mode">|x| Function</option>
                             </select>
-                        </div>
                     </div>
                 </div>
-                <div id="loadout5Container" key="loadout5Container" v-if="currentSection === 5">
+                <div class="rightload text odd" id="loadout5Container" key="loadout5Container"
+                     v-if="currentSection === 5">
                     <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe5"></iframe>
                 </div>
-                <div id="loadout6Container" key="loadout6Container" v-if="currentSection === 6">
+                <div class="rightload text even" id="loadout6Container" key="loadout6Container"
+                     v-if="currentSection === 6">
                     <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe6"></iframe>
                 </div>
-                <div id="loadout7Container" key="loadout7Container" v-if="currentSection === 7">
+                <div class="rightload text odd" id="loadout7Container" key="loadout7Container"
+                     v-if="currentSection === 7">
                     <iframe src="RIght-Sec6-FourierTransform.html" class="rightload text" id="iframe7"></iframe>
-                </div>
-                
-                <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                     v-if="1 <= currentSection <= 7 === false">
-                    please wait...
                 </div>
             </transition-group>
         </div>
     </div>
 </div>
 </body>
-
 <script src="scripts/nav_Script.js"></script>
 </html>

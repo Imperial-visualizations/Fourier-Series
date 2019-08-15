@@ -91,7 +91,7 @@ let app = new Vue({
 
         // Function activated when button in nav/progress bar clicked to scroll automatically to relevant section
         scrollTo: function (event) {
-            document.querySelectorAll("#" + "ph" + event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
+            document.querySelectorAll("#" + "ph" + event.currentTarget.dataset.no + " " + "hr")[0].scrollIntoView({behavior: "smooth"});
         },
 
         // Same as above but for subsections
@@ -163,7 +163,7 @@ let app = new Vue({
                                 iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
                             }, 200);
                         }
-                    }, 200);
+                    }, 1000);
                 }
             }
         },
@@ -178,7 +178,7 @@ let app = new Vue({
                             iframeTarget.document.querySelectorAll('#opt' + (oldValue - 3))[0].removeAttribute("selected");
                             iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].removeAttribute("disabled");
                             iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "none";
-                            iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "block";
+                            iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "flex";
                         }
                         if (newValue > 3) {
                             iframeTarget.document.querySelectorAll('#opt' + (newValue - 3))[0].setAttribute("selected", "true");

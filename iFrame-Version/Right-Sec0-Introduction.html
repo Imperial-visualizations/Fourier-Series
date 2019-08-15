@@ -32,32 +32,33 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
-
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body id="loadout0">
 <!--Graph-->
-<div id='graph0Sec0'></div>
-<!--Slider-->
-<div class="overall-sliders-container">
-    <!--NB: Be careful with classes and types-->
-    <!--BEGIN Slider N-->
-    <div id="N" class="partial-sliders-container">
-        <!--Slider Display N-->
-        <label class="slider-label">Number of Terms:
-            <span id="NControllerSec2Sub1Display" data-unit="">3</span>
-        </label>
-        <!--Slider N-->
-        <label class="slider">
-            <span class="sliderMin">0</span>
-            <input id="NControllerSec2Sub1" class="inputs" type="range" value="3" min="0"
-                   max="20" step="1"/>
-            <span class="sliderMax">20</span>
-        </label>
+<div id='graph0Sec0'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <!--END Slider N-->
 </div>
+<!--Slider-->
+<!--NB: Be careful with classes and types-->
+<!--BEGIN Slider N-->
+<div id="N" class="partial-sliders-container">
+    <!--Slider Display N-->
+    <label class="slider-label">Number of Terms:
+        <span id="NControllerSec2Sub1Display" data-unit="">3</span>
+    </label>
+    <!--Slider N-->
+    <label class="slider">
+        <span class="sliderMin">0</span>
+        <input id="NControllerSec2Sub1" class="inputs" type="range" value="3" min="0"
+               max="20" step="1"/>
+        <span class="sliderMax">20</span>
+    </label>
+</div>
+<!--END Slider N-->
 </body>
 <script src="scripts/Intro.js"></script>
 </html>

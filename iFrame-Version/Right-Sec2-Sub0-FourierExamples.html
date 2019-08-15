@@ -38,30 +38,31 @@
 </head>
 <body id="loadout2sub0">
     <!--Graph-->
-    <div id='graph0Sec2'></div>
+    <div id='graph0Sec2'>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
     <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
     <h4 id="subSecTitle"></h4>
     <!--Scroll down to select the function-->
     <!--Scroll down-->
     <div id="scrollSec2Sub1">
-        <div class="scroll_down">
-            <strong>Select Function: </strong>
-            <select id="SelectSec2Sub1">
-                <option id="opt1" title="Triangular Function" value="triangular">Triangular
-                    Function
-                </option>
-                <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
-                </option>
-                <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta
-                    Function
-                </option>
-                <option id="opt4" title="Square Function" value="square">Square Function
-                </option>
-                <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
-                </option>
-                <option id="opt6" title="|x| Function" value="mode">|x| Function</option>
-            </select>
-        </div>
+        <strong>Select Function: </strong>
+        <select id="SelectSec2Sub1">
+            <option id="opt1" title="Triangular Function" value="triangular">Triangular Function
+            </option>
+            <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
+            </option>
+            <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta Function
+            </option>
+            <option id="opt4" title="Square Function" value="square">Square Function
+            </option>
+            <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
+            </option>
+            <option id="opt6" title="|x| Function" value="mode">|x| Function
+            </option>
+        </select>
     </div>
     <!--Slider-->
     <div class="overall-sliders-container">
@@ -69,7 +70,7 @@
         <!--BEGIN Slider A-->
         <div id="ASec2Sub1" class="partial-sliders-container">
             <!--Slider Display A-->
-            <label class="slider-label" style="padding-bottom:20px;">Amplitude:
+            <label class="slider-label">Amplitude:
                 <span id="AControllerSec2Sub1Display" data-unit="">1</span>
             </label>
             <!--Slider A-->
@@ -84,7 +85,7 @@
         <!--BEGIN Slider N-->
         <div id="N" class="partial-sliders-container">
             <!--Slider Display N-->
-            <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+            <label class="slider-label">Number of Terms:
                 <span id="NControllerSec2Sub1Display" data-unit="">1</span>
             </label>
             <!--Slider N-->
@@ -99,7 +100,7 @@
         <!--BEGIN Slider L-->
         <div id="L" class="partial-sliders-container">
             <!--Slider Display L-->
-            <label class="slider-label" style="padding-bottom:20px;">Period:
+            <label class="slider-label">Period:
                 <span id="LControllerSec2Sub1Display" data-unit="">1</span>
             </label>
             <!--Slider L-->
