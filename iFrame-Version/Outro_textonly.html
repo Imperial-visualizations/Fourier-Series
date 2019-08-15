@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!--Title-->
-    <title>Right-Sec2-Sub0-FourierExamples</title>
+    <title>Outro</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -42,14 +42,20 @@
 <div class="container_journey">
      <center><h4>Fourier Transform</h4></center>
         In a Fourier Series, if the range over which the function is periodic, $L$ goes to infinity, this function is no longer periodic.
-        To treat such a function, we exercise Fourier Transform.
+        To treat such a function, we would use Fourier Transform.
+        In its core, Fourier Transform transform the function from one domain to another.
+        For example, by performing a Fourier Transform of a wave packet in the time domain,
+        we can transform the wave packet into the frequency domain. This can make analysis (such as differentiation) much easier than performing it in the original domain.
+    <br>
+        One major application of Fourier Transform is in sound signal editing. Sound data is picked up by a microphone which records the pressure variation of air against time.
+        When a Fourier Transform is performed, the relative intensities of the constituent frequencies that make up the signal is broken down, making it easier for
+        sound correction and timbre analysis.
     <br>
     <h5>Visualisation Guide</h5>
-        On the right, we can see a square function, and a summation of sines and cosine functions with a finite number of terms that represents the square function.
-        Try changing the number of terms in the Fourier Series.
-        By increasing this, we can see that the function resembles closer and closer to the square function.
+        On the left, we see a top-hat function that we intend to perform a Fourier Transform on.
+        The graph on the right shows the Fourier Transform of the top hat function. We have represented the top hat graph in the frequency space.
+        The Fourier Transform graph gives with relative "intensity" of the composition of the respective frequencies that make up the top-hat graph.
     <br>
-        By the end of this suite, you would be able to understand the intuition behind Fourier Series, and to do it yourself for any reasonable periodic function.
 </div>
 
 </body>
