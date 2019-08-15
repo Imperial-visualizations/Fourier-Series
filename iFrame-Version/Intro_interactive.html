@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Title-->
+    <title>Right-Sec2-Sub0-FourierExamples</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+<!--    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="scripts/numeric/src/numeric.js"></script>
+    <script src="scripts/math.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body id="loadout2sub0">
+    <!--Graph-->
+    <div id='graph0Sec2'></div>
+    <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
+    <h4 id="subSecTitle"></h4>
+    <!--Scroll down to select the function-->
+    <!--Scroll down-->
+    <!--Slider-->
+    <div class="overall-sliders-container">
+        <!--NB: Be careful with classes and types-->
+        <!--BEGIN Slider A-->
+        <!--END Slider A-->
+        <!--BEGIN Slider N-->
+        <div id="N" class="partial-sliders-container">
+            <!--Slider Display N-->
+            <label class="slider-label" style="padding-bottom:20px;">Number of Terms:
+                <span id="NControllerSec2Sub1Display" data-unit="">3</span>
+            </label>
+            <!--Slider N-->
+            <label class="slider">
+                <span class="sliderMin">0</span>
+                <input id="NControllerSec2Sub1" class="inputs" type="range" value="3" min="0"
+                       max="20" step="1"/>
+                <span class="sliderMax">20</span>
+            </label>
+        </div>
+        <!--END Slider N-->
+        <!--BEGIN Slider L-->
+        <!--END Slider L-->
+    </div>
+</body>
+<script src="scripts/Intro.js"></script>
+</html>

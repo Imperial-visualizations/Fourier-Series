@@ -58,7 +58,7 @@
                 <button :class="[currentTitle === 1 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle1"
                         key="sectionTitle1" data-no=1 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
-                    {{sectionTitle[0]}}
+                        {{sectionTitle[0]}}
                 </button>
                 <button :class="[currentTitle === 2 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle2"
                         key="sectionTitle2" data-no=2 @click="scrollTo($event)"
@@ -66,19 +66,24 @@
                     {{sectionTitle[1]}}
                 </button>
                 <button :class="[currentTitle === 3 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle3"
-                        key="sectionTitle3" data-no=3 @click="scrollTo($event)"
+                        key="sectionTitle2" data-no=3 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[2]}}
                 </button>
                 <button :class="[currentTitle === 4 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle4"
-                        key="sectionTitle4" data-no=4 @click="scrollTo($event)"
+                        key="sectionTitle3" data-no=4 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[3]}}
                 </button>
                 <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
-                        key="sectionTitle5" data-no=5 @click="scrollTo($event)"
+                        key="sectionTitle4" data-no=5 @click="scrollTo($event)"
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[4]}}
+                </button>
+                <button :class="[currentTitle === 6 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle6"
+                        key="sectionTitle5" data-no=6 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[5]}}
                 </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
@@ -92,6 +97,8 @@
                    :max="sectionBottoms[3]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 6 ? 'activeMeter' : '']" id="m6" :min="sectionTops[5]"
+                   :max="sectionBottoms[5]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
         <!--suppress XmlUnboundNsPrefix -->
@@ -101,11 +108,38 @@
                 <div class="placeholder" id="ph1">
                     <hr>
                     <h2 class="text section-head" id="s1">
-                        Orthogonality
+                        The Fourier Series
                     </h2>
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p1">
+                    A Fourier Series is an expansion of any reasonable (see Dirichlet conditions) periodic function $f(x)$ in terms of an infinite sums of sines and cosines,
+                    due to the orthogonality relationships of sines and cosines functions.
+                    Any set of functions that form a complete orthogonal system has a Fourier Series counterpart.
+                    By representing functions in sines and cosines, we have a wide range of tools (differentiation and integration) for analysis that might not be possible in the original function domain.
+                    <br>
+                    In this visualisation, we aim to provide a visual approach to understanding how some
+                    important periodic functions can be composed using sine and cosine functions.
+                    <br><br>
+                    <h3 class="section-sub-head first-sub-head">
+                        Visualisation Guide
+                    </h3>
+                    On the right, we can see a square function, and a summation of sines and cosine functions with a finite number of terms that represents the square function.
+                    Try changing the number of terms in the Fourier Series.
+                    By increasing this, we can see that the function resembles closer and closer to the square function.
+                    <br>
+                    By the end of this suite, you would be able to understand the intuition behind Fourier Series, and to do it yourself for any reasonable periodic function.
+                </div>
+            </div>
+            <div class="section-container" id="sc2">
+                <div class="placeholder" id="ph2">
+                    <hr>
+                    <h2 class="text section-head" id="s2">
+                        Orthogonality
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p2">
                     Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
                         class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
                     inner product as
@@ -155,12 +189,16 @@
                     We define their inner product to be
                     <span class="mathJaxDisplay">
                             $$ \langle  f_{n} , f_{m} \rangle = \int_{a}^{b} f_{n}\left(x \right)f_{m}^{*}\left(x \right)dx $$
-                        </span>
-                    and say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
+                        </span>, where * denotes the complex conjugate of the function. This is commutative, just like the inner product of two vectors.
+                    We say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
                     for <span class="mathJaxInline">$ m \neq n $</span>.
                     <br><br>
-                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>.
-                    <br><br>
+                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>,
+                    where                     <span class="mathJaxDisplay">
+                            $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
+                            \\ 1 \quad \text{if } m = n
+                            \end{matrix}\right. $$
+                        </span>
                     We now claim that you can construct any square integrable function from a <strong>complete
                     set</strong> of basis
                     functions, in the same way vectors could be constructed from a complete set of basis vectors. A
@@ -170,15 +208,15 @@
 
                 </div>
             </div>
-            <div class="section-container" id="sc2">
-                <div class="placeholder" id="ph2">
+            <div class="section-container" id="sc3">
+                <div class="placeholder" id="ph3">
                     <hr>
-                    <h2 class="text section-head" id="s2">
+                    <h2 class="text section-head" id="s3">
                         Derivation
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p2">
+                <div class="text section-body odd" id="p3">
                     <div id="intro" class="divclass">
                         <button id="ssh1" class="section-sub-head first-sub-head" key="ssh1"
                                 @click="updateSubSection(1); subScrollTo($event)" data-toggle="collapse"
@@ -186,7 +224,7 @@
                                 :style="derivationSubSection === 1 ? 'background-color: #eaf2ff;' : ''">
                             Basics and Definition <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="introContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="introContentContainer" class="collapse show" data-parent="#p3">
                             <div id="introContent" class="section-sub-content" key="introContent">
                                 Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over
                                 the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
@@ -207,7 +245,6 @@
                                         \begin{align}
                                         a_n & = \frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx, \\
                                         b_n & = \frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx, \\
-                                        a_0 & = \frac{1}{L}\int_{-L}^{L} f(x) dx,
                                         \end{align}
                                     </span>
                                 and
@@ -227,10 +264,9 @@
                                 <span class="mathJaxDisplay">
                                         $$ c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{{-in \pi x}/L} dx, $$
                                     </span>
-                                <strong>Note:</strong> The constants in front of the integral(s) for the coefficients of
-                                the trigonometric and exponential forms of the fourier series are different. Also note the limit of
-                                the
-                                summations.
+                                <strong>Note:</strong> The constants in front of the integral(s) of the coefficient for
+                                the trigonometric and exponential fourier series are different. Also note the limit of the
+                                summations. Follow through the derivation to understand the difference.
                             </div>
                         </div>
                     </div>
@@ -250,7 +286,7 @@
                                         $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
                                     </span>
                                 Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span
-                                    class="mathJaxInline">$ m=0,1,2... $</span>,
+                                    class="mathJaxInline">$ m=0,1,2,... $</span>,
                                 and integrating both sides gives the following:
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
@@ -830,17 +866,16 @@
                     </div>
                 </div>
             </div>
-            <div class="section-container" id="sc3">
-                <div class="placeholder" id="ph3">
+            <div class="section-container" id="sc4">
+                <div class="placeholder" id="ph4">
                     <hr>
-                    <h2 class="text section-head" id="s3">
+                    <h2 class="text section-head" id="s4">
                         Components
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p3">
-                    The 0<sup>th</sup> term of the series is the constant term before the sum;
-                    <span class="mathJaxInline">$ \frac{a_0}{2} $</span>.
+                <div class="text section-body odd" id="p4">
+                    The 0<sup>th</sup> term of the series, <span class="mathJaxInline">$ \frac{a_0}{2} $</span>, is the constant term before the sum.
                     <br><br>
                     This is labelled as the 0<sup>th</sup> term so that the series may start indexing its terms from
                     <span class="mathJaxInline">$ n=1 $</span>.
@@ -854,15 +889,15 @@
                     then a Fourier transform need be used. This is a different problem entirely!
                 </div>
             </div>
-            <div class="section-container" id="sc4">
-                <div class="placeholder" id="ph4">
+            <div class="section-container" id="sc5">
+                <div class="placeholder" id="ph5">
                     <hr>
-                    <h2 class="text section-head" id="s4">
+                    <h2 class="text section-head" id="s5">
                         Power Spectrum
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p4">
+                <div class="text section-body odd" id="p5">
                     <h3 class="section-sub-head first-sub-head">
                         Decomposition of a function into odd and even parts
                     </h3>
@@ -955,15 +990,15 @@
                     in a signal leaves all the other frequencies unaffected.
                 </div>
             </div>
-            <div class="section-container" id="sc5">
-                <div class="placeholder" id="ph5">
+            <div class="section-container" id="sc6">
+                <div class="placeholder" id="ph6">
                     <hr>
-                    <h2 class="text section-head" id="s5">
+                    <h2 class="text section-head" id="s6">
                         Overview
                     </h2>
                     <hr>
                 </div>
-                <div class="text section-body odd" id="p5">
+                <div class="text section-body odd" id="p6">
                     <h3 class="section-sub-head first-sub-head">
                         Description
                     </h3>
@@ -1014,10 +1049,11 @@
                     <span class="mathJaxInline">$ log(1+x^2) $</span> does work for all periods, since it is defined
                     over the whole domain and
                     is real.
-                    <br><br>
+                    <!-- Not true - this was fixed. -->
+                    <!-- <br><br>
                     Sometimes due to the numerical integration methods used, the power spectrum shows very small values
                     (<span class="mathJaxInline">$ 10^{-17} $</span>).
-                    These are simply due to the inexact integration and should be treated as zero.
+                    These are simply due to the inexact integration and should be treated as zero. -->
                 </div>
             </div>
         </div>
@@ -1039,11 +1075,14 @@
             <transition-group name="fade" tag="div" class="transition-container">
                 <!--    Interactive Zone Containers   -->
                 <div id="loadout1Container" key="loadout1Container" v-if="currentSection === 1">
+                        <iframe src="Intro_interactive.html" class="rightload text" id="iframe1">
+                        </iframe>
+                </div>
+                <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
                     <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe1">
                     </iframe>
                 </div>
-                <div class="rightload text even" id="loadout2Container"
-                     key="loadout2Container" v-if="currentSection === 2">
+                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
@@ -1055,7 +1094,7 @@
                         </div>
                     </transition>
                 </div>
-                <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
+                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
                     <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
                     <div id="equationSpace" key="equationSpace"
                          v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
@@ -1094,14 +1133,14 @@
                         </div>
                     </div>
                 </div>
-                <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
+                <div id="loadout5Container" key="loadout5Container" v-if="currentSection === 5">
                     <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe4"></iframe>
                 </div>
-                <div id="loadout5Container" key="loadout5" v-if="currentSection === 5">
+                <div id="loadout6Container" key="loadout6" v-if="currentSection === 6">
                     <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe5"></iframe>
                 </div>
                 <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                     v-if="1 <= currentSection <= 5 === false">
+                     v-if="1 <= currentSection <= 6 === false">
                     please wait...
                 </div>
             </transition-group>

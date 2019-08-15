@@ -98,7 +98,7 @@ let app = new Vue ({
 
         // Function activated when button in nav/progress bar clicked to scroll automatically to relevant section
         scrollTo: function (event) {
-            document.querySelectorAll("#"+"sc"+event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
+            document.querySelectorAll("#"+"ph"+event.currentTarget.dataset.no)[0].scrollIntoView({behavior: "smooth"});
         },
 
         // Same as above but for subsections
