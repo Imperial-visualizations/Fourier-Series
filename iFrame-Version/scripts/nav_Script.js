@@ -11,7 +11,7 @@ let app = new Vue({
         currentSection: 0,
         sectionTops: [],
         sectionBottoms: [],
-        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview", "Conclusion"],
+        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview", "Fourier Transform"],
         sectionTitleShort: ["1", "2", "3", "4", "5", "6","7"],
         sectionTitle: [],
         hoverPos: '',

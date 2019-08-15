@@ -16,6 +16,68 @@
     background: white;
 }
 
+/* SECTION 0 */
+
+#loadout0 #graph0Sec0 {
+    width: 94%;
+    height: 80%;
+    position: absolute;
+    left: 3%;
+    top: 3%;
+}
+
+#loadout0 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    width: 94%;
+    height: 15%;
+}
+
+#loadout0 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#loadout0 .slider-label {
+    font-size: 14pt;
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    flex-basis: 0;
+    flex-grow: 0.5;
+    flex-shrink: 1;
+    line-height: 15vh;
+    vertical-align: middle;
+}
+
+#loadout0 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout0 .sliderMin, #loadout0 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout0 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
 /* SECTION 1 */
 
 #loadout1 {
@@ -548,6 +610,73 @@ img {
 }
 
 #loadout5 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* SECTION 6 */
+
+#loadout6 {
+}
+
+#loadout6 #Top_Hat_Graph {
+    width: 45%;
+    height: 75%;
+    position: absolute;
+    top: 6%;
+    left: 3%;
+}
+
+#loadout6 #Fourier_Transform_Graph {
+    width: 45%;
+    height: 75%;
+    position: absolute;
+    top: 6%;
+    right: 3%;
+}
+
+#loadout6 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+    width: 94%;
+    height: 15%;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+
+#loadout6 .slider-label {
+    font-size: 14pt;
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex-basis: 0;
+    flex-grow: 0.5;
+    flex-shrink: 1;
+    left: 0;
+}
+
+#loadout6 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout6 .sliderMin, #loadout6 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout6 .inputs {
     height: 40px;
     flex: 1 1 auto;
 }

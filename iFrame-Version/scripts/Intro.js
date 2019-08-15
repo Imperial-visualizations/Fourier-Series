@@ -24,8 +24,8 @@ const L = 1;
 
 // initialize the Cartesian coordinates for the plots and the functions
 function initFourierSec2Sub0() {
-    Plotly.purge("graph0Sec2");
-    Plotly.newPlot("graph0Sec2", computePlotSec2Sub0(z), layout);
+    Plotly.purge("graph0Sec0");
+    Plotly.newPlot("graph0Sec0", computePlotSec2Sub0(z), layout);
     return;
 }
 
@@ -163,7 +163,7 @@ function updatePlotSec2Sub0() {
     data = computePlotSec2Sub0(z);
     //This is animation bit.
     Plotly.animate(
-        'graph0Sec2',
+        'graph0Sec0',
         {data: data},
         {
             fromcurrent: true,
