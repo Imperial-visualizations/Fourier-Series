@@ -201,7 +201,7 @@
                         </span>
                     We now claim that you can construct any square integrable function from a <strong>complete
                     set</strong> of basis
-                    functions in the same way vectors could be constructed from a complete set of basis vectors. A
+                    functions, in the same way vectors could be constructed from a complete set of basis vectors. A
                     square integrable function <span class="mathJaxInline">$ f $</span> is
                     a function whose inner product with itself, <span
                         class="mathJaxInline">$ \langle f,f \rangle $</span> is finite.
@@ -277,7 +277,7 @@
                                 :style="derivationSubSection === 2 ? 'background-color: #eaf2ff;' : ''">
                             General Derivation <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="FSderivationContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="FSderivationContentContainer" class="collapse show" data-parent="#p3">
                             <div id="FSderivationContent" class="section-sub-content" key="FSderivationContent">
                                 We begin by assuming that <span class="mathJaxInline">$ f(x) $</span> can be represented
                                 as a sum of
@@ -387,7 +387,7 @@
                                 :style="derivationSubSection === 3 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 1 <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="triangular1ContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="triangular1ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="triangular1Content" class="section-sub-content" key="triangular1Content">
                                 The triangular function is defined by the following:
                                 <span class="mathJaxDisplay">
@@ -440,7 +440,7 @@
                                 :style="derivationSubSection === 4 ? 'background-color: #eaf2ff;' : ''">
                             Triangular Function Part 2 <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="triangular2ContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="triangular2ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="triangular2Content" class="section-sub-content" key="triangular2Content">
                                     <span class="mathJaxDisplay">
                                         $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
@@ -513,7 +513,7 @@
                                 :style="derivationSubSection === 5 ? 'background-color: #eaf2ff;' : ''">
                             Parabolic Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="parabolicContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="parabolicContentContainer" class="collapse show" data-parent="#p3">
                             <div id="parabolicContent" class="section-sub-content" key="parabolicContent">
                                 The parabolic function is defined as:
                                 <span class="mathJaxDisplay">
@@ -614,7 +614,7 @@
                                 :style="derivationSubSection === 6 ? 'background-color: #eaf2ff;' : ''">
                             Dirac-Delta Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="deltaContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="deltaContentContainer" class="collapse show" data-parent="#p3">
                             <div id="deltaContent" class="section-sub-content" key="deltaContent">
                                 The Dirac-delta function can be thought of as a infinite spike at <span
                                     class="mathJaxInline">$ x=0 $</span>.
@@ -678,7 +678,7 @@
                                 :style="derivationSubSection === 7 ? 'background-color: #eaf2ff;' : ''">
                             Square Wave <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="squareContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="squareContentContainer" class="collapse show" data-parent="#p3">
                             <div id="squareContent" class="section-sub-content" key="squareContent">
                                 The square wave is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -736,7 +736,7 @@
                                 :style="derivationSubSection === 8 ? 'background-color: #eaf2ff;' : ''">
                             Sawtooth Wave <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="sawtoothContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="sawtoothContentContainer" class="collapse show" data-parent="#p3">
                             <div id="sawtoothContent" class="section-sub-content" key="sawtoothContent">
                                 The Sawtooth wave is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -797,7 +797,7 @@
                                 :style="derivationSubSection === 9 ? 'background-color: #eaf2ff;' : ''">
                             Mod x Function <i class='fas fa-chevron-down'></i>
                         </button>
-                        <div id="modxContentContainer" class="collapse show" data-parent="#p2">
+                        <div id="modxContentContainer" class="collapse show" data-parent="#p3">
                             <div id="modxContent" class="section-sub-content" key="modxContent">
                                 The <span class="mathJaxInline">$ |x| $</span> function is defined as the following:
                                 <span class="mathJaxDisplay">
@@ -1097,7 +1097,7 @@
                 <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
                     <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
                     <div id="equationSpace" key="equationSpace"
-                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
                         <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
                             <img src="Triangle_Eqn.png">
                         </div>
@@ -1119,10 +1119,10 @@
                     </div>
                     <!--Scroll-down-->
                     <div id="scrollSec3" key="scrollSec3"
-                         v-if="showEq && currentSection === 3 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
                         <div class="scroll_down">
                             <strong>Select Function: </strong>
-                            <select id="SelectSec3" v-model="equationID">
+                            <select id="SelectSec3" v-model="equationID" oninput="document.getElementById('iframe3').contentWindow.setPlotTypeSec3()">
                                 <option value="triangular">Triangular Function</option>
                                 <option value="square">Square Function</option>
                                 <option value="sawtooth">Sawtooth Function</option>
