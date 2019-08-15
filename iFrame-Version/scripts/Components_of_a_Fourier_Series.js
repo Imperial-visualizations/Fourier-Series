@@ -188,7 +188,8 @@ function plotSinesSec3(n, x, shape) {
             line: {color: "rgb(0,N*10,0)", width: 3, dash: "dashed"},
 
         }
-    console.log(shape);
+
+
     //If 0th term is non-zero shade bottom section
     if(n == 0){
         if(shape == 3 || shape == 4 || shape == 6){
@@ -231,7 +232,7 @@ function computeComponentsSec3(x) {
 function updatePlotSec3() {
     var data;
     // NB: updates according to the active tab
-    var selectedValue = window.parent.document.getElementById("SelectSec3").value; // finds out which function is active
+    var selectedValue = document.getElementById("SelectSec3").value; // finds out which function is active
     $(document).ready(() => {
         if (shape === 3) {
             $('#ASec3').hide();
@@ -311,10 +312,9 @@ function mainSec3() {
     // as you select the functions you want from the scroll down
     // change the shape and the plots
     // change the titles and the math derivations
-    window.parent.$('#SelectSec3').change(function () {
-        var selectedValue = window.parent.$("#SelectSec3").value;
-        console.log(window.parent.$("#SelectSec3"));
-        console.log(selectedValue);
+    $('#SelectSec3').change(function () {
+        var selectedValue = $("#SelectSec3").val();
+
         if (selectedValue === "main") {
             shape = 0;
             updatePlotSec3();
