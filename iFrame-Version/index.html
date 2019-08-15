@@ -292,9 +292,9 @@
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
                                     </span>
                                 Performing the integral on the R.H.S gives
-                                <span class="mathJaxDisplay">
+                                <span class="mathJaxDisplay" style="font-size: 90%">
                                         $$ \int_{-L}^L e^{(i\pi x/L)(n-m)}dx =\left\{ \begin{array}{ll} 2L \qquad \text{(if n=m)} \\
-                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \} = 2L \cdot \delta_{nm}. $$
+                                        0 \qquad \quad \text{(if n≠m)} \end{array} \right \}=2L\cdot\delta_{nm}. $$
                                     </span>
                                 This is the orthonormality of complex exponentials.
                                 <br><br>
@@ -493,14 +493,14 @@
                                 <span class="mathJaxDisplay">
                                     $$ b_n=\frac{8A}{n^2\pi^2}(-1)^{\frac{n-1}{2}} $$
                                     </span>
-                                Finally,
+                                and,
                                 <span class="mathJaxDisplay">
                                     $$ f(x)=\sum_{n=1,3,5...}^\infty \frac{8A}{n^2\pi^2} (-1)^{\frac{n-1}{2}} \sin \left(\frac{n\pi x}{L} \right) $$
                                     </span>
-                                And the using that an odd number is given by <span
-                                    class="mathJaxInline">$ 2n +1 $</span> for any
-                                <span class="mathJaxInline">$ n $</span>,
-                                <span class="mathJaxDisplay">
+                                Finally, using the fact that odd number can be written as <span
+                                    class="mathJaxInline">$ 2n +1 $</span> for any integer
+                                <span class="mathJaxInline">$ n $</span>, we have
+                                <span class="mathJaxDisplay" style="font-size: 90%">
                                     $$ f(x)=\sum_{n=1,2,3...}^\infty \frac{8A}{(2n-1)^2\pi^2}(-1)^n \sin \left(\frac{(2n-1)\pi x}{L} \right) $$
                                     </span>
                             </div>
@@ -519,9 +519,9 @@
                                 <span class="mathJaxDisplay">
                                         $$ f(x)=Ax^2 \quad \text{for:} -L\leq x< L$$
                                     </span>
-                                and forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
-                                Therefore, <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span>
-                                coefficients are given as
+                                and is forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
+                                Therefore, the coefficients <span class="mathJaxInline">$ a_n $</span> and <span class="mathJaxInline">$ b_n $</span>
+                                are given by
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{1}{L}\int_{-L}^{+L} Ax^2 \sin \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
@@ -533,9 +533,9 @@
                                 <span class="mathJaxInline">$ b_n=0 $</span> for all <span
                                     class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is
                                 even about
-                                <span class="mathJaxInline">$ x=0 $</span>. Hence
+                                <span class="mathJaxInline">$ x=0 $</span>. Thus,
                                 <span class="mathJaxDisplay">
-                                        $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
+                                        $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx. $$
                                     </span>
                                 For <span class="mathJaxInline">$ n=0 $</span>:
                                 <span class="mathJaxDisplay">
@@ -545,7 +545,7 @@
                                 <span class="mathJaxDisplay">
                                         $$ a_n = \frac{2A}{L}\int_0^L x^2 \cos \left(\frac{n\pi x}{L} \right)dx $$
                                     </span>
-                                This Eqn. can be solved by integrating by parts.
+                                This equation can now be solved using integration by parts.
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
                                                 @click="hideShowToggle($event)"
