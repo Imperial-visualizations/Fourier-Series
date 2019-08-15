@@ -85,6 +85,11 @@
                         @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
                     {{sectionTitle[5]}}
                 </button>
+                <button :class="[currentTitle === 7 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle7"
+                        key="sectionTitle5" data-no=7 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();" @mouseout="hoverTitle=false">
+                    {{sectionTitle[6]}}
+                </button>
             </div>
             <!--    Dynamic meters indicating progress through each section    -->
             <meter :class="[currentTitle === 1 ? 'activeMeter' : '']" id="m1" :min="sectionTops[0]"
@@ -99,6 +104,8 @@
                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
             <meter :class="[currentTitle === 6 ? 'activeMeter' : '']" id="m6" :min="sectionTops[5]"
                    :max="sectionBottoms[5]" :value="scrollPos"></meter>
+            <meter :class="[currentTitle === 7 ? 'activeMeter' : '']" id="m7" :min="sectionTops[6]"
+                   :max="sectionBottoms[6]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
         <!--suppress XmlUnboundNsPrefix -->
@@ -1056,6 +1063,32 @@
                     These are simply due to the inexact integration and should be treated as zero. -->
                 </div>
             </div>
+            <div class="section-container" id="sc7">
+                <div class="placeholder" id="ph7">
+                    <hr>
+                    <h2 class="text section-head" id="s7">
+                        Fourier Transform
+                    </h2>
+                    <hr>
+                </div>
+                <div class="text section-body odd" id="p7">
+                    In a Fourier Series, if the range over which the function is periodic, $L$ goes to infinity, this function is no longer periodic.
+                    To treat such a function, we would use Fourier Transform.
+                    In its core, Fourier Transform transform the function from one domain to another.
+                    For example, by performing a Fourier Transform of a wave packet in the time domain,
+                    we can transform the wave packet into the frequency domain. This can make analysis (such as differentiation) much easier than performing it in the original domain.
+                <br>
+                    One major application of Fourier Transform is in sound signal editing. Sound data is picked up by a microphone which records the pressure variation of air against time.
+                    When a Fourier Transform is performed, the relative intensities of the constituent frequencies that make up the signal is broken down, making it easier for
+                    sound correction and timbre analysis.
+                <br><br>
+                <h5>Visualisation Guide</h5>
+                    On the left, we see a top-hat function that we intend to perform a Fourier Transform on.
+                    The graph on the right shows the Fourier Transform of the top hat function. We have represented the top hat graph in the frequency space.
+                    The Fourier Transform graph gives with relative "intensity" of the composition of the respective frequencies that make up the top-hat graph.
+                <br>
+                </div>
+            </div>
         </div>
     </div>
     <!--    Right Side of Window - containing mainly interactive and visual content    -->
@@ -1079,7 +1112,7 @@
                         </iframe>
                 </div>
                 <div id="loadout2Container" key="loadout2Container" v-if="currentSection === 2">
-                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe1">
+                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2">
                     </iframe>
                 </div>
                 <div id="loadout3Container" key="loadout3Container" v-if="currentSection === 3">
@@ -1087,15 +1120,15 @@
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
                             <iframe src="Right-Sec2-Sub0-FourierExamples.html" class="rightload text"
-                                    id='iframe2-1'></iframe>
+                                    id='iframe3-1'></iframe>
                         </div>
                         <div id="loadout2sub1Container" key="loadout2sub3Container" v-else>
-                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe2-2'></iframe>
+                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text" id='iframe3-2'></iframe>
                         </div>
                     </transition>
                 </div>
                 <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
-                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe3"></iframe>
+                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
                     <div id="equationSpace" key="equationSpace"
                          v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
                         <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
@@ -1134,13 +1167,17 @@
                     </div>
                 </div>
                 <div id="loadout5Container" key="loadout5Container" v-if="currentSection === 5">
-                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe4"></iframe>
+                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe5"></iframe>
                 </div>
-                <div id="loadout6Container" key="loadout6" v-if="currentSection === 6">
-                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe5"></iframe>
+                <div id="loadout6Container" key="loadout6Container" v-if="currentSection === 6">
+                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe6"></iframe>
                 </div>
+                <div id="loadout7Container" key="loadout7Container" v-if="currentSection === 7">
+                    <iframe src="Outro_interactive.html" class="rightload text" id="iframe7"></iframe>
+                </div>
+                
                 <div class="rightload text wait" id='loadoutblank' key="loadoutblank"
-                     v-if="1 <= currentSection <= 6 === false">
+                     v-if="1 <= currentSection <= 7 === false">
                     please wait...
                 </div>
             </transition-group>
