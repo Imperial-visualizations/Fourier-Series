@@ -11,7 +11,7 @@ let app = new Vue({
         currentSection: 0,
         sectionTops: [],
         sectionBottoms: [],
-        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview","Conclusion"],
+        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview", "Conclusion"],
         sectionTitleShort: ["1", "2", "3", "4", "5", "6","7"],
         sectionTitle: [],
         hoverPos: '',
@@ -148,11 +148,11 @@ let app = new Vue({
         },
 
         currentSection: function (newValue, oldValue) {
-            if (newValue === 2) {
+            if (newValue === 3) {
                 if (app.derivationSubSection !== 3) {
                     // locks function displayed to show only specific example if subsection about specific function is active
                     setTimeout(function () {
-                        let iframeTarget = document.querySelectorAll("#iframe2-1")[0].contentWindow;
+                        let iframeTarget = document.querySelectorAll("#iframe3-1")[0].contentWindow;
                         if (app.derivationSubSection > 3) {
                             iframeTarget.document.querySelectorAll('#opt' + (app.derivationSubSection - 3))[0].setAttribute("selected", "true");
                             iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
@@ -173,7 +173,7 @@ let app = new Vue({
                 if (newValue !== 3) {
                     // locks function displayed to show only specific example if subsection about specific function is active
                     setTimeout(function () {
-                        let iframeTarget = document.querySelectorAll("#iframe2-1")[0].contentWindow;
+                        let iframeTarget = document.querySelectorAll("#iframe3-1")[0].contentWindow;
                         if (oldValue > 3) {
                             iframeTarget.document.querySelectorAll('#opt' + (oldValue - 3))[0].removeAttribute("selected");
                             iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].removeAttribute("disabled");

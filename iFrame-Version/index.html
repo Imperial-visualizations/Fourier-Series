@@ -1130,7 +1130,7 @@
                 <div id="loadout4Container" key="loadout4Container" v-if="currentSection === 4">
                     <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
                     <div id="equationSpace" key="equationSpace"
-                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4">
                         <div id="Triangle_eqn" class="equationContainer" v-if="equationID === 'triangular'">
                             <img src="Triangle_Eqn.png">
                         </div>
@@ -1152,10 +1152,10 @@
                     </div>
                     <!--Scroll-down-->
                     <div id="scrollSec3" key="scrollSec3"
-                         v-if="showEq && currentSection === 4 && derivationSubSection !== 3">
+                         v-if="showEq && currentSection === 4">
                         <div class="scroll_down">
                             <strong>Select Function: </strong>
-                            <select id="SelectSec3" v-model="equationID" oninput="document.getElementById('iframe3').contentWindow.setPlotTypeSec3()">
+                            <select id="SelectSec3" v-model="equationID" oninput="document.getElementById('iframe4').contentWindow.setPlotTypeSec3()">
                                 <option value="triangular">Triangular Function</option>
                                 <option value="square">Square Function</option>
                                 <option value="sawtooth">Sawtooth Function</option>
