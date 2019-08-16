@@ -347,7 +347,16 @@ i {
 }
 
 .section-extra-head {
-    font-size: 10pt;
+    border: solid 1px #033482;
+    border-radius: 18px;
+    color: #033482;
+    box-shadow: none;
+    font-size: calc(4px + 0.95vw);
+    text-align: center;
+}
+
+.section-extra-head:hover {
+    background-color: #eaf2ff;
 }
 
 .first-sub-head {
