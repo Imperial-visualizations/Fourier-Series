@@ -19,8 +19,10 @@
     <script src="scripts/debounce_and_throttle.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -34,87 +36,89 @@
   });
 
 
+
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body id="loadout2sub0">
-    <!--Graph-->
-    <div id='graph0Sec2'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+<!--Graph-->
+<div id='graph0Sec2'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
-    <h4 id="subSecTitle"></h4>
-    <!--Scroll down to select the function-->
-    <!--Scroll down-->
-    <div id="scrollSec2Sub1">
-        <strong>Select Function: </strong>
-        <select id="SelectSec2Sub1">
-            <option id="opt1" title="Triangular Function" value="triangular">Triangular Function
-            </option>
-            <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
-            </option>
-            <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta Function
-            </option>
-            <option id="opt4" title="Square Function" value="square">Square Function
-            </option>
-            <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
-            </option>
-            <option id="opt6" title="|x| Function" value="mode">|x| Function
-            </option>
-        </select>
+</div>
+<!--Sub Section Title (shown instead of scroll down options when specific function selected on LHS-->
+<h4 id="subSecTitle"></h4>
+<!--Scroll down to select the function-->
+<!--Scroll down-->
+<div id="scrollSec2Sub1">
+    <strong>Select Function: </strong>
+    <select id="SelectSec2Sub1">
+        <option id="opt1" title="Triangular Function" value="triangular">Triangular Function
+        </option>
+        <option id="opt2" title="Parabola Function" value="parabola">Parabola Function
+        </option>
+        <option id="opt3" title="Dirac-Delta Function" value="dirac">Dirac-Delta Function
+        </option>
+        <option id="opt4" title="Square Function" value="square">Square Function
+        </option>
+        <option id="opt5" title="Sawtooth Function" value="sawtooth">Sawtooth Function
+        </option>
+        <option id="opt6" title="|x| Function" value="mode">|x| Function
+        </option>
+    </select>
+</div>
+<!--Slider-->
+<div class="overall-sliders-container">
+    <!--NB: Be careful with classes and types-->
+    <!--BEGIN Slider A-->
+    <div id="ASec2Sub1" class="partial-sliders-container">
+        <!--Slider Display A-->
+        <label class="slider-label">Amplitude:
+            <span id="AControllerSec2Sub1Display" data-unit="">1</span>
+        </label>
+        <!--Slider A-->
+        <label class="slider">
+            <span class="sliderMin">-5</span>
+            <input id="AControllerSec2Sub1" class="inputs" type="range" value="1.0"
+                   min="-5.0"
+                   max="5.0" step="0.1"/>
+            <span class="sliderMax">5</span></label>
     </div>
-    <!--Slider-->
-    <div class="overall-sliders-container">
-        <!--NB: Be careful with classes and types-->
-        <!--BEGIN Slider A-->
-        <div id="ASec2Sub1" class="partial-sliders-container">
-            <!--Slider Display A-->
-            <label class="slider-label">Amplitude:
-                <span id="AControllerSec2Sub1Display" data-unit="">1</span>
-            </label>
-            <!--Slider A-->
-            <label class="slider">
-                <span class="sliderMin">-5</span>
-                <input id="AControllerSec2Sub1" class="inputs" type="range" value="1.0"
-                       min="-5.0"
-                       max="5.0" step="0.1"/>
-                <span class="sliderMax">5</span></label>
-        </div>
-        <!--END Slider A-->
-        <!--BEGIN Slider N-->
-        <div id="N" class="partial-sliders-container">
-            <!--Slider Display N-->
-            <label class="slider-label">Number of Terms:
-                <span id="NControllerSec2Sub1Display" data-unit="">1</span>
-            </label>
-            <!--Slider N-->
-            <label class="slider">
-                <span class="sliderMin">0</span>
-                <input id="NControllerSec2Sub1" class="inputs" type="range" value="1" min="0"
-                       max="20" step="1"/>
-                <span class="sliderMax">20</span>
-            </label>
-        </div>
-        <!--END Slider N-->
-        <!--BEGIN Slider L-->
-        <div id="L" class="partial-sliders-container">
-            <!--Slider Display L-->
-            <label class="slider-label">Period:
-                <span id="LControllerSec2Sub1Display" data-unit="">1</span>
-            </label>
-            <!--Slider L-->
-            <label class="slider">
-                <span class="sliderMin">-5</span>
-                <input id="LControllerSec2Sub1" class="inputs" type="range" value="1" min="-5"
-                       max="5" step="0.5"/>
-                <span class="sliderMax">5</span>
-            </label>
-        </div>
-        <!--END Slider L-->
+    <!--END Slider A-->
+    <!--BEGIN Slider N-->
+    <div id="N" class="partial-sliders-container">
+        <!--Slider Display N-->
+        <label class="slider-label">Number of Terms:
+            <span id="NControllerSec2Sub1Display" data-unit="">1</span>
+        </label>
+        <!--Slider N-->
+        <label class="slider">
+            <span class="sliderMin">0</span>
+            <input id="NControllerSec2Sub1" class="inputs" type="range" value="1" min="0"
+                   max="20" step="1"/>
+            <span class="sliderMax">20</span>
+        </label>
     </div>
+    <!--END Slider N-->
+    <!--BEGIN Slider L-->
+    <div id="L" class="partial-sliders-container">
+        <!--Slider Display L-->
+        <label class="slider-label">Period:
+            <span id="LControllerSec2Sub1Display" data-unit="">1</span>
+        </label>
+        <!--Slider L-->
+        <label class="slider">
+            <span class="sliderMin">-5</span>
+            <input id="LControllerSec2Sub1" class="inputs" type="range" value="1" min="-5"
+                   max="5" step="0.5"/>
+            <span class="sliderMax">5</span>
+        </label>
+    </div>
+    <!--END Slider L-->
+</div>
 </body>
+<!--THE BRAINS-->
 <script src="scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js"></script>
 </html>

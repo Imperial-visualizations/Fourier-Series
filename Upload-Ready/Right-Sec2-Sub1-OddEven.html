@@ -19,8 +19,10 @@
     <script src="scripts/debounce_and_throttle.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -34,24 +36,26 @@
   });
 
 
+
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body id="loadout2sub1">
-    <!-- Graph -->
-    <div id='graph1Sec2'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+<!-- Graph -->
+<div id='graph1Sec2'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <div id='graph2Sec2'>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+</div>
+<div id='graph2Sec2'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <!--Slider-->
-    <div class="overall-sliders-container">
+</div>
+<!--Slider-->
+<div class="overall-sliders-container">
+    <div class="partial-sliders-container">
         <!--BEGIN Slider N-->
         <!--Slider Display N-->
         <label class="slider-label">Term Number:
@@ -66,6 +70,8 @@
             <span class="sliderMax">50</span>
         </label>
         <!--END Slider N-->
+    </div>
+    <div class="partial-sliders-container">
         <!--BEGIN Slider A-->
         <!--Slider Display A-->
         <label class="slider-label">Amplitude:<!--Amplitude-->
@@ -80,6 +86,8 @@
             <span class="sliderMax">3</span>
         </label>
         <!--END Slider A-->
+    </div>
+    <div class="partial-sliders-container">
         <!--BEGIN Slider L-->
         <!--Slider Display L-->
         <label class="slider-label">Period:
@@ -95,6 +103,8 @@
         </label>
         <!--END Slider L-->
     </div>
+</div>
 </body>
-<script src="scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js"></script>
+<!--THE BRAINS-->
+<script src="scripts/FS-scripts/2Derivation_of_a_Fourier_Series_duo.js"></script>
 </html>

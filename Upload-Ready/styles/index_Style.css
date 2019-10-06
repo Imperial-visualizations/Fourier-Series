@@ -38,12 +38,16 @@ iframe {
     height: 100%;
 }
 
-ol li {
+iframe > body {
+    overflow-y: hidden;
+}
+
+ul li, ol li {
     list-style-position: outside;
     font-weight: bolder;
 }
 
-ol li p {
+ul li p, ol li p {
     font-weight: normal;
     padding-left: 1vw;
 }
@@ -428,14 +432,17 @@ i.fa-chevron-down {
     background: #ffffff;
 }
 
+.outerVisGuideContainer {
+    padding-left: 2vw;
+}
+
 .first-sub-head {
     margin: 0 0 20px 0 !important;
 }
 
 .journeyImage {
     width: 80%;
-    margin-top: 2vh;
-    margin-bottom: 1vh;
+    margin: 2vh auto 1vh;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -553,7 +560,8 @@ i.fa-chevron-down {
     transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
     opacity: 0;
 }
 

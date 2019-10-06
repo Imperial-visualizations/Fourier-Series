@@ -19,8 +19,10 @@
     <script src="scripts/debounce_and_throttle.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -32,6 +34,7 @@
     },
     "HTML-CSS": { fonts: ["TeX"] }
   });
+
 
 
     </script>
@@ -59,16 +62,16 @@
 <div class="inputsContainer">
     <!--Scroll dropdown list for option of functions-->
     <div id="scrollSec5">
-            <strong>Select Function:</strong>
-            <select id="SelectSec5">
-                <option value="custom">Custom Input</option>
-                <option value="triangular">Triangular Function</option>
-                <option value="square">Square Function</option>
-                <option value="sawtooth">Sawtooth Function</option>
-                <option value="dirac">Dirac-Delta Function</option>
-                <option value="parabola">Parabola Function</option>
-                <option value="mode">|x| Function</option>
-            </select>
+        <strong>Select Function:</strong>
+        <select id="SelectSec5">
+            <option value="custom">Custom Input</option>
+            <option value="triangular">Triangular Function</option>
+            <option value="square">Square Function</option>
+            <option value="sawtooth">Sawtooth Function</option>
+            <option value="dirac">Dirac-Delta Function</option>
+            <option value="parabola">Parabola Function</option>
+            <option value="mode">|x| Function</option>
+        </select>
     </div>
     <!--BEGIN Input function box -->
     <div id="inputSubContainerSec5">
@@ -124,5 +127,6 @@
     <!--END Slider L-->
 </div>
 </body>
+<!--THE BRAINS-->
 <script src="scripts/FS-scripts/5Generalised_Fourier_Decomposition.js"></script>
 </html>

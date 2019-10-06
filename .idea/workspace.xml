@@ -3,7 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="d4018f36-6e35-4f9b-bddc-58ccc7306a60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.ico.png" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,7 +26,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,9 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>equationID</find>
-      <find>slider</find>
-      <find>.sliderMax</find>
       <find>baseline</find>
       <find>parent</find>
       <find>selectSec3</find>
@@ -37,7 +55,6 @@
       <find>graph0Sec2</find>
       <find>%</find>
       <find>calc</find>
-      <find>slider-label</find>
       <find>px</find>
       <find>pt</find>
       <find>scroll_</find>
@@ -57,6 +74,10 @@
       <find>Aco</find>
       <find>select</find>
       <find>selector</find>
+      <find>graph</find>
+      <find>slider-label</find>
+      <find>$</find>
+      <find>/*</find>
     </findStrings>
     <replaceStrings>
       <replace>plotSinesSec5</replace>
@@ -97,9 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Imp_Vis Current Test Back Up 2019-07-23/index.html" />
-        <option value="$PROJECT_DIR$/scripts/Debounce Test.html" />
-        <option value="$PROJECT_DIR$/scripts/debouncer_Func.js" />
         <option value="$PROJECT_DIR$/scripts/debounce_and_throttle.js" />
         <option value="$PROJECT_DIR$/styles/Test MathJax Eqns.html" />
         <option value="$PROJECT_DIR$/Test MathJax Eqns.html" />
@@ -135,19 +153,22 @@
         <option value="$PROJECT_DIR$/iFrame-Version/scripts/nav_Script.js" />
         <option value="$PROJECT_DIR$/iFrame-Version/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/../Static-Electromagnetism/styles/index_Style.css" />
-        <option value="$PROJECT_DIR$/../Electromagnetism-in-materials/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/../Vector-Calculus-Concepts/iFrame-Version/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/iFrame-Version/styles/index_Style.css" />
+        <option value="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" />
+        <option value="$PROJECT_DIR$/../Electromagnetism-in-materials/styles/index_Style.css" />
+        <option value="$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js" />
+        <option value="$PROJECT_DIR$/Upload-Ready/index.html" />
+        <option value="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" />
+        <option value="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" />
+        <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html" />
+        <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" />
-        <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" />
-        <option value="$PROJECT_DIR$/Upload-Ready/index.html" />
-        <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" />
-        <option value="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" />
       </list>
     </option>
   </component>
@@ -163,6 +184,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -175,31 +197,17 @@
               <item name="Fourier-Series" type="462c0819:PsiDirectoryNode" />
               <item name="Upload-Ready" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Fourier-Series" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Fourier-Series" type="462c0819:PsiDirectoryNode" />
-              <item name="Upload-Ready" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Fourier-Series" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Fourier-Series" type="462c0819:PsiDirectoryNode" />
-              <item name="Upload-Ready" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="FS-scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Upload-Ready/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -211,11 +219,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\amolb\Desktop\Imperial_Visualisations\Fourier-Series\iFrame-Version" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\amolb\Desktop\Imperial_Visualisations\Framework-Experiment\Amol Vue Content Test v4" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\amolb\Desktop\Imperial_Visualisations\Fourier-Series\Upload-Ready\images" />
+      <recent name="C:\Users\amolb\Desktop\Imperial_Visualisations\Fourier-Series\iFrame-Version" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -272,14 +281,16 @@
       <workItem from="1568041814668" duration="1202000" />
       <workItem from="1569419011361" duration="805000" />
       <workItem from="1569420206404" duration="3466000" />
+      <workItem from="1570368944645" duration="6875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192464000" />
+    <option name="totallyTimeSpent" value="199339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2260274" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -309,21 +320,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/scripts/Visualising_Simple_Periodic_Functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5321">
-          <caret line="313" column="35" selection-start-line="313" selection-start-column="35" selection-end-line="313" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Framework-Experiment/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iFrame-Version/Intro_textonly.html" />
     <entry file="file://$PROJECT_DIR$/iFrame-Version/Intro_interactive.html" />
     <entry file="file://$PROJECT_DIR$/iFrame-Version/Outro_textonly.html" />
     <entry file="file://$PROJECT_DIR$/iFrame-Version/Outro_interactive.html" />
@@ -712,13 +708,6 @@
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#1;n#head#0;n#html#0;n#!!top" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Electromagnetism-in-materials/styles/index_Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1247,98 +1236,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/numeric/src/numeric.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2725" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="1103" column="44" lean-forward="true" selection-start-line="1103" selection-start-column="44" selection-end-line="1103" selection-end-column="44" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="38" column="114" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="38" column="114" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="114" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
-          <folding>
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="89" lean-forward="true" selection-start-line="9" selection-start-column="89" selection-end-line="9" selection-end-column="89" />
-          <folding>
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
-            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/numeric/src/numeric.js" />
     <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/3Components_of_a_Fourier_Series.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -1356,20 +1254,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html">
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="17">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/2Derivation_of_a_Fourier_Series_duo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Electromagnetism-in-materials/styles/index_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-end-line="570" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#8;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="82" column="90" selection-start-line="82" selection-start-column="90" selection-end-line="82" selection-end-column="90" />
           <folding>
             <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js">
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="297" column="17" selection-start-line="297" selection-start-column="9" selection-end-line="297" selection-end-column="17" />
+        <state relative-caret-position="337">
+          <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
+          <folding>
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="106" column="27" selection-start-line="106" selection-start-column="27" selection-end-line="106" selection-end-column="27" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#7;n#head#0;n#html#0;n#!!top" />
+            <element signature="e#2460#2466#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="659" column="16" selection-start-line="659" selection-start-column="16" selection-end-line="659" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/index_Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5261">
+          <caret line="534" column="28" selection-start-line="534" selection-start-column="28" selection-end-line="534" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
         </state>
       </provider>
     </entry>
