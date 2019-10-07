@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4018f36-6e35-4f9b-bddc-58ccc7306a60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec1-Orthogonality.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub0-FourierExamples.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec2-Sub1-OddEven.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec3-Components.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Upload-Ready/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico.png" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,12 +15,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            <state relative-caret-position="43">
+              <caret line="984" column="110" lean-forward="true" selection-start-line="984" selection-start-column="110" selection-end-line="984" selection-end-column="110" />
             </state>
           </provider>
         </entry>
@@ -48,7 +37,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>baseline</find>
       <find>parent</find>
       <find>selectSec3</find>
       <find>HEAD</find>
@@ -78,10 +66,9 @@
       <find>slider-label</find>
       <find>$</find>
       <find>/*</find>
+      <find>$&lt;/span&gt;,</find>
     </findStrings>
     <replaceStrings>
-      <replace>plotSinesSec5</replace>
-      <replace>computePlot1Sec5</replace>
       <replace>insertSec5</replace>
       <replace>updateFunctionSec5</replace>
       <replace>updatePlotSec5</replace>
@@ -110,6 +97,8 @@
       <replace>center</replace>
       <replace>graph0Sec0</replace>
       <replace>vw</replace>
+      <replace>. $&lt;/span&gt;</replace>
+      <replace>, $&lt;/span&gt;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -158,7 +147,6 @@
         <option value="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" />
         <option value="$PROJECT_DIR$/../Electromagnetism-in-materials/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/Upload-Ready/scripts/FS-scripts/2Visualising_Simple_Periodic_Functions.js" />
-        <option value="$PROJECT_DIR$/Upload-Ready/index.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" />
         <option value="$PROJECT_DIR$/Upload-Ready/styles/loadout_Style.css" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec0-Introduction.html" />
@@ -169,6 +157,7 @@
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec4-PowerSpectrum.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/Right-Sec5-Overview.html" />
         <option value="$PROJECT_DIR$/Upload-Ready/RIght-Sec6-FourierTransform.html" />
+        <option value="$PROJECT_DIR$/Upload-Ready/index.html" />
       </list>
     </option>
   </component>
@@ -282,15 +271,15 @@
       <workItem from="1569419011361" duration="805000" />
       <workItem from="1569420206404" duration="3466000" />
       <workItem from="1570368944645" duration="6875000" />
+      <workItem from="1570409842153" duration="76000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199339000" />
+    <option name="totallyTimeSpent" value="199415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2260274" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1382,8 +1371,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        <state relative-caret-position="43">
+          <caret line="984" column="110" lean-forward="true" selection-start-line="984" selection-start-column="110" selection-end-line="984" selection-end-column="110" />
         </state>
       </provider>
     </entry>

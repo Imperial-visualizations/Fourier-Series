@@ -154,23 +154,23 @@
                 </div>
                 <div class="text section-body odd" id="p2">
                     Given the vectors <span class="mathJaxInline">$ \vec{V}_{n} $</span> and <span
-                        class="mathJaxInline">$ \vec{V}_{m} $</span>, we define their
+                        class="mathJaxInline">$ \vec{V}_{m}, $</span> we define their
                     inner product as
                     <span class="mathJaxDisplay">
                             $$\vec{V}_{n} \cdot \vec{V}_{m} = \sum_{i}V_{n}^{(i)} V_{m}^{(i)}, $$
                         </span>
                     where <span class="mathJaxInline">$ V_{n}^{(i)} $</span> is the <span class="mathJaxInline">$ i^{\text{th}} $</span>
                     component of the vector
-                    <span class="mathJaxInline">$ \vec{V}_{n} $</span>. If
+                    <span class="mathJaxInline">$ \vec{V}_{n}. $</span> If
                     <span class="mathJaxDisplay">
                             $$ \vec{V}_{n} \cdot \vec{V}_{m} = 0 \text{ for } m \neq n, $$
                         </span>
                     then we say the vectors are <strong>orthogonal</strong>.
                     <br><br>
-                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a} $</span>, you do
+                    If you move in the direction of any vector <span class="mathJaxInline">$ \vec{a}, $</span> you do
                     not change the position
                     component in the direction of any vector
-                    orthogonal to <span class="mathJaxInline">$ \vec{a} $</span>. In other words, orthogonal vectors are
+                    orthogonal to <span class="mathJaxInline">$ \vec{a}. $</span> In other words, orthogonal vectors are
                     perpendicular.
                     <!--(... talk about definition of orthogonality)-->
                     <br><br>
@@ -185,8 +185,8 @@
                     This mean the vectors are orthogonal and conveniently normalised.
                     <br><br>
                     Use the visualisation to see that when the basis vectors are not parallel they span <span
-                        class="mathJaxInline">$ \mathbb{R}^{2} $</span>,
-                    using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2} $</span>.
+                        class="mathJaxInline">$ \mathbb{R}^{2}, $</span>
+                    using these as basis vectors, we can construct any other vector in <span class="mathJaxInline">$ \mathbb{R}^{2}. $</span>
                     <br><br>
                     If you can represent any vector in <span class="mathJaxInline">$ \mathbb{R}^{n} $</span> using <span
                         class="mathJaxInline">$ n $</span> vectors,
@@ -197,7 +197,7 @@
                     In the same way as before, we will now demonstrate what it means for <strong>functions</strong> to
                     be complete.
                     We define the functions <span class="mathJaxInline">$ f_{n},f_{m} $</span> to exist on the domain
-                    <span class="mathJaxInline">$ \left[a,b \right] $</span>.
+                    <span class="mathJaxInline">$ \left[a,b \right]. $</span>
                     <br><br>
                     We define their inner product to be
                     <span class="mathJaxDisplay">
@@ -205,9 +205,9 @@
                         </span>, where * denotes the complex conjugate of the function. This is commutative, just like
                     the inner product of two vectors.
                     We say the functions are <strong>orthogonal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = 0 $</span>
-                    for <span class="mathJaxInline">$ m \neq n $</span>.
+                    for <span class="mathJaxInline">$ m \neq n. $</span>
                     <br><br>
-                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm} $</span>,
+                    We then say the functions are <strong>orthonormal</strong> if <span class="mathJaxInline">$ \langle  f_{n} , f_{m} \rangle = \delta_{nm}, $</span>
                     where <span class="mathJaxDisplay">
                             $$ \delta_{nm} = \left\{\begin{matrix}0 \quad \text{if } m\neq n
                             \\ 1 \quad \text{if } m = n
@@ -266,7 +266,7 @@
                                         $$ n=0,1,2... $$
                                     </span>
                                 <strong> Note:</strong> <span class="mathJaxInline">$ {a_0}/2 $</span> represents the
-                                average value of <span class="mathJaxInline">$ f(x) $</span>.
+                                average value of <span class="mathJaxInline">$ f(x). $</span>
                                 <br><br>
                                 The Fourier series representation of the function <span
                                     class="mathJaxInline">$ f(x) $</span> in exponential
@@ -300,8 +300,8 @@
                                 <span class="mathJaxDisplay">
                                         $$ f(x) = \sum_{n=-\infty}^{\infty} c_n e^{{in \pi x}/L} $$
                                     </span>
-                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L} $</span>, where <span
-                                    class="mathJaxInline">$ m=0,1,2,... $</span>,
+                                Multiplying by <span class="mathJaxInline">$ e^{{-im \pi x}/L}, $</span> where <span
+                                    class="mathJaxInline">$ m=0,1,2,..., $</span>
                                 and integrating both sides gives the following:
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^{L} f(x) e^{{-im \pi x}/L} dx = \sum_{n=-\infty}^{\infty} c_n \int_{-L}^{L} e^{{i(n-m) \pi x}/L} dx. $$
@@ -314,7 +314,7 @@
                                 This is the orthonormality of complex exponentials.
                                 <br><br>
                                 Now since the only non-zero value of the sum is when <span
-                                    class="mathJaxInline">$ n=m $</span>,
+                                    class="mathJaxInline">$ n=m, $</span>
                                 <span class="mathJaxDisplay">
                                         $$ \int_{-L}^L f(x) e^{-im\pi x/L}dx = 2L \sum_{n=-\infty}^{+\infty}c_n\delta_{mn} = 2L\cdot c_m, $$
                                     </span>
@@ -367,7 +367,7 @@
                                 sines and cosines.
                                 <br><br>
                                 <strong>Note:</strong> <span class="mathJaxInline">$ a_0 = 2c_0 $</span> and <span
-                                    class="mathJaxInline">$ b_0=0 $</span>.
+                                    class="mathJaxInline">$ b_0=0. $</span>
                                 <br><br>
                                 Hence
                                 <span class="mathJaxDisplay">
@@ -381,14 +381,14 @@
                                         + & \frac{1}{2L} \int_{-L}^{+L}f(x) e^{in\pi x/L}dx
                                         \end{align}
                                     </span>
-                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos $</span>.
+                                Factorise and spot the exponential form of <span class="mathJaxInline">$ \cos. $</span>
                                 <span class="mathJaxDisplay">
                                         \begin{align}
                                         & =\frac{1}{L}\int_{-L}^{+L}f(x) \Big[\frac{e^{in\pi x/L} +e^{-in\pi x/L}}{2}\Big]dx \\
                                         & =\frac{1}{L}\int_{-L}^{L} f(x) \cos\Big(\frac{\pi nx}{L}\Big) dx
                                         \end{align}
                                     </span>
-                                Similarly for <span class="mathJaxInline">$ b_n $</span>,
+                                Similarly for <span class="mathJaxInline">$ b_n, $</span>
                                 <span class="mathJaxDisplay">
                                         $$ b_n =\frac{1}{L}\int_{-L}^{L} f(x) \sin\Big(\frac{\pi nx}{L}\Big) dx. $$
                                     </span>
@@ -415,17 +415,17 @@
                                         \right. $$
                                     </span>
                                 First notice that <span class="mathJaxInline">$ f(x) $</span> is odd about <span
-                                    class="mathJaxInline">$ x=0 $</span>, hence <span
+                                    class="mathJaxInline">$ x=0, $</span> hence <span
                                     class="mathJaxInline">$ a_n=0 $</span>
-                                for all <span class="mathJaxInline">$ n $</span>. Also, since the <span
+                                for all <span class="mathJaxInline">$ n. $</span> Also, since the <span
                                     class="mathJaxInline">$ b_n $</span> integrand is even about
-                                <span class="mathJaxInline">$ x=0 $</span>,
+                                <span class="mathJaxInline">$ x=0, $</span>
                                 <span class="mathJaxDisplay">
                                         $$ b_n=\frac{2}{L}\int_0^L f(x) \sin \left(\frac{n \pi x}{L}\right)dx. $$
                                     </span>
-                                Notice that for even <span class="mathJaxInline">$ n $</span>, <span
+                                Notice that for even <span class="mathJaxInline">$ n, $</span> <span
                                     class="mathJaxInline">$ b_n $</span> is odd about
-                                <span class="mathJaxInline">$ x=L/2 $</span>.
+                                <span class="mathJaxInline">$ x=L/2. $</span>
                                 Hence,
                                 <span class="mathJaxDisplay">
                                         $$ b_n=\frac{2}{L}\int_0^{L} f(x) \sin \left(\frac{n\pi x}{L} \right) dx = 0 \quad \text{for even n}. $$
@@ -433,14 +433,14 @@
                                 The integral from <span class="mathJaxInline">$ 0 $</span> to <span
                                     class="mathJaxInline">$ L/2 $</span> is equal in magnitude but
                                 opposite in sign to the integral from <span class="mathJaxInline">$ L/2 $</span> to
-                                <span class="mathJaxInline">$ L $</span>, for
-                                even <span class="mathJaxInline">$ n $</span>.
+                                <span class="mathJaxInline">$ L, $</span> for
+                                even <span class="mathJaxInline">$ n. $</span>
                                 <br><br>
-                                For odd <span class="mathJaxInline">$ n $</span>, the function is even around <span
-                                    class="mathJaxInline">$ L/2 $</span>, so we only
+                                For odd <span class="mathJaxInline">$ n, $</span> the function is even around <span
+                                    class="mathJaxInline">$ L/2, $</span> so we only
                                 have to integrate from <span class="mathJaxInline">$ 0 $</span> to <span
                                     class="mathJaxInline">$ L/2 $</span> then multiply by
-                                <span class="mathJaxInline">$ 2 $</span>. This has made our job much easier.
+                                <span class="mathJaxInline">$ 2. $</span> This has made our job much easier.
                                 <span class="mathJaxDisplay">
                                         $$ b_n=2\frac{2}{L}\int_0^{L/2} f(x) \sin \left(\frac{n\pi x}{L} \right) dx \quad \text{for odd n} $$
                                     </span>
@@ -460,9 +460,9 @@
                                     <span class="mathJaxDisplay">
                                         $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
                                     </span>
-                                Remembering that for even <span class="mathJaxInline">$ n $</span>, <span
-                                    class="mathJaxInline">$ b_n=0 $</span>, therefore only
-                                consider odd <span class="mathJaxInline">$ n $</span>.
+                                Remembering that for even <span class="mathJaxInline">$ n, $</span> <span
+                                    class="mathJaxInline">$ b_n=0, $</span> therefore only
+                                consider odd <span class="mathJaxInline">$ n. $</span>
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{4}{L} \frac{2A}{L}\int_0^{L/2} x \sin \left(\frac{n\pi x}{L} \right) dx $$
                                     </span>
@@ -514,7 +514,7 @@
                                     </span>
                                 Finally, using the fact that odd number can be written as <span
                                     class="mathJaxInline">$ 2n +1 $</span> for any integer
-                                <span class="mathJaxInline">$ n $</span>, we have
+                                <span class="mathJaxInline">$ n, $</span> we have
                                 <span class="mathJaxDisplay" style="font-size: 90%">
                                     $$ f(x)=\sum_{n=1,2,3...}^\infty \frac{8A}{(2n-1)^2\pi^2}(-1)^n \sin \left(\frac{(2n-1)\pi x}{L} \right) $$
                                     </span>
@@ -545,11 +545,11 @@
                                         $$ a_n= \frac{1}{L}\int_{-L}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
                                 The <span class="mathJaxInline">$ b_n $</span> integral is odd about <span
-                                    class="mathJaxInline">$ x=0 $</span>, hence
+                                    class="mathJaxInline">$ x=0, $</span> hence
                                 <span class="mathJaxInline">$ b_n=0 $</span> for all <span
-                                    class="mathJaxInline">$ n $</span>. <span class="mathJaxInline">$ f(x) $</span> is
+                                    class="mathJaxInline">$ n. $</span> <span class="mathJaxInline">$ f(x) $</span> is
                                 even about
-                                <span class="mathJaxInline">$ x=0 $</span>. Thus,
+                                <span class="mathJaxInline">$ x=0. $</span> Thus,
                                 <span class="mathJaxDisplay">
                                         $$ a_n=\frac{2}{L}\int_{0}^{+L} Ax^2 \cos \left(\frac{n \pi x}{L} \right)dx. $$
                                     </span>
@@ -633,7 +633,7 @@
                         <div id="deltaContentContainer" class="collapse show" data-parent="#p3">
                             <div id="deltaContent" class="section-sub-content" key="deltaContent">
                                 The Dirac-delta function can be thought of as a infinite spike at <span
-                                    class="mathJaxInline">$ x=0 $</span>.
+                                    class="mathJaxInline">$ x=0. $</span>
                                 <span class="mathJaxDisplay">
                                         $$
                                         f(x) = \delta(x)=\left\{
@@ -666,9 +666,9 @@
                                         <span class="mathJaxDisplay">
                                         $$ \int_{\alpha-\epsilon}^{\alpha+\epsilon} g(x) \delta(x-\alpha)dx=g(\alpha) $$
                                         </span>
-                                        For us, <span class="mathJaxInline">$ \alpha=0 $</span>, <span
+                                        For us, <span class="mathJaxInline">$ \alpha=0, $</span> <span
                                             class="mathJaxInline">$ \epsilon=L, $</span> and <span
-                                            class="mathJaxInline">$ g(x)= \sin \left(n \pi x/L \right) $</span>.
+                                            class="mathJaxInline">$ g(x)= \sin \left(n \pi x/L \right). $</span>
                                         <br><br>
                                         Therefore,
                                         <span class="mathJaxDisplay">
@@ -711,12 +711,12 @@
                                     class="mathJaxInline">$ f(x) $</span> is
                                 odd,
                                 so <span class="mathJaxInline">$ a_n $</span> is <span
-                                    class="mathJaxInline">$ 0 $</span> for all <span class="mathJaxInline">$ n $</span>.
+                                    class="mathJaxInline">$ 0 $</span> for all <span class="mathJaxInline">$ n. $</span>
                                 <br><br>
                                 To find the <span class="mathJaxInline">$ b_n $</span> terms, the integration can be
                                 split into two parts:
                                 <span class="mathJaxInline">$ -L\leq x <0 $</span>
-                                and <span class="mathJaxInline">$ 0\leq x < L $</span>.
+                                and <span class="mathJaxInline">$ 0\leq x < L. $</span>
                                 <br><br>
                                 This gives the following integration:
                                 <span class="mathJaxDisplay">
@@ -759,7 +759,7 @@
                                         $$ f(x)=\frac{Ax}{L}  \quad (-L \leq x < L). $$
                                     </span>
                                 <span class="mathJaxInline">$ f(x) $</span> is odd, so <span class="mathJaxInline">$ a_n= 0 $</span>
-                                for all <span class="mathJaxInline">$ n $</span>.
+                                for all <span class="mathJaxInline">$ n. $</span>
                                 <br><br>
                                 The <span class="mathJaxInline">$ b_n $</span> terms are given by the following
                                 integration:
@@ -825,10 +825,10 @@
                                 <span class="mathJaxDisplay">
                                         $$ b_n = \frac{1}{L}\int_{-L}^{+L} A|x| \sin \left( \frac{n\pi x}{L}\right) dx $$
                                     </span>
-                                <span class="mathJaxInline">$ f(x) $</span> is even about <span class="mathJaxInline">$ x=0 $</span>.
-                                Hence <span class="mathJaxInline">$ b_n=0 $</span>.
+                                <span class="mathJaxInline">$ f(x) $</span> is even about <span class="mathJaxInline">$ x=0. $</span>
+                                Hence <span class="mathJaxInline">$ b_n=0. $</span>
                                 The <span class="mathJaxInline">$ a_n $</span> integral is even about <span
-                                    class="mathJaxInline">$ x=0 $</span>. Hence,
+                                    class="mathJaxInline">$ x=0. $</span> Hence,
                                 <span class="mathJaxDisplay">
                                         $$ a_n = \frac{2}{L}\int_{0}^{+L} Ax  \cos \left(\frac{n \pi x}{L}\right)dx. $$
                                     </span>
@@ -891,18 +891,18 @@
                     <hr>
                 </div>
                 <div class="text section-body odd" id="p4">
-                    The 0<sup>th</sup> term of the series, <span class="mathJaxInline">$ \frac{a_0}{2} $</span>, is the
+                    The 0<sup>th</sup> term of the series, <span class="mathJaxInline">$ \frac{a_0}{2}, $</span> is the
                     constant term before the sum.
                     <br><br>
                     This is labelled as the 0<sup>th</sup> term so that the series may start indexing its terms from
-                    <span class="mathJaxInline">$ n=1 $</span>.
+                    <span class="mathJaxInline">$ n=1. $</span>
                     <span class="mathJaxDisplay">
                             $$ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n \cos\left(\frac{n\pi x}{L}\right)+b_n \sin\left(\frac{n \pi x}{L}\right) $$
                         </span>
                     If the function is not periodic, then we may cut the function, forcing it to be periodic over some
-                    <span class="mathJaxInline">$ -L < x < L $</span>. This means that we can prescribe a Fourier series
+                    <span class="mathJaxInline">$ -L < x < L. $</span> This means that we can prescribe a Fourier series
                     that is now valid for the function over the selected range. If we take the limit as <span
-                        class="mathJaxInline">$ L \rightarrow \infty $</span>,
+                        class="mathJaxInline">$ L \rightarrow \infty, $</span>
                     then a Fourier transform need be used. This is a different problem entirely!
                 </div>
             </div>
@@ -939,18 +939,18 @@
                     The power spectrum form is a different representation of a continuous signal.
                     <br><br>
                     One can think of a signal as a sound wave that is a superposition of different frequencies <span
-                        class="mathJaxInline">$ \omega_n $</span>,
-                    each with amplitude <span class="mathJaxInline">$ \alpha_n $</span>, and relative phases <span
-                        class="mathJaxInline">$ \theta_n $</span>.
+                        class="mathJaxInline">$ \omega_n, $</span>
+                    each with amplitude <span class="mathJaxInline">$ \alpha_n, $</span> and relative phases <span
+                        class="mathJaxInline">$ \theta_n. $</span>
                     Any signal of period <span class="mathJaxInline">$ 2L $</span> can be decomposed in terms of the
                     amplitude and relative
                     phase of its discrete frequency modes. Its two parameters <span
-                        class="mathJaxInline">$ \alpha_n $</span> and <span class="mathJaxInline">$ \theta_n $</span>,
+                        class="mathJaxInline">$ \alpha_n $</span> and <span class="mathJaxInline">$ \theta_n, $</span>
                     enable us to measure the amount of
                     each frequency <span class="mathJaxInline">$ \omega_n=\frac{n\pi}{L} $</span>contained in the
                     signal, and the relative
                     phase difference between the <span class="mathJaxInline">$ n^{th} $</span> frequency and a cosine
-                    wave centered at <span class="mathJaxInline">$ x=0 $</span>.
+                    wave centered at <span class="mathJaxInline">$ x=0. $</span>
                     This is simply a different way to represent a signal
                     rather than decomposing it into its even and odd parts.
                     <span class="mathJaxDisplay">
@@ -975,14 +975,14 @@
                         <div id="evenThetaAnswer" class="extra-content">
                             This happens because the value of <span class="mathJaxInline">$ a_n $</span> changes sign
                             (<span class="mathJaxInline">$ b_n $</span> is 0) causing the value of
-                            <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0 $</span>,
+                            <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0, $</span>
                             <span class="mathJaxInline">$ \tan^{-1}(\frac{b_n}{a_n}) $</span>
                             can be both
                             0 or <span class="mathJaxInline">$ \pi $</span> depending on whether <span
                                 class="mathJaxInline">$ a_n $</span> is positive or
                             negative. Not all even functions exhibit this.
                             The parabola for example, has its <span class="mathJaxInline">$ a_n $</span> proportional to
-                            <span class="mathJaxInline">$ L^2 $</span>, so its sign does not change when <span
+                            <span class="mathJaxInline">$ L^2, $</span> so its sign does not change when <span
                                 class="mathJaxInline">$ L $</span> changes
                             sign.
                         </div>
@@ -999,7 +999,7 @@
                     <br><br>
                     For functions that are periodic over <span class="mathJaxInline">$ -L < x \leq L $</span> with a
                     period of
-                    <span class="mathJaxInline">$ 2L $</span>, the fourier components <span class="mathJaxInline">$ \rightarrow $</span>
+                    <span class="mathJaxInline">$ 2L, $</span> the fourier components <span class="mathJaxInline">$ \rightarrow $</span>
                     <span class="mathJaxInline">$ \sin(\frac{\pi x}{L}), \cos(\frac{\pi x}{L}),
                         \sin(\frac{2\pi x}{L}), \cos(\frac{2\pi x}{L})... $</span> and so on form a complete orthogonal
                     set that can be used to describe these functions. This means that increasing the amplitude of one of
@@ -1030,12 +1030,12 @@
                     </h3>
                     To specify a custom function, select custom from the drop down menu and input your desired function
                     into the
-                    input for <span class="mathJaxInline">$ f(x) $</span>.
+                    input for <span class="mathJaxInline">$ f(x). $</span>
                     <br><br>
                     The period slider forces the function you have specified to be periodic over
-                    <span class="mathJaxInline">$ -L < x \leq L $</span>.
+                    <span class="mathJaxInline">$ -L < x \leq L. $</span>
                     For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span
-                        class="mathJaxInline">$ L = 1 $</span>, this is the sine
+                        class="mathJaxInline">$ L = 1, $</span> this is the sine
                     function but cut at <span class="mathJaxInline">$ x = \pm 1 $</span> and forced
                     to be periodic over just this range (not the full <span class="mathJaxInline">$ 2\pi $</span>
                     period).

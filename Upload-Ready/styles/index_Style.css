@@ -14,6 +14,7 @@
     display: table;
     margin: 10px auto;
     font-size: calc(4px + 0.95vw);
+    text-align: center;
 }
 
 .mathJaxInline {
@@ -36,10 +37,6 @@ iframe {
     border: none;
     width: 100%;
     height: 100%;
-}
-
-iframe > body {
-    overflow-y: hidden;
 }
 
 ul li, ol li {
@@ -560,8 +557,7 @@ i.fa-chevron-down {
     transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-{
+.fade-enter, .fade-leave-to { /* .fade-leave-active below version 2.1.8 */
     opacity: 0;
 }
 
