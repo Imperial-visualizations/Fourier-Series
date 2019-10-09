@@ -542,7 +542,7 @@ i.fa-chevron-down {
     min-height: 30px;
     position: absolute;
     right: 40px;
-    background: #003E74;
+    background: #37578b;
     color: #ffffff;
     overflow: hidden;
     font-size: calc(4px + 0.95vw);
@@ -577,6 +577,7 @@ i.fa-chevron-down {
 }
 
 #journeyToggle .chevron-holder:hover {
+    cursor: pointer;
     font-size: 20px;
 }
 

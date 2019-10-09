@@ -96,7 +96,6 @@ let app = new Vue({
         },
 
         // Same as above but for subsections
-        // Delay added to allow time for div size changes
         subScrollTo: function (event) {
             let scrollTarget = event.currentTarget;
             if (scrollTarget.id === "ssh" + app.derivationSubSection) {
@@ -104,10 +103,12 @@ let app = new Vue({
             }
         },
 
+        // Updates number of title being hovered over in nav/progress bar in data
         hoverPosUpdate: function (event) {
             app.hoverPos = parseFloat(event.currentTarget.dataset.no)
         },
 
+        // Updates if and what title show when hovering over nav/progress bar
         selectHover: function () {
             if (app.currentTitle !== app.hoverPos) {
                 app.hoverTitle = app.sectionTitleLong[app.hoverPos - 1]
@@ -126,11 +127,13 @@ let app = new Vue({
             app.$forceUpdate();
         },
 
+        // Updates x-position of mouse in data
         updateMouseX: function (event) {
             // pass event object, bound to mouse move with update
             app.mouseX = event.clientX - 15;
         },
 
+        // Toggles button text from 'hide' to 'show' depending on state
         hideShowToggle: function (event) {
             let toggleTarget = event.currentTarget.querySelectorAll('span')[0].innerHTML;
             if (toggleTarget === "Show") {
