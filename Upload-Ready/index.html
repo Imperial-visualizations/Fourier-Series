@@ -52,7 +52,23 @@
     <div class="vis-container left" id="left-container">
         <!--     Dynamic Navigation Bar and Section Headings       -->
         <div class="" id="progress-container">
-            <div id="banner-dummy"></div>
+
+            <div id="banner-dummy">
+                <a href="https://www.imperialvisualisations.com/learn/" title="Return to Homepage">
+                    <img id="vis-logo" src="images/VisualisationsLogoWhite2.png">
+                </a>
+            </div>
+            <!--    Journey Toggle Button   -->
+            <div id="journeyToggle">
+                <div id="navBlock" :class="[showJourney === false ? 'navBlockActive' : '']"
+                     @click="toggleJourney">
+                    CLICK HERE TO SHOW TEXT AND NAVIGATION
+                </div>
+                <div :class="[showJourney === false ? 'rotated' : '', 'innerJourneyToggle']"
+                     @click="toggleJourney" class="chevron-holder" title="Hide/Show Left Panel">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
             <!--    Dynamic Section Heading Text - overlaid on meters    -->
             <!--    Also act as buttons to navigate between sections    -->
             <div class="" id="overlay" @mousemove="hoverTitle !== false ? updateMouseX($event) : ''">
@@ -109,7 +125,7 @@
                    :max="sectionBottoms[6]" :value="scrollPos"></meter>
         </div>
         <!--    Container for text content split into sections    -->
-        <div class="journey" id="main-journey" @scroll.passive="scrollFunc">
+        <div :class="[showJourney === false ? 'hiddenJourney' : '', 'journey']" id="main-journey" @scroll.passive="scrollFunc">
             <!--    Section Text Containers   -->
             <div class="section-container" id="sc1">
                 <div class="placeholder" id="ph1">
@@ -934,7 +950,7 @@
                     usually as the number of terms included in the series increases, new terms become less
                     significant (their amplitude decreases).
                     <h3 class="section-sub-head">
-                        Power spectrum
+                        Power Spectrum
                     </h3>
                     The power spectrum form is a different representation of a continuous signal.
                     <br><br>
@@ -1121,9 +1137,6 @@
             <h1 class="" id="vis-title">
                 UNDERSTANDING FOURIER SERIES
             </h1>
-            <a href="https://www.imperialvisualisations.com/learn/">
-                <img id="vis-logo" src="images/VisualisationsLogoWhite2.png">
-            </a>
         </div>
         <!--    Space into which visualisations are loaded    -->
         <div id="rightloadSpace">

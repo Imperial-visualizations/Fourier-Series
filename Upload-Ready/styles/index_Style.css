@@ -66,7 +66,6 @@ ul li p, ol li p {
     top: 0;
     bottom: 0;
     left: 0;
-    background: #ccdfff;
     z-index: 5;
 }
 
@@ -216,6 +215,11 @@ meter::-moz-meter-bar {
     overflow-x: hidden;
     text-align: justify;
     box-shadow: 0 0 5px #a8a8a8;
+    transition: transform 0.4s ease-in-out;
+}
+
+.hiddenJourney {
+    transform: translateX(-40vw);
 }
 
 .section-body {
@@ -460,9 +464,26 @@ i.fa-chevron-down {
     width: inherit;
     z-index: -1;
     background: #ffffff;
+    transition: opacity 0.15s;
+    opacity: 1;
+}
+
+.fullRightLoadSpace {
+    width: 100vw !important;
+    height: 100vh;
+    position: relative;
+    left: -33vw;
+    z-index: 10;
+}
+
+.rightLoadInterim {
+    opacity: 0 !important;
 }
 
 #banner-dummy {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     height: 4vh;
     min-height: 30px;
     width: 100vw;
@@ -492,6 +513,75 @@ i.fa-chevron-down {
     );
     color: #ffffff;
     z-index: 6;
+}
+
+#banner-dummy a:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+#journeyToggle {
+    height: inherit;
+    min-height: 30px;
+    width: 40px;
+    position: absolute;
+    left: 33vw;
+    top: 0;
+    border-left: solid 6px #003E74;
+    border-radius: 0 5px 5px 0;
+    background: #37578b;
+    z-index: 9;
+}
+
+#navBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: inherit;
+    min-height: 30px;
+    position: absolute;
+    right: 40px;
+    background: #003E74;
+    color: #ffffff;
+    overflow: hidden;
+    font-size: calc(4px + 0.95vw);
+    white-space: nowrap;
+    transition-delay: 0.15s !important;
+    transition: width 0.3s ease-in-out;
+}
+
+.navBlockActive {
+    width: 33vw !important;
+    cursor: pointer;
+}
+
+.navBlockActive:hover {
+    font-size: calc(5px + 1vw) !important;
+}
+
+.innerJourneyToggle {
+    position: absolute;
+    right: 0;
+}
+
+#journeyToggle .chevron-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    font-size: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#journeyToggle .chevron-holder:hover {
+    font-size: 20px;
+}
+
+#journeyToggle .chevron-holder.rotated {
+    transform: rotate(180deg);
 }
 
 #vis-title {

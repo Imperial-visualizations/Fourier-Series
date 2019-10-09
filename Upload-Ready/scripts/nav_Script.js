@@ -12,7 +12,7 @@ let app = new Vue({
         sectionTops: [],
         sectionBottoms: [],
         sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview", "Fourier Transform"],
-        sectionTitleShort: ["1", "2", "3", "4", "5", "6","7"],
+        sectionTitleShort: ["1", "2", "3", "4", "5", "6", "7"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -24,6 +24,7 @@ let app = new Vue({
         derivationSubSection: 1,
         showEq: true,
         equationID: "triangular",
+        showJourney: true,
     },
 
     methods: {
@@ -137,7 +138,26 @@ let app = new Vue({
             } else {
                 event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
             }
-        }
+        },
+
+        // toggles visibility of journey section
+        toggleJourney: function () {
+            let sectionCache = app.currentSection;
+            document.querySelectorAll("#rightloadSpace")[0].classList.add("rightLoadInterim");
+            app.showJourney = !app.showJourney;
+            setTimeout(function () {
+                if (app.showJourney === false) {
+                    document.querySelectorAll("#rightloadSpace")[0].classList.add("fullRightLoadSpace");
+                } else {
+                    document.querySelectorAll("#rightloadSpace")[0].classList.remove("fullRightLoadSpace");
+                }
+                app.currentSection = "noShow";
+            }, 500);
+            setTimeout(function () {
+                app.currentSection = sectionCache;
+                document.querySelectorAll("#rightloadSpace")[0].classList.remove("rightLoadInterim");
+            }, 525);
+        },
     },
 
     watch: {
