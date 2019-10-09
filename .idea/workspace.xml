@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d4018f36-6e35-4f9b-bddc-58ccc7306a60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Upload-Ready/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Upload-Ready/styles/index_Style.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,8 +21,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="674">
-                  <caret line="1221" column="10" lean-forward="true" selection-start-line="1132" selection-start-column="4" selection-end-line="1221" selection-end-column="10" />
+                <state relative-caret-position="419">
+                  <caret line="107" column="39" lean-forward="true" selection-start-line="107" selection-start-column="39" selection-end-line="107" selection-end-column="39" />
                   <folding>
                     <element signature="n#head#0;n#html#0;n#!!top" />
                     <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
@@ -302,8 +301,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/index_Style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="623">
-                  <caret line="556" column="1" lean-forward="true" selection-start-line="556" selection-start-column="1" selection-end-line="556" selection-end-column="1" />
+                <state relative-caret-position="825">
+                  <caret line="87" column="17" lean-forward="true" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -311,8 +310,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="468">
-                  <caret line="162" column="10" lean-forward="true" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="10" />
+                <state relative-caret-position="196">
+                  <caret line="146" column="36" lean-forward="true" selection-end-line="266" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -344,7 +343,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NCo</find>
       <find>Aco</find>
       <find>select</find>
       <find>selector</find>
@@ -372,8 +370,9 @@
       <find>class</find>
       <find>bann</find>
       <find>navB</find>
-      <find>showJourney</find>
       <find>color</find>
+      <find>showJourney</find>
+      <find>sc</find>
     </findStrings>
     <replaceStrings>
       <replace>insertSec5</replace>
@@ -594,12 +593,12 @@
       <workItem from="1570410219156" duration="4703000" />
       <workItem from="1570461775255" duration="504000" />
       <workItem from="1570462924675" duration="5975000" />
-      <workItem from="1570469744708" duration="8632000" />
+      <workItem from="1570469744708" duration="9393000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219229000" />
+    <option name="totallyTimeSpent" value="219990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1681,15 +1680,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/scripts/nav_Script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="162" column="10" lean-forward="true" selection-start-line="162" selection-start-column="10" selection-end-line="162" selection-end-column="10" />
+        <state relative-caret-position="196">
+          <caret line="146" column="36" lean-forward="true" selection-end-line="266" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="1221" column="10" lean-forward="true" selection-start-line="1132" selection-start-column="4" selection-end-line="1221" selection-end-column="10" />
+        <state relative-caret-position="419">
+          <caret line="107" column="39" lean-forward="true" selection-start-line="107" selection-start-column="39" selection-end-line="107" selection-end-column="39" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
             <element signature="n#link#0;n#head#0;n#html#0;n#!!top" />
@@ -1966,8 +1965,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Upload-Ready/styles/index_Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="556" column="1" lean-forward="true" selection-start-line="556" selection-start-column="1" selection-end-line="556" selection-end-column="1" />
+        <state relative-caret-position="825">
+          <caret line="87" column="17" lean-forward="true" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
         </state>
       </provider>
     </entry>
