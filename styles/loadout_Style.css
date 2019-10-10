@@ -1,0 +1,695 @@
+.transition-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #ffffff;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.rightload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+/* ///// SECTION 0 ///// */
+
+#loadout0 {
+}
+
+#loadout0 #graph0Sec0 {
+    width: 94vw;
+    height: 80vh;
+    position: absolute;
+    left: 3vw;
+    top: 3vh;
+}
+
+#loadout0 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    position: absolute;
+    left: 3vw;
+    bottom: 0;
+    width: 94vw;
+    height: 15vh;
+}
+
+#loadout0 .slider-label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 2.2vw;
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.3 1 auto;
+}
+
+#loadout0 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout0 .sliderMin, #loadout0 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout0 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ////// SECTION 1 ////// */
+
+#loadout1 {
+}
+
+#loadout1 #graph1Sec1 {
+    width: 60vw;
+    height: 80vh;
+    position: absolute;
+    left: 3vw;
+    top: 3vh;
+    padding: 1%;
+}
+
+#loadout1 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 3vw;
+    top: 5vh;
+    width: 30vw;
+    height: 90vh;
+}
+
+#loadout1 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    max-height: 25vh;
+}
+
+#loadout1 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin-top: 2vh;
+    padding-top: 0;
+    flex: 1 0 auto;
+}
+
+#loadout1 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout1 .sliderValue {
+    width: 60px;
+    flex: 0 0 60px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+
+#loadout1 .graphcolor1 {
+    border-left: solid 5px rgb(213, 0, 50);
+    color: rgb(213, 0, 50);
+}
+
+#loadout1 .graphcolor2 {
+    border-left: solid 5px rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
+}
+
+#loadout1 .graphcolor3 {
+    border-left: solid 5px rgb(0, 128, 0);
+    color: rgb(0, 128, 0);
+}
+
+#loadout1 #vectorComponentsCustom {
+    width: 60vw;
+    position: absolute;
+    left: 3vw;
+    bottom: 6vh;
+    padding: 1%;
+    text-align: center;
+    font-size: calc(5px + 1.1vw);
+}
+
+#loadout1 #popup1 {
+    width: 60vw;
+    position: absolute;
+    left: 3vw;
+    bottom: 6vh;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    background-color: #D50032;
+    font-size: calc(8px + 0.8vw);
+}
+
+/* ////// SECTION 2 ////// */
+
+/* SUB-SECTION 1 */
+
+#loadout2sub0 {
+}
+
+#loadout2sub0 #graph0Sec2 {
+    width: 94vw;
+    height: 60vh;
+    position: absolute;
+    left: 3vw;
+    top: 7.5vh;
+}
+
+#loadout2sub0 #scrollSec2Sub1 {
+    width: 100vw;
+    height: 5vh;
+    position: absolute;
+    top: 2.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loadout2sub0 #SelectSec2Sub1 {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+#loadout2sub0 #subSecTitle {
+    display: none;
+    width: 100vw;
+    position: absolute;
+    top: 2.2vh;
+    text-align: center;
+}
+
+#loadout2sub0 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 3.9vw;
+    bottom: 0;
+    width: 90vw;
+    height: 27vh;
+}
+
+#loadout2sub0 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout2sub0 .slider-label {
+    font-size: 1.8vw;
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    vertical-align: middle;
+}
+
+#loadout2sub0 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout2sub0 .sliderMin, #loadout2sub0 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout2sub0 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* SUB-SECTION 2 */
+
+#loadout2sub1 {
+}
+
+#loadout2sub1 #graph1Sec2 {
+    width: 55vw;
+    height: 45vh;
+    position: absolute;
+    left: 3.9vw;
+    top: 4.3vh;
+}
+
+#loadout2sub1 #graph2Sec2 {
+    width: 55vw;
+    height: 45vh;
+    position: absolute;
+    left: 3.9vw;
+    bottom: 2.2vh;
+}
+
+#loadout2sub1 .overall-sliders-container {
+    width: 35vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 2.3vw;
+    top: 5vh;
+}
+
+#loadout2sub1 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    max-height: 20vh;
+}
+
+#loadout2sub1 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 1 0 auto;
+}
+
+#loadout2sub1 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout2sub1 .sliderMin, #loadout2sub1 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout2sub1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 3 ///// */
+
+#loadout3 {
+}
+
+#loadout3 #graph1Sec3 {
+    width: 94vw;
+    height: 60vh;
+    position: absolute;
+    left: 3vw;
+    top: 10vh;
+}
+
+#scrollSec3 {
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    top: 2.2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#SelectSec3 {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+#loadout3 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 5vw;
+    bottom: 0;
+    width: 45vw;
+    height: 25vh;
+}
+
+#loadout3 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout3 .slider-label {
+    font-size: calc(6px + 0.8vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+}
+
+#loadout3 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout3 .sliderMin, #loadout3 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout3 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+#equationSpace {
+    position: absolute;
+    right: 7%;
+    bottom: 3%;
+    width: 35%;
+    height: 22%;
+}
+
+.equationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    max-width: 100%;
+}
+
+img {
+    height: 100%;
+    max-width: 100%;
+}
+
+/* ///// SECTION 4 ///// */
+
+#loadout4 {
+}
+
+#loadout4 #graph1Sec4 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    top: 2.5vh;
+}
+
+#loadout4 #graph2Sec4 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout4 .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: 2.5vw;
+    top: 5.3vh;
+    width: 45vw;
+    height: 90vh;
+}
+
+#loadout4 .selectorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    width: 100%;
+}
+
+#loadout4 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 4 1 0;
+    width: 100%;
+}
+
+#loadout4 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 0 auto;
+    max-height: 25%;
+}
+
+#loadout4 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 1 0 auto;
+    left: 0;
+}
+
+#loadout4 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout4 .sliderMin, #loadout4 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout4 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 5 ///// */
+
+#loadout5 {
+}
+
+#loadout5 #graph1Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    top: 2.5vh;
+}
+
+#loadout5 #graph2Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout5 #graph3Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    right: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout5 #scrollSec5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #scrollSec5 * {
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+#loadout5 #inputSubContainerSec5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #inputSubContainerSec5 * {
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+#loadout5 #coefficientSubContainerSec5 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #coefficientSubContainerSec5 * {
+    flex: 0 0 auto;
+    margin: 10px 10px;
+}
+
+#loadout5 .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 5vh;
+    right: 2.5vw;
+    width: 45vw;
+    height: 40vh;
+}
+
+#loadout5 * {
+    flex: 1 1 0;
+}
+
+#loadout5 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    align-items: center;
+}
+
+#loadout5 .slider-label {
+    font-size: calc(6px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    left: 0;
+}
+
+#loadout5 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout5 .sliderMin, #loadout5 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout5 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 6 ///// */
+
+#loadout6 {
+}
+
+#loadout6 #Top_Hat_Graph {
+    width: 45vw;
+    height: 75vh;
+    position: absolute;
+    top: 6vh;
+    left: 3vw;
+}
+
+#loadout6 #Fourier_Transform_Graph {
+    width: 45vw;
+    height: 75vh;
+    position: absolute;
+    top: 6vh;
+    right: 3vw;
+}
+
+#loadout6 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    align-items: center;
+    width: 94vw;
+    height: 15vh;
+    position: absolute;
+    bottom: 3vh;
+    left: 3vw;
+}
+
+#loadout6 .slider-label {
+    font-size: calc(6px + 1vw);
+    text-align: left;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    left: 0;
+}
+
+#loadout6 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout6 .sliderMin, #loadout6 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout6 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+

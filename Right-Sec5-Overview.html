@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Title-->
+    <title>Right-Sec5-Overview</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body id="loadout5">
+<!--Graphs-->
+<div id='graph1Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id='graph2Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id='graph3Sec5'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Container for all Inputs-->
+<div class="inputsContainer">
+    <!--Scroll dropdown list for option of functions-->
+    <div id="scrollSec5">
+        <strong>Select Function:</strong>
+        <select id="SelectSec5">
+            <option value="custom">Custom Input</option>
+            <option value="triangular">Triangular Function</option>
+            <option value="square">Square Function</option>
+            <option value="sawtooth">Sawtooth Function</option>
+            <option value="dirac">Dirac-Delta Function</option>
+            <option value="parabola">Parabola Function</option>
+            <option value="mode">|x| Function</option>
+        </select>
+    </div>
+    <!--BEGIN Input function box -->
+    <div id="inputSubContainerSec5">
+        <strong>Input Function: f(x)=</strong>
+        <input id="aInputSec5" type="text" value="x^2">
+        <p id="aInputError" style="color:#ff0000" hidden></p>
+    </div>
+    <!--END Input function box  -->
+    <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+    <!--Scroll-down to select coefficient-->
+    <div id="coefficientSubContainerSec5">
+        <strong>Select Coefficient:</strong>
+        <select id="CoefficientSec5">
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="α">α</option>
+            <option value="θ">θ</option>
+        </select>
+    </div>
+    <!--Sliders-->
+    <!--BEGIN Slider N-->
+    <div id="NSec5" class="partial-sliders-container">
+        <!--Slider Display N-->
+        <label class="slider-label">Number of Terms:
+            <span id="NControllerSec5Display" data-unit="">1</span>
+            <span id="NController2Sec5Display" data-unit="">1</span>
+        </label>
+        <!--Slider N-->
+        <label class="slider">
+            <span class="sliderMin">0</span>
+            <input id="NController2Sec5" class="inputs" type="range" value="1" min="0" max="10"
+                   step="1">
+            <input id="NControllerSec5" class="inputs" type="range" value="1" min="0" max="20"
+                   step="1">
+            <span class="sliderMax" id="NMaxSec5">20</span>
+        </label>
+    </div>
+    <!--END Slider N-->
+    <!--BEGIN Slider L-->
+    <div id="LSec5" class="partial-sliders-container">
+        <!--Slider Display L-->
+        <label class="slider-label">Period:
+            <span id="LControllerSec5Display" data-unit="">1</span>
+        </label>
+        <!--Slider L-->
+        <label class="slider">
+            <span class="sliderMin">-5</span>
+            <input id="LControllerSec5" class="inputs" type="range" value="1" min="-5" max="5"
+                   step="0.5"/>
+            <span class="sliderMax">5</span>
+        </label>
+    </div>
+    <!--END Slider L-->
+</div>
+</body>
+<!--THE BRAINS-->
+<script src="scripts/FS-scripts/5Generalised_Fourier_Decomposition.js"></script>
+</html>

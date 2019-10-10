@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Title-->
+    <title>Right-Sec4-PowerSpectrum</title>
+    <!--css links-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="styles/index_Style.css" rel="stylesheet">
+    <link href="styles/loadout_Style.css" rel="stylesheet">
+    <!--Required JS resources-->
+    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="scripts/debounce_and_throttle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
+            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body id="loadout4">
+<!--Graphs-->
+<div id='graph1Sec4'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id='graph2Sec4'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!--Container for all Inputs-->
+<div class="inputsContainer">
+    <!--Scroll-down to select function-->
+    <div class="selectorContainer">
+        <strong>Select Function: </strong>
+        <select id="SelectSec4">
+            <option value="triangular">Triangular Function</option>
+            <option value="square">Square Function</option>
+            <option value="sawtooth">Sawtooth Function</option>
+            <option value="dirac">Dirac-Delta Function</option>
+            <option value="parabola">Parabola Function</option>
+            <option value="mode">|x| Function</option>
+        </select>
+    </div>
+    <!--Select parameter type-->
+    <div class="selectorContainer">
+        <!--Scroll-down to select between a_n b_n and alpha_n theta_n-->
+        <!--Scroll-down to select coefficient-->
+        <strong>Select Coefficient: </strong>
+        <select id="Coefficient">
+            <option value="an&bn">a and b</option>
+            <option value="powerSpectrum">α and θ</option>
+        </select>
+    </div>
+    <!--Sliders-->
+    <div class="overall-sliders-container">
+        <!--BEGIN Slider A-->
+        <div id="ASec4" class="partial-sliders-container">
+            <!--Slider Display A-->
+            <label class="slider-label">Amplitude:<!--Amplitude-->
+                <span id="AControllerSec4Display" data-unit="">1</span> <!--default: 1-->
+            </label>
+            <!--Slider A-->
+            <label class="slider">
+                <span class="sliderMin">-5</span>
+                <input id="AControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                       step="0.1"/>
+                <span class="sliderMax">5</span>
+            </label>
+        </div>
+        <!--END Slider A-->
+        <!--BEGIN Slider N-->
+        <div id="NSec4" class="partial-sliders-container">
+            <!--Slider Display N-->
+            <label class="slider-label">Number of Terms:
+                <span id="NControllerSec4Display" data-unit="">10</span>
+            </label>
+            <!--Slider N-->
+            <label class="slider">
+                <span class="sliderMin">0</span>
+                <input id="NControllerSec4" class="inputs" type="range" value="10" min="0" max="50"
+                       step="1"/>
+                <span class="sliderMax">50</span>
+            </label>
+        </div>
+        <!--END Slider N-->
+        <!--BEGIN Slider L-->
+        <div id="LSec4" class="partial-sliders-container">
+            <!--Slider Display L-->
+            <label class="slider-label">Period:
+                <span id="LControllerSec4Display" data-unit="">1</span>
+            </label>
+            <!--Slider L-->
+            <label class="slider">
+                <span class="sliderMin">-5</span>
+                <input id="LControllerSec4" class="inputs" type="range" value="1" min="-5" max="5"
+                       step="0.1"/>
+                <span class="sliderMax">5</span>
+            </label>
+        </div>
+        <!--END Slider L-->
+    </div>
+</div>
+</body>
+<!--THE BRAINS-->
+<script src="scripts/FS-scripts/4Power_Spectrum_of_a_Fourier_Series.js"></script>
+</html>
