@@ -39,3 +39,4 @@ var debounce = function(func, wait, immediate) {
         timeout = setTimeout(later, wait);
     };
 };
+export {throttle,debounce};

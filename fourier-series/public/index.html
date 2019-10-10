@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!--Title-->
-    <title>Right-Sec0-Introduction</title>
-    <!--css links-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Fourier Series</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-    <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/skeleton.css" rel="stylesheet">
-    <link href="styles/index_Style.css" rel="stylesheet">
-    <link href="styles/loadout_Style.css" rel="stylesheet">
-    <!--Required JS resources-->
-    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="scripts/debounce_and_throttle.js"></script>
+    <link href="/static/visualisations/style.css" rel="stylesheet">
+    <link href="/static/visualisations/skeleton.css" rel="stylesheet">
+
+    <!-- Our required scripts -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
@@ -35,38 +32,15 @@
     "HTML-CSS": { fonts: ["TeX"] }
   });
 
-
-
     </script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
-</head>
-<body id="loadout0">
-<!--Graph-->
-<div id='graph0Sec0'>
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-<!--Slider-->
-<!--NB: Be careful with classes and types-->
-<!--BEGIN Slider N-->
-<div id="N" class="partial-sliders-container">
-    <!--Slider Display N-->
-    <label class="slider-label">
-        Number of Terms: &nbsp;
-        <span id="NControllerSec2Sub1Display" data-unit="">3</span>
-    </label>
-    <!--Slider N-->
-    <label class="slider">
-        <span class="sliderMin">0</span>
-        <input id="NControllerSec2Sub1" class="inputs" type="range" value="3" min="0"
-               max="20" step="1"/>
-        <span class="sliderMax">20</span>
-    </label>
-</div>
-<!--END Slider N-->
-</body>
-<!--THE BRAINS-->
-<script src="scripts/FS-scripts/0Intro.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but Imperial Visualisations doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

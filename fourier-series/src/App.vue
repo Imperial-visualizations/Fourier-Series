@@ -1,49 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--Title-->
-    <title>Understanding Fourier Series</title>
-    <!--css links-->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
-          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-    <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/skeleton.css" rel="stylesheet">
-    <link href="styles/index_Style.css" rel="stylesheet">
-    <link href="styles/loadout_Style.css" rel="stylesheet">
-    <!--Required JS resources-->
-    <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="scripts/debounce_and_throttle.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"
-            integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
-            integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
-    <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { fonts: ["TeX"] }
-  });
-
-    </script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
-    <!--Favicon-->
-    <link rel="shortcut icon" href="images/favicon-blue.png" type="image/x-icon">
-</head>
-<body>
-<div id="app">
+<template>
+  <div id="app">
     <!--   Title of non-current sections to appear on hovering above respective number in navbar     -->
     <div id="hoverTitleSpace" :style="{left: mouseX +'px'}" v-show="hoverTitle !== false">
         {{hoverTitle}}
@@ -257,7 +213,7 @@
                         <div id="introContentContainer" class="collapse show" data-parent="#p3">
                             <div id="introContent" class="section-sub-content" key="introContent">
                                 Consider a function <span class="mathJaxInline">$ f(x) $</span> which is periodic over
-                                the domain <span class="mathJaxInline">$ -L \leq x < L $</span>
+                                the domain <span class="mathJaxInline">$ -L \leq x &lt; L $</span>
                                 where <span class="mathJaxInline">$ L $</span> is positive. <span class="mathJaxInline">$ f(x) $</span>
                                 can be represented as a sum
                                 of
@@ -424,9 +380,9 @@
                                 <span class="mathJaxDisplay">
                                         $$ f(x)=\left\{
                                         \begin{array}{ll}
-                                        \frac{-2A}{L} (x+L) \quad (-L \leq x < -L/2) \\
-                                        \frac{2A}{L} x \qquad \qquad (-L/2\leq x < L/2) \\
-                                        \frac{-2A}{L} (x-L) \quad (L/2\leq x < L)
+                                        \frac{-2A}{L} (x+L) \quad (-L \leq x &lt; -L/2) \\
+                                        \frac{2A}{L} x \qquad \qquad (-L/2\leq x &lt; L/2) \\
+                                        \frac{-2A}{L} (x-L) \quad (L/2\leq x &lt; L)
                                         \end{array}
                                         \right. $$
                                     </span>
@@ -474,7 +430,7 @@
                         <div id="triangular2ContentContainer" class="collapse show" data-parent="#p3">
                             <div id="triangular2Content" class="section-sub-content" key="triangular2Content">
                                     <span class="mathJaxDisplay">
-                                        $$ \text{For 0 < x < L/2:} \quad f(x)=\frac{2Ax}{L} $$
+                                        $$ \text{For 0 &lt; x &lt; L/2:} \quad f(x)=\frac{2Ax}{L} $$
                                     </span>
                                 Remembering that for even <span class="mathJaxInline">$ n, $</span> <span
                                     class="mathJaxInline">$ b_n=0, $</span> therefore only
@@ -548,7 +504,7 @@
                             <div id="parabolicContent" class="section-sub-content" key="parabolicContent">
                                 The parabolic function is defined as:
                                 <span class="mathJaxDisplay">
-                                        $$ f(x)=Ax^2 \quad \text{for:} -L\leq x< L $$
+                                        $$ f(x)=Ax^2 \quad \text{for:} -L\leq x &lt; L $$
                                     </span>
                                 and is forced to be periodic. <span class="mathJaxInline">$ A $</span> is a constant.
                                 Therefore, the coefficients <span class="mathJaxInline">$ a_n $</span> and <span
@@ -717,8 +673,8 @@
                                         $$
                                         f(x)=\left\{
                                         \begin{array}{ll}
-                                        -A \quad (-L \leq x < 0) \\
-                                        A \quad (0\leq x < L)
+                                        -A \quad (-L \leq x &lt; 0) \\
+                                        A \quad (0\leq x &lt; L)
                                         \end{array}
                                         \right.
                                         $$
@@ -731,8 +687,8 @@
                                 <br><br>
                                 To find the <span class="mathJaxInline">$ b_n $</span> terms, the integration can be
                                 split into two parts:
-                                <span class="mathJaxInline">$ -L\leq x <0 $</span>
-                                and <span class="mathJaxInline">$ 0\leq x < L. $</span>
+                                <span class="mathJaxInline">$ -L\leq x &lt; 0 $</span>
+                                and <span class="mathJaxInline">$ 0\leq x &lt; L. $</span>
                                 <br><br>
                                 This gives the following integration:
                                 <span class="mathJaxDisplay">
@@ -772,7 +728,7 @@
                             <div id="sawtoothContent" class="section-sub-content" key="sawtoothContent">
                                 The Sawtooth wave is defined as the following:
                                 <span class="mathJaxDisplay">
-                                        $$ f(x)=\frac{Ax}{L}  \quad (-L \leq x < L). $$
+                                        $$ f(x)=\frac{Ax}{L}  \quad (-L \leq x &lt; L). $$
                                     </span>
                                 <span class="mathJaxInline">$ f(x) $</span> is odd, so <span class="mathJaxInline">$ a_n= 0 $</span>
                                 for all <span class="mathJaxInline">$ n. $</span>
@@ -833,7 +789,7 @@
                             <div id="modxContent" class="section-sub-content" key="modxContent">
                                 The <span class="mathJaxInline">$ |x| $</span> function is defined as the following:
                                 <span class="mathJaxDisplay">
-                                        $$ f(x)=A|x| \quad (-L \leq x < L). $$
+                                        $$ f(x)=A|x| \quad (-L \leq x &lt; L). $$
                                     </span>
                                 <span class="mathJaxDisplay">
                                         $$ a_n = \frac{1}{L}\int_{-L}^{+L} A|x| \cos \left(\frac{n \pi x}{L} \right)dx $$
@@ -916,7 +872,7 @@
                             $$ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n \cos\left(\frac{n\pi x}{L}\right)+b_n \sin\left(\frac{n \pi x}{L}\right) $$
                         </span>
                     If the function is not periodic, then we may cut the function, forcing it to be periodic over some
-                    <span class="mathJaxInline">$ -L < x < L. $</span> This means that we can prescribe a Fourier series
+                    <span class="mathJaxInline">$ -L &lt; x &lt; L. $</span> This means that we can prescribe a Fourier series
                     that is now valid for the function over the selected range. If we take the limit as <span
                         class="mathJaxInline">$ L \rightarrow \infty, $</span>
                     then a Fourier transform need be used. This is a different problem entirely!
@@ -1013,7 +969,7 @@
                     a set of orthogonal functions can form an infinite basis in a function space and a linear sum of
                     these basis functions can describe any function in that function space.
                     <br><br>
-                    For functions that are periodic over <span class="mathJaxInline">$ -L < x \leq L $</span> with a
+                    For functions that are periodic over <span class="mathJaxInline">$ -L &lt; x \leq L $</span> with a
                     period of
                     <span class="mathJaxInline">$ 2L, $</span> the fourier components <span class="mathJaxInline">$ \rightarrow $</span>
                     <span class="mathJaxInline">$ \sin(\frac{\pi x}{L}), \cos(\frac{\pi x}{L}),
@@ -1049,7 +1005,7 @@
                     input for <span class="mathJaxInline">$ f(x). $</span>
                     <br><br>
                     The period slider forces the function you have specified to be periodic over
-                    <span class="mathJaxInline">$ -L < x \leq L. $</span>
+                    <span class="mathJaxInline">$ -L &lt; x \leq L. $</span>
                     For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span
                         class="mathJaxInline">$ L = 1, $</span> this is the sine
                     function but cut at <span class="mathJaxInline">$ x = \pm 1 $</span> and forced
@@ -1217,10 +1173,1630 @@
                      v-if="currentSection === 7">
                     <iframe src="./Right-Sec6-FourierTransform.html" class="rightload text" id="iframe7"></iframe>
                 </div>
-            </transition-group>
+                </transition-group>
+            </div>
         </div>
     </div>
-</div>
-</body>
-<script src="scripts/nav_Script.js"></script>
-</html>
+</template>
+
+<script>
+import {debounce} from './assets/debounce_and_throttle.js';
+
+export default {
+    name: 'app',
+    data(){
+        return {
+        // Data required including variables associated with visible sections, script paths and booleans reflecting state of vis
+        scrollPos: 0,
+        currentTitle: 0,
+        currentSection: 0,
+        sectionTops: [],
+        sectionBottoms: [],
+        sectionTitleLong: ["Introduction", "Orthogonality", "Derivation", "Components", "Power Spectrum", "Overview", "Fourier Transform"],
+        sectionTitleShort: ["1", "2", "3", "4", "5", "6", "7"],
+        sectionTitle: [],
+        hoverPos: '',
+        hoverTitle: false,
+        mouseX: '',
+        n: "",
+        journeyHeightOld: "",
+        journeyHeightNew: "",
+        firstRunDone: false,
+        derivationSubSection: 1,
+        showEq: true,
+        equationID: "triangular",
+        showJourney: true,
+    }},
+    methods: {
+
+        // Function called on scrolling of of left panel to indicate distance scrolled down journey content div
+        scrollFunc: function () {
+            // function only works once sectionPos has run at least once (in mounted)
+            if (this.firstRunDone === true) {
+                this.scrollPos = document.querySelectorAll(".journey")[0].scrollTop;
+                this.changeTitle();
+                this.changeSec();
+            }
+        },
+
+        handleElement: function (section) {
+            // update currentSection variable if user scrolls past the top edge of its corresponding section on left side
+            if (this.scrollPos >= this.sectionTops[section - 1] && this.scrollPos < this.sectionBottoms[section - 1]) {
+                this.currentTitle = section;
+            }
+        },
+
+        changeTitle: function () {
+            for (let i = 1; i <= this.n; i++) {
+                this.handleElement(i)
+            }
+        },
+
+        changeSec: debounce(function () {
+            this.currentSection = this.currentTitle;
+        }, 200),
+
+        swapTitles: function (newValue, oldValue) {
+            for (let i = 1; i <= this.n; i++) {
+                if (i !== newValue) {
+                    this.sectionTitle[i - 1] = this.sectionTitleShort[i - 1];
+                } else {
+                    setTimeout(function () {
+                        this.sectionTitle[i - 1] = this.sectionTitleLong[i - 1];
+                    }, 20);
+                    setTimeout(function () {
+                        this.$forceUpdate();
+                    }, 100);
+                }
+            }
+        },
+
+        // Function called every x seconds to check if section div sizes have changed and recalculate scroll positions if so
+        // Div sizes may change if window re-sized or if a subsection is expanded/collapsed
+        sectionPos: function () {
+            this.$nextTick(function () {
+                let overallTop = document.querySelectorAll("#sc1")[0].offsetTop;
+                for (let i = 1; i <= this.n; i++) {
+                    if (i < this.n) {
+                        this.sectionTops[i - 1] = (document.querySelectorAll("#" + "sc" + i)[0].offsetTop - overallTop);
+                        this.sectionBottoms[i - 1] = (this.sectionTops[i - 1] + document.querySelectorAll("#" + "sc" + i)[0].offsetHeight);
+                    } else {
+                        this.sectionTops[i - 1] = (document.querySelectorAll("#" + "sc" + i)[0].offsetTop - overallTop);
+                        this.sectionBottoms[i - 1] = (this.sectionTops[i - 1] + document.querySelectorAll("#" + "sc" + i)[0].offsetHeight - document.querySelectorAll(".journey")[0].offsetHeight);
+                    }
+                }
+                this.firstRunDone = true;
+                this.scrollFunc();
+            })
+        },
+
+        // Function activated when button in nav/progress bar clicked to scroll automatically to relevant section
+        scrollTo: function (event) {
+            document.querySelectorAll("#" + "ph" + event.currentTarget.dataset.no + " " + "hr")[0].scrollIntoView({behavior: "smooth"});
+        },
+
+        // Same as above but for subsections
+        subScrollTo: function (event) {
+            let scrollTarget = event.currentTarget;
+            if (scrollTarget.id === "ssh" + this.derivationSubSection) {
+                scrollTarget.scrollIntoView();
+            }
+        },
+
+        // Updates number of title being hovered over in nav/progress bar in data
+        hoverPosUpdate: function (event) {
+            this.hoverPos = parseFloat(event.currentTarget.dataset.no)
+        },
+
+        // Updates if and what title show when hovering over nav/progress bar
+        selectHover: function () {
+            if (this.currentTitle !== this.hoverPos) {
+                this.hoverTitle = this.sectionTitleLong[this.hoverPos - 1]
+            } else {
+                this.hoverTitle = false
+            }
+        },
+
+        // Updates derivationSubSection variable to reflect active subsection in derivation section
+        updateSubSection: function (newSubSection) {
+            if (this.derivationSubSection !== newSubSection) {
+                this.derivationSubSection = newSubSection;
+            } else {
+                this.derivationSubSection = 0;
+            }
+            this.$forceUpdate();
+        },
+
+        // Updates x-position of mouse in data
+        updateMouseX: function (event) {
+            // pass event object, bound to mouse move with update
+            this.mouseX = event.clientX - 15;
+        },
+
+        // Toggles button text from 'hide' to 'show' depending on state
+        hideShowToggle: function (event) {
+            let toggleTarget = event.currentTarget.querySelectorAll('span')[0].innerHTML;
+            if (toggleTarget === "Show") {
+                event.currentTarget.querySelectorAll('span')[0].innerHTML = "Hide"
+            } else {
+                event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
+            }
+        },
+
+        // toggles visibility of journey section
+        toggleJourney: function () {
+            let sectionCache = this.currentSection;
+            document.querySelectorAll("#rightloadSpace")[0].classList.add("rightLoadInterim");
+            this.showJourney = !this.showJourney;
+            setTimeout(function () {
+                if (this.showJourney === false) {
+                    document.querySelectorAll("#rightloadSpace")[0].classList.add("fullRightLoadSpace");
+                } else {
+                    document.querySelectorAll("#rightloadSpace")[0].classList.remove("fullRightLoadSpace");
+                }
+                this.currentSection = "noShow";
+            }, 500);
+            setTimeout(function () {
+                this.currentSection = sectionCache;
+                document.querySelectorAll("#rightloadSpace")[0].classList.remove("rightLoadInterim");
+            }, 525);
+        },
+    },
+
+    watch: {
+
+        // Updates current section title to display in full in nav/progress bar whilst minimising other section titles
+        currentTitle: function (newValue, oldValue) {
+            this.swapTitles(newValue, oldValue)
+        },
+
+        currentSection: function (newValue, oldValue) {
+            if (newValue === 3) {
+                if (this.derivationSubSection !== 3) {
+                    // locks function displayed to show only specific example if subsection about specific function is active
+                    setTimeout(function () {
+                        let iframeTarget = document.querySelectorAll("#iframe3-1")[0].contentWindow;
+                        if (this.derivationSubSection > 3) {
+                            iframeTarget.document.querySelectorAll('#opt' + (this.derivationSubSection - 3))[0].setAttribute("selected", "true");
+                            iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
+                            iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
+                            setTimeout(function () {
+                                iframeTarget.selectorFuncSec2Sub0();
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (this.derivationSubSection - 3))[0].title;
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
+                            }, 200);
+                        }
+                    }, 1000);
+                }
+            }
+        },
+
+        derivationSubSection: function (newValue, oldValue) {
+            if (this.currentSection === 3) {
+                if (newValue !== 3) {
+                    // locks function displayed to show only specific example if subsection about specific function is active
+                    setTimeout(function () {
+                        let iframeTarget = document.querySelectorAll("#iframe3-1")[0].contentWindow;
+                        if (iframeTarget.document.querySelectorAll('option.selected')[0]) {
+                            iframeTarget.document.querySelectorAll('option.selected')[0].removeAttribute("selected");
+                        }
+                        if (oldValue > 3) {
+                            iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].removeAttribute("disabled");
+                            iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "none";
+                            iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "flex";
+                        }
+                        if (newValue > 3) {
+                            iframeTarget.document.querySelectorAll('#opt' + (newValue - 3))[0].setAttribute("selected", "true");
+                            iframeTarget.document.querySelectorAll('#SelectSec2Sub1')[0].setAttribute("disabled", "true");
+                            iframeTarget.document.querySelectorAll('#scrollSec2Sub1')[0].style.display = "none";
+                            setTimeout(function () {
+                                iframeTarget.selectorFuncSec2Sub0();
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (newValue - 3))[0].title;
+                                iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
+                            }, 200);
+                        } else {
+                            if (oldValue > 3) {
+                                iframeTarget.document.querySelectorAll('#opt' + (oldValue - 3))[0].setAttribute("selected", "true");
+                            }
+                        }
+                    }, 200);
+                }
+            }
+        },
+
+        equationID: function () {
+            // changes to correct equation to display in section 4 (depending on dropdown selection)
+            this.showEq = false;
+            setTimeout(
+                function () {
+                    this.showEq = true
+                }, 50);
+        },
+    },
+
+    mounted() {
+
+        // $nextTick ensures initial functions only run once Vue is initialised sufficiently
+        this.$nextTick(function () {
+                // makes n equal to total number of sections
+                this.n = document.querySelectorAll(".section-container").length;
+                // calculates initial div section positions in journey with respect to the top
+                this.sectionPos();
+                // checks if journey div height changes every x seconds
+                // if it does change, re-runs sectionPos to calculate section div positions
+                this.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;
+                window.setInterval(() => {
+                    this.journeyHeightNew = document.querySelectorAll(".journey")[0].scrollHeight;
+                    if (this.journeyHeightOld !== this.journeyHeightNew) {
+                        this.journeyHeightOld = this.journeyHeightNew;
+                        this.sectionPos();
+                    }
+                }, 2000);
+                // collapses collapsible divs once mathJax has loaded fully
+                setTimeout(function () {
+                    MathJax.Hub.Queue(function () {
+                        let collapseDivs = document.querySelectorAll(".collapse:not(#introContentContainer)");
+                        for (let i = 0; i < collapseDivs.length; i++) {
+                            collapseDivs[i].classList.remove("show");
+                        }
+                    })
+                }, 1000)
+            }
+        )
+    }
+}
+</script>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.mathJaxHeading {
+    font-size: 1.6vw;
+    padding: 0 1vw;
+}
+
+.mathJaxDisplay {
+    display: table;
+    margin: 10px auto;
+    font-size: calc(4px + 0.95vw);
+    text-align: center;
+}
+
+.mathJaxInline {
+    font-size: calc(4px + 0.95vw);
+}
+
+.mathJaxList {
+    display: inline-block;
+    width: 2vw;
+    text-align: left;
+}
+
+.vis-container {
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+ul li, ol li {
+    list-style-position: outside;
+    font-weight: bolder;
+}
+
+ul li p, ol li p {
+    font-weight: normal;
+    padding-left: 1vw;
+}
+
+.li-head {
+    padding: 1vh 0 1vh 0;
+}
+
+#sc7 {
+    min-height: 110vh;
+}
+
+/* LEFT SIDE STYLES */
+
+.left {
+    height: 100vh;
+    width: 33vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+}
+
+#progress-container {
+    display: flex;
+    flex: 0 0 auto;
+    width: 33vw;
+    height: 4vh;
+    min-height: 30px;
+    /*position: fixed;*/
+    left: 0;
+    top: 0;
+    border: none;
+    z-index: 6;
+}
+
+meter {
+    visibility: visible;
+    flex-basis: 0;
+    flex-grow: 1;
+    border: none;
+    height: 4vh;
+    min-height: 30px;
+    min-width: 30px;
+    transition: flex-grow 450ms ease;
+}
+
+meter::-webkit-meter-bar {
+    background: none; /* Required to get rid of the default background property */
+    background-color: #37578b;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
+}
+
+meter::-webkit-meter-optimum-value {
+    box-shadow: 0 5px 5px -5px #999 inset;
+    height: 0.4vh;
+    min-height: 3px;
+    background: #ff1447;
+    background-size: 100% 100%;
+}
+
+meter {
+    /* Firefox */
+    background: none; /* Required to get rid of the default background property */
+    background-color: #37578b;
+    box-shadow: 0 0.5 vhpx 0.5vh -0.5 vhpx #333 inset;
+}
+
+meter::-moz-meter-bar {
+    box-shadow: 0 5px 5px -5px #999 inset;
+    height: 0.4vh;
+    min-height: 3px;
+    background: #ff1447;
+    background-size: 100% 100%;
+}
+
+.activeMeter {
+    flex-grow: 6;
+}
+
+#overlay {
+    display: flex;
+    height: 4vh;
+    min-height: 30px;
+    width: inherit;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+}
+
+.overlay-button {
+    height: 4vh;
+    min-height: 30px;
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: calc(3px + 0.75vw);
+    background: none;
+    color: #ffffff !important;
+    border: none;
+    min-width: 30px;
+    transition: flex-grow 450ms ease;
+    z-index: 8;
+    box-shadow: none;
+}
+
+.activeButton {
+    flex-grow: 6;
+    color: #ffffff !important;
+    /*font-size: 14pt;*/
+    font-size: calc(4px + 0.95vw);
+    /*letter-spacing: 2pt;*/
+}
+
+.activeButton:hover {
+    color: #ffffff !important;
+    font-size: calc(5px + 1.05vw);
+    background-color: unset;
+}
+
+.overlay-button:not(.activeButton):hover {
+    color: #ffffff !important;
+    font-size: calc(4px + 0.95vw);
+    background-color: unset;
+}
+
+#hoverTitleSpace {
+    position: fixed;
+    top: calc(40px + 1.5vh);
+    left: 0;
+    font-size: 12pt;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5vh 0.5vw;
+    border-radius: 0.5vh;
+    background: #000000;
+    color: #ffffff;
+    z-index: 6;
+    box-shadow: 2px 2px 2px 1px #888888;
+}
+
+#hoverTitleSpace::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    margin-left: -5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #000000 transparent;
+    z-index: 6;
+}
+
+.journey {
+    flex: 1 1 auto;
+    width: inherit;
+    height: 100%;
+    padding: 0;
+    /*position: fixed;*/
+    background: #ffffff;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    text-align: justify;
+    box-shadow: 0 0 5px #a8a8a8;
+    transition: transform 0.4s ease-in-out;
+}
+
+.hiddenJourney {
+    transform: translateX(-40vw);
+}
+
+.section-body {
+    margin: 0;
+    padding: 2vh 0 0 0;
+    font-size: calc(4px + 0.95vw);
+    text-align: justify;
+}
+
+.section-container {
+    width: inherit;
+    padding: 1vw 2vw 0 1vw;
+    margin-bottom: 100px;
+}
+
+.section-head {
+    color: #003E74;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 2.3vw;
+    text-align: center;
+    font-weight: bolder;
+}
+
+hr {
+    box-sizing: content-box;
+    border: none;
+    height: 1px;
+    background: #033482;
+    background-clip: content-box;
+    padding: 1vh 0;
+    margin: 0;
+}
+
+.placeholder {
+    margin-bottom: 3vh;
+}
+
+button.section-sub-head {
+    width: 100%;
+    position: relative;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    font-size: 1.4vw;
+    border: solid 1px #033482;
+    color: #033482;
+    box-shadow: none;
+}
+
+button.section-sub-head:hover {
+    background-color: #eaf2ff;
+}
+
+.nav-tabs {
+    display: flex;
+    width: inherit;
+    position: relative;
+    top: 8px;
+    margin: 0;
+}
+
+.nav-tabs > li {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+    flex-grow: 1;
+    border-radius: 0.5vh 0.5vh 0 0;
+    text-align: center;
+    background: #ffffff;
+    align-items: stretch;
+    z-index: 1;
+    font-weight: bolder;
+}
+
+.nav-tabs.innerTab > li {
+    background: #eaf2ff;
+}
+
+.nav-tabs > li.tabLeft {
+    margin: 0 1.5% 0 0;
+}
+
+.nav-tabs > li.tabRight {
+    margin: 0 0 0 1.5%;
+}
+
+.nav-tabs > li.tabMid {
+    margin: 0 0 0 0;
+}
+
+.nav-tabs > li:hover {
+    background: #eaf2ff;
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+.nav-tabs.innerTab > li:hover {
+    background: #ffffff;
+}
+
+.nav-tabs > li.shaded {
+    background: #eaf2ff;
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+.nav-tabs > li.unshaded {
+    background: #ffffff;
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+.nav-tabs > li > a {
+    padding: 5% 0 6% 0;
+    border-radius: inherit;
+    font-size: calc(5px + 1.1vw);
+    z-index: 1;
+    text-decoration: none;
+    color: #033482;
+}
+
+.tab-content {
+    position: relative;
+    color: #000000;
+    background-color: #eaf2ff;
+    padding: 2vh 2vw;
+    /*box-shadow: 3px 4px 3px #a8a8a8;*/
+    z-index: 2;
+    /*border-radius: 8px 8px 8px 8px;*/
+    border-radius: 0.5vh 0.5vh 0.5vh 0.5vh;
+    /*border: 1px solid grey;*/
+    box-shadow: 2px 2px 2px #a8a8a8;
+}
+
+.tab-content.innerTab {
+    background: #ffffff;
+}
+
+.tab-content > .tab-pane:not(.active),
+.pill-content > .pill-pane:not(.active) {
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    height: 0;
+}
+
+.tab-content > .tab-pane.active,
+.pill-content > .pill-pane.active {
+    display: block;
+    visibility: visible;
+}
+
+h3.section-sub-head {
+    width: 100%;
+    margin: 4vh 0 2vh 0;
+    padding: 0.5vh 0 0.5vh 0;
+    text-align: center;
+    font-size: 1.8vw;
+    background: #eaf2ff;
+    color: #033482;
+}
+
+.section-sub-content {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+i.fa-chevron-down {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    transition-delay: 0.1s;
+    transition: transform 0.4s ease-in-out;
+}
+
+.section-sub-head:not(.collapsed) i.fa-chevron-down {
+    transform: rotate(-180deg);
+}
+
+.section-extra-head-container {
+    display: table;
+    margin: 30px auto 10px auto;
+}
+
+.section-extra-head {
+    border: solid 1px #033482;
+    border-radius: 18px;
+    color: #033482;
+    box-shadow: none;
+    font-size: calc(4px + 0.95vw);
+    text-align: center;
+}
+
+.section-extra-head:hover {
+    background-color: #eaf2ff;
+}
+
+.section-extra-head.innerButton:hover {
+    background-color: #ffffff;
+}
+
+.extra-content {
+    /* Indicates a drop down box to hide stuff */
+    background: #eaf2ff;
+    padding: 25px 40px;
+    border-radius: 5px;
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+
+.extra-content.innerECC {
+    /* Indicates a drop down box to hide stuff */
+    background: #ffffff;
+}
+
+.outerVisGuideContainer {
+    padding-left: 2vw;
+}
+
+.first-sub-head {
+    margin: 0 0 20px 0 !important;
+}
+
+.journeyImage {
+    width: 80%;
+    margin: 2vh auto 1vh;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* RIGHT SIDE STYLES */
+
+.right {
+    width: 67vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#rightloadSpace {
+    flex: 1 1 auto;
+    width: inherit;
+    z-index: -1;
+    background: #ffffff;
+    transition: opacity 0.15s;
+    opacity: 1;
+}
+
+.fullRightLoadSpace {
+    width: 100vw !important;
+    height: 100vh;
+    position: relative;
+    left: -33vw;
+    z-index: 10;
+}
+
+.rightLoadInterim {
+    opacity: 0 !important;
+}
+
+#banner-dummy {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 4vh;
+    min-height: 30px;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1vh 2.5vh #b1b1b1;
+    z-index: 5;
+}
+
+.banner {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    align-items: center;
+    height: 4vh;
+    min-height: 30px;
+    width: 67vw;
+    /*position: fixed;*/
+    top: 0;
+    right: 0;
+    background: linear-gradient(
+            90deg,
+            #003E74 0%,
+            #37578b 15%,
+            #37578b 100%
+    );
+    color: #ffffff;
+    z-index: 6;
+}
+
+#banner-dummy a:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+#journeyToggle {
+    height: inherit;
+    min-height: 30px;
+    width: 40px;
+    position: absolute;
+    left: 33vw;
+    top: 0;
+    border-left: solid 6px #003E74;
+    border-radius: 0 5px 5px 0;
+    background: #37578b;
+    z-index: 9;
+}
+
+#navBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: inherit;
+    min-height: 30px;
+    position: absolute;
+    right: 40px;
+    background: #37578b;
+    color: #ffffff;
+    overflow: hidden;
+    font-size: calc(4px + 0.95vw);
+    white-space: nowrap;
+    transition-delay: 0.15s !important;
+    transition: width 0.3s ease-in-out;
+}
+
+.navBlockActive {
+    width: 33vw !important;
+    cursor: pointer;
+}
+
+.navBlockActive:hover {
+    font-size: calc(5px + 1vw) !important;
+}
+
+.innerJourneyToggle {
+    position: absolute;
+    right: 0;
+}
+
+#journeyToggle .chevron-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    font-size: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#journeyToggle .chevron-holder:hover {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#journeyToggle .chevron-holder.rotated {
+    transform: rotate(180deg);
+}
+
+#vis-title {
+    flex-basis: 0;
+    flex-grow: 1;
+    min-height: 30px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+    left: 33vw;
+    right: 0;
+    background: none;
+    color: #ffffff;
+    font-size: 22pt;
+    letter-spacing: 2pt;
+}
+
+#vis-logo {
+    height: 2.7vh;
+    min-height: 18px;
+    margin-right: 7px;
+}
+
+#vis-logo img {
+    width: auto;
+}
+
+#loadwait {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-border {
+    width: 2vh;
+    height: 2vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    z-index: -10;
+}
+
+.scriptSpace {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* TRANSITION STYLES */
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to { /* .fade-leave-active below version 2.1.8 */
+    opacity: 0;
+}
+
+/* IMPORTED STYLE FROM LEARNING EXPERIENCE TEAM */
+
+.divclass {
+    width: inherit;
+}
+.transition-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #ffffff;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.rightload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+/* ///// SECTION 0 ///// */
+
+#loadout0 {
+}
+
+#loadout0 #graph0Sec0 {
+    width: 94vw;
+    height: 80vh;
+    position: absolute;
+    left: 3vw;
+    top: 3vh;
+}
+
+#loadout0 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    position: absolute;
+    left: 3vw;
+    bottom: 0;
+    width: 94vw;
+    height: 15vh;
+}
+
+#loadout0 .slider-label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 2.2vw;
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.3 1 auto;
+}
+
+#loadout0 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout0 .sliderMin, #loadout0 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout0 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ////// SECTION 1 ////// */
+
+#loadout1 {
+}
+
+#loadout1 #graph1Sec1 {
+    width: 60vw;
+    height: 80vh;
+    position: absolute;
+    left: 3vw;
+    top: 3vh;
+    padding: 1%;
+}
+
+#loadout1 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 3vw;
+    top: 5vh;
+    width: 30vw;
+    height: 90vh;
+}
+
+#loadout1 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    max-height: 25vh;
+}
+
+#loadout1 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin-top: 2vh;
+    padding-top: 0;
+    flex: 1 0 auto;
+}
+
+#loadout1 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout1 .sliderValue {
+    width: 60px;
+    flex: 0 0 60px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+
+#loadout1 .graphcolor1 {
+    border-left: solid 5px rgb(213, 0, 50);
+    color: rgb(213, 0, 50);
+}
+
+#loadout1 .graphcolor2 {
+    border-left: solid 5px rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
+}
+
+#loadout1 .graphcolor3 {
+    border-left: solid 5px rgb(0, 128, 0);
+    color: rgb(0, 128, 0);
+}
+
+#loadout1 #vectorComponentsCustom {
+    width: 60vw;
+    position: absolute;
+    left: 3vw;
+    bottom: 6vh;
+    padding: 1%;
+    text-align: center;
+    font-size: calc(5px + 1.1vw);
+}
+
+#loadout1 #popup1 {
+    width: 60vw;
+    position: absolute;
+    left: 3vw;
+    bottom: 6vh;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    background-color: #D50032;
+    font-size: calc(8px + 0.8vw);
+}
+
+/* ////// SECTION 2 ////// */
+
+/* SUB-SECTION 1 */
+
+#loadout2sub0 {
+}
+
+#loadout2sub0 #graph0Sec2 {
+    width: 94vw;
+    height: 60vh;
+    position: absolute;
+    left: 3vw;
+    top: 7.5vh;
+}
+
+#loadout2sub0 #scrollSec2Sub1 {
+    width: 100vw;
+    height: 5vh;
+    position: absolute;
+    top: 2.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loadout2sub0 #SelectSec2Sub1 {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+#loadout2sub0 #subSecTitle {
+    display: none;
+    width: 100vw;
+    position: absolute;
+    top: 2.2vh;
+    text-align: center;
+}
+
+#loadout2sub0 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 3.9vw;
+    bottom: 0;
+    width: 90vw;
+    height: 27vh;
+}
+
+#loadout2sub0 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout2sub0 .slider-label {
+    font-size: 1.8vw;
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    vertical-align: middle;
+}
+
+#loadout2sub0 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout2sub0 .sliderMin, #loadout2sub0 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout2sub0 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* SUB-SECTION 2 */
+
+#loadout2sub1 {
+}
+
+#loadout2sub1 #graph1Sec2 {
+    width: 55vw;
+    height: 45vh;
+    position: absolute;
+    left: 3.9vw;
+    top: 4.3vh;
+}
+
+#loadout2sub1 #graph2Sec2 {
+    width: 55vw;
+    height: 45vh;
+    position: absolute;
+    left: 3.9vw;
+    bottom: 2.2vh;
+}
+
+#loadout2sub1 .overall-sliders-container {
+    width: 35vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 2.3vw;
+    top: 5vh;
+}
+
+#loadout2sub1 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    max-height: 20vh;
+}
+
+#loadout2sub1 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 1 0 auto;
+}
+
+#loadout2sub1 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout2sub1 .sliderMin, #loadout2sub1 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout2sub1 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 3 ///// */
+
+#loadout3 {
+}
+
+#loadout3 #graph1Sec3 {
+    width: 94vw;
+    height: 60vh;
+    position: absolute;
+    left: 3vw;
+    top: 10vh;
+}
+
+#scrollSec3 {
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    top: 2.2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#SelectSec3 {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+#loadout3 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 5vw;
+    bottom: 0;
+    width: 45vw;
+    height: 25vh;
+}
+
+#loadout3 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout3 .slider-label {
+    font-size: calc(6px + 0.8vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+}
+
+#loadout3 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout3 .sliderMin, #loadout3 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout3 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+#equationSpace {
+    position: absolute;
+    right: 7%;
+    bottom: 3%;
+    width: 35%;
+    height: 22%;
+}
+
+.equationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    max-width: 100%;
+}
+
+img {
+    height: 100%;
+    max-width: 100%;
+}
+
+/* ///// SECTION 4 ///// */
+
+#loadout4 {
+}
+
+#loadout4 #graph1Sec4 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    top: 2.5vh;
+}
+
+#loadout4 #graph2Sec4 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout4 .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: 2.5vw;
+    top: 5.3vh;
+    width: 45vw;
+    height: 90vh;
+}
+
+#loadout4 .selectorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    width: 100%;
+}
+
+#loadout4 .overall-sliders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 4 1 0;
+    width: 100%;
+}
+
+#loadout4 .partial-sliders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1 0 auto;
+    max-height: 25%;
+}
+
+#loadout4 .slider-label {
+    font-size: calc(12px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 1 0 auto;
+    left: 0;
+}
+
+#loadout4 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+#loadout4 .sliderMin, #loadout4 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout4 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 5 ///// */
+
+#loadout5 {
+}
+
+#loadout5 #graph1Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    top: 2.5vh;
+}
+
+#loadout5 #graph2Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    left: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout5 #graph3Sec5 {
+    width: 45vw;
+    height: 45vh;
+    position: absolute;
+    right: 2.5vw;
+    bottom: 2.5vh;
+}
+
+#loadout5 #scrollSec5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #scrollSec5 * {
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+#loadout5 #inputSubContainerSec5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #inputSubContainerSec5 * {
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+#loadout5 #coefficientSubContainerSec5 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    margin-bottom: 2vh;
+}
+
+#loadout5 #coefficientSubContainerSec5 * {
+    flex: 0 0 auto;
+    margin: 10px 10px;
+}
+
+#loadout5 .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 5vh;
+    right: 2.5vw;
+    width: 45vw;
+    height: 40vh;
+}
+
+#loadout5 * {
+    flex: 1 1 0;
+}
+
+#loadout5 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    align-items: center;
+}
+
+#loadout5 .slider-label {
+    font-size: calc(6px + 1vw);
+    text-align: left;
+    padding-left: 8px;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    left: 0;
+}
+
+#loadout5 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+}
+
+#loadout5 .sliderMin, #loadout5 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout5 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+
+/* ///// SECTION 6 ///// */
+
+#loadout6 {
+}
+
+#loadout6 #Top_Hat_Graph {
+    width: 45vw;
+    height: 75vh;
+    position: absolute;
+    top: 6vh;
+    left: 3vw;
+}
+
+#loadout6 #Fourier_Transform_Graph {
+    width: 45vw;
+    height: 75vh;
+    position: absolute;
+    top: 6vh;
+    right: 3vw;
+}
+
+#loadout6 .partial-sliders-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    align-items: center;
+    width: 94vw;
+    height: 15vh;
+    position: absolute;
+    bottom: 3vh;
+    left: 3vw;
+}
+
+#loadout6 .slider-label {
+    font-size: calc(6px + 1vw);
+    text-align: left;
+    margin: 0;
+    padding-top: 0;
+    flex: 0.5 1 0;
+    left: 0;
+}
+
+#loadout6 .slider {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+}
+
+#loadout6 .sliderMin, #loadout6 .sliderMax {
+    margin-top: 30px;
+    width: 40px;
+    flex: 0 0 40px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+#loadout6 .inputs {
+    height: 40px;
+    flex: 1 1 auto;
+}
+</style>

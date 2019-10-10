@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <!--Title-->
-    <title>Right-Sec2-Sub1-OddEven</title>
+    <title>Right-Sec6-FourierTransform</title>
     <!--css links-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet"
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-    <link href="styles/style.css" rel="stylesheet">
-    <link href="styles/skeleton.css" rel="stylesheet">
+    <link href="/static/visualisations/style.css" rel="stylesheet">
+    <link href="/static/visualisations/style.css" rel="stylesheet">
     <link href="styles/index_Style.css" rel="stylesheet">
     <link href="styles/loadout_Style.css" rel="stylesheet">
     <!--Required JS resources-->
@@ -41,70 +41,34 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 </head>
-<body id="loadout2sub1">
-<!-- Graph -->
-<div id='graph1Sec2'>
+<body id="loadout6">
+<!--Graph 1-->
+<div id='Top_Hat_Graph'>
     <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<div id='graph2Sec2'>
+<!--Graph 2-->
+<div id='Fourier_Transform_Graph'>
     <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<!--Slider-->
-<div class="overall-sliders-container">
-    <div class="partial-sliders-container">
-        <!--BEGIN Slider N-->
-        <!--Slider Display N-->
-        <label class="slider-label">Term Number:
-            <span id="NControllerSec2Sub2Display" data-unit="">1</span>
-        </label>
-        <!--Slider N-->
-        <label class="slider">
-            <span class="sliderMin">0</span>
-            <input id="NControllerSec2Sub2" class="inputs" min="0" type="range" value="1"
-                   max="50"
-                   step="1"/>
-            <span class="sliderMax">50</span>
-        </label>
-        <!--END Slider N-->
-    </div>
-    <div class="partial-sliders-container">
-        <!--BEGIN Slider A-->
-        <!--Slider Display A-->
-        <label class="slider-label">Amplitude:<!--Amplitude-->
-            <span id="AControllerSec2Sub2Display" data-unit="">1</span> <!--default: 1-->
-        </label>
-        <!--Slider A-->
-        <label class="slider">
-            <span class="sliderMin">-1</span>
-            <input id="AControllerSec2Sub2" class="inputs" type="range" value="1" min="-1"
-                   max="3"
-                   step="0.1"/>
-            <span class="sliderMax">3</span>
-        </label>
-        <!--END Slider A-->
-    </div>
-    <div class="partial-sliders-container">
-        <!--BEGIN Slider L-->
-        <!--Slider Display L-->
-        <label class="slider-label">Period:
-            <span id="LControllerSec2Sub2Display" data-unit="">1</span>
-        </label>
-        <!--Slider L-->
-        <label class="slider">
-            <span class="sliderMin">0</span>
-            <input id="LControllerSec2Sub2" class="inputs" type="range" value="1" min="0"
-                   max="1"
-                   step="0.05"/>
-            <span class="sliderMax">1</span>
-        </label>
-        <!--END Slider L-->
-    </div>
+<div class="partial-sliders-container">
+    <!--Slider Display W-->
+    <label class="slider-label">Width of Top Hat Function $ = $
+        <span id="Slider_l_value"> 5</span>
+    </label>
+    <!--Slider W-->
+    <label class="slider">
+        <span class="sliderMin">0.5</span>
+        <input id="Slider_l" class="inputs" type="range" value="5" min="0.5"
+               max="10" step="0.01" oninput="Slider_l_value.innerHTML = ' ' + Slider_l.value"/>
+        <span class="sliderMax">10</span>
+    </label>
+    <!--END Slider W-->
 </div>
 </body>
 <!--THE BRAINS-->
-<script src="scripts/FS-scripts/2Derivation_of_a_Fourier_Series_duo.js"></script>
+<script src="scripts/FS-scripts/6Outro.js"></script>
 </html>
