@@ -1145,29 +1145,29 @@
                 <!--    Interactive Zone Containers   -->
                 <div class="rightload text odd" id="loadout1Container" key="loadout1Container"
                      v-if="currentSection === 1">
-                    <iframe src="Right-Sec0-Introduction.html" class="rightload text" id="iframe1"></iframe>
+                    <iframe src="./Right-Sec0-Introduction.html" class="rightload text" id="iframe1"></iframe>
                 </div>
                 <div class="rightload text even" id="loadout2Container" key="loadout2Container"
                      v-if="currentSection === 2">
-                    <iframe src="Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2"></iframe>
+                    <iframe src="./Right-Sec1-Orthogonality.html" class="rightload text" id="iframe2"></iframe>
                 </div>
                 <div class="rightload text odd" id="loadout3Container" key="loadout3Container"
                      v-if="currentSection === 3">
                     <transition name="fade">
                         <!--Interactive Zone Sub Containers-->
                         <div id="loadout2sub0Container" key="loadout2sub0Container" v-if="derivationSubSection !== 3">
-                            <iframe src="Right-Sec2-Sub0-FourierExamples.html" class="rightload text"
+                            <iframe src="./Right-Sec2-Sub0-FourierExamples.html" class="rightload text"
                                     id='iframe3-1'></iframe>
                         </div>
                         <div id="loadout2sub1Container" key="loadout2sub3Container" v-else>
-                            <iframe src="Right-Sec2-Sub1-OddEven.html" class="rightload text"
+                            <iframe src="./Right-Sec2-Sub1-OddEven.html" class="rightload text"
                                     id='iframe3-2'></iframe>
                         </div>
                     </transition>
                 </div>
                 <div class="rightload text even" id="loadout4Container" key="loadout4Container"
                      v-if="currentSection === 4">
-                    <iframe src="Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
+                    <iframe src="./Right-Sec3-Components.html" class="rightload text" id="iframe4"></iframe>
                     <!--Equation Space-->
                     <div id="equationSpace" key="equationSpace"
                          v-if="showEq && currentSection === 4">
@@ -1207,15 +1207,15 @@
                 </div>
                 <div class="rightload text odd" id="loadout5Container" key="loadout5Container"
                      v-if="currentSection === 5">
-                    <iframe src="Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe5"></iframe>
+                    <iframe src="./Right-Sec4-PowerSpectrum.html" class="rightload text" id="iframe5"></iframe>
                 </div>
                 <div class="rightload text even" id="loadout6Container" key="loadout6Container"
                      v-if="currentSection === 6">
-                    <iframe src="Right-Sec5-Overview.html" class="rightload text" id="iframe6"></iframe>
+                    <iframe src="./Right-Sec5-Overview.html" class="rightload text" id="iframe6"></iframe>
                 </div>
                 <div class="rightload text odd" id="loadout7Container" key="loadout7Container"
                      v-if="currentSection === 7">
-                    <iframe src="RIght-Sec6-FourierTransform.html" class="rightload text" id="iframe7"></iframe>
+                    <iframe src="./Right-Sec6-FourierTransform.html" class="rightload text" id="iframe7"></iframe>
                 </div>
             </transition-group>
         </div>
