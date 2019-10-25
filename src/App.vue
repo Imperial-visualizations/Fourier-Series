@@ -940,11 +940,10 @@
                     do you think
                     this happens?
                     <span class="section-extra-head-container">
-                            <button class="section-extra-head" data-toggle="collapse" @click="hideShowToggle($event)"
-                                    data-target="#evenThetaAnswerContainer"> <span>Show</span> Answer </button>
+                            <button class="section-extra-head" @click="hideShowToggle($event,'evenThetaAnswerContainer')"> <span>Show</span> Answer </button>
                         </span>
-                    <div id="evenThetaAnswerContainer" class="collapse show extra-content-container">
-                        <div id="evenThetaAnswer" class="extra-content">
+                    <div id="evenThetaAnswerContainer" style="display:none;">
+                        <div id="evenThetaAnswer">
                             This happens because the value of <span class="mathJaxInline">$ a_n $</span> changes sign
                             (<span class="mathJaxInline">$ b_n $</span> is 0) causing the value of
                             <span class="mathJaxInline">$ \theta_n $</span> to change. For <span class="mathJaxInline">$ b_n = 0, $</span>
@@ -1003,7 +1002,7 @@
                     To specify a custom function, select custom from the drop down menu and input your desired function
                     into the
                     input for <span class="mathJaxInline">$ f(x). $</span>
-                    <br><br>
+                    <br><br> 
                     The period slider forces the function you have specified to be periodic over
                     <span class="mathJaxInline">$ -L &lt; x \leq L. $</span>
                     For example if <span class="mathJaxInline">$ f(x) = \sin(x) $</span> with <span
@@ -1243,10 +1242,10 @@ export default {
                 } else {
                     setTimeout(function () {
                         this.sectionTitle[i - 1] = this.sectionTitleLong[i - 1];
-                    }, 20);
+                    }.bind(this), 20);
                     setTimeout(function () {
                         this.$forceUpdate();
-                    }, 100);
+                    }.bind(this), 100);
                 }
             }
         },
@@ -1314,13 +1313,19 @@ export default {
         },
 
         // Toggles button text from 'hide' to 'show' depending on state
-        hideShowToggle: function (event) {
+        hideShowToggle: function (event,div) {
             let toggleTarget = event.currentTarget.querySelectorAll('span')[0].innerHTML;
+            let showHideDiv = document.getElementById(div);
+            console.log(showHideDiv);
             if (toggleTarget === "Show") {
-                event.currentTarget.querySelectorAll('span')[0].innerHTML = "Hide"
+                event.currentTarget.querySelectorAll('span')[0].innerHTML = "Hide";
+                showHideDiv.style.display = "";
             } else {
                 event.currentTarget.querySelectorAll('span')[0].innerHTML = "Show"
+                showHideDiv.style.display = "none";
             }
+           
+            
         },
 
         // toggles visibility of journey section
@@ -1364,7 +1369,7 @@ export default {
                                 iframeTarget.selectorFuncSec2Sub0();
                                 iframeTarget.document.querySelectorAll("#subSecTitle")[0].innerHTML = iframeTarget.document.querySelectorAll("#opt" + (this.derivationSubSection - 3))[0].title;
                                 iframeTarget.document.querySelectorAll("#subSecTitle")[0].style.display = "block";
-                            }, 200);
+                            }.bind(this), 200);
                         }
                     }, 1000);
                 }
@@ -1425,13 +1430,13 @@ export default {
                 // checks if journey div height changes every x seconds
                 // if it does change, re-runs sectionPos to calculate section div positions
                 this.journeyHeightOld = document.querySelectorAll(".journey")[0].scrollHeight;
-                window.setInterval(() => {
+                window.setInterval(function() {
                     this.journeyHeightNew = document.querySelectorAll(".journey")[0].scrollHeight;
                     if (this.journeyHeightOld !== this.journeyHeightNew) {
                         this.journeyHeightOld = this.journeyHeightNew;
                         this.sectionPos();
                     }
-                }, 2000);
+                }.bind(this), 2000);
                 // collapses collapsible divs once mathJax has loaded fully
                 setTimeout(function () {
                     MathJax.Hub.Queue(function () {
@@ -1440,7 +1445,7 @@ export default {
                             collapseDivs[i].classList.remove("show");
                         }
                     })
-                }, 1000)
+                }.bind(this), 1000)
             }
         )
     }
