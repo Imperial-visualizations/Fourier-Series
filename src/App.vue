@@ -306,11 +306,11 @@
                                 We can regroup the terms in the summation in the following way:
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
+                                                @click="hideShowToggle($event,'regroupexplainContainer')"
                                                 data-target="#regroupexplainContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="regroupexplainContainer" class="collapse show extra-content-container">
-                                    <div id="regroupexplain" class="extra-content">
+                                <div id="regroupexplainContainer">
+                                    <div id="regroupexplain">
                                             <span class="mathJaxDisplay">
                                                 \begin{align}
                                                 = \frac{1}{2} \Big[  2c_n e^{in\pi x/L} + 2c_{-n} e^{-in\pi x/L} & \\
@@ -441,11 +441,10 @@
                                 This integral can be performed by parts.
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
-                                                data-target="#BypartsTriangularContainer"> <span>Show</span> Full Calculation </button>
+                                                @click="hideShowToggle($event,'BypartsTraiangularContainer')"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="BypartsTriangularContainer" class="collapse show extra-content-container">
-                                    <div id="BypartsTriangular" class="extra-content">
+                                <div id="BypartsTriangularContainer" >
+                                    <div id="BypartsTriangular">
                                             <span class="mathJaxDisplay">
                                                 $$ u=x \qquad dv= \sin \left(\frac{n\pi x}{L} \right)dx $$
                                             </span>
@@ -535,12 +534,10 @@
                                     </span>
                                 This equation can now be solved using integration by parts.
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
-                                                data-target="#ByPartsParabolic1Container"> <span>Show</span> Full Calculation </button>
+                                        <button class="section-extra-head"  @click="hideShowToggle($event,'ByPartsParabolic1Container')"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="ByPartsParabolic1Container" class="collapse show extra-content-container">
-                                    <div id="ByPartsParabolic1" class="extra-content">
+                                <div id="ByPartsParabolic1Container" >
+                                    <div id="ByPartsParabolic1">
                                         <span class="mathJaxDisplay">
                                             $$ du = 2x\cdot dx \qquad v=\frac{L}{n\pi} \sin \left(\frac{n\pi x}{L} \right) $$
                                         </span>
@@ -562,12 +559,12 @@
                                         $$ a_n = -\frac{4A}{n\pi}\int_{0}^{L} x \sin \left(\frac{n \pi x}{L} \right)dx $$
                                     </span>
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
-                                                data-target="#ByPartsParabolic2Container"> <span>Show</span> Full Calculation </button>
+                                        <button class="section-extra-head" 
+                                                @click="hideShowToggle($event,'ByPartsParabolic2Container')"
+                                                > <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="ByPartsParabolic2Container" class="collapse show extra-content-container">
-                                    <div id="ByPartsParabolic2" class="extra-content">
+                                <div id="ByPartsParabolic2Container">
+                                    <div id="ByPartsParabolic2">
                                         <span class="mathJaxDisplay">
                                             $$ u = x \qquad dv = \sin \left(\frac{n\pi x}{L} \right) dx $$
                                         </span>
@@ -628,12 +625,11 @@
                                         $$ a_n=\frac{1}{L} $$
                                     </span>
                                 <span class="section-extra-head-container">
-                                        <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
-                                                data-target="#ByPartsDiracContainer"> <span>Show</span> Full Calculation </button>
+                                        <button class="section-extra-head"
+                                                @click="hideShowToggle($event,'ByPartsDiracContainer')"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="ByPartsDiracContainer" class="collapse show extra-content-container">
-                                    <div id="ByPartsDirac" class="extra-content">
+                                <div id="ByPartsDiracContainer">
+                                    <div id="ByPartsDirac">
                                         By considering the shifting property of the Dirac-Delta function,
                                         <span class="mathJaxDisplay">
                                         $$ \int_{\alpha-\epsilon}^{\alpha+\epsilon} g(x) \delta(x-\alpha)dx=g(\alpha) $$
@@ -744,11 +740,11 @@
                                 Using Integration by parts it can be shown that:
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
+                                                @click="hideShowToggle($event,'ByPartsSawtoothContainer')"
                                                 data-target="#ByPartsSawtoothContainer"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="ByPartsSawtoothContainer" class="collapse show extra-content-container">
-                                    <div id="ByPartsSawtooth" class="extra-content">
+                                <div id="ByPartsSawtoothContainer">
+                                    <div id="ByPartsSawtooth">
                                         <span class="mathJaxDisplay">
                                             $$ u=x \quad  dv=\sin \left(\frac{n\pi x}{L} \right)dx $$
                                         </span>
@@ -815,11 +811,10 @@
                                 By integrating by parts,
                                 <span class="section-extra-head-container">
                                         <button class="section-extra-head" data-toggle="collapse"
-                                                @click="hideShowToggle($event)"
-                                                data-target="#ByPartsModxContainer"> <span>Show</span> Full Calculation </button>
+                                                @click="hideShowToggle($event,'ByPartsModxContainer')"> <span>Show</span> Full Calculation </button>
                                     </span>
-                                <div id="ByPartsModxContainer" class="collapse show extra-content-container">
-                                    <div id="ByPartsModx" class="extra-content">
+                                <div id="ByPartsModxContainer">
+                                    <div id="ByPartsModx">
                                         <span class="mathJaxDisplay">
                                             $$ u=x \qquad  dv= \cos\left(\frac{n\pi x}{L}\right)dx $$
                                         </span>
